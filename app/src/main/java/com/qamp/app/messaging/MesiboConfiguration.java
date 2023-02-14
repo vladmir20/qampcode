@@ -19,6 +19,9 @@ public class MesiboConfiguration {
     public static final int DELETEDTOPIC_TEXT_COLOR_WITHOUT_PICTURE = 1996488704;
     public static final int DELETED_DRAWABLE = R.drawable.ic_action_cancel_black_18dp;
     public static final int DELETED_TINT_COLOR = 12303291;
+    public static final int TOOLBAR_STATUSBAR_COLOR = MesiboUI.getConfig().mStatusbarColor;
+    public static final int TOOLBAR_COLOR = MesiboUI.getConfig().mToolbarColor;
+
     public static final int DELIVERED_TINT_COLOR = 7829367;
     public static final int EMOJI_ICON = R.drawable.input_emoji;
     public static final int ERROR_TINT_COLOR = 13369344;

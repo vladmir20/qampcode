@@ -1,24 +1,25 @@
-/** Copyright (c) 2021 Mesibo
+/**
+ * Copyright (c) 2021 Mesibo
  * https://mesibo.com
  * All rights reserved.
- *
+ * <p>
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the terms and condition mentioned on https://mesibo.com
  * as well as following conditions are met:
- *
+ * <p>
  * Redistributions of source code must retain the above copyright notice, this list
  * of conditions, the following disclaimer and links to documentation and source code
  * repository.
- *
+ * <p>
  * Redistributions in binary form must reproduce the above copyright notice, this
  * list of conditions and the following disclaimer in the documentation and/or other
  * materials provided with the distribution.
- *
+ * <p>
  * Neither the name of Mesibo nor the names of its contributors may be used to endorse
  * or promote products derived from this software without specific prior written
  * permission.
- *
- *
+ * <p>
+ * <p>
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
@@ -29,13 +30,12 @@
  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- *
+ * <p>
  * Documentation
  * https://mesibo.com/documentation/
- *
+ * <p>
  * Source Code Repository
  * https://github.com/mesibo/messenger-app-android
- *
  */
 
 package com.qamp.app;
@@ -52,9 +52,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.core.app.NotificationCompat;
 import android.text.TextUtils;
 import android.widget.RemoteViews;
+
+import androidx.core.app.NotificationCompat;
 
 import com.mesibo.api.Mesibo;
 
@@ -67,18 +68,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class NotifyUser {
-    public static final int TYPE_MESSAGE=5;
-    public static final int TYPE_OTHER=10;
+    public static final int TYPE_MESSAGE = 5;
+    public static final int TYPE_OTHER = 10;
+    private static final String NOTIFYMESSAGE_CHANNEL_NAME = "New Messages";
     public static int mCount = 0;
-
-    public static class NotificationContent {
-        public String title = null;
-        public String content = null;
-        public String subContent = null;
-        public RemoteViews v = null;
-        public NotificationCompat.Style style = null;
-    }
-
+    public static String NOTIFYMESSAGE_CHANNEL_ID = "MesiboMessageNotificationChannel";
+    private static NotificationChannel mChannel = null;
     private List<NotificationContent> mNotificationContentList = new ArrayList<NotificationContent>();
     private Context mContxt = null;
     private Uri mSoundUri = null;
@@ -86,11 +81,6 @@ public class NotifyUser {
     private TimerTask mTimerTask = null;
     private Timer mTimer = null;
     private Handler mUiHandler = new Handler(MainApplication.getAppContext().getMainLooper());
-    private static NotificationChannel mChannel = null;
-
-
-    public static String NOTIFYMESSAGE_CHANNEL_ID = "MesiboMessageNotificationChannel";
-    private static final String NOTIFYMESSAGE_CHANNEL_NAME = "New Messages";
 
     public NotifyUser(Context context) {
         mContxt = context;
@@ -134,22 +124,22 @@ public class NotifyUser {
 
     public void sendNotification(int id, PendingIntent intent, NotificationContent n) {
 
-        if(null == mChannel) createNotificationChannels();
+        if (null == mChannel) createNotificationChannels();
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(mContxt, NOTIFYMESSAGE_CHANNEL_ID);
 
         builder.setPriority(NotificationCompat.PRIORITY_HIGH);
         builder.setCategory(NotificationCompat.CATEGORY_MESSAGE); //TBD, configurable
 
-        if(null != n.title)
+        if (null != n.title)
             builder.setContentTitle(n.title);
-        if(null != n.content)
+        if (null != n.content)
             builder.setContentText(n.content);
 
-        if(!TextUtils.isEmpty(n.subContent))
+        if (!TextUtils.isEmpty(n.subContent))
             builder.setSubText(n.subContent);
 
-        if(null != mSoundUri)
+        if (null != mSoundUri)
             builder.setSound(mSoundUri);
 
         builder.setWhen(System.currentTimeMillis());
@@ -159,14 +149,14 @@ public class NotifyUser {
 
         builder.setContentIntent(intent);
 
-        if(null != n.v) {
+        if (null != n.v) {
             builder.setCustomContentView(n.v);
         }
 
-        if(null == n.style && null != n.content) {
+        if (null == n.style && null != n.content) {
         }
 
-        if(null != n.style)
+        if (null != n.style)
             builder.setStyle(n.style);
 
 
@@ -182,7 +172,7 @@ public class NotifyUser {
         notificationManager.notify(id, notification);
     }
 
-    public synchronized void  clearNotification() {
+    public synchronized void clearNotification() {
 
         NotificationManager notificationManager = (NotificationManager) MainApplication.getAppContext().getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -199,7 +189,6 @@ public class NotifyUser {
         return PendingIntent.getActivity(mContxt, code, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
-
     public void sendNotification(int id, String title, String content) {
         NotificationContent n = new NotificationContent();
         n.title = title;
@@ -209,19 +198,19 @@ public class NotifyUser {
     }
 
     private synchronized void notifyMessages() {
-        if(0 == mNotificationContentList.size())
+        if (0 == mNotificationContentList.size())
             return;
 
-        NotificationContent notify= mNotificationContentList.get(mNotificationContentList.size()-1);
+        NotificationContent notify = mNotificationContentList.get(mNotificationContentList.size() - 1);
 
         String title = "New Message from " + notify.title;
         NotificationCompat.InboxStyle inboxStyle = null;
-        if(mNotificationContentList.size() > 1) {
+        if (mNotificationContentList.size() > 1) {
 
             inboxStyle = new NotificationCompat.InboxStyle();
             Iterator iterator = mNotificationContentList.iterator();
 
-            while(iterator.hasNext()) {
+            while (iterator.hasNext()) {
                 NotificationContent n = (NotificationContent) iterator.next();
                 inboxStyle.addLine(n.title + " : " + n.content);
             }
@@ -242,7 +231,7 @@ public class NotifyUser {
         notify.title = title;
         notify.content = message;
 
-        if(mNotificationContentList.size() >= 5)
+        if (mNotificationContentList.size() >= 5)
             mNotificationContentList.remove(0);
 
         mNotificationContentList.add(notify);
@@ -250,5 +239,13 @@ public class NotifyUser {
 
         notifyMessages();
         return;
+    }
+
+    public static class NotificationContent {
+        public String title = null;
+        public String content = null;
+        public String subContent = null;
+        public RemoteViews v = null;
+        public NotificationCompat.Style style = null;
     }
 }

@@ -4,9 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.mesibo.api.Mesibo;
 import com.mesibo.mediapicker.MediaPicker;
+
 import java.lang.ref.WeakReference;
 
 public class MesiboUIManager {
@@ -18,7 +21,7 @@ public class MesiboUIManager {
     }
 
     public static void launchContactActivity(Context context, long forwardid, int selectionMode, int flag, boolean startInBackground, boolean keepRunning, Bundle bundle, String forwardMessage) {
-        Intent intent = new Intent(context, MesiboUserListActivity.class);
+        Intent intent = new Intent(context, MesiboUserListActivityNew.class);
         intent.putExtra(MesiboUserListFragment.MESSAGE_LIST_MODE, selectionMode).putExtra("mid", forwardid).putExtra(MesiboUI.START_IN_BACKGROUND, startInBackground).putExtra(MesiboUI.KEEP_RUNNING, keepRunning);
         if (!TextUtils.isEmpty(forwardMessage)) {
             intent.putExtra("message", forwardMessage);
@@ -37,13 +40,13 @@ public class MesiboUIManager {
     }
 
     public static void launchContactActivity(Context context, int selectionMode, long[] mids) {
-        Intent intent = new Intent(context, MesiboUserListActivity.class);
+        Intent intent = new Intent(context, MesiboUserListActivityNew.class);
         intent.putExtra(MesiboUserListFragment.MESSAGE_LIST_MODE, selectionMode).putExtra(MesiboUI.MESSAGE_IDS, mids);
         context.startActivity(intent);
     }
 
     public static void launchForwardActivity(Context context, String forwardMessage, boolean forwardAndClose) {
-        Intent intent = new Intent(context, MesiboUserListActivity.class);
+        Intent intent = new Intent(context, MesiboUserListActivityNew.class);
         intent.putExtra(MesiboUserListFragment.MESSAGE_LIST_MODE, MesiboUserListFragment.MODE_SELECTCONTACT_FORWARD).putExtra("message", forwardMessage).putExtra(MesiboUI.FORWARD_AND_CLOSE, forwardAndClose);
         context.startActivity(intent);
     }

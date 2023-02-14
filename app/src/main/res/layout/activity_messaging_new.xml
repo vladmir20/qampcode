@@ -19,8 +19,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/myPrimaryColor"
-
+            android:background="@color/black_white_2"
             app:contentInsetEnd="0dp"
             app:contentInsetLeft="0dp"
             app:contentInsetRight="0dp"
@@ -51,9 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:animateLayoutChanges="true"
-                android:minHeight="30dp"
-
-                >
+                android:minHeight="30dp">
 
 
                 <TextView
@@ -61,7 +58,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:singleLine="true"
@@ -97,7 +93,7 @@
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <!-- <include layout="@layout/chat_box_new" /> -->
 

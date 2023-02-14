@@ -1,5 +1,8 @@
 package com.qamp.app.messaging;
 
+import static com.qamp.app.messaging.MesiboConfiguration.TOOLBAR_COLOR;
+import static com.qamp.app.messaging.MesiboConfiguration.TOOLBAR_STATUSBAR_COLOR;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,14 +14,17 @@ import android.text.style.ForegroundColorSpan;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.mesibo.api.Mesibo;
 
@@ -33,13 +39,31 @@ import java.util.List;
 
 public final class Utils {
     public static void setActivityStyle(AppCompatActivity context, Toolbar toolbar) {
-        if (!(toolbar == null || MesiboUI.getConfig().mToolbarColor == 0)) {
-            toolbar.setBackgroundColor(MesiboUI.getConfig().mToolbarColor);
+//        if (!(toolbar == null || MesiboUI.getConfig().mToolbarColor == 0)) {
+//            toolbar.setBackgroundColor(context.getResources().getColor(R.color.white));
+//        }
+//        if (Build.VERSION.SDK_INT >= 21 && MesiboUI.getConfig().mStatusbarColor != 0) {
+//            Window window = context.getWindow();
+//            window.addFlags(Integer.MIN_VALUE);
+//            window.setStatusBarColor(context.getResources().getColor(R.color.white));
+//        }
+
+        if (null != toolbar) {
+            if (TOOLBAR_COLOR != 0) {
+//                toolbar.setBackgroundColor(TOOLBAR_COLOR);
+            }
         }
-        if (Build.VERSION.SDK_INT >= 21 && MesiboUI.getConfig().mStatusbarColor != 0) {
-            Window window = context.getWindow();
-            window.addFlags(Integer.MIN_VALUE);
-            window.setStatusBarColor(MesiboUI.getConfig().mStatusbarColor);
+
+        Window window1 = context.getWindow();
+        window1.setStatusBarColor(ContextCompat.getColor(context, R.color.grey_3));
+        View decor = window1.getDecorView();
+        decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (TOOLBAR_STATUSBAR_COLOR != 0) {
+                Window window = context.getWindow();
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            }
         }
     }
 
