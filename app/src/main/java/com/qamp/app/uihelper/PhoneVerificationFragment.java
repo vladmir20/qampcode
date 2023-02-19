@@ -27,7 +27,7 @@ import android.app.ProgressDialog;
 import com.qamp.app.uihelper.Utils.Alert;
 import com.qamp.app.uihelper.Utils.BaseFragment;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 public class PhoneVerificationFragment extends BaseFragment implements Alert.DialogListener, ILoginResultsInterface, OtpView.OtpViewListener, PhoneAuthenticationHelper.Listener
 {

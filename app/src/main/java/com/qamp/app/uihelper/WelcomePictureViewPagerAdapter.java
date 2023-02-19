@@ -14,7 +14,7 @@ import android.widget.RelativeLayout;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 import java.util.List;
 

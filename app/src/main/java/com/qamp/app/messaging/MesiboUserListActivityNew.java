@@ -42,7 +42,7 @@ import com.mesibo.messaging.RoundImageDrawable;
 import com.qamp.app.Fragments.DiscoverFragment;
 import com.qamp.app.Fragments.FeedFragment;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 public class MesiboUserListActivityNew extends AppCompatActivity implements MesiboProfile.Listener, MesiboUserListFragment.FragmentListener {
     public static final String TAG = "MesiboMainActivity";

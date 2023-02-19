@@ -17,9 +17,9 @@
             -->
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
+            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/black_white_2"
             app:contentInsetEnd="0dp"
             app:contentInsetLeft="0dp"
             app:contentInsetRight="0dp"
@@ -35,7 +35,8 @@
                 android:layout_marginRight="5dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="2dp"
-                android:src="@drawable/ic_back_white_18dp" />
+                android:src="@drawable/ic_back_white_18dp"
+                android:tint="@color/black" />
 
             <ImageView
                 android:id="@+id/chat_profile_pic"
@@ -62,7 +63,7 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text="mesibo username"
-                    android:textColor="@android:color/white"
+                    android:textColor="@android:color/black"
                     android:textSize="16sp" />
 
                 <TextView
@@ -75,7 +76,7 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text="This is user status"
-                    android:textColor="@android:color/white"
+                    android:textColor="@android:color/black"
                     android:textSize="12sp"
                     android:visibility="gone" />
 

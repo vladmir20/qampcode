@@ -21,7 +21,7 @@ import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 public class CountryListFragment extends BaseDialogFragment
 {

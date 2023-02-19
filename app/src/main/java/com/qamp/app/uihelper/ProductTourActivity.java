@@ -26,7 +26,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.qamp.app.uihelper.Utils.Utils;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 import java.util.List;
 

@@ -17,7 +17,7 @@ import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboFile;
 import com.mesibo.emojiview.EmojiconTextView;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 public class MessageView extends RelativeLayout {
     private static int mThumbailWidth = 0;

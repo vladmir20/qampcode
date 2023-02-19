@@ -60,7 +60,7 @@ import com.mesibo.emojiview.EmojiconTextView;
 import com.qamp.app.messaging.RoundImageDrawable;
 
 import com.qamp.app.EditProfileFragment;
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 import com.qamp.app.SampleAPI;
 
 

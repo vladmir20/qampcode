@@ -39,7 +39,7 @@
 }
 
 
--keep class org.mesibo.Messenger.StartUpActivity { *; }
+-keep class com.qamp.app.StartUpActivity { *; }
 
 -keepclasseswithmembernames class * {
     native <methods>;

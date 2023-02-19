@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:123456:android:134824",
         "android_client_info": {
-          "package_name": "org.mesibo.messenger"
+          "package_name": "com.qamp.app"
         }
       },
       "oauth_client": [

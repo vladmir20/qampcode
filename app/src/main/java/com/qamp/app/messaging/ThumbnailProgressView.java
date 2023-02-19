@@ -15,7 +15,7 @@ import android.widget.ProgressBar;
 import com.mesibo.api.MesiboMessage;
 import com.qamp.app.messaging.AllUtils.MyTrace;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 public class ThumbnailProgressView extends FrameLayout {
     public static final int STATE_DISPLAY = 0;

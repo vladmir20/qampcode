@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 public class DiscoverFragment extends Fragment {
     public DiscoverFragment(){

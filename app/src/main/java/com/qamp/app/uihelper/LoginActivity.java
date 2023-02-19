@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.qamp.app.uihelper.Utils.ActivityListener;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 public class LoginActivity extends AppCompatActivity implements WelcomeFragment.OnFragmentInteractionListener {
     static {

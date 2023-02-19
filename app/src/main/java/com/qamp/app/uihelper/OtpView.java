@@ -25,7 +25,7 @@ import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.content.Context;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 public class OtpView
 {

@@ -28,7 +28,7 @@ import androidx.core.content.ContextCompat;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.mesibo.api.Mesibo;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 import java.io.File;
 import java.io.FileNotFoundException;

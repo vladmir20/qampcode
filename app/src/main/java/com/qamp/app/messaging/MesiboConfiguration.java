@@ -1,6 +1,6 @@
 package com.qamp.app.messaging;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 public class MesiboConfiguration {
     public static final int ATTACHMENT_ICON = R.drawable.ic_attachment_grey_18dp;

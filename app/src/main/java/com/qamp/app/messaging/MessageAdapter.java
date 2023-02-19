@@ -23,7 +23,7 @@ import com.qamp.app.messaging.MesiboRecycleViewHolder;
 import com.qamp.app.messaging.MesiboUI;
 import com.qamp.app.messaging.MessageViewHolder;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 import java.lang.ref.WeakReference;
 import java.util.List;

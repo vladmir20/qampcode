@@ -53,7 +53,7 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.mesibo.api.Mesibo;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 
 public class EditProfileActivity extends AppCompatActivity {

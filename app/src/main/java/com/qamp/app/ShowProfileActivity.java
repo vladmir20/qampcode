@@ -62,7 +62,7 @@ import android.widget.TextView;
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboProfile;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 public class ShowProfileActivity extends AppCompatActivity implements ShowProfileFragment.OnFragmentInteractionListener, MesiboProfile.Listener {
 

@@ -30,6 +30,7 @@ import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboGroupProfile;
 import com.mesibo.api.MesiboMessage;
@@ -37,11 +38,8 @@ import com.mesibo.api.MesiboPresence;
 import com.mesibo.api.MesiboProfile;
 import com.mesibo.api.MesiboReadSession;
 import com.mesibo.emojiview.EmojiconTextView;
+import com.qamp.app.R;
 import com.qamp.app.messaging.AllUtils.LetterTileProvider;
-import com.qamp.app.messaging.MesiboUI;
-import com.qamp.app.messaging.MesiboUserListFragment;
-
-import org.mesibo.messenger.R;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -55,40 +53,26 @@ import java.util.TimerTask;
 public class UserListFragment extends Fragment implements Mesibo.MessageListener, Mesibo.PresenceListener, Mesibo.ConnectionListener, Mesibo.ProfileListener, Mesibo.SyncListener, Mesibo.GroupListener {
     public static MesiboGroupProfile.Member[] mExistingMembers = null;
     public static ArrayList<MesiboProfile> mMemberProfiles = new ArrayList<>();
-    MessageContactAdapter mAdapter = null;
-    private ArrayList<MesiboProfile> mAdhocUserList = null;
     /* access modifiers changed from: private */
     public boolean mCloseAfterForward = false;
     public boolean mContactView = false;
-    private MesiboReadSession mDbSession = null;
     public TextView mEmptyView;
-    private boolean mFirstOnline = false;
     public long mForwardId = 0;
     /* access modifiers changed from: private */
     public long[] mForwardMessageIds = null;
     /* access modifiers changed from: private */
     public String mForwardedMessage = null;
-    Bundle mGroupEditBundle = null;
-    long mGroupId = 0;
-    Set<String> mGroupMembers = null;
-    MesiboProfile mGroupProfile = null;
     /* access modifiers changed from: private */
     public Boolean mIsMessageSearching = false;
-    LetterTileProvider mLetterTileProvider = null;
-    private WeakReference<MesiboUserListFragment.FragmentListener> mListener = null;
-    private MesiboUI.Listener mMesiboUIHelperListener = null;
-    MesiboUI.Config mMesiboUIOptions = null;
-    private String mReadQuery = null;
-    RecyclerView mRecyclerView = null;
-    private long mRefreshTs = 0;
     /* access modifiers changed from: private */
     public String mSearchQuery = null;
-    private ArrayList<MesiboProfile> mSearchResultList = null;
     /* access modifiers changed from: private */
     public int mSelectionMode = 0;
-    private boolean mSyncDone = false;
     /* access modifiers changed from: private */
     public Handler mUiUpdateHandler = new Handler(Looper.getMainLooper());
+    /* access modifiers changed from: private */
+    public long mUiUpdateTimestamp = 0;
+    MessageContactAdapter mAdapter = null;
     /* access modifiers changed from: private */
     public Runnable mUiUpdateRunnable = new Runnable() {
         public void run() {
@@ -97,13 +81,28 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             }
         }
     };
+    Bundle mGroupEditBundle = null;
+    long mGroupId = 0;
+    Set<String> mGroupMembers = null;
+    MesiboProfile mGroupProfile = null;
+    LetterTileProvider mLetterTileProvider = null;
+    MesiboUI.Config mMesiboUIOptions = null;
+    RecyclerView mRecyclerView = null;
+    ArrayList<MesiboProfile> memberProfiles = new ArrayList<>();
+    private ArrayList<MesiboProfile> mAdhocUserList = null;
+    private MesiboReadSession mDbSession = null;
+    private boolean mFirstOnline = false;
+    private WeakReference<MesiboUserListFragment.FragmentListener> mListener = null;
+    private MesiboUI.Listener mMesiboUIHelperListener = null;
+    private String mReadQuery = null;
+    private long mRefreshTs = 0;
+    private ArrayList<MesiboProfile> mSearchResultList = null;
+    private boolean mSyncDone = false;
     private Timer mUiUpdateTimer = null;
     private TimerTask mUiUpdateTimerTask = null;
-    /* access modifiers changed from: private */
-    public long mUiUpdateTimestamp = 0;
     private ArrayList<MesiboProfile> mUserProfiles = null;
-    ArrayList<MesiboProfile> memberProfiles = new ArrayList<>();
     private LinearLayout mforwardLayout;
+    private LinearLayout fabadd;
 
     public void updateTitle(String title) {
         MesiboUserListFragment.FragmentListener l = getListener();
@@ -196,11 +195,16 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(this.mRecyclerView.getContext()));
         this.mAdapter = new MessageContactAdapter(getActivity(), this, this.mUserProfiles, this.mSearchResultList);
         this.mRecyclerView.setAdapter(this.mAdapter);
+        this.fabadd = view.findViewById(R.id.fab_add);
+        this.fabadd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MesiboUIManager.launchContactActivity(getContext(), 0,
+                        MesiboUserListFragment.MODE_SELECTCONTACT, 0,
+                        false, false, (Bundle) null);
+            }
+        });
         return view;
-    }
-
-    public void setListener(MesiboUserListFragment.FragmentListener listener) {
-        this.mListener = new WeakReference<>(listener);
     }
 
     public MesiboUserListFragment.FragmentListener getListener() {
@@ -208,6 +212,10 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             return null;
         }
         return (MesiboUserListFragment.FragmentListener) this.mListener.get();
+    }
+
+    public void setListener(MesiboUserListFragment.FragmentListener listener) {
+        this.mListener = new WeakReference<>(listener);
     }
 
     public void setEmptyViewText() {
@@ -225,7 +233,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             this.mMesiboUIHelperListener.MesiboUI_onGetMenuResourceId(getActivity(), 0, (MesiboProfile) null, menu);
             MenuItem searchViewItem = menu.findItem(R.id.mesibo_search);
             if (searchViewItem != null && this.mMesiboUIOptions.enableSearch) {
-                SearchView searchView = new SearchView(((AppCompatActivity)getActivity()).getSupportActionBar().getThemedContext());
+                SearchView searchView = new SearchView(((AppCompatActivity) getActivity()).getSupportActionBar().getThemedContext());
                 MenuItemCompat.setShowAsAction(searchViewItem, 9);
                 MenuItemCompat.setActionView(searchViewItem, searchView);
                 searchView.setIconifiedByDefault(true);
@@ -723,7 +731,6 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
     public class MessageContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public static final int SECTION_CELLS = 300;
         public static final int SECTION_HEADER = 100;
-        private int mBackground = 0;
         /* access modifiers changed from: private */
         public Context mContext = null;
         public int mCountProfileMatched = 0;
@@ -731,44 +738,10 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         public ArrayList<MesiboProfile> mDataList = null;
         /* access modifiers changed from: private */
         public UserListFragment mHost;
+        private int mBackground = 0;
         private ArrayList<MesiboProfile> mSearchResults = null;
         private SparseBooleanArray mSelectionItems;
         private ArrayList<MesiboProfile> mUsers = null;
-
-        public class SectionHeaderViewHolder extends RecyclerView.ViewHolder {
-            public TextView mSectionTitle = null;
-
-            public SectionHeaderViewHolder(View itemView) {
-                super(itemView);
-                this.mSectionTitle = (TextView) itemView.findViewById(R.id.section_header);
-            }
-        }
-
-        public class SectionCellsViewHolder extends RecyclerView.ViewHolder {
-            public MenuPopupHelper PopupMenu = null;
-            public String mBoundString = null;
-            public ImageView mContactsDeliveryStatus = null;
-            public EmojiconTextView mContactsMessage = null;
-            public TextView mContactsName = null;
-            public ImageView mContactsProfile = null;
-            public TextView mContactsTime = null;
-            public RelativeLayout mHighlightView = null;
-            public TextView mNewMesAlert = null;
-            public View mView = null;
-            public int position = 0;
-
-            public SectionCellsViewHolder(View view) {
-                super(view);
-                this.mView = view;
-                this.mContactsProfile = (ImageView) view.findViewById(R.id.mes_rv_profile);
-                this.mContactsName = (TextView) view.findViewById(R.id.mes_rv_name);
-                this.mContactsTime = (TextView) view.findViewById(R.id.mes_rv_date);
-                this.mContactsMessage = view.findViewById(R.id.mes_cont_post_or_details);
-                this.mContactsDeliveryStatus = (ImageView) view.findViewById(R.id.mes_cont_status);
-                this.mNewMesAlert = (TextView) view.findViewById(R.id.mes_alert);
-                this.mHighlightView = (RelativeLayout) view.findViewById(R.id.highlighted_view);
-            }
-        }
 
         public MessageContactAdapter(Context context, UserListFragment host, ArrayList<MesiboProfile> list, ArrayList<MesiboProfile> searchResults) {
             this.mContext = context;
@@ -1105,6 +1078,41 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                     rbd.setQuery(text2);
                     rbd.read(100);
                 }
+            }
+        }
+
+        public class SectionHeaderViewHolder extends RecyclerView.ViewHolder {
+            public TextView mSectionTitle = null;
+
+            public SectionHeaderViewHolder(View itemView) {
+                super(itemView);
+                this.mSectionTitle = (TextView) itemView.findViewById(R.id.section_header);
+            }
+        }
+
+        public class SectionCellsViewHolder extends RecyclerView.ViewHolder {
+            public MenuPopupHelper PopupMenu = null;
+            public String mBoundString = null;
+            public ImageView mContactsDeliveryStatus = null;
+            public EmojiconTextView mContactsMessage = null;
+            public TextView mContactsName = null;
+            public ImageView mContactsProfile = null;
+            public TextView mContactsTime = null;
+            public RelativeLayout mHighlightView = null;
+            public TextView mNewMesAlert = null;
+            public View mView = null;
+            public int position = 0;
+
+            public SectionCellsViewHolder(View view) {
+                super(view);
+                this.mView = view;
+                this.mContactsProfile = (ImageView) view.findViewById(R.id.mes_rv_profile);
+                this.mContactsName = (TextView) view.findViewById(R.id.mes_rv_name);
+                this.mContactsTime = (TextView) view.findViewById(R.id.mes_rv_date);
+                this.mContactsMessage = view.findViewById(R.id.mes_cont_post_or_details);
+                this.mContactsDeliveryStatus = (ImageView) view.findViewById(R.id.mes_cont_status);
+                this.mNewMesAlert = (TextView) view.findViewById(R.id.mes_alert);
+                this.mHighlightView = (RelativeLayout) view.findViewById(R.id.highlighted_view);
             }
         }
     }

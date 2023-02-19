@@ -53,7 +53,7 @@ import com.mesibo.mediapicker.MediaPicker;
 
 import com.qamp.app.AppSettings.SettingsActivity;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 import com.qamp.app.uihelper.ILoginInterface;
 import com.qamp.app.uihelper.IProductTourListener;

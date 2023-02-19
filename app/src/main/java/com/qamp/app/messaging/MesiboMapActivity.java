@@ -30,7 +30,7 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 import com.qamp.app.messaging.MesiboUI;
 import com.qamp.app.messaging.SettingsScalingUtilities;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 import java.util.Arrays;
 import java.util.Locale;

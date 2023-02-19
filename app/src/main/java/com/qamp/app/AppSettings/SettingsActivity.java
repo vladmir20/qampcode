@@ -58,7 +58,7 @@ import com.mesibo.api.Mesibo;
 import com.qamp.app.messaging.MesiboUI;
 import com.qamp.app.EditProfileFragment;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 
 public class SettingsActivity extends AppCompatActivity {

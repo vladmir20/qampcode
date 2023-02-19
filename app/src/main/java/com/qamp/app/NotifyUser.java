@@ -59,7 +59,7 @@ import androidx.core.app.NotificationCompat;
 
 import com.mesibo.api.Mesibo;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 import java.util.ArrayList;
 import java.util.Iterator;

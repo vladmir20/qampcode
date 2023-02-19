@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 public class ProductTourFragment extends Fragment
 {

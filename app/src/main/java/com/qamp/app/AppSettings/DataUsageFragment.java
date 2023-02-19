@@ -53,7 +53,7 @@ import androidx.preference.PreferenceScreen;
 import androidx.preference.SwitchPreferenceCompat;
 
 import com.qamp.app.SampleAPI;
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 public class DataUsageFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
 

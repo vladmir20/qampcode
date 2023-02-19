@@ -85,7 +85,7 @@ import com.mesibo.mediapicker.MediaPicker;
 import com.qamp.app.Utils.AppUtils;
 import com.qamp.app.messaging.RoundImageDrawable;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 public class EditProfileFragment extends Fragment implements MediaPicker.ImageEditorListener, MesiboProfile.Listener {
     public static final String TITLE_PERMISON_CAMERA_FAIL = "Permission Denied";

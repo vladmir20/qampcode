@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboProfile;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 public class MesiboEndToEndEncryptionActivity extends AppCompatActivity {
     MesiboEndToEndEncryptionFragment mFragment;

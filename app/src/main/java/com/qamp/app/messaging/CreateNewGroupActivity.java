@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import com.mesibo.api.Mesibo;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 public class CreateNewGroupActivity extends AppCompatActivity {
     Bundle mGroupEditBundle = null;

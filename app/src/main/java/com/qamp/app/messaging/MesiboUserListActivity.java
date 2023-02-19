@@ -13,7 +13,7 @@ import com.mesibo.api.MesiboMessage;
 import com.qamp.app.messaging.MesiboUI;
 import com.qamp.app.messaging.MesiboUserListFragment;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 public class MesiboUserListActivity extends AppCompatActivity implements MesiboUserListFragment.FragmentListener {
     public static final String TAG = "MesiboMainActivity";

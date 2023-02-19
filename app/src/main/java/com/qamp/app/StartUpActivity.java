@@ -50,7 +50,7 @@ import android.util.Log;
 import com.mesibo.contactutils.ContactUtils;
 import com.qamp.app.uihelper.MesiboUiHelperConfig;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 public class StartUpActivity extends AppCompatActivity {
 

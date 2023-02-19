@@ -83,7 +83,7 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static com.qamp.app.messaging.MesiboUserListFragment.MODE_EDITGROUP;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 
 public class ShowProfileFragment extends Fragment implements Mesibo.MessageListener, MesiboProfile.Listener, Mesibo.GroupListener {

@@ -14,7 +14,7 @@ import java.util.List;
 import android.view.LayoutInflater;
 import androidx.viewpager.widget.PagerAdapter;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 public class WelcomeBannerViewPagerAdapter extends PagerAdapter
 {

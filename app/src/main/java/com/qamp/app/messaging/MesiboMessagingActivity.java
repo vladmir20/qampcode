@@ -21,7 +21,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboProfile;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 public class MesiboMessagingActivity extends AppCompatActivity implements MesiboMessagingFragment.FragmentListener {
     static int FROM_MESSAGING_ACTIVITY = 1;

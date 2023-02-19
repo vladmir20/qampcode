@@ -38,7 +38,7 @@ import com.mesibo.emojiview.EmojiconsPopup;
 import com.mesibo.emojiview.emoji.Emojicon;
 import com.mesibo.mediapicker.MediaPicker;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 import java.util.ArrayList;
 

@@ -7,7 +7,7 @@ import android.view.Menu;
 import com.mesibo.api.MesiboProfile;
 import com.qamp.app.messaging.AllUtils.MyTrace;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 public class MesiboUI {
     public static final String BUNDLE = "bundle";

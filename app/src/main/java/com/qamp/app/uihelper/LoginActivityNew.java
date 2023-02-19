@@ -27,7 +27,7 @@ import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 import java.util.HashMap;
 import java.util.Map;

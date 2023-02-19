@@ -84,7 +84,7 @@ import com.mesibo.mediapicker.MediaPicker.ImageEditorListener;
 import com.qamp.app.messaging.AllUtils.LetterTileProvider;
 import com.qamp.app.messaging.AllUtils.TextToEmoji;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;

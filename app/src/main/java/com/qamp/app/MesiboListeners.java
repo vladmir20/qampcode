@@ -63,7 +63,7 @@ import com.mesibo.contactutils.*;
 
 import com.mesibo.api.Mesibo;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 import com.qamp.app.fcm.MesiboRegistrationIntentService;
 
@@ -265,24 +265,24 @@ public class MesiboListeners implements Mesibo.ConnectionListener, ILoginInterfa
     public int MesiboUI_onGetMenuResourceId(Context context, int type, MesiboProfile profile, Menu menu) {
         int id = 0;
         if (type == 0) { // Setting menu in userlist
-            id = org.mesibo.messenger.R.menu.messaging_activity_menu;
+            id = com.qamp.app.R.menu.messaging_activity_menu;
             mUserListContext = context;
         }
         else {
-            id = org.mesibo.messenger.R.menu.menu_messaging;
+            id = com.qamp.app.R.menu.menu_messaging;
             mMessageContext = context;
         }
 
         ((Activity)context).getMenuInflater().inflate(id, menu);
 
         if(1 == type && null != profile && profile.isGroup()) {
-            MenuItem menuItem = menu.findItem(org.mesibo.messenger.R.id.action_call);
+            MenuItem menuItem = menu.findItem(com.qamp.app.R.id.action_call);
             if(!profile.isActive()) menuItem.setVisible(false);
-            menuItem.setIcon(org.mesibo.messenger.R.drawable.ic_mesibo_groupcall_audio);
+            menuItem.setIcon(com.qamp.app.R.drawable.ic_mesibo_groupcall_audio);
            // MenuItemCompat.setShowAsAction(menuItem, MenuItemCompat.SHOW_AS_ACTION_NEVER);
 
-            menuItem = menu.findItem(org.mesibo.messenger.R.id.action_videocall);
-            menuItem.setIcon(org.mesibo.messenger.R.drawable.ic_mesibo_groupcall_video);
+            menuItem = menu.findItem(com.qamp.app.R.id.action_videocall);
+            menuItem.setIcon(com.qamp.app.R.drawable.ic_mesibo_groupcall_video);
             if(!profile.isActive()) menuItem.setVisible(false);
             //MenuItemCompat.setShowAsAction(menuItem, MenuItemCompat.SHOW_AS_ACTION_NEVER);
         }
@@ -296,15 +296,15 @@ public class MesiboListeners implements Mesibo.ConnectionListener, ILoginInterfa
             return false;
 
         if (type == 0) { // from userlist
-            if (item == org.mesibo.messenger.R.id.action_settings) {
+            if (item == com.qamp.app.R.id.action_settings) {
                 UIManager.launchUserSettings(context);
-            } else if(item == org.mesibo.messenger.R.id.action_conf) {
+            } else if(item == com.qamp.app.R.id.action_conf) {
                 MesiboCall.getInstance().groupCallJoinRoomUi(context, "Mesibo Conferencing Demo");
-            } else if(item == org.mesibo.messenger.R.id.action_calllogs) {
+            } else if(item == com.qamp.app.R.id.action_calllogs) {
                 MesiboCallUi.getInstance().launchCallLogs(context, 0);
-            } else if(item == org.mesibo.messenger.R.id.action_menu_e2ee) {
+            } else if(item == com.qamp.app.R.id.action_menu_e2ee) {
                 MesiboUI.showEndToEndEncryptionInfoForSelf(context);
-            } else if(item == org.mesibo.messenger.R.id.mesibo_share) {
+            } else if(item == com.qamp.app.R.id.mesibo_share) {
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, AppConfig.getConfig().invite.subject);
@@ -316,11 +316,11 @@ public class MesiboListeners implements Mesibo.ConnectionListener, ILoginInterfa
             if(null == profile) {
                 return false;
             }
-            if(org.mesibo.messenger.R.id.action_call == item) {
+            if(com.qamp.app.R.id.action_call == item) {
                 if(!MesiboCall.getInstance().callUi(context, profile, false))
                     MesiboCall.getInstance().callUiForExistingCall(context);
             }
-            else if(org.mesibo.messenger.R.id.action_videocall == item) {
+            else if(com.qamp.app.R.id.action_videocall == item) {
                 if(!MesiboCall.getInstance().callUi(context, profile, true))
                     MesiboCall.getInstance().callUiForExistingCall(context);
             }

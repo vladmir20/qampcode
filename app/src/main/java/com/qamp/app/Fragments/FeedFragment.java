@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 public class FeedFragment extends Fragment {
     public FeedFragment() {

@@ -29,7 +29,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.View;
 import androidx.fragment.app.Fragment;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 public class WelcomeFragment extends Fragment implements View.OnTouchListener
 {

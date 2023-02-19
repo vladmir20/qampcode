@@ -15,7 +15,7 @@ import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboProfile;
 import com.mesibo.mediapicker.MediaPicker;
 
-import org.mesibo.messenger.R;
+import com.qamp.app.R;
 
 import java.io.File;
 
