@@ -11,8 +11,9 @@ ext {
 android {
 
     compileSdkVersion project.Mesibo_compileSdkVersion
+
     defaultConfig {
-        applicationId "com.qamp.app"
+        applicationId "com.qampmessenger.app"
         minSdkVersion project.Mesibo_minSdkVersion
         targetSdkVersion project.Mesibo_targetSdkVersion
         versionCode project.PUBLISH_VERSION_CODE

@@ -104,6 +104,16 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
     private LinearLayout mforwardLayout;
     private LinearLayout fabadd;
 
+    long mForwardIdForContactList = 0;
+    String forwardMessage = MesiboUI.MESSAGE_CONTENT;
+    long[] mForwardIds = {0};
+    int mMode = 0;
+    Bundle mEditGroupBundle = null;
+
+
+
+
+
     public void updateTitle(String title) {
         MesiboUserListFragment.FragmentListener l = getListener();
         if (l != null) {
@@ -199,12 +209,28 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         this.fabadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MesiboUIManager.launchContactActivity(getContext(), 0,
-                        MesiboUserListFragment.MODE_SELECTCONTACT, 0,
-                        false, false, (Bundle) null);
+                showConatcts();
             }
         });
         return view;
+    }
+
+    private void showConatcts() {
+        ContactsBottomSheetFragment contactsBottomSheetFragment = new ContactsBottomSheetFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(MesiboUserListFragment.MESSAGE_LIST_MODE, MesiboUserListFragment.MODE_SELECTCONTACT);
+        bundle.putLong(MesiboUI.MESSAGE_ID, mForwardIdForContactList);
+
+        if (!TextUtils.isEmpty(""))
+            bundle.putString(MesiboUI.MESSAGE_CONTENT, forwardMessage);
+
+        bundle.putLongArray(MesiboUI.MESSAGE_IDS, mForwardIds);
+        if (mMode == MesiboUserListFragment.MODE_EDITGROUP)
+            bundle.putBundle(MesiboUI.BUNDLE, mEditGroupBundle);
+
+        bundle.putBoolean(MesiboUI.FORWARD_AND_CLOSE, false);
+        contactsBottomSheetFragment.setArguments(bundle);
+        contactsBottomSheetFragment.show(getChildFragmentManager(), contactsBottomSheetFragment.getTag());
     }
 
     public MesiboUserListFragment.FragmentListener getListener() {
