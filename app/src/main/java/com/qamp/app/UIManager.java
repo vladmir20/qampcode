@@ -86,7 +86,7 @@ public class UIManager {
     }
 
     public static void launchUserProfile(Context context, long groupid, String peer) {
-        Intent subActivity = new Intent(context, ShowProfileActivity.class);
+        Intent subActivity = new Intent(context, ShowProfileActivityNew.class);
         subActivity.
                 putExtra("peer", peer).
                 putExtra("groupid", groupid);

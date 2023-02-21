@@ -1,24 +1,25 @@
-/** Copyright (c) 2021 Mesibo
+/**
+ * Copyright (c) 2021 Mesibo
  * https://mesibo.com
  * All rights reserved.
- *
+ * <p>
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the terms and condition mentioned on https://mesibo.com
  * as well as following conditions are met:
- *
+ * <p>
  * Redistributions of source code must retain the above copyright notice, this list
  * of conditions, the following disclaimer and links to documentation and source code
  * repository.
- *
+ * <p>
  * Redistributions in binary form must reproduce the above copyright notice, this
  * list of conditions and the following disclaimer in the documentation and/or other
  * materials provided with the distribution.
- *
+ * <p>
  * Neither the name of Mesibo nor the names of its contributors may be used to endorse
  * or promote products derived from this software without specific prior written
  * permission.
- *
- *
+ * <p>
+ * <p>
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
@@ -29,13 +30,12 @@
  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- *
+ * <p>
  * Documentation
  * https://mesibo.com/documentation/
- *
+ * <p>
  * Source Code Repository
  * https://github.com/mesibo/messenger-app-android
- *
  */
 
 package com.qamp.app;
@@ -47,22 +47,21 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboProfile;
-
-import com.qamp.app.R;
 
 public class ShowProfileActivity extends AppCompatActivity implements ShowProfileFragment.OnFragmentInteractionListener, MesiboProfile.Listener {
 
@@ -74,7 +73,7 @@ public class ShowProfileActivity extends AppCompatActivity implements ShowProfil
 
     long mGroupId = 0;
     String mPeer = null;
-   
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,25 +119,23 @@ public class ShowProfileActivity extends AppCompatActivity implements ShowProfil
         userName.setText(mUserProfile.getName());
         long lastSeen = mUserProfile.getLastSeen();
         userstatus.setVisibility(View.VISIBLE);
-        if(0 == lastSeen) {
+        if (0 == lastSeen) {
             userstatus.setText("Online");
-        }
-        else if(lastSeen < 0) {
+        } else if (lastSeen < 0) {
             // never seen or group
             userstatus.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             String seenStatus = "";
-            if(lastSeen >= 2*3600*24) {
-                seenStatus = (int)(lastSeen/(3600*24)) + " days ago";
-            } else if(lastSeen >= 24*3600) {
+            if (lastSeen >= 2 * 3600 * 24) {
+                seenStatus = (int) (lastSeen / (3600 * 24)) + " days ago";
+            } else if (lastSeen >= 24 * 3600) {
                 seenStatus = "yesterday";
-            } else if(lastSeen >= 2*3600 ){
-                seenStatus = (int)(lastSeen/(3600)) + " hours ago";
-            } else if(lastSeen >= 3600) {
+            } else if (lastSeen >= 2 * 3600) {
+                seenStatus = (int) (lastSeen / (3600)) + " hours ago";
+            } else if (lastSeen >= 3600) {
                 seenStatus = "an hour ago";
-            } else if(lastSeen >= 120) {
-                seenStatus = (int)(lastSeen/60) + " minutes ago";
+            } else if (lastSeen >= 120) {
+                seenStatus = (int) (lastSeen / 60) + " minutes ago";
             } else {
                 seenStatus = "a few moments ago";
             }
@@ -199,7 +196,7 @@ public class ShowProfileActivity extends AppCompatActivity implements ShowProfil
 
     private void setUserPicture() {
         Bitmap b = mUserProfile.getImageOrThumbnail();
-        if(null != b) {
+        if (null != b) {
             mUsermageView.setImageBitmap(b);
         }
     }
@@ -207,7 +204,7 @@ public class ShowProfileActivity extends AppCompatActivity implements ShowProfil
     @Override
     public void MesiboProfile_onUpdate(MesiboProfile userProfile) {
 
-        if(Mesibo.isUiThread()) {
+        if (Mesibo.isUiThread()) {
             setUserPicture();
             return;
         }
@@ -242,9 +239,9 @@ public class ShowProfileActivity extends AppCompatActivity implements ShowProfil
 
         Mesibo.setForegroundContext(this, 0x102, true);
 
-        if(mUserProfile.groupid > 0) {
+        if (mUserProfile.groupid > 0) {
             TextView userName = (TextView) findViewById(R.id.up_user_name);
-            if(null != mUserProfile.getName())
+            if (null != mUserProfile.getName())
                 userName.setText(mUserProfile.getName());
         }
 

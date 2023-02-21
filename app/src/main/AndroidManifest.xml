@@ -115,6 +115,7 @@
         <activity android:name="com.qamp.app.messaging.MesiboMapActivity"/>
         <activity android:name="com.qamp.app.messaging.CreateNewGroupActivity"/>
         <activity android:name="com.qamp.app.messaging.MesiboUserListActivityNew"/>
+        <activity android:name=".ShowProfileActivityNew"/>
 
     </application>
 
