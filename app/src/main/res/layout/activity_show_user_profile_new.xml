@@ -212,7 +212,12 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
-
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="50dp"
+                    android:id="@+id/up_media_layout"
+                    android:layout_marginBottom="@dimen/card_margin">
                 <LinearLayout
                     android:id="@+id/up_open_media"
                     android:layout_width="match_parent"
@@ -244,7 +249,7 @@
 
 
                 </LinearLayout>
-
+                </androidx.cardview.widget.CardView>
 
                 <HorizontalScrollView
                     android:layout_width="match_parent"

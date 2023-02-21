@@ -64,7 +64,7 @@
                 />
         </LinearLayout>
 
-        <com.qamp.app.emojiview.EmojiconTextView
+        <com.mesibo.emojiview.EmojiconTextView
             android:id="@+id/sp_memeber_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
