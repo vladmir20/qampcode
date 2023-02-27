@@ -235,9 +235,6 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
         createGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(getActivity(), CreateGroupNew.class);
-//                startActivity(intent);
-                Toast.makeText(getContext(), "Create Group", Toast.LENGTH_SHORT).show();
                 dismiss();
             }
         });
@@ -604,6 +601,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
         super.onCancel(dialog);
     }
 
+
     public class MessageContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public final static int SECTION_HEADER = 100;
         public final static int SECTION_CELLS = 300;
@@ -725,7 +723,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                     holder.audioCallIcon.setVisibility(View.VISIBLE);
                     holder.videoCallIcon.setVisibility(View.VISIBLE);
                 }
-                 Bitmap b = data.getThumbnail(mLetterTileProvider);
+                Bitmap b = data.getThumbnail(mLetterTileProvider);
                 Drawable d = new com.mesibo.api.RoundImageDrawable(b);
                 holder.mContactsProfile.setImageDrawable(new RoundImageDrawable(b));
 

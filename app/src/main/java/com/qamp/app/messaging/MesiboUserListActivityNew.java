@@ -41,7 +41,6 @@ import com.mesibo.api.MesiboProfile;
 import com.mesibo.messaging.RoundImageDrawable;
 import com.qamp.app.Fragments.DiscoverFragment;
 import com.qamp.app.Fragments.FeedFragment;
-
 import com.qamp.app.R;
 
 public class MesiboUserListActivityNew extends AppCompatActivity implements MesiboProfile.Listener, MesiboUserListFragment.FragmentListener {

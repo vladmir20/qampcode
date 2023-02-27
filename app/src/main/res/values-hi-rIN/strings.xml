@@ -169,6 +169,7 @@
     <string name="copy_text">Copy</string>
     <string name="shared_files">Shared Files</string>
     <string name="add_channel">Add Channel</string>
+    <string name="create_qamp_room">Create a Qamp Room</string>
 
 
 </resources>

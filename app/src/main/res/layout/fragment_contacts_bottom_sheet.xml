@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -52,6 +51,22 @@
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
             android:text="@string/create_new_group"
+            android:textColor="@color/text_color_black_white"
+            android:textSize="15sp" />
+
+
+        <TextView
+            android:id="@+id/create_qamp_room"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:drawableLeft="@drawable/qamp_room"
+            android:drawablePadding="10dp"
+            android:gravity="left"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:text="@string/create_qamp_room"
             android:textColor="@color/text_color_black_white"
             android:textSize="15sp" />
 

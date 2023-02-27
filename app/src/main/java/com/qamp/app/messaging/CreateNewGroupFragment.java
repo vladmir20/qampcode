@@ -10,7 +10,6 @@ import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,11 +21,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboGroupProfile;
 import com.mesibo.api.MesiboProfile;
@@ -37,15 +38,14 @@ import com.mesibo.emojiview.EmojiconTextView;
 import com.mesibo.emojiview.EmojiconsPopup;
 import com.mesibo.emojiview.emoji.Emojicon;
 import com.mesibo.mediapicker.MediaPicker;
-
 import com.qamp.app.R;
 
 import java.util.ArrayList;
 
 public class CreateNewGroupFragment extends Fragment implements MediaPicker.ImageEditorListener, Mesibo.GroupListener, MesiboProfile.Listener {
+    static final int CAMERA_PERMISSION_CODE = 102;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    static final int CAMERA_PERMISSION_CODE = 102;
     RecyclerView.Adapter mAdapter;
     TextView mCharCounter;
     LinearLayout mCreateGroupBtn;
@@ -57,10 +57,18 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
     int mGroupMode;
     ImageView mGroupPicture;
     EmojiconEditText mGroupSubjectEditor;
-    private String mParam1;
-    private String mParam2;
     MesiboProfile mProfile = null;
     RecyclerView mRecyclerView;
+    private String mParam1;
+    private String mParam2;
+
+    public static CreateNewGroupFragment newInstance(Bundle bundle) {
+        CreateNewGroupFragment fragment = new CreateNewGroupFragment();
+        Bundle args = new Bundle();
+        args.putBundle(ARG_PARAM1, bundle);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     public void onImageEdit(int i, String s, String s1, Bitmap bitmap, int i1) {
         this.mGroupImage = bitmap;
@@ -80,14 +88,6 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
         } else {
             MediaPicker.launchPicker(getActivity(), MediaPicker.TYPE_CAMERAIMAGE);
         }
-    }
-
-    public static CreateNewGroupFragment newInstance(Bundle bundle) {
-        CreateNewGroupFragment fragment = new CreateNewGroupFragment();
-        Bundle args = new Bundle();
-        args.putBundle(ARG_PARAM1, bundle);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     public void onCreate(Bundle savedInstanceState) {
@@ -110,13 +110,13 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
                 this.mProfile.getGroupProfile().getMembers(256, true, this);
             }
         }
-        this.mCreateGroupBtn = (LinearLayout) v.findViewById(R.id.nugroup_create_btn);
+        this.mCreateGroupBtn = v.findViewById(R.id.nugroup_create_btn);
         this.mCreateGroupBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (UserListFragment.mMemberProfiles.size() == 0 && CreateNewGroupFragment.this.mGroupMode == 0) {
                     Utils.showAlert(CreateNewGroupFragment.this.getActivity(), MesiboConfiguration.CREATE_GROUP_NOMEMEBER_TITLE_STRING, MesiboConfiguration.CREATE_GROUP_NOMEMEBER_MESSAGE_STRING);
                 } else if (CreateNewGroupFragment.this.mGroupSubjectEditor.getText().toString().length() < 2) {
-                    Utils.showAlert(CreateNewGroupFragment.this.getActivity(), (String) null, MesiboConfiguration.CREATE_GROUP_GROUPNAME_ERROR_MESSAGE_STRING);
+                    Utils.showAlert(CreateNewGroupFragment.this.getActivity(), null, MesiboConfiguration.CREATE_GROUP_GROUPNAME_ERROR_MESSAGE_STRING);
                 } else {
                     CreateNewGroupFragment.this.mCreateGroupBtn.setEnabled(false);
                     if (0 == CreateNewGroupFragment.this.mGroupId) {
@@ -135,7 +135,7 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
                 }
             }
         });
-        this.mGroupPicture = (ImageView) v.findViewById(R.id.nugroup_picture);
+        this.mGroupPicture = v.findViewById(R.id.nugroup_picture);
         setGroupImageFile();
         this.mGroupPicture.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -157,11 +157,11 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
                         } else {
                             if (item.getItemId() == R.id.popup_remove) {
                                 if (CreateNewGroupFragment.this.mProfile != null) {
-                                    CreateNewGroupFragment.this.mProfile.setImage((Bitmap) null);
+                                    CreateNewGroupFragment.this.mProfile.setImage(null);
                                     CreateNewGroupFragment.this.mProfile.save();
                                 }
                                 CreateNewGroupFragment.this.mGroupImage = null;
-                                CreateNewGroupFragment.this.setGroupImage((Bitmap) null);
+                                CreateNewGroupFragment.this.setGroupImage(null);
                             }
                             return false;
                         }
@@ -177,7 +177,7 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(this.mRecyclerView.getContext()));
         this.mAdapter = new GroupMemeberAdapter(getActivity(), UserListFragment.mMemberProfiles);
         this.mRecyclerView.setAdapter(this.mAdapter);
-        this.mCharCounter = (TextView) v.findViewById(R.id.nugroup_counter);
+        this.mCharCounter = v.findViewById(R.id.nugroup_counter);
         this.mCharCounter.setText(String.valueOf(50));
         this.mGroupSubjectEditor.setFilters(new InputFilter[]{new InputFilter.LengthFilter(50)});
         this.mGroupSubjectEditor.addTextChangedListener(new TextWatcher() {
@@ -191,9 +191,9 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
                 CreateNewGroupFragment.this.mCharCounter.setText(String.valueOf(50 - CreateNewGroupFragment.this.mGroupSubjectEditor.getText().length()));
             }
         });
-        final EmojiconsPopup popup = new EmojiconsPopup((FrameLayout) v.findViewById(R.id.nugroup_root_layout), getActivity());
+        final EmojiconsPopup popup = new EmojiconsPopup(v.findViewById(R.id.nugroup_root_layout), getActivity());
         popup.setSizeForSoftKeyboard();
-        this.mEmojiButton = (ImageView) v.findViewById(R.id.nugroup_smile_btn);
+        this.mEmojiButton = v.findViewById(R.id.nugroup_smile_btn);
         this.mEmojiButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (popup.isShowing()) {
@@ -292,7 +292,7 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
 
     /* access modifiers changed from: package-private */
     public void launchMessaging() {
-        MesiboUIManager.launchMessagingActivity(getActivity(), 0, (String) null, this.mProfile.getGroupId());
+        MesiboUIManager.launchMessagingActivity(getActivity(), 0, null, this.mProfile.getGroupId());
         Activity a = getActivity();
         if (a != null) {
             a.finish();
@@ -341,7 +341,7 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         String fileName;
         if (-1 == resultCode && (fileName = MediaPicker.processOnActivityResult(getActivity(), requestCode, resultCode, data)) != null) {
-            MesiboUIManager.launchImageEditor(getActivity(), MediaPicker.TYPE_CAMERAIMAGE, 0, (String) null, fileName, false, false, true, true, 600, this);
+            MesiboUIManager.launchImageEditor(getActivity(), MediaPicker.TYPE_CAMERAIMAGE, 0, null, fileName, false, false, true, true, 600, this);
         }
     }
 
@@ -354,7 +354,7 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
 
     public void setGroupImageFile() {
         if (this.mProfile == null) {
-            setGroupImage((Bitmap) null);
+            setGroupImage(null);
         } else {
             setGroupImage(this.mProfile.getThumbnail());
         }
@@ -366,7 +366,7 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
     }
 
     public class GroupMemeberAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-        private int mBackground = 0;
+        private final int mBackground = 0;
         private Context mContext = null;
         private ArrayList<MesiboProfile> mDataList = null;
         private UserListFragment mHost;
@@ -374,23 +374,6 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
         public GroupMemeberAdapter(Context context, ArrayList<MesiboProfile> list) {
             this.mContext = context;
             this.mDataList = list;
-        }
-
-        public class GroupMembersCellsViewHolder extends RecyclerView.ViewHolder {
-            public TextView mContactsName = null;
-            public ImageView mContactsProfile = null;
-            public EmojiconTextView mContactsStatus = null;
-            public ImageView mDeleteContact;
-            public View mView = null;
-
-            public GroupMembersCellsViewHolder(View view) {
-                super(view);
-                this.mView = view;
-                this.mContactsProfile = (ImageView) view.findViewById(R.id.nu_rv_profile);
-                this.mContactsName = (TextView) view.findViewById(R.id.nu_rv_name);
-                this.mContactsStatus = view.findViewById(R.id.nu_memeber_status);
-                this.mDeleteContact = (ImageView) view.findViewById(R.id.nu_delete_btn);
-            }
         }
 
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -437,6 +420,23 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
             this.mDataList.remove(position);
             notifyItemRemoved(position);
             notifyDataSetChanged();
+        }
+
+        public class GroupMembersCellsViewHolder extends RecyclerView.ViewHolder {
+            public TextView mContactsName = null;
+            public ImageView mContactsProfile = null;
+            public EmojiconTextView mContactsStatus = null;
+            public ImageView mDeleteContact;
+            public View mView = null;
+
+            public GroupMembersCellsViewHolder(View view) {
+                super(view);
+                this.mView = view;
+                this.mContactsProfile = view.findViewById(R.id.nu_rv_profile);
+                this.mContactsName = view.findViewById(R.id.nu_rv_name);
+                this.mContactsStatus = view.findViewById(R.id.nu_memeber_status);
+                this.mDeleteContact = view.findViewById(R.id.nu_delete_btn);
+            }
         }
     }
 }
