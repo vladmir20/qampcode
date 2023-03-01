@@ -53,7 +53,7 @@ import java.util.TimerTask;
 public class UserListFragment extends Fragment implements Mesibo.MessageListener, Mesibo.PresenceListener, Mesibo.ConnectionListener, Mesibo.ProfileListener, Mesibo.SyncListener, Mesibo.GroupListener {
     public static MesiboGroupProfile.Member[] mExistingMembers = null;
     public static ArrayList<MesiboProfile> mMemberProfiles = new ArrayList<>();
-    /* access modifiers changed from: private */
+     /* access modifiers changed from: private */
     public boolean mCloseAfterForward = false;
     public boolean mContactView = false;
     public TextView mEmptyView;
@@ -768,6 +768,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         private ArrayList<MesiboProfile> mSearchResults = null;
         private SparseBooleanArray mSelectionItems;
         private ArrayList<MesiboProfile> mUsers = null;
+        private ArrayList<MesiboProfile> slectedgtoup = null;
 
         public MessageContactAdapter(Context context, UserListFragment host, ArrayList<MesiboProfile> list, ArrayList<MesiboProfile> searchResults) {
             this.mContext = context;

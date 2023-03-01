@@ -1,5 +1,8 @@
 package com.qamp.app.messaging;
 
+import static com.qamp.app.messaging.ContactsBottomSheetFragment.groupmaker;
+import static com.qamp.app.messaging.ContactsBottomSheetFragment.slectedgtoup;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -133,6 +136,8 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
                         a.finish();
                     }
                 }
+                slectedgtoup.clear();
+                groupmaker=0;
             }
         });
         this.mGroupPicture = v.findViewById(R.id.nugroup_picture);
