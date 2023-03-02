@@ -1,8 +1,6 @@
 package com.qamp.app.messaging;
 
-import static com.qamp.app.messaging.ContactsBottomSheetFragment.groupmaker;
-import static com.qamp.app.messaging.ContactsBottomSheetFragment.slectedgtoup;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -19,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -136,17 +133,16 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
                         a.finish();
                     }
                 }
-                slectedgtoup.clear();
-                groupmaker=0;
             }
         });
         this.mGroupPicture = v.findViewById(R.id.nugroup_picture);
         setGroupImageFile();
         this.mGroupPicture.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("RestrictedApi")
             public void onClick(View v) {
-                MenuBuilder menuBuilder = new MenuBuilder(CreateNewGroupFragment.this.getActivity());
+                @SuppressLint("RestrictedApi") MenuBuilder menuBuilder = new MenuBuilder(CreateNewGroupFragment.this.getActivity());
                 new MenuInflater(CreateNewGroupFragment.this.getActivity()).inflate(R.menu.image_source_menu, menuBuilder);
-                MenuPopupHelper optionsMenu = new MenuPopupHelper(CreateNewGroupFragment.this.getActivity(), menuBuilder, v);
+                @SuppressLint("RestrictedApi") MenuPopupHelper optionsMenu = new MenuPopupHelper(CreateNewGroupFragment.this.getActivity(), menuBuilder, v);
                 optionsMenu.setForceShowIcon(true);
                 menuBuilder.setCallback(new MenuBuilder.Callback() {
                     public boolean onMenuItemSelected(MenuBuilder menu, MenuItem item) {
@@ -210,7 +206,7 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
                     CreateNewGroupFragment.this.mGroupSubjectEditor.setFocusableInTouchMode(true);
                     CreateNewGroupFragment.this.mGroupSubjectEditor.requestFocus();
                     popup.showAtBottomPending();
-                    ((InputMethodManager) CreateNewGroupFragment.this.getActivity().getSystemService("input_method")).showSoftInput(CreateNewGroupFragment.this.mGroupSubjectEditor, 1);
+                    ((InputMethodManager) CreateNewGroupFragment.this.getActivity().getSystemService(Context.INPUT_METHOD_SERVICE)).showSoftInput(CreateNewGroupFragment.this.mGroupSubjectEditor, 1);
                     CreateNewGroupFragment.this.changeEmojiKeyboardIcon(CreateNewGroupFragment.this.mEmojiButton, R.drawable.ic_keyboard);
                 }
             }

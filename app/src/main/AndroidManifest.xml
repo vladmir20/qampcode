@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -16,16 +18,16 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
 
-
     <application
         android:name="com.qamp.app.MainApplication"
-        android:allowBackup="false"
-        android:icon="@mipmap/ic_launcher"
-        android:label="Mesibo Messenger"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher_o"
+        android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:testOnly="false"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.NoActionBar"
+        android:usesCleartextTraffic="true">
 
 
         <meta-data
@@ -35,28 +37,53 @@
 
         <activity
             android:name="com.qamp.app.EditProfileActivity"
-            android:theme="@style/EditProfileTheme"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.qamp.app.ShowProfileActivity"
-            android:theme="@style/ShowUserProfileTheme" />
+            android:name=".OnBoardingScreens"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.qamp.app.StartUpActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:launchMode="singleTop"
-            android:noHistory="true"
+            android:name=".OnBoardingUserProfile"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@style/ShowUserProfileTheme"
-            android:windowSoftInputMode="stateAlwaysHidden">
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
+        <activity
+            android:name="com.qamp.app.ShowProfileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
+        <activity
+            android:name=".SplashScreenActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".WelcomeOnboarding"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".LoginQampActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -69,7 +96,8 @@
 
         <activity
             android:name="com.qamp.app.AppSettings.SettingsActivity"
-            android:theme="@style/SettingsTheme"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
 
         <receiver
@@ -107,16 +135,42 @@
             android:exported="false"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
-        <activity android:name="com.qamp.app.uihelper.ProductTourActivity" />
-        <activity android:name="com.qamp.app.uihelper.LoginActivity" />
-        <activity android:name="com.qamp.app.uihelper.LoginActivityNew" />
-        <activity android:name="com.qamp.app.messaging.MesiboUserListActivity" />
-        <activity android:name="com.qamp.app.messaging.MesiboEndToEndEncryptionActivity" />
-        <activity android:name="com.qamp.app.messaging.MesiboMessagingActivity" />
-        <activity android:name="com.qamp.app.messaging.MesiboMapActivity" />
-        <activity android:name="com.qamp.app.messaging.CreateNewGroupActivity" />
-        <activity android:name="com.qamp.app.messaging.MesiboUserListActivityNew" />
-        <activity android:name=".ShowProfileActivityNew" />
+        <activity
+            android:name="com.qamp.app.uihelper.ProductTourActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.qamp.app.uihelper.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.qamp.app.uihelper.LoginActivityNew"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.qamp.app.messaging.MesiboUserListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.qamp.app.messaging.MesiboEndToEndEncryptionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.qamp.app.messaging.MesiboMessagingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.qamp.app.messaging.MesiboMapActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.qamp.app.messaging.CreateNewGroupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.qamp.app.messaging.MesiboUserListActivityNew"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ShowProfileActivityNew"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EditProfileActivityNew"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SelectLanguage"
+            android:screenOrientation="portrait" />
 
     </application>
 

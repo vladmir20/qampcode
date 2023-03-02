@@ -31,7 +31,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.ContactsContract;
@@ -45,11 +44,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -81,7 +78,6 @@ import java.lang.ref.WeakReference;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -100,13 +96,10 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
             ContactsContract.Contacts.DISPLAY_NAME,
             ContactsContract.CommonDataKinds.Phone.NUMBER
     };
-    public static int groupmaker = 0;
-    public static ArrayList<MesiboProfile> slectedgtoup = new ArrayList<>();
     public TextView mEmptyView;
     public long mForwardId = 0;
     RecyclerView contactsRecycle;
     TextView createGroup;
-    LinearLayout next_group;
     ImageView close;
     ArrayList<Contact> contactList = new ArrayList<>();
     MessageContactAdapter mAdapter = null;
@@ -192,7 +185,6 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
         View view = inflater.inflate(R.layout.fragment_contacts_bottom_sheet, container, false);
 
         createGroup = view.findViewById(R.id.create_group);
-        next_group = view.findViewById(R.id.next_group);
         close = view.findViewById(R.id.close);
 
         imageView3 = view.findViewById(R.id.imageView3);
@@ -243,36 +235,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
         createGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (groupmaker == 0) {
-                    groupmaker = 1;
-                    next_group.setVisibility(View.VISIBLE);
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        createGroup.setBackgroundColor(getActivity().getColor(R.color.colorPrimary));
-                    }
-                } else if (groupmaker == 1) {
-                    groupmaker = 0;
-                    next_group.setVisibility(View.GONE);
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        createGroup.setBackgroundColor(getActivity().getColor(R.color.white));
-                    }
-                }
-
-            }
-        });
-        next_group.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Iterator<MesiboProfile> it = slectedgtoup.iterator();
-                while (it.hasNext()) {
-                    MesiboProfile d = it.next();
-                    UserListFragment.mMemberProfiles.add(d);
-
-                }
-                MesiboUIManager.launchGroupActivity(ContactsBottomSheetFragment.this.getActivity(), (Bundle) null);
-                ContactsBottomSheetFragment.this.getActivity().finish();
-                Intent intent = new Intent(getActivity(), CreateNewGroupActivity.class);
-                startActivity(intent);
-                getActivity().finish();
+                dismiss();
             }
         });
 
@@ -638,6 +601,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
         super.onCancel(dialog);
     }
 
+
     public class MessageContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public final static int SECTION_HEADER = 100;
         public final static int SECTION_CELLS = 300;
@@ -797,74 +761,58 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                     }
                 });
 
-                if (groupmaker == 1) {
-                    holder.mContactsName.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            slectedgtoup.add(mDataList.get(position));
-                            Log.e("listselectconedg", "" + slectedgtoup.size());
-                            holder.top_layout.setBackground(getResources().getDrawable(R.drawable.corner_radius_button));
 
-                        }
-                    });
-                    holder.isChecked.setVisibility(View.VISIBLE);
-                } else {
-                    holder.isChecked.setVisibility(View.VISIBLE);
-                    holder.mContactsName.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-
-
-                            if (null != user.getStatus() && user.getStatus().equals("0")) {
-                                sendMessage("JOIN_HUDDLE_MESSAGE", user.address);
-                            } else {
-                                if (mSelectionMode == MesiboUserListFragment.MODE_SELECTCONTACT_FORWARD || mSelectionMode == MesiboUserListFragment.MODE_SELECTGROUP || mSelectionMode == MesiboUserListFragment.MODE_EDITGROUP) {
-                                    if ((user.uiFlags & MesiboProfile.FLAG_MARKED) == MesiboProfile.FLAG_MARKED) {
-                                        user.uiFlags = user.uiFlags & ~MesiboProfile.FLAG_MARKED;
-                                    } else {
-                                        user.uiFlags = user.uiFlags | MesiboProfile.FLAG_MARKED;
-                                    }
-                                    notifyDataSetChanged();
-
-                                    if (isForwardContactsSelected()) {
-                                        //mHost.showForwardLayout();
-                                    } else {
-                                        //mHost.hideForwardLayout();
-                                    }
-
+                holder.mContactsName.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (null != user.getStatus() && user.getStatus().equals("0")) {
+                            sendMessage("JOIN_HUDDLE_MESSAGE", user.address);
+                        } else {
+                            if (mSelectionMode == MesiboUserListFragment.MODE_SELECTCONTACT_FORWARD || mSelectionMode == MesiboUserListFragment.MODE_SELECTGROUP || mSelectionMode == MesiboUserListFragment.MODE_EDITGROUP) {
+                                if ((user.uiFlags & MesiboProfile.FLAG_MARKED) == MesiboProfile.FLAG_MARKED) {
+                                    user.uiFlags = user.uiFlags & ~MesiboProfile.FLAG_MARKED;
                                 } else {
+                                    user.uiFlags = user.uiFlags | MesiboProfile.FLAG_MARKED;
+                                }
+                                notifyDataSetChanged();
 
-                                    //TBD, it's checking user name, instead we should set flag
-                                    if (null != user.getName() && null != getString(R.string.create_new_group) && user.getName().equals(getString(R.string.create_new_group)) && mSelectionMode == MesiboUserListFragment.MODE_SELECTCONTACT) {
-                                        MesiboUIManager.launchContactActivity(getContext(), 0, MesiboUserListFragment.MODE_SELECTGROUP, 0, false, false, null);
+                                if (isForwardContactsSelected()) {
+                                    //mHost.showForwardLayout();
+                                } else {
+                                    //mHost.hideForwardLayout();
+                                }
+
+                            } else {
+
+                                //TBD, it's checking user name, instead we should set flag
+                                if (null != user.getName() && null != getString(R.string.create_new_group) && user.getName().equals(getString(R.string.create_new_group)) && mSelectionMode == MesiboUserListFragment.MODE_SELECTCONTACT) {
+                                    MesiboUIManager.launchContactActivity(getContext(), 0, MesiboUserListFragment.MODE_SELECTGROUP, 0, false, false, null);
+                                    getActivity().finish();
+                                    return;
+                                }
+
+                                // data.clearUnreadCount();
+                                Context context = view.getContext();
+
+                                boolean handledByApp = onClickUser(user.address, user.groupid, mHost.mForwardId);
+
+                                if (!handledByApp) {
+                                    Intent intent = new Intent(getActivity(), MesiboMessagingActivity.class);
+                                    intent.putExtra(MesiboUI.MESSAGE_ID, mHost.mForwardId);
+                                    intent.putExtra(MesiboUI.PEER, user.address);
+                                    intent.putExtra(MesiboUI.GROUP_ID, user.groupid);
+                                    startActivity(intent);
+                                    mHost.mForwardId = 0;
+                                    if (mSelectionMode != MesiboUserListFragment.MODE_MESSAGELIST) {
                                         getActivity().finish();
-                                        return;
                                     }
-
-                                    // data.clearUnreadCount();
-                                    Context context = view.getContext();
-
-                                    boolean handledByApp = onClickUser(user.address, user.groupid, mHost.mForwardId);
-
-                                    if (!handledByApp) {
-                                        Intent intent = new Intent(getActivity(), MesiboMessagingActivity.class);
-                                        intent.putExtra(MesiboUI.MESSAGE_ID, mHost.mForwardId);
-                                        intent.putExtra(MesiboUI.PEER, user.address);
-                                        intent.putExtra(MesiboUI.GROUP_ID, user.groupid);
-                                        startActivity(intent);
-                                        mHost.mForwardId = 0;
-                                        if (mSelectionMode != MesiboUserListFragment.MODE_MESSAGELIST) {
-                                            getActivity().finish();
-                                        }
-                                    } else {
-                                        mHost.mForwardId = 0;
-                                    }
+                                } else {
+                                    mHost.mForwardId = 0;
                                 }
                             }
                         }
-                    });
-
-                }
+                    }
+                });
 
 
                 holder.messageIcon.setOnClickListener(new View.OnClickListener() {
@@ -1157,8 +1105,6 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
             public MenuPopupHelper PopupMenu = null;
             public RelativeLayout mHighlightView = null;
             public int position = 0;
-            public CheckBox isChecked;
-            LinearLayout top_layout;
 
             public SectionCellsViewHolder(View view) {
                 super(view);
@@ -1166,8 +1112,6 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                 mContactsProfile = (ImageView) view.findViewById(R.id.mes_rv_profile);
                 invite = (ImageView) view.findViewById(R.id.invite);
                 link = (ImageView) view.findViewById(R.id.link);
-                isChecked = (CheckBox) view.findViewById(R.id.isChecked);
-                top_layout = (LinearLayout) view.findViewById(R.id.top_layout);
                 messageIcon = (ImageView) view.findViewById(R.id.message);
                 videoCallIcon = (ImageView) view.findViewById(R.id.video_call);
                 audioCallIcon = (ImageView) view.findViewById(R.id.audio_call);

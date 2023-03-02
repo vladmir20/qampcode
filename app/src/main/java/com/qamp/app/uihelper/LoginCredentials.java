@@ -4,25 +4,18 @@
 
 package com.qamp.app.uihelper;
 
-import androidx.annotation.NonNull;
-import com.google.android.gms.common.ConnectionResult;
-import androidx.annotation.Nullable;
 import android.os.Bundle;
-import android.app.PendingIntent;
-import com.qamp.app.uihelper.Utils.TMLog;
-import android.content.Intent;
-import android.os.Build;
-import com.google.android.gms.common.api.Status;
-import android.app.Activity;
-import com.google.android.gms.common.api.Result;
-import com.google.android.gms.common.api.ResultCallback;
- import android.text.TextUtils;
-import androidx.fragment.app.FragmentActivity;
-import android.content.Context;
-import com.mesibo.contactutils.ContactUtils;
-import java.lang.ref.WeakReference;
+import android.text.TextUtils;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.mesibo.contactutils.ContactUtils;
+
+import java.lang.ref.WeakReference;
 
 public class LoginCredentials implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener
 {

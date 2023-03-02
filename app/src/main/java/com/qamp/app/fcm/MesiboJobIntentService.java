@@ -39,11 +39,13 @@
  */
 
 package com.qamp.app.fcm;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
-import androidx.core.app.JobIntentService;
 import android.widget.Toast;
+
+import androidx.core.app.JobIntentService;
 
 /**
  * Require WAKE_LOCK persmission for API level earlier than Android O

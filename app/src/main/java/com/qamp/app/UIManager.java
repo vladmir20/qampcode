@@ -46,22 +46,18 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mesibo.mediapicker.AlbumListData;
 import com.mesibo.mediapicker.MediaPicker;
-
 import com.qamp.app.AppSettings.SettingsActivity;
-
-import com.qamp.app.R;
-
+import com.qamp.app.messaging.MesiboUI;
 import com.qamp.app.uihelper.ILoginInterface;
 import com.qamp.app.uihelper.IProductTourListener;
 import com.qamp.app.uihelper.MesiboUiHelper;
 import com.qamp.app.uihelper.MesiboUiHelperConfig;
 import com.qamp.app.uihelper.WelcomeScreen;
-import com.qamp.app.messaging.MesiboUI;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +65,7 @@ import java.util.List;
 public class UIManager {
 
     public static void launchStartupActivity(Context context, boolean skipTour) {
-        Intent intent = new Intent(context, StartUpActivity.class);
+        Intent intent = new Intent(context, SplashScreenActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra(StartUpActivity.SKIPTOUR, skipTour);
         context.startActivity(intent);

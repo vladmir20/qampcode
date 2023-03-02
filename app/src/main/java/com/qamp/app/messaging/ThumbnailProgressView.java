@@ -12,10 +12,10 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import com.mesibo.api.MesiboMessage;
-import com.qamp.app.messaging.AllUtils.MyTrace;
 
+import com.mesibo.api.MesiboMessage;
 import com.qamp.app.R;
+import com.qamp.app.messaging.AllUtils.MyTrace;
 
 public class ThumbnailProgressView extends FrameLayout {
     public static final int STATE_DISPLAY = 0;

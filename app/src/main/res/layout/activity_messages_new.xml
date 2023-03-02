@@ -170,7 +170,7 @@
                             android:layout_width="15dp"
                             android:layout_height="0dp" />
 
-                        <ImageView
+                        <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/image"
                             android:layout_width="@dimen/spacing_xxxlarge"
                             android:layout_height="@dimen/spacing_xxxlarge"

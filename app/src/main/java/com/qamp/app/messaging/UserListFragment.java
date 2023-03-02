@@ -53,7 +53,7 @@ import java.util.TimerTask;
 public class UserListFragment extends Fragment implements Mesibo.MessageListener, Mesibo.PresenceListener, Mesibo.ConnectionListener, Mesibo.ProfileListener, Mesibo.SyncListener, Mesibo.GroupListener {
     public static MesiboGroupProfile.Member[] mExistingMembers = null;
     public static ArrayList<MesiboProfile> mMemberProfiles = new ArrayList<>();
-     /* access modifiers changed from: private */
+    /* access modifiers changed from: private */
     public boolean mCloseAfterForward = false;
     public boolean mContactView = false;
     public TextView mEmptyView;
@@ -424,7 +424,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         r0 = com.qamp.app.messaging.UserData.getUserData(r3);
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
-    public void Mesibo_onPresence(com.mesibo.api.MesiboPresence r11) {
+    public void Mesibo_onPresence(MesiboPresence r11) {
         /*
             r10 = this;
             r8 = 3
@@ -630,7 +630,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                 MesiboProfile user = new MesiboProfile();
                 user.address = this.mMesiboUIOptions.createGroupTitle;
                 user.setName(this.mMesiboUIOptions.createGroupTitle);
-                user.setStatus(MesiboConfiguration.CREATE_NEW_GROUP_MESSAGE_STRING);
+                //user.setStatus(MesiboConfiguration.CREATE_NEW_GROUP_MESSAGE_STRING);
                 user.lookedup = true;
                 UserData ud = new UserData(user);
                 Bitmap b = MesiboImages.getDefaultGroupBitmap();
@@ -768,7 +768,6 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         private ArrayList<MesiboProfile> mSearchResults = null;
         private SparseBooleanArray mSelectionItems;
         private ArrayList<MesiboProfile> mUsers = null;
-        private ArrayList<MesiboProfile> slectedgtoup = null;
 
         public MessageContactAdapter(Context context, UserListFragment host, ArrayList<MesiboProfile> list, ArrayList<MesiboProfile> searchResults) {
             this.mContext = context;

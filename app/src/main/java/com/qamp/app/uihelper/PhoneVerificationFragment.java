@@ -4,30 +4,30 @@
 
 package com.qamp.app.uihelper;
 
-import android.content.Intent;
-import androidx.fragment.app.FragmentActivity;
-import com.qamp.app.uihelper.Utils.TMLog;
-import android.text.TextUtils;
-import androidx.fragment.app.Fragment;
-import android.graphics.drawable.Drawable;
-import androidx.appcompat.app.AppCompatActivity;
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.os.Bundle;
-import androidx.annotation.Nullable;
-import android.view.ViewGroup;
-import android.view.LayoutInflater;
 import android.app.Activity;
-import android.widget.LinearLayout;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.app.ProgressDialog;
-import com.qamp.app.uihelper.Utils.Alert;
-import com.qamp.app.uihelper.Utils.BaseFragment;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import com.qamp.app.R;
+import com.qamp.app.uihelper.Utils.Alert;
+import com.qamp.app.uihelper.Utils.BaseFragment;
+import com.qamp.app.uihelper.Utils.TMLog;
 
 public class PhoneVerificationFragment extends BaseFragment implements Alert.DialogListener, ILoginResultsInterface, OtpView.OtpViewListener, PhoneAuthenticationHelper.Listener
 {

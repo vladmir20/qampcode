@@ -39,6 +39,8 @@ import com.qamp.app.messaging.RoundImageDrawable;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ShowProfileActivityNew extends AppCompatActivity implements MesiboProfile.Listener, Mesibo.MessageListener, Mesibo.GroupListener {
 
     private static final int MAX_THUMBNAIL_GALERY_SIZE = 35;
@@ -47,7 +49,7 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
     private static int IMAGE_FILE = 1;
     private static int OTHER_FILE = 2;
     private static Bitmap mDefaultProfileBmp;
-    ImageView mUsermageView;
+    CircleImageView mUsermageView;
     MesiboProfile mUserProfile;
     long mGroupId = 0;
     String mPeer = null;
@@ -107,7 +109,7 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
 
         mUserProfile.addListener(ShowProfileActivityNew.this);
 
-        mUsermageView = (ImageView) findViewById(R.id.up_image_profile);
+        mUsermageView = (CircleImageView) findViewById(R.id.up_image_profile);
 
         Mesibo.addListener(this);
 
@@ -300,7 +302,10 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
     private void setUserPicture() {
         Bitmap b = mUserProfile.getImageOrThumbnail();
         if (null != b) {
-            mUsermageView.setImageBitmap(b);
+            mUsermageView.setImageDrawable(new com.mesibo.messaging.RoundImageDrawable(b));
+            //mUsermageView.setImageBitmap(b);
+        } else {
+            mUsermageView.setImageDrawable(getDrawable(R.drawable.default_user_image));
         }
     }
 
@@ -545,7 +550,7 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.showprofile_group_member_rv_item, parent, false);
-            return new GroupMemeberAdapter.GroupMembersCellsViewHolder(view);
+            return new GroupMembersCellsViewHolder(view);
 
         }
 
@@ -554,7 +559,7 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
             final int pos = position;
             final MesiboGroupProfile.Member member = mDataList.get(position);
             final MesiboProfile user = member.getProfile();
-            final GroupMemeberAdapter.GroupMembersCellsViewHolder holder = (GroupMemeberAdapter.GroupMembersCellsViewHolder) holderr;
+            final GroupMembersCellsViewHolder holder = (GroupMembersCellsViewHolder) holderr;
             holder.mContactsName.setText(user.getNameOrAddress("+"));
 
             Bitmap memberImage = user.getImage();

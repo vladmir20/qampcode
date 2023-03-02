@@ -39,9 +39,15 @@ import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboMessage;
 import com.mesibo.api.MesiboProfile;
 import com.mesibo.messaging.RoundImageDrawable;
+import com.qamp.app.AppConfig;
 import com.qamp.app.Fragments.DiscoverFragment;
 import com.qamp.app.Fragments.FeedFragment;
+import com.qamp.app.LoginQampActivity;
+import com.qamp.app.QampUiHelper;
 import com.qamp.app.R;
+import com.qamp.app.Utilss;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MesiboUserListActivityNew extends AppCompatActivity implements MesiboProfile.Listener, MesiboUserListFragment.FragmentListener {
     public static final String TAG = "MesiboMainActivity";
@@ -65,7 +71,7 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
     private ImageButton btn_close_filter;
     private TextView name_text, viewProfile_text;
     private LinearLayout shareViaWhatsapp;
-    private ImageView circleProfileView;
+    private CircleImageView circleProfileView;
     private ImageView search_image;
     private long pressedTime;
     private long mGroupId = 0;
@@ -143,7 +149,7 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
         Utils.setTextViewColor(this.contactsTitle, MesiboUI.getConfig().mToolbarTextColor);
         Utils.setTextViewColor(this.contactsSubTitle, MesiboUI.getConfig().mToolbarTextColor);
         Utils.setActivityStyle(this, toolbar);
-        setSupportActionBar(toolbar);
+        //  setSupportActionBar(toolbar);
         // Utils.setActivityStyle(this, toolbar);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         String title = this.mMesiboUIOptions.messageListTitle;
@@ -171,7 +177,7 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
             bl.putBoolean(MesiboUI.FORWARD_AND_CLOSE, forwardAndClose);
             userListFragment.setArguments(bl);
         }
-        //Utils.setLanguage(MainActivity.this);
+        Utilss.setLanguage(MesiboUserListActivityNew.this);
         setContentView(R.layout.activity_messages_new);
         initViews();
         initFragment();
@@ -185,7 +191,7 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
         edit_Profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // QampUiHelper.launchEditProfile(MainActivity.this, 0, 0, false);
+                QampUiHelper.launchEditProfileNew(MesiboUserListActivityNew.this, 0, 0, false);
             }
         });
         btn_close_filter.setOnClickListener(new View.OnClickListener() {
@@ -197,10 +203,10 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                AppConfig.reset();
-//                Intent intent1 = new Intent(MainActivity.this, LoginActivity.class);
-//                startActivity(intent1);
-//                finish();
+                AppConfig.reset();
+                Intent intent1 = new Intent(MesiboUserListActivityNew.this, LoginQampActivity.class);
+                startActivity(intent1);
+                finish();
             }
         });
 
@@ -225,8 +231,8 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
         viewProfile_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // QampUiHelper.launchEditProfile(MainActivity.this, 0, 0, false);
-                //finish();
+                QampUiHelper.launchEditProfileNew(MesiboUserListActivityNew.this, 0, 0, false);
+                finish();
             }
         });
 
@@ -296,9 +302,11 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
         MesiboProfile profile = getProfile();
         Bitmap image = profile.getImageOrThumbnail();
         if (null != image) {
-            circleProfileView.setImageDrawable(new com.mesibo.messaging.RoundImageDrawable(image));
+            circleProfileView.setImageDrawable(new RoundImageDrawable(image));
         } else {
-            circleProfileView.setImageDrawable(getDrawable(R.drawable.default_user_image));
+
+            circleProfileView.setImageDrawable(getResources().getDrawable(R.drawable.default_user_image));
+
 
         }
         if (true) return;
@@ -311,7 +319,8 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
                 circleProfileView.setImageDrawable(new RoundImageDrawable(b));
             }
         } else {
-            circleProfileView.setImageDrawable(getDrawable(R.drawable.default_user_image));
+            circleProfileView.setImageDrawable(getResources().getDrawable(R.drawable.default_user_image));
+
         }
     }
 
@@ -331,13 +340,13 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
     @Override
     public void onStart() {
         super.onStart();
-        // Utils.setLanguage(MainActivity.this);
+        Utilss.setLanguage(MesiboUserListActivityNew.this);
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        //  Utils.setLanguage(MainActivity.this);
+        Utilss.setLanguage(MesiboUserListActivityNew.this);
     }
 
 
@@ -397,10 +406,10 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
 
     public void Mesibo_onUpdateSubTitle(String title) {
         if (title == null) {
-            this.contactsSubTitle.setVisibility(8);
+            this.contactsSubTitle.setVisibility(View.GONE);
             return;
         }
-        this.contactsSubTitle.setVisibility(0);
+        this.contactsSubTitle.setVisibility(View.VISIBLE);
         this.contactsSubTitle.setText(title);
     }
 

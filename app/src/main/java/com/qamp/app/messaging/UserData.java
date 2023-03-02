@@ -3,6 +3,7 @@ package com.qamp.app.messaging;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
+
 import com.mesibo.api.MesiboMessage;
 import com.mesibo.api.MesiboProfile;
 import com.qamp.app.messaging.AllUtils.LetterTileProvider;

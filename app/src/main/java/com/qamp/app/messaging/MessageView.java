@@ -13,10 +13,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboFile;
 import com.mesibo.emojiview.EmojiconTextView;
-
 import com.qamp.app.R;
 
 public class MessageView extends RelativeLayout {
@@ -28,10 +28,10 @@ public class MessageView extends RelativeLayout {
     LayoutInflater mInflater = null;
     EmojiconTextView mMessageTextView = null;
     View mMessageView = null;
-    RelativeLayout.LayoutParams mMsgParams;
+    LayoutParams mMsgParams;
     RelativeLayout mPTTlayout = null;
     FrameLayout mPicLayout = null;
-    RelativeLayout.LayoutParams mPicLayoutParam;
+    LayoutParams mPicLayoutParam;
     ThumbnailProgressView mPictureThumbnail = null;
     FrameLayout mReplayContainer = null;
     ImageView mReplyImage;
@@ -41,7 +41,7 @@ public class MessageView extends RelativeLayout {
     TextView mSubTitleView = null;
     FrameLayout.LayoutParams mThumbnailParams;
     LinearLayout mTitleLayout = null;
-    RelativeLayout.LayoutParams mTitleParams;
+    LayoutParams mTitleParams;
     TextView mTitleView = null;
 
     public MessageView(Context context) {
@@ -73,9 +73,9 @@ public class MessageView extends RelativeLayout {
         this.mMessageTextView = v.findViewById(R.id.m_pmessage);
         this.mPTTlayout = (RelativeLayout) v.findViewById(R.id.message_layout);
         this.mReplayContainer = (FrameLayout) v.findViewById(R.id.reply_container);
-        this.mPicLayoutParam = (RelativeLayout.LayoutParams) this.mPicLayout.getLayoutParams();
-        this.mTitleParams = (RelativeLayout.LayoutParams) this.mTitleLayout.getLayoutParams();
-        this.mMsgParams = (RelativeLayout.LayoutParams) this.mMessageTextView.getLayoutParams();
+        this.mPicLayoutParam = (LayoutParams) this.mPicLayout.getLayoutParams();
+        this.mTitleParams = (LayoutParams) this.mTitleLayout.getLayoutParams();
+        this.mMsgParams = (LayoutParams) this.mMessageTextView.getLayoutParams();
     }
 
     public void loadImageView() {
@@ -151,7 +151,7 @@ public class MessageView extends RelativeLayout {
             }
             mThumbailWidth = (Mesibo.getDisplayWidthInPixel() * width) / 100;
             PTTParams.width = mThumbailWidth;
-            RelativeLayout.LayoutParams picLayoutParam = (RelativeLayout.LayoutParams) this.mPicLayout.getLayoutParams();
+            LayoutParams picLayoutParam = (LayoutParams) this.mPicLayout.getLayoutParams();
             FrameLayout.LayoutParams thumbnailParams = (FrameLayout.LayoutParams) this.mPictureThumbnail.getLayoutParams();
             this.mTitleLayout.setLayoutParams(this.mTitleParams);
             this.mMessageTextView.setLayoutParams(this.mMsgParams);
@@ -161,8 +161,8 @@ public class MessageView extends RelativeLayout {
                 thumbnailParams.height = mThumbailWidth / 4;
                 thumbnailParams.width = mThumbailWidth / 4;
                 if (Build.VERSION.SDK_INT >= 19) {
-                    RelativeLayout.LayoutParams titleParams = new RelativeLayout.LayoutParams(this.mTitleParams);
-                    RelativeLayout.LayoutParams msgParams = new RelativeLayout.LayoutParams(this.mMsgParams);
+                    LayoutParams titleParams = new LayoutParams(this.mTitleParams);
+                    LayoutParams msgParams = new LayoutParams(this.mMsgParams);
                     if (message == null || message.length() < 32) {
                         titleParams.addRule(1, R.id.m_piclayout);
                         titleParams.addRule(6, R.id.m_piclayout);

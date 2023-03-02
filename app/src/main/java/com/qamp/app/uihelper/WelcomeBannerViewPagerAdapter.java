@@ -4,17 +4,19 @@
 
 package com.qamp.app.uihelper;
 
-import androidx.viewpager.widget.ViewPager;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.RelativeLayout;
-import android.view.ViewGroup;
 import android.content.Context;
-import java.util.List;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
 import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.qamp.app.R;
+
+import java.util.List;
 
 public class WelcomeBannerViewPagerAdapter extends PagerAdapter
 {

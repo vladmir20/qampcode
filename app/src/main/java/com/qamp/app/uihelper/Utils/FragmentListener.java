@@ -4,8 +4,9 @@
 
 package com.qamp.app.uihelper.Utils;
 
-import java.util.List;
 import androidx.fragment.app.Fragment;
+
+import java.util.List;
 
 public interface FragmentListener
 {

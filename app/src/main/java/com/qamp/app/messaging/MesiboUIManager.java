@@ -22,9 +22,7 @@ public class MesiboUIManager {
 
     public static void launchContactActivity(Context context, long forwardid, int selectionMode, int flag, boolean startInBackground, boolean keepRunning, Bundle bundle, String forwardMessage) {
         Intent intent = new Intent(context, MesiboUserListActivityNew.class);
-        intent.putExtra(MesiboUserListFragment.MESSAGE_LIST_MODE, selectionMode)
-                .putExtra("mid", forwardid).putExtra(MesiboUI.START_IN_BACKGROUND, startInBackground)
-                .putExtra(MesiboUI.KEEP_RUNNING, keepRunning);
+        intent.putExtra(MesiboUserListFragment.MESSAGE_LIST_MODE, selectionMode).putExtra("mid", forwardid).putExtra(MesiboUI.START_IN_BACKGROUND, startInBackground).putExtra(MesiboUI.KEEP_RUNNING, keepRunning);
         if (!TextUtils.isEmpty(forwardMessage)) {
             intent.putExtra("message", forwardMessage);
         }

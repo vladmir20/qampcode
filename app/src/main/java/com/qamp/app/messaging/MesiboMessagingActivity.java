@@ -20,7 +20,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboProfile;
-
 import com.qamp.app.R;
 
 public class MesiboMessagingActivity extends AppCompatActivity implements MesiboMessagingFragment.FragmentListener {
@@ -71,7 +70,7 @@ public class MesiboMessagingActivity extends AppCompatActivity implements Mesibo
             setContentView(R.layout.activity_messaging_new);
             this.mToolbar = findViewById(R.id.toolbar);
             Utils.setActivityStyle(this, this.mToolbar);
-            setSupportActionBar(this.mToolbar);
+        //    setSupportActionBar(this.mToolbar);
             ActionBar supportActionBar = getSupportActionBar();
             findViewById(R.id.chat_back).setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {

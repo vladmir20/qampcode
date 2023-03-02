@@ -233,7 +233,17 @@ public class AppConfig {
     public static class Configuration {
         public String token = "";
         public String phone = "";
-        public SampleAPI.Invite invite = null;
+        public String countryCode = "";
+        public String name = "";
+        public String status = "";
+        public String cc = "";
+        public String photo = "";
+        public String tnm = "";
+        public String uid = "";
+        public long ts = 0;
+        public int version = 0;
+        public String profileId = "";
+        public MesiboAPI.Invite invite = null;
         public String uploadurl = null;
         public String downloadurl = null;
 

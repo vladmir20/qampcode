@@ -4,11 +4,14 @@
 
 package com.qamp.app.uihelper;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.qamp.app.LoginQampActivity;
+import com.qamp.app.SplashScreenActivity;
 import com.qamp.app.uihelper.Utils.Alert;
 
 import java.lang.ref.WeakReference;
@@ -24,9 +27,10 @@ public class MesiboUiHelper {
         MesiboUiHelper.mProductTourListener = null;
     }
 
+    @SuppressLint("WrongConstant")
     public static void launchTour(final Context context, final boolean newTask, final IProductTourListener listener) {
         MesiboUiHelper.mProductTourListener = listener;
-        final Intent intent = new Intent(context, (Class) ProductTourActivity.class);
+        final Intent intent = new Intent(context, (Class) SplashScreenActivity.class);//ProductTourActivity.class);
         if (newTask) {
             intent.setFlags(268468224);
         }
@@ -43,8 +47,9 @@ public class MesiboUiHelper {
         launch(context, newTask, type);
     }
 
+    @SuppressLint("WrongConstant")
     private static void launch(final Context context, final boolean newTask, final int type) {
-        final Intent intent = new Intent(context, (Class) LoginActivity.class);
+        final Intent intent = new Intent(context, (Class) LoginQampActivity.class);
         if (newTask) {
             intent.setFlags(268468224);
         }

@@ -5,14 +5,15 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import com.mesibo.api.Mesibo;
 
+import com.mesibo.api.Mesibo;
 import com.qamp.app.R;
 
 public class CreateNewGroupActivity extends AppCompatActivity {

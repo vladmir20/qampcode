@@ -21,13 +21,13 @@ import com.android.volley.toolbox.Volley;
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboPresence;
 import com.mesibo.api.MesiboProfile;
+import com.qamp.app.R;
 import com.qamp.app.Utils.AppUtils;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import com.qamp.app.R;
 
 import java.util.HashMap;
 import java.util.Map;

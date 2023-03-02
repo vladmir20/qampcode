@@ -4,10 +4,10 @@
 
 package com.qamp.app.uihelper.Utils;
 
-import android.view.MotionEvent;
-import android.util.AttributeSet;
 import android.content.Context;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.widget.RelativeLayout;
 
 public class TouchInterceptLayout extends RelativeLayout

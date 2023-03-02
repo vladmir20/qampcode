@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/sheet_back_color"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/attachment_bottomsheet_background"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:background="@drawable/attachment_bottomsheet_background"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/tv_select_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/text_color_black_white"
+                    android:textSize="17sp"
+                    android:lineHeight="19sp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="@string/profile_bottom_sheet_title" />
+                <LinearLayout
+                    android:id="@+id/delete_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="right">
+                    <TextView
+                        android:id="@+id/delete_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/text_color_subtitle"
+                        android:textSize="12sp"
+                        android:lineHeight="13sp"
+                        android:fontFamily="@font/inter_regular"
+                        android:text="@string/Delete_text" />
+
+                    <ImageView
+                        android:id="@+id/remove_button"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/ic_delete"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center"
+                        android:clickable="true"
+                        android:focusable="true"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="40dp"
+                    android:id="@+id/gallery_container"
+                    android:background="@drawable/bordered_view"
+                    >
+                    <ImageView
+                        android:id="@+id/icon_gallery"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/ic_image"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center"
+                        android:clickable="false"
+                        />
+                    <TextView
+                        android:id="@+id/gallery_button"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/Gallery_Text"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="14sp"
+                        android:lineHeight="21sp"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/inter_medium"
+                         android:textColor="@color/black_white_3"
+                        android:clickable="false"
+                        android:textAllCaps="false"
+                        >
+                    </TextView>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="40dp"
+                    android:id="@+id/camera_container"
+                    android:background="@drawable/bordered_view"
+                    >
+                    <ImageView
+                        android:id="@+id/icon_camera"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/ic_camera_light"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center"
+                        android:clickable="false"
+                        />
+                    <TextView
+                        android:id="@+id/camera_button"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/Camera_Text"
+                        android:textSize="14sp"
+                        android:layout_marginLeft="10dp"
+                        android:lineHeight="21sp"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/inter_medium"
+                         android:textColor="@color/black_white_3"
+                        android:clickable="false"
+                        android:textAllCaps="false"
+                        >
+                    </TextView>
+                </LinearLayout>
+                <!--                <Button-->
+                <!--                    android:id="@+id/remove_button"-->
+                <!--                    android:layout_height="50dp"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:text="Remove"-->
+                <!--                    android:textSize="18sp"-->
+                <!--                    android:lineHeight="21sp"-->
+                <!--                    android:fontFamily="@font/inter_medium"-->
+                <!--                    android:background="@android:color/transparent">-->
+                <!--                </Button>-->
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>
+

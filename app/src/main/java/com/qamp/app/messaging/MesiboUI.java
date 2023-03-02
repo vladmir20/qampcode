@@ -4,10 +4,10 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.Menu;
-import com.mesibo.api.MesiboProfile;
-import com.qamp.app.messaging.AllUtils.MyTrace;
 
+import com.mesibo.api.MesiboProfile;
 import com.qamp.app.R;
+import com.qamp.app.messaging.AllUtils.MyTrace;
 
 public class MesiboUI {
     public static final String BUNDLE = "bundle";

@@ -52,8 +52,8 @@ import androidx.preference.PreferenceManager;
 import androidx.preference.PreferenceScreen;
 import androidx.preference.SwitchPreferenceCompat;
 
-import com.qamp.app.SampleAPI;
 import com.qamp.app.R;
+import com.qamp.app.SampleAPI;
 
 public class DataUsageFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
 

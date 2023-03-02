@@ -41,14 +41,15 @@ package com.qamp.app.AppSettings;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.qamp.app.BuildConfig;
+import androidx.fragment.app.Fragment;
+
 import com.qamp.app.R;
+import com.qamp.app.messaging.BuildConfig;
 
 public class AboutFragment extends Fragment {
 

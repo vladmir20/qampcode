@@ -1,6 +1,7 @@
 package com.qamp.app.messaging;
 
 import android.graphics.Bitmap;
+
 import com.mesibo.api.MesiboProfile;
 
 public class MesiboMessagingFragment extends MessagingFragment {

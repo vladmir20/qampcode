@@ -4,28 +4,29 @@
 
 package com.qamp.app.uihelper;
 
-import android.widget.Toast;
-import java.util.concurrent.TimeUnit;
-import java.util.Locale;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
-import android.text.method.TransformationMethod;
-import android.text.method.PasswordTransformationMethod;
-import android.view.inputmethod.InputMethodManager;
+import android.os.CountDownTimer;
+import android.text.Editable;
 import android.text.InputFilter;
-import android.widget.LinearLayout;
-import android.view.WindowManager;
-import android.view.ViewGroup;
+import android.text.TextWatcher;
+import android.text.method.PasswordTransformationMethod;
+import android.text.method.TransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.os.CountDownTimer;
-import android.widget.TextView;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.content.Context;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.qamp.app.R;
+
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class OtpView
 {

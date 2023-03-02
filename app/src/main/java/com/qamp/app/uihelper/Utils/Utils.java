@@ -4,16 +4,16 @@
 
 package com.qamp.app.uihelper.Utils;
 
-import java.util.Iterator;
 import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+
 import java.util.ArrayList;
 import java.util.List;
-import androidx.appcompat.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Context;
 
 public class Utils
 {

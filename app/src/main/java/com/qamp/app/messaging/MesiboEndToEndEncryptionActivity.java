@@ -5,14 +5,15 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.widget.TextView;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
+
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboProfile;
-
 import com.qamp.app.R;
 
 public class MesiboEndToEndEncryptionActivity extends AppCompatActivity {

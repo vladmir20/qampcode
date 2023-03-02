@@ -5,14 +5,13 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
+
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboMessage;
-import com.qamp.app.messaging.MesiboUI;
-import com.qamp.app.messaging.MesiboUserListFragment;
-
 import com.qamp.app.R;
 
 public class MesiboUserListActivity extends AppCompatActivity implements MesiboUserListFragment.FragmentListener {

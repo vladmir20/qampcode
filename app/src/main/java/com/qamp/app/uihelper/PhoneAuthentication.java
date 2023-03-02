@@ -6,8 +6,11 @@ package com.qamp.app.uihelper;
 
 import android.content.Intent;
 import android.text.TextUtils;
-import com.mesibo.contactutils.ContactUtils;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.mesibo.contactutils.ContactUtils;
+
 import java.lang.ref.WeakReference;
 
 public class PhoneAuthentication implements LoginCredentials.Listener

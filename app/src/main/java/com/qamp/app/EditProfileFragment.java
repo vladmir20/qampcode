@@ -56,7 +56,6 @@ import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -84,8 +83,6 @@ import com.mesibo.emojiview.emoji.Emojicon;
 import com.mesibo.mediapicker.MediaPicker;
 import com.qamp.app.Utils.AppUtils;
 import com.qamp.app.messaging.RoundImageDrawable;
-
-import com.qamp.app.R;
 
 public class EditProfileFragment extends Fragment implements MediaPicker.ImageEditorListener, MesiboProfile.Listener {
     public static final String TITLE_PERMISON_CAMERA_FAIL = "Permission Denied";
@@ -231,12 +228,13 @@ public class EditProfileFragment extends Fragment implements MediaPicker.ImageEd
 
         mProfileButton = (ImageView) v.findViewById(R.id.edit_user_image);
         mProfileButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("RestrictedApi")
             @Override
             public void onClick(View v) {
                 @SuppressLint("RestrictedApi") MenuBuilder menuBuilder = new MenuBuilder(getActivity());
                 MenuInflater inflater = new MenuInflater(getActivity());
                 inflater.inflate(R.menu.image_source_menu, menuBuilder);
-                MenuPopupHelper optionsMenu = new MenuPopupHelper(getActivity(), menuBuilder, v);
+                @SuppressLint("RestrictedApi") MenuPopupHelper optionsMenu = new MenuPopupHelper(getActivity(), menuBuilder, v);
                 optionsMenu.setForceShowIcon(true);
                 menuBuilder.setCallback(new MenuBuilder.Callback() {
                     @Override

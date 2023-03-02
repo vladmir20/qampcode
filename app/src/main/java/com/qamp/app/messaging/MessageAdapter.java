@@ -15,15 +15,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboMessage;
-import com.qamp.app.messaging.AllUtils.MyTrace;
-import com.qamp.app.messaging.MesiboRecycleViewHolder;
-import com.qamp.app.messaging.MesiboUI;
-import com.qamp.app.messaging.MessageViewHolder;
-
 import com.qamp.app.R;
+import com.qamp.app.messaging.AllUtils.MyTrace;
 
 import java.lang.ref.WeakReference;
 import java.util.List;

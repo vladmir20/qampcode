@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -81,10 +82,9 @@ import com.mesibo.emojiview.EmojiconsPopup;
 import com.mesibo.emojiview.emoji.Emojicon;
 import com.mesibo.mediapicker.MediaPicker;
 import com.mesibo.mediapicker.MediaPicker.ImageEditorListener;
+import com.qamp.app.R;
 import com.qamp.app.messaging.AllUtils.LetterTileProvider;
 import com.qamp.app.messaging.AllUtils.TextToEmoji;
-
-import com.qamp.app.R;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -269,7 +269,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
 
                     this.showMessage.setOnClickListener(new OnClickListener() {
                         public void onClick(View v) {
-                            MessagingFragment.this.showMessage.setVisibility(4);
+                            MessagingFragment.this.showMessage.setVisibility(View.INVISIBLE);
                             MessagingFragment.this.loadFromDB(50);
                         }
                     });
@@ -277,7 +277,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
                     if (hideReply) {
                         activityRootView = view.findViewById(R.id.reply_layout_id);
                         if (null != activityRootView) {
-                            activityRootView.setVisibility(8);
+                            activityRootView.setVisibility(View.GONE);
                         }
                     }
 
@@ -306,11 +306,11 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
                     this.ib_showattach = (ImageButton) view.findViewById(R.id.showAttachment);
                     this.ib_showattach.setOnClickListener(new OnClickListener() {
                         public void onClick(View view) {
-                            MessagingFragment.this.mEditLayout.setVisibility(8);
-                            MessagingFragment.this.mAttachLayout.setVisibility(0);
+                            MessagingFragment.this.mEditLayout.setVisibility(View.GONE);
+                            MessagingFragment.this.mAttachLayout.setVisibility(View.VISIBLE);
                         }
                     });
-                    this.ib_showattach.setVisibility(this.mMediaHandled ? 0 : 8);
+                    this.ib_showattach.setVisibility(this.mMediaHandled ? View.VISIBLE : View.GONE);
                     this.showLoadMore = false;
                     if (null == this.mUser.other) {
                         this.mUser.other = new UserData(this.mUser);
@@ -320,11 +320,11 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
                     this.mMediaHandled = Mesibo.isFileTransferEnabled();
                     if (!this.mMediaHandled) {
                         this.ib_cam.setClickable(false);
-                        this.ib_cam.setVisibility(8);
+                        this.ib_cam.setVisibility(View.GONE);
                         this.ib_send.setClickable(true);
-                        this.ib_send.setVisibility(0);
+                        this.ib_send.setVisibility(View.VISIBLE);
                         this.ib_showattach.setClickable(false);
-                        this.ib_showattach.setVisibility(8);
+                        this.ib_showattach.setVisibility(View.GONE);
                     }
 
                     MesiboImages.init(this.getActivity());
@@ -346,14 +346,14 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
 
                     this.mReplyLayout = (RelativeLayout) view.findViewById(R.id.reply_layout);
                     this.mReplyCancel = (ImageView) view.findViewById(R.id.reply_cancel);
-                    this.mReplyCancel.setVisibility(0);
+                    this.mReplyCancel.setVisibility(View.VISIBLE);
                     this.mReplyCancel.setOnClickListener(new OnClickListener() {
                         public void onClick(View v) {
-                            MessagingFragment.this.mReplyLayout.setVisibility(8);
+                            MessagingFragment.this.mReplyLayout.setVisibility(View.GONE);
                             MessagingFragment.this.mReplyEnabled = false;
                         }
                     });
-                    this.mReplyLayout.setVisibility(8);
+                    this.mReplyLayout.setVisibility(View.GONE);
                     this.mReplyImage = (ImageView) view.findViewById(R.id.reply_image);
                     this.mReplyName = (TextView) view.findViewById(R.id.reply_name);
                     this.mReplyText = (EmojiconTextView) view.findViewById(R.id.reply_text);
@@ -381,7 +381,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
                                     MessagingFragment.this.mEmojiEditText.setFocusableInTouchMode(true);
                                     MessagingFragment.this.mEmojiEditText.requestFocus();
                                     popup.showAtBottomPending();
-                                    InputMethodManager inputMethodManager = (InputMethodManager) MessagingFragment.this.myActivity().getSystemService("input_method");
+                                    InputMethodManager inputMethodManager = (InputMethodManager) MessagingFragment.this.myActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                                     inputMethodManager.showSoftInput(MessagingFragment.this.mEmojiEditText, 1);
                                     MessagingFragment.this.changeEmojiKeyboardIcon(MessagingFragment.this.mEmojiButton,MesiboConfiguration.KEYBOARD_ICON);
                                 }
@@ -437,7 +437,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
                         this.mMesiboUIOptions.mGoogleApiKey = "";
 
                         try {
-                            ApplicationInfo app = this.myActivity().getPackageManager().getApplicationInfo(this.myActivity().getPackageName(), 128);
+                            ApplicationInfo app = this.myActivity().getPackageManager().getApplicationInfo(this.myActivity().getPackageName(), PackageManager.GET_META_DATA);
                             Bundle bundle = app.metaData;
                             if (null != bundle) {
                                 this.mMesiboUIOptions.mGoogleApiKey = bundle.getString("com.google.android.geo.API_KEY");
@@ -574,9 +574,9 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
 
     private void blockedUserView() {
         if (!this.mReadOnly && (this.mUser.groupid <= 0L || this.mUser.isActive() || null == this.mBottomLayout) && !this.mUser.isMessageBlocked()) {
-            this.mBottomLayout.setVisibility(0);
+            this.mBottomLayout.setVisibility(View.VISIBLE);
         } else {
-            this.mBottomLayout.setVisibility(8);
+            this.mBottomLayout.setVisibility(View.GONE);
         }
 
     }
@@ -600,7 +600,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
             CharSequence[] Options = new CharSequence[]{MesiboUI.getConfig().videoFromRecorderTitle, MesiboUI.getConfig().videoFromGalleryTitle};
             AlertDialog.Builder builder = new AlertDialog.Builder(this.myActivity());
             builder.setTitle(MesiboUI.getConfig().videoSelectTitle);
-            builder.setItems(Options, new android.content.DialogInterface.OnClickListener() {
+            builder.setItems(Options, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     if (which == 0) {
                         MediaPicker.launchPicker(MessagingFragment.this.myActivity(), MediaPicker.TYPE_CAMERAVIDEO, Mesibo.getTempFilesPath());
@@ -643,7 +643,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
     }
 
     public boolean Mesibo_onBackPressed() {
-        if (this.mAttachLayout.getVisibility() == 0) {
+        if (this.mAttachLayout.getVisibility() == View.VISIBLE) {
             this.showAttachments(false);
             this.mPressed = false;
             this.hidden = true;
@@ -680,7 +680,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
                     Intent mapIntent = new Intent(this.myActivity(), MesiboMapActivity.class);
                     this.myActivity().startActivityForResult(mapIntent, PLACE_PICKER_REQUEST);
                 } catch (Exception var3) {
-                    Toast.makeText(this.myActivity(), "Google Play Services exception.", 1).show();
+                    Toast.makeText(this.myActivity(), "Google Play Services exception.", Toast.LENGTH_LONG).show();
                 }
             }
         }
@@ -1088,7 +1088,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
     }
 
     public void showMessgeVisible() {
-        this.showMessage.setVisibility(0);
+        this.showMessage.setVisibility(View.VISIBLE);
     }
 
     public synchronized void loadMoreMessages() {
@@ -1103,17 +1103,17 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
     }
 
     public void showMessageInvisible() {
-        if (this.showMessage.getVisibility() == 0) {
-            this.showMessage.setVisibility(8);
+        if (this.showMessage.getVisibility() == View.VISIBLE) {
+            this.showMessage.setVisibility(View.GONE);
         }
 
     }
 
     private void showAttachments(boolean show) {
-        boolean isVisible = this.mAttachLayout.getVisibility() == 0;
+        boolean isVisible = this.mAttachLayout.getVisibility() == View.VISIBLE;
         if (show != isVisible) {
-            this.mEditLayout.setVisibility(show ? 8 : 0);
-            this.mAttachLayout.setVisibility(show ? 0 : 8);
+            this.mEditLayout.setVisibility(show ? View.GONE : View.VISIBLE);
+            this.mAttachLayout.setVisibility(show ? View.VISIBLE : View.GONE);
         }
     }
 
@@ -1135,7 +1135,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
 
             m.message = caption;
             this.mReplyEnabled = false;
-            this.mReplyLayout.setVisibility(8);
+            this.mReplyLayout.setVisibility(View.GONE);
             m.send();
         }
     }
@@ -1204,7 +1204,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
             }
 
             this.mReplyEnabled = false;
-            this.mReplyLayout.setVisibility(8);
+            this.mReplyLayout.setVisibility(View.GONE);
             msg.send();
             this.mEmojiEditText.getText().clear();
         }
@@ -1243,23 +1243,23 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
                 if (MessagingFragment.this.mMediaHandled) {
                     TranslateAnimation animate;
                     if (s.length() == 0) {
-                        if (MessagingFragment.this.ib_cam.getVisibility() == 8) {
+                        if (MessagingFragment.this.ib_cam.getVisibility() == View.GONE) {
                             animate = new TranslateAnimation(15.0F, 0.0F, 0.0F, 0.0F);
                             animate.setDuration(100L);
                             MessagingFragment.this.ib_cam.startAnimation(animate);
                             MessagingFragment.this.ib_send.startAnimation(animate);
                             if (MessagingFragment.this.mMediaHandled) {
-                                MessagingFragment.this.ib_cam.setVisibility(0);
-                                MessagingFragment.this.ib_send.setVisibility(8);
+                                MessagingFragment.this.ib_cam.setVisibility(View.VISIBLE);
+                                MessagingFragment.this.ib_send.setVisibility(View.GONE);
                             }
                         }
-                    } else if (MessagingFragment.this.ib_cam.getVisibility() == 0) {
+                    } else if (MessagingFragment.this.ib_cam.getVisibility() == View.VISIBLE) {
                         animate = new TranslateAnimation(0.0F, 15.0F, 0.0F, 0.0F);
                         animate.setDuration(100L);
                         MessagingFragment.this.ib_cam.startAnimation(animate);
                         MessagingFragment.this.ib_send.startAnimation(animate);
-                        MessagingFragment.this.ib_cam.setVisibility(8);
-                        MessagingFragment.this.ib_send.setVisibility(0);
+                        MessagingFragment.this.ib_cam.setVisibility(View.GONE);
+                        MessagingFragment.this.ib_send.setVisibility(View.VISIBLE);
                     }
                 }
 
@@ -1298,7 +1298,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
     }
 
     protected synchronized void buildGoogleApiClient() {
-        this.mGoogleApiClient = (new com.google.android.gms.common.api.GoogleApiClient.Builder(this.getActivity())).addConnectionCallbacks(this).addOnConnectionFailedListener(this).addApi(LocationServices.API).build();
+        this.mGoogleApiClient = (new GoogleApiClient.Builder(this.getActivity())).addConnectionCallbacks(this).addOnConnectionFailedListener(this).addApi(LocationServices.API).build();
     }
 
     public void onConnected(@Nullable Bundle bundle) {
@@ -1357,7 +1357,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
                 }
 
                 this.mReplyEnabled = false;
-                this.mReplyLayout.setVisibility(8);
+                this.mReplyLayout.setVisibility(View.GONE);
                 msg.send();
                 return true;
             } else {
@@ -1454,7 +1454,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
                 return true;
             } else {
                 st = st.trim();
-                ClipboardManager clipboard = (ClipboardManager) this.myActivity().getSystemService("clipboard");
+                ClipboardManager clipboard = (ClipboardManager) this.myActivity().getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clip = ClipData.newPlainText("Copy", st);
                 clipboard.setPrimaryClip(clip);
                 return true;
@@ -1521,14 +1521,14 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
                         this.mReplyName.setTextColor(this.mReplyMessage.getNameColor());
                         this.mReplyName.setText(username);
                         this.mReplyText.setText(this.mReplyMessage.getDisplayMessage());
-                        this.mReplyImage.setVisibility(8);
+                        this.mReplyImage.setVisibility(View.GONE);
                         Bitmap image = this.mReplyMessage.getImage();
                         if (image != null) {
-                            this.mReplyImage.setVisibility(0);
+                            this.mReplyImage.setVisibility(View.VISIBLE);
                             this.mReplyImage.setImageBitmap(image);
                         }
 
-                        this.mReplyLayout.setVisibility(0);
+                        this.mReplyLayout.setVisibility(View.VISIBLE);
                     }
 
                     return true;
@@ -1651,7 +1651,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
         AlertDialog.Builder builder = new AlertDialog.Builder(this.mActivity);
         builder.setTitle(opts.deleteMessagesTitle);
         String[] items = new String[]{opts.deleteForEveryoneTitle, opts.deleteForMeTitle, opts.cancelTitle};
-        builder.setItems(items, new android.content.DialogInterface.OnClickListener() {
+        builder.setItems(items, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 if (2 != which) {
                     boolean remote = false;

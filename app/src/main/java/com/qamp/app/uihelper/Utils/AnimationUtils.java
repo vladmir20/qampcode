@@ -4,13 +4,13 @@
 
 package com.qamp.app.uihelper.Utils;
 
+import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
-import android.view.animation.Animation;
-import android.view.animation.AlphaAnimation;
-import android.view.View;
 
 public class AnimationUtils
 {

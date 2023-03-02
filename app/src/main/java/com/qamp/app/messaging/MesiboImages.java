@@ -10,7 +10,6 @@ import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import com.qamp.app.messaging.MesiboUI;
 
 public class MesiboImages {
     public static int[] deliveryStatus = {MesiboConfiguration.STATUS_TIMER, MesiboConfiguration.STATUS_SEND, MesiboConfiguration.STATUS_NOTIFIED, MesiboConfiguration.STATUS_READ, MesiboConfiguration.STATUS_ERROR};
@@ -162,7 +161,7 @@ public class MesiboImages {
         r0 = mContext.getResources().getIdentifier("file_audio", "drawable", mContext.getPackageName());
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
-    public static int getFileDrawable(java.lang.String r7) {
+    public static int getFileDrawable(String r7) {
         /*
             r5 = 3
             boolean r3 = android.text.TextUtils.isEmpty(r7)

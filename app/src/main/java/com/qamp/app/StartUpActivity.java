@@ -43,14 +43,13 @@ package com.qamp.app;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.mesibo.contactutils.ContactUtils;
 import com.qamp.app.uihelper.MesiboUiHelperConfig;
-
-import com.qamp.app.R;
 
 public class StartUpActivity extends AppCompatActivity {
 
@@ -108,8 +107,10 @@ public class StartUpActivity extends AppCompatActivity {
             if(getIntent().getBooleanExtra(SKIPTOUR, false)) {
                 UIManager.launchLogin(this, MesiboListeners.getInstance());
             } else {
+              //  UIManager.launchLogin(this, MesiboListeners.getInstance());
+
                 UIManager.launchWelcomeactivity(this, true, MesiboListeners.getInstance(), MesiboListeners.getInstance());
-            }
+        }
 
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 

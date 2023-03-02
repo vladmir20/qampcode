@@ -42,11 +42,6 @@ package com.qamp.app.AppSettings;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,14 +49,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboProfile;
 import com.mesibo.emojiview.EmojiconTextView;
-import com.qamp.app.messaging.RoundImageDrawable;
-
 import com.qamp.app.EditProfileFragment;
 import com.qamp.app.R;
 import com.qamp.app.SampleAPI;
+import com.qamp.app.messaging.RoundImageDrawable;
 
 
 public class BasicSettingsFragment extends Fragment {

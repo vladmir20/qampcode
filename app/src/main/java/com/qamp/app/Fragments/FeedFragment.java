@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.qamp.app.R;
+import com.qamp.app.Utilss;
 
 public class FeedFragment extends Fragment {
     public FeedFragment() {
@@ -18,19 +19,19 @@ public class FeedFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_feed, container, false);
-       // Utils.setLanguage(getActivity());
+        Utilss.setLanguage(getActivity());
         return root;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-       // Utils.setLanguage(getActivity());
+        Utilss.setLanguage(getActivity());
     }
 
     @Override
     public void onStart() {
         super.onStart();
-      //  Utils.setLanguage(getActivity());
+        Utilss.setLanguage(getActivity());
     }
 }

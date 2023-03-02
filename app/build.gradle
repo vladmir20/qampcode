@@ -14,13 +14,14 @@ android {
 
     defaultConfig {
         applicationId "com.qampmessenger.app"
-        minSdkVersion project.Mesibo_minSdkVersion
+        minSdkVersion 19
         targetSdkVersion project.Mesibo_targetSdkVersion
         versionCode project.PUBLISH_VERSION_CODE
         versionName project.PUBLISH_VERSION
         buildConfigField "String", "BUILD_VERSION", "\"${project.PUBLISH_VERSION}\""
         buildConfigField "String", "BUILD_TIMESTAMP", "\"${project.Mesibo_buildDate}\""
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        multiDexEnabled true
     }
 
     lintOptions {
@@ -49,6 +50,9 @@ android {
 }
 
 dependencies {
+
+    def multidex_version = "2.0.1"
+    implementation "androidx.multidex:multidex:$multidex_version"
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -80,7 +84,24 @@ dependencies {
     implementation "com.mesibo.api:mesibo:${project.MesiboVersion_Api}"
     implementation "com.mesibo.api:ui:${project.MesiboVersion_Ui}"
     //implementation "com.mesibo.api:mediapicker:${project.MesiboVersion_Ui}"
+    implementation 'com.github.dhaval2404:imagepicker:2.1'
+
     implementation "com.mesibo.api:callui:${project.MesiboVersion_CallUi}"
+
+    implementation 'com.hbb20:ccp:2.7.0'
+    implementation 'com.google.android.material:material:1.1.0'
+
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+    implementation 'com.google.android.gms:play-services-auth-api-phone:17.1.0'
+
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    implementation 'com.balysv:material-ripple:1.0.2'                  // ripple effect
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
+    implementation "com.airbnb.android:lottie:3.7.0"
+
+
 
 //    implementation 'com.android.volley:volley:1.1.1'
 //    implementation 'com.google.code.gson:gson:2.2.4'

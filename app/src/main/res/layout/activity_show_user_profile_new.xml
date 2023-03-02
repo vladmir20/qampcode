@@ -41,7 +41,7 @@
                     app:tint="@color/text_color_black_white" />
 
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/up_image_profile"
                     android:layout_width="@dimen/_70sdp"
                     android:layout_height="@dimen/_70sdp"

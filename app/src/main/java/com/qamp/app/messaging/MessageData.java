@@ -4,9 +4,9 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.text.TextUtils;
+
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboMessage;
-import com.qamp.app.messaging.MesiboUI;
 
 public class MessageData {
     private Bitmap image = null;

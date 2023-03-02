@@ -4,32 +4,34 @@
 
 package com.qamp.app.uihelper;
 
-import android.view.MotionEvent;
-import androidx.fragment.app.FragmentActivity;
-import androidx.viewpager.widget.PagerAdapter;
-import android.widget.RelativeLayout;
-import android.text.method.LinkMovementMethod;
-import android.content.Intent;
-import android.text.Html;
-import android.net.Uri;
-import android.view.ViewTreeObserver;
 import android.content.Context;
-import android.view.ViewGroup;
-import android.view.LayoutInflater;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import java.util.List;
-import com.qamp.app.uihelper.Utils.OverLayFrameLayout;
-import com.qamp.app.uihelper.Utils.TouchInterceptLayout;
-import androidx.viewpager.widget.ViewPager;
-import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.qamp.app.R;
+import com.qamp.app.uihelper.Utils.OverLayFrameLayout;
+import com.qamp.app.uihelper.Utils.TouchInterceptLayout;
+
+import java.util.List;
 
 public class WelcomeFragment extends Fragment implements View.OnTouchListener
 {

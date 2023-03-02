@@ -4,9 +4,8 @@
 
 package com.qamp.app.uihelper.Utils;
 
-import android.view.View;
-import android.util.AttributeSet;
 import android.content.Context;
+import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
 public class OverLayFrameLayout extends FrameLayout
@@ -24,12 +23,12 @@ public class OverLayFrameLayout extends FrameLayout
     }
     
     protected void onMeasure(int widthMeasureSpec, final int heightMeasureSpec) {
-        final int heightMode = View.MeasureSpec.getMode(heightMeasureSpec);
-        final int heightSize = View.MeasureSpec.getSize(heightMeasureSpec);
+        final int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        final int heightSize = MeasureSpec.getSize(heightMeasureSpec);
         int size = 0;
         if (heightMode == 1073741824 && heightSize > 0) {
             size = (int)(heightSize * 0.66);
-            widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
+            widthMeasureSpec = MeasureSpec.makeMeasureSpec(size, 1073741824);
         }
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }

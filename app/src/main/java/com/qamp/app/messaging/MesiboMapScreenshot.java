@@ -3,6 +3,7 @@ package com.qamp.app.messaging;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -12,8 +13,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboMessage;
-import com.qamp.app.messaging.SettingsScalingUtilities;
-import com.qamp.app.messaging.UserListFragment;
+
 import java.util.LinkedList;
 import java.util.Queue;
 

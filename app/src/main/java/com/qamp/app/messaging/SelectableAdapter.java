@@ -1,12 +1,14 @@
 package com.qamp.app.messaging;
 
 import android.util.SparseBooleanArray;
+
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class SelectableAdapter<VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
+public abstract class SelectableAdapter<VH extends ViewHolder> extends RecyclerView.Adapter<VH> {
     private static final String TAG = SelectableAdapter.class.getSimpleName();
     private SparseBooleanArray selectedItems;
 

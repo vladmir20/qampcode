@@ -41,15 +41,16 @@
 package com.qamp.app;
 
 import android.app.Application;
-import androidx.lifecycle.LifecycleObserver;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.lifecycle.LifecycleObserver;
+
 import com.mesibo.api.Mesibo;
 import com.mesibo.calls.api.MesiboCall;
+import com.mesibo.calls.ui.MesiboCallUi;
 import com.mesibo.mediapicker.ImagePicker;
 import com.mesibo.mediapicker.MediaPicker;
-import com.mesibo.calls.ui.MesiboCallUi;
 import com.qamp.app.messaging.MesiboUI;
 
 public class MainApplication extends Application implements Mesibo.RestartListener, LifecycleObserver {

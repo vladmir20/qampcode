@@ -4,11 +4,13 @@
 
 package com.qamp.app.uihelper;
 
-import android.content.Intent;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
-import com.qamp.app.uihelper.Utils.ActivityListener;
+
 import androidx.fragment.app.DialogFragment;
+
+import com.qamp.app.uihelper.Utils.ActivityListener;
 
 public class BaseDialogFragment extends DialogFragment implements ActivityListener, View.OnClickListener
 {

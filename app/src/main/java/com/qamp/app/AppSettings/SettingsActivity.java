@@ -55,10 +55,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.mesibo.api.Mesibo;
-import com.qamp.app.messaging.MesiboUI;
 import com.qamp.app.EditProfileFragment;
-
 import com.qamp.app.R;
+import com.qamp.app.messaging.MesiboUI;
 
 
 public class SettingsActivity extends AppCompatActivity {

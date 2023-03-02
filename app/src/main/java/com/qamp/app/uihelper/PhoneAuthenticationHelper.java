@@ -4,8 +4,9 @@
 
 package com.qamp.app.uihelper;
 
-import android.text.TextUtils;
 import android.content.Intent;
+import android.text.TextUtils;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class PhoneAuthenticationHelper

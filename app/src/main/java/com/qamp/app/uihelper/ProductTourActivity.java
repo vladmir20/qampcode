@@ -24,9 +24,8 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.qamp.app.uihelper.Utils.Utils;
-
 import com.qamp.app.R;
+import com.qamp.app.uihelper.Utils.Utils;
 
 import java.util.List;
 

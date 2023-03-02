@@ -40,18 +40,16 @@
 
 package com.qamp.app;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+import static com.qamp.app.messaging.MesiboUserListFragment.MODE_EDITGROUP;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.appcompat.app.AlertDialog;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.SwitchCompat;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -65,25 +63,25 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboGroupProfile;
 import com.mesibo.api.MesiboMessage;
 import com.mesibo.api.MesiboProfile;
 import com.mesibo.api.MesiboReadSession;
-
-import java.util.ArrayList;
-
 import com.mesibo.emojiview.EmojiconTextView;
 import com.mesibo.mediapicker.AlbumListData;
 import com.mesibo.mediapicker.AlbumPhotosData;
 import com.qamp.app.messaging.MesiboUI;
 import com.qamp.app.messaging.RoundImageDrawable;
 
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
-import static com.qamp.app.messaging.MesiboUserListFragment.MODE_EDITGROUP;
-
-import com.qamp.app.R;
+import java.util.ArrayList;
 
 
 public class ShowProfileFragment extends Fragment implements Mesibo.MessageListener, MesiboProfile.Listener, Mesibo.GroupListener {
