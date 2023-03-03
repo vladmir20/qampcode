@@ -172,6 +172,15 @@
             android:name=".SelectLanguage"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".AddChannel.AddChannelActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name=".Community.CommunityDashboard"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

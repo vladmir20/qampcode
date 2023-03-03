@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/corner_radius_button_orange"
+                android:padding="5dp"
+                android:text="Dashboard"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/textView30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/grey_rounded_corner"
+                android:padding="5dp"
+                android:text="Usage"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/textView31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/grey_rounded_corner"
+                android:padding="5dp"
+                android:text=" Sentiment Analysis"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/textView32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/grey_rounded_corner"
+                android:padding="5dp"
+                android:text="Reviews"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="16"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView37"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:text="Popularity"
+                    android:textColor="#272A3D"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/textView38"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="4dp"
+                    android:text="How many people viewed your community"
+                    android:textColor="#828282"
+                    android:textSize="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView39"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/orange_border"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:text="30 Days"
+                        android:textColor="#F4B63F"
+                        android:textSize="10dp" />
+
+                    <TextView
+                        android:id="@+id/textView41"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/grey_rounded_corner"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:text="7 Days"
+                        android:textSize="10dp" />
+
+                    <TextView
+                        android:id="@+id/textView40"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/grey_rounded_corner"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:text="24 Hours"
+                        android:textSize="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:background="@drawable/green_rounded_back"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imageView29"
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:src="@drawable/ic_more_option_verical" />
+
+                        <TextView
+                            android:id="@+id/textView42"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" Your community has been discovered and explored 20 times in last 7 days"
+                            android:textColor="#0C7072"
+                            android:textSize="6dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView30"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/demo" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view9"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="#F2F2F2" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/textView77"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:text="Rating Trend"
+                    android:textColor="#272A3D"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/textView78"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="4dp"
+                    android:text="Know how people rated your community over time"
+                    android:textColor="#828282"
+                    android:textSize="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView69"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/orange_border"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:text="30 Days"
+                        android:textColor="#F4B63F"
+                        android:textSize="10dp" />
+
+                    <TextView
+                        android:id="@+id/textView49"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/grey_rounded_corner"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:text="7 Days"
+                        android:textSize="10dp" />
+
+                    <TextView
+                        android:id="@+id/textView58"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/grey_rounded_corner"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:text="24 Hours"
+                        android:textSize="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:background="@drawable/red_rounded_back"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imageView79"
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:src="@drawable/ic_more_option_verical" />
+
+                        <TextView
+                            android:id="@+id/textView48"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" Your community has been discovered and explored 20 times in last 7 days"
+                            android:textColor="#0C7072"
+                            android:textSize="6dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView31"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/demo" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view19"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="#F2F2F2" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
