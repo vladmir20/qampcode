@@ -123,7 +123,7 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
                         gs.name = CreateNewGroupFragment.this.mGroupSubjectEditor.getText().toString();
                         gs.flags = 0;
                         Mesibo.createGroup(gs, CreateNewGroupFragment.this);
-                        getActivity().finish();
+
                         return;
                     }
                     Mesibo.getProfile(CreateNewGroupFragment.this.mGroupId).setName(CreateNewGroupFragment.this.mGroupSubjectEditor.getText().toString());
@@ -132,7 +132,7 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
                     if (a != null) {
                         a.finish();
                     }
-                    getActivity().finish();
+
                 }
             }
         });
