@@ -142,4 +142,40 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/next_group"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/corner_radius_button"
+        android:gravity="center"
+        android:backgroundTint="@color/grey"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:src="@drawable/create_group" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="Create Group"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

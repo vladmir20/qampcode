@@ -14,6 +14,7 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/nugroup_toolbar"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"

@@ -16,10 +16,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.appcompat.view.menu.MenuBuilder;
@@ -32,7 +30,6 @@ import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboGroupProfile;
 import com.mesibo.api.MesiboProfile;
 import com.mesibo.api.Profile;
-import com.mesibo.emojiview.EmojiconEditText;
 import com.mesibo.emojiview.EmojiconGridView;
 import com.mesibo.emojiview.EmojiconTextView;
 import com.mesibo.emojiview.EmojiconsPopup;
@@ -47,16 +44,17 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     RecyclerView.Adapter mAdapter;
-    TextView mCharCounter;
-    LinearLayout mCreateGroupBtn;
+    //TextView mCharCounter;
+    TextView mCreateGroupBtn;
+    TextView members_list;
     boolean mDone = false;
-    ImageView mEmojiButton;
+    // ImageView mEmojiButton;
     Bundle mGroupEditBundle = null;
     long mGroupId = 0;
     Bitmap mGroupImage = null;
     int mGroupMode;
     ImageView mGroupPicture;
-    EmojiconEditText mGroupSubjectEditor;
+    EditText mGroupSubjectEditor;
     MesiboProfile mProfile = null;
     RecyclerView mRecyclerView;
     private String mParam1;
@@ -111,6 +109,7 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
             }
         }
         this.mCreateGroupBtn = v.findViewById(R.id.nugroup_create_btn);
+        this.members_list = v.findViewById(R.id.members_list);
         this.mCreateGroupBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (UserListFragment.mMemberProfiles.size() == 0 && CreateNewGroupFragment.this.mGroupMode == 0) {
@@ -124,6 +123,7 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
                         gs.name = CreateNewGroupFragment.this.mGroupSubjectEditor.getText().toString();
                         gs.flags = 0;
                         Mesibo.createGroup(gs, CreateNewGroupFragment.this);
+                        getActivity().finish();
                         return;
                     }
                     Mesibo.getProfile(CreateNewGroupFragment.this.mGroupId).setName(CreateNewGroupFragment.this.mGroupSubjectEditor.getText().toString());
@@ -132,6 +132,7 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
                     if (a != null) {
                         a.finish();
                     }
+                    getActivity().finish();
                 }
             }
         });
@@ -178,8 +179,8 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(this.mRecyclerView.getContext()));
         this.mAdapter = new GroupMemeberAdapter(getActivity(), UserListFragment.mMemberProfiles);
         this.mRecyclerView.setAdapter(this.mAdapter);
-        this.mCharCounter = v.findViewById(R.id.nugroup_counter);
-        this.mCharCounter.setText(String.valueOf(50));
+//        this.mCharCounter = v.findViewById(R.id.nugroup_counter);
+//        this.mCharCounter.setText(String.valueOf(50));
         this.mGroupSubjectEditor.setFilters(new InputFilter[]{new InputFilter.LengthFilter(50)});
         this.mGroupSubjectEditor.addTextChangedListener(new TextWatcher() {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -189,33 +190,33 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
             }
 
             public void afterTextChanged(Editable s) {
-                CreateNewGroupFragment.this.mCharCounter.setText(String.valueOf(50 - CreateNewGroupFragment.this.mGroupSubjectEditor.getText().length()));
+                //  CreateNewGroupFragment.this.mCharCounter.setText(String.valueOf(50 - CreateNewGroupFragment.this.mGroupSubjectEditor.getText().length()));
             }
         });
         final EmojiconsPopup popup = new EmojiconsPopup(v.findViewById(R.id.nugroup_root_layout), getActivity());
         popup.setSizeForSoftKeyboard();
-        this.mEmojiButton = v.findViewById(R.id.nugroup_smile_btn);
-        this.mEmojiButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if (popup.isShowing()) {
-                    popup.dismiss();
-                } else if (popup.isKeyBoardOpen().booleanValue()) {
-                    popup.showAtBottom();
-                    CreateNewGroupFragment.this.changeEmojiKeyboardIcon(CreateNewGroupFragment.this.mEmojiButton, R.drawable.ic_keyboard);
-                } else {
-                    CreateNewGroupFragment.this.mGroupSubjectEditor.setFocusableInTouchMode(true);
-                    CreateNewGroupFragment.this.mGroupSubjectEditor.requestFocus();
-                    popup.showAtBottomPending();
-                    ((InputMethodManager) CreateNewGroupFragment.this.getActivity().getSystemService(Context.INPUT_METHOD_SERVICE)).showSoftInput(CreateNewGroupFragment.this.mGroupSubjectEditor, 1);
-                    CreateNewGroupFragment.this.changeEmojiKeyboardIcon(CreateNewGroupFragment.this.mEmojiButton, R.drawable.ic_keyboard);
-                }
-            }
-        });
-        popup.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            public void onDismiss() {
-                CreateNewGroupFragment.this.changeEmojiKeyboardIcon(CreateNewGroupFragment.this.mEmojiButton, R.drawable.ic_sentiment_satisfied_black_24dp);
-            }
-        });
+//        this.mEmojiButton = v.findViewById(R.id.nugroup_smile_btn);
+//        this.mEmojiButton.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                if (popup.isShowing()) {
+//                    popup.dismiss();
+//                } else if (popup.isKeyBoardOpen().booleanValue()) {
+//                    popup.showAtBottom();
+//                    CreateNewGroupFragment.this.changeEmojiKeyboardIcon(CreateNewGroupFragment.this.mEmojiButton, R.drawable.ic_keyboard);
+//                } else {
+//                    CreateNewGroupFragment.this.mGroupSubjectEditor.setFocusableInTouchMode(true);
+//                    CreateNewGroupFragment.this.mGroupSubjectEditor.requestFocus();
+//                    popup.showAtBottomPending();
+//                    ((InputMethodManager) CreateNewGroupFragment.this.getActivity().getSystemService(Context.INPUT_METHOD_SERVICE)).showSoftInput(CreateNewGroupFragment.this.mGroupSubjectEditor, 1);
+//                    CreateNewGroupFragment.this.changeEmojiKeyboardIcon(CreateNewGroupFragment.this.mEmojiButton, R.drawable.ic_keyboard);
+//                }
+//            }
+//        });
+//        popup.setOnDismissListener(new PopupWindow.OnDismissListener() {
+//            public void onDismiss() {
+//                CreateNewGroupFragment.this.changeEmojiKeyboardIcon(CreateNewGroupFragment.this.mEmojiButton, R.drawable.ic_sentiment_satisfied_black_24dp);
+//            }
+//        });
         popup.setOnSoftKeyboardOpenCloseListener(new EmojiconsPopup.OnSoftKeyboardOpenCloseListener() {
             public void onKeyboardOpen(int keyBoardHeight) {
             }
@@ -348,6 +349,8 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
 
     public void setGroupImage(Bitmap bmp) {
         if (bmp == null) {
+//            bmp = BitmapFactory.decodeResource(getContext().getResources(),
+//                    R.drawable.cam_icon);
             bmp = MesiboImages.getDefaultGroupBitmap();
         }
         this.mGroupPicture.setImageDrawable(new RoundImageDrawable(bmp));
@@ -372,6 +375,7 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
         private ArrayList<MesiboProfile> mDataList = null;
         private UserListFragment mHost;
 
+
         public GroupMemeberAdapter(Context context, ArrayList<MesiboProfile> list) {
             this.mContext = context;
             this.mDataList = list;
@@ -381,7 +385,7 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
             return new GroupMembersCellsViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.group_memeber_rv_item, parent, false));
         }
 
-        public void onBindViewHolder(RecyclerView.ViewHolder holderr, final int position) {
+        public void onBindViewHolder(RecyclerView.ViewHolder holderr, @SuppressLint("RecyclerView") final int position) {
             int i = position;
             MesiboProfile user = this.mDataList.get(position);
             GroupMembersCellsViewHolder holder = (GroupMembersCellsViewHolder) holderr;
@@ -436,6 +440,7 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
                 this.mContactsProfile = view.findViewById(R.id.nu_rv_profile);
                 this.mContactsName = view.findViewById(R.id.nu_rv_name);
                 this.mContactsStatus = view.findViewById(R.id.nu_memeber_status);
+                this.mDeleteContact = view.findViewById(R.id.nu_delete_btn);
                 this.mDeleteContact = view.findViewById(R.id.nu_delete_btn);
             }
         }

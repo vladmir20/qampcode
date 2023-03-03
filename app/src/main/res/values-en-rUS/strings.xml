@@ -186,5 +186,11 @@
     <string name="shared_files">Shared Files</string>
     <string name="add_channel">Add Channel</string>
     <string name="create_qamp_room">Create a Qamp Room</string>
+    <string name="new_group" >New Group</string>
+    <string name="start_conversation">Start Conversation</string>
+    <string name="enter_group_name">Enter Group Name</string>
+    <string name="enter_group_desc">Enter Group Description</string>
+    <string name="privacy_settings">Privacy Settings</string>
+    <string name="group_interaction_text">Group Interaction Settings</string>
 
 </resources>
