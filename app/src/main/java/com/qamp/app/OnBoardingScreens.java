@@ -21,11 +21,28 @@ import androidx.viewpager.widget.ViewPager;
 import com.balysv.materialripple.MaterialRippleLayout;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.qamp.app.Utils.AppUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class OnBoardingScreens extends AppCompatActivity {
+    private static int[] array_image_place = {
+            R.drawable.illustration,
+            R.drawable.illustration_3,
+            R.drawable.illustration_2,
+    };
+    private static int[] array_title_place = {
+            R.string.onboarding_chat_heading,
+            R.string.onboarding_feed_heading,
+            R.string.onboarding_discover_heading,
+    };
+    private static int[] array_brief_place = {
+            R.string.onboarding_sub_text1,
+            R.string.onboarding_sub_text2,
+            R.string.onboarding_sub_text3,
+
+    };
     private View parent_view;
     private ViewPager viewPager;
     private LinearLayout layout_dots;
@@ -34,31 +51,23 @@ public class OnBoardingScreens extends AppCompatActivity {
     private Handler handler = new Handler();
     private TextView skip_btn;
 
-    private static int[] array_image_place = {
-            R.drawable.illustration,
-            R.drawable.illustration_3,
-            R.drawable.illustration_2,
-    };
+    public static void displayImageOriginal(Context ctx, ImageView img, @DrawableRes int drawable) {
+        try {
+            Glide.with(ctx).load(drawable)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .into(img);
 
-    private static int[] array_title_place = {
-            R.string.onboarding_chat_heading,
-            R.string.onboarding_feed_heading,
-            R.string.onboarding_discover_heading,
-    };
+        } catch (Exception e) {
+        }
 
-    private static int[] array_brief_place = {
-            R.string.onboarding_sub_text1,
-            R.string.onboarding_sub_text2,
-            R.string.onboarding_sub_text3,
-
-    };
-
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_boarding_screens);
         initComponent();
+        AppUtils.setStatusBarColor(OnBoardingScreens.this, R.color.colorAccent);
         skip_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -149,6 +158,11 @@ public class OnBoardingScreens extends AppCompatActivity {
         handler.postDelayed(runnable, 3000);
     }
 
+    @Override
+    public void onDestroy() {
+        if (runnable != null) handler.removeCallbacks(runnable);
+        super.onDestroy();
+    }
 
     private static class AdapterImageSlider extends PagerAdapter {
 
@@ -157,18 +171,14 @@ public class OnBoardingScreens extends AppCompatActivity {
 
         private OnItemClickListener onItemClickListener;
 
-        private interface OnItemClickListener {
-            void onItemClick(View view, Image obj);
-        }
-
-        public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-            this.onItemClickListener = onItemClickListener;
-        }
-
         // constructor
         private AdapterImageSlider(Activity activity, List<Image> items) {
             this.act = activity;
             this.items = items;
+        }
+
+        public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+            this.onItemClickListener = onItemClickListener;
         }
 
         @Override
@@ -219,22 +229,9 @@ public class OnBoardingScreens extends AppCompatActivity {
 
         }
 
-    }
-
-    @Override
-    public void onDestroy() {
-        if (runnable != null) handler.removeCallbacks(runnable);
-        super.onDestroy();
-    }
-
-    public static void displayImageOriginal(Context ctx, ImageView img, @DrawableRes int drawable) {
-      try {
-            Glide.with(ctx).load(drawable)
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .into(img);
-
-      } catch (Exception e) {
-         }
+        private interface OnItemClickListener {
+            void onItemClick(View view, Image obj);
+        }
 
     }
 

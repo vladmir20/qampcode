@@ -1,9 +1,11 @@
 package com.qamp.app.messaging;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,10 +21,17 @@ import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.Toolbar;
 
 import com.mesibo.api.Mesibo;
+import com.mesibo.api.MesiboMessage;
 import com.mesibo.api.MesiboProfile;
 import com.qamp.app.R;
+import com.qamp.app.SplashScreenActivity;
+import com.qamp.app.qampcallss.api.MesiboCall;
+import com.qamp.app.qampcallss.api.p000ui.MesiboDefaultCallActivity;
 
-public class MesiboMessagingActivity extends AppCompatActivity implements MesiboMessagingFragment.FragmentListener {
+public class MesiboMessagingActivity extends AppCompatActivity implements MesiboMessagingFragment.FragmentListener,Mesibo.ConnectionListener, MesiboCall.IncomingListener {
+
+    ImageView callButton, videoCallButton;
+
     static int FROM_MESSAGING_ACTIVITY = 1;
     /* access modifiers changed from: private */
     public ActionMode mActionMode = null;
@@ -41,11 +50,32 @@ public class MesiboMessagingActivity extends AppCompatActivity implements Mesibo
     private TextView mTitle = null;
     private Toolbar mToolbar = null;
     private TextView mUserStatus = null;
+    public MesiboMessage mParameter=null;
 
     /* access modifiers changed from: protected */
     public void onCreate(Bundle savedInstanceState) {
         MesiboMessagingActivity.super.onCreate(savedInstanceState);
         Bundle args = getIntent().getExtras();
+
+
+
+        // Initializing Mesibo
+        Mesibo mesibo = Mesibo.getInstance();
+        mesibo.init(getApplicationContext());
+        //mesibo.setAccessToken(token);
+        boolean res = mesibo.setDatabase("callapp.db", 0);
+        mesibo.addListener(this);
+        Mesibo.start();
+
+//     Initializing call
+
+        MesiboCall.getInstance().init(this);
+
+
+        /* set profile so that it is visible in call screen */
+        MesiboProfile u = new MesiboProfile();
+        u.setName( "Mabel Bay") ;
+        u.address = "destination";
         if (args != null) {
             if (!Mesibo.isReady()) {
                 finish();
@@ -66,12 +96,21 @@ public class MesiboMessagingActivity extends AppCompatActivity implements Mesibo
                 finish();
                  return;
             }
+            //mParameter = new MesiboMessageProperties(peer, groupId, Mesibo.FLAG_DEFAULT, 0);
+            mParameter = new MesiboMessage();
+            mParameter.setPeer("peer");
+            //=new MesiboMessage("peer",groupId,3L,0);
+
+           // mParameter.set
+            //mParameter.setP
+            //mParameter = new MesiboMessage();
+            //this.mParameter = new MesiboMessageProperties(peer,groupId,3L,0);
             MesiboUIManager.enableSecureScreen(this);
             setContentView(R.layout.activity_messaging_new);
-            this.mToolbar = findViewById(R.id.toolbar);
+
             Utils.setActivityStyle(this, this.mToolbar);
-        //    setSupportActionBar(this.mToolbar);
-            ActionBar supportActionBar = getSupportActionBar();
+
+
             findViewById(R.id.chat_back).setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     MesiboMessagingActivity.this.onBackPressed();
@@ -112,10 +151,76 @@ public class MesiboMessagingActivity extends AppCompatActivity implements Mesibo
              }
             startFragment(savedInstanceState);
         }
+        this.callButton = findViewById(R.id.imageView2);
+        this.videoCallButton = findViewById(R.id.imageView4);
+        String destination =  "destination";
+        this.callButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+/**
+            //    if (view.getId() == R.id.imageView2) { // For Calling
+                   // if (0 == mParameter.groupid) {
+                        if (!MesiboCall.getInstance().callUi(MesiboMessagingActivity.this, mUser.address, false))
+                        //    MesiboCall.getInstance().callUiForExistingCall(MesiboMessagingActivity.this);
+                        //launchCustomCallActivity(destination, true, false);
+                    //} else {
+                      //  MesiboCall.getInstance().groupCallUi(MesiboMessagingActivity.this, Mesibo.getProfile(mParameter.groupid), false, true);
+                Log.e("Aditya","Aditya");
+
+                    Intent intent = new Intent(MesiboMessagingActivity.this, QampDefaultCallActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    intent.putExtra("video", true);
+                    intent.putExtra("address", destination);
+                    intent.putExtra("incoming", false);
+                    startActivity(intent);*/
+                Log.e("Aditya","reached");
+                if(!MesiboCall.getInstance().callUi(getApplicationContext(), mUser, false)){
+
+                    Log.e("Arr",String.valueOf(MesiboCall.getInstance().callUi(getApplicationContext(), mUser, false)));
+                    MesiboCall.getInstance().callUiForExistingCall(getApplicationContext());
+                }
+                //launchCustomCallActivity(destination, true, false);
+
+                }
+
+
+        });
+
+        this.videoCallButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SuspiciousIndentation")
+            @Override
+            public void onClick(View view) {
+                Log.e("Aditya","reached1");
+                /**if (view.getId() == R.id.imageView4) {
+                    //if(0 == mParameter.groupid) {
+                        if(!MesiboCall.getInstance().callUi(MesiboMessagingActivity.this, mParameter.profile.address, true))
+                            //launchCustomCallActivity(destination, true, false);
+                        MesiboCall.getInstance().callUiForExistingCall(MesiboMessagingActivity.this);
+                    //} else {
+                      //  MesiboCall.getInstance().groupCallUi(MesiboMessagingActivity.this, Mesibo.getProfile(mParameter.groupid), true, true);
+
+                }*/
+
+                if(!MesiboCall.getInstance().callUi(getApplicationContext(), mUser, true))
+                    //MesiboCall.getInstance().callUiForExistingCall(getApplicationContext());
+                launchCustomCallActivity(destination, true, false);
+            }
+        });
     }
 
     private void setProfilePicture() {
     }
+
+
+    protected void launchCustomCallActivity(String destination, boolean video, boolean incoming) {
+        Intent intent = new Intent(this, MesiboDefaultCallActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        intent.putExtra("video", video);
+        intent.putExtra("address", destination);
+        intent.putExtra("incoming", incoming);
+        startActivity(intent);
+    }
+
 
     private void startFragment(Bundle savedInstanceState) {
         if (findViewById(R.id.fragment_container) != null && savedInstanceState == null) {
@@ -159,6 +264,15 @@ public class MesiboMessagingActivity extends AppCompatActivity implements Mesibo
         if (f == null || !f.Mesibo_onBackPressed()) {
             //  Toast.makeText(this, "yes", Toast.LENGTH_SHORT).show();
             MesiboMessagingActivity.super.onBackPressed();
+            Intent mainActivity = new Intent(MesiboMessagingActivity.this,
+                    MesiboUserListActivityNew.class);
+            startActivity(mainActivity);
+            finish();
+        }else{
+            Intent mainActivity = new Intent(MesiboMessagingActivity.this,
+                    MesiboUserListActivityNew.class);
+            startActivity(mainActivity);
+            finish();
         }
     }
 
@@ -178,10 +292,10 @@ public class MesiboMessagingActivity extends AppCompatActivity implements Mesibo
 
     public void Mesibo_onUpdateUserOnlineStatus(MesiboProfile profile, String status) {
         if (status == null) {
-            this.mUserStatus.setVisibility(8);
+            this.mUserStatus.setVisibility(View.GONE);
             return;
         }
-        this.mUserStatus.setVisibility(0);
+        this.mUserStatus.setVisibility(View.VISIBLE);
         this.mUserStatus.setText(status);
     }
 
@@ -206,6 +320,7 @@ public class MesiboMessagingActivity extends AppCompatActivity implements Mesibo
     }
 
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         this.mFragment.Mesibo_onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
@@ -222,6 +337,41 @@ public class MesiboMessagingActivity extends AppCompatActivity implements Mesibo
         MesiboMessagingActivity.super.onResume();
         MesiboUIManager.setMessagingActivity(this);
         setProfilePicture();
+    }
+
+    @Override
+    public void Mesibo_onConnectionStatus(int i) {
+        Log.d("Mesibo", "Connection status: " + i);
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
+    }
+
+    @Override
+    public MesiboCall.CallProperties MesiboCall_OnIncoming(MesiboProfile var1, boolean var2) {
+        MesiboCall.CallProperties cc = MesiboCall.getInstance().createCallProperties(var2);
+        cc.parent = getApplicationContext();
+        cc.user = var1;
+        cc.className = MesiboDefaultCallActivity.class;
+        return cc;
+    }
+
+    @Override
+    public boolean MesiboCall_OnShowUserInterface(MesiboCall.Call var1, MesiboCall.CallProperties var2) {
+        launchCustomCallActivity(var2.user.address, var2.video.enabled, true);
+        return true;
+    }
+
+    @Override
+    public void MesiboCall_OnError(MesiboCall.CallProperties var1, int var2) {
+
+    }
+
+    @Override
+    public boolean MesiboCall_onNotify(int var1, MesiboProfile var2, boolean var3) {
+        return false;
     }
 
     private class ActionModeCallback implements ActionMode.Callback {

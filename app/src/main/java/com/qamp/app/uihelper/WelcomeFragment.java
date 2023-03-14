@@ -28,8 +28,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.qamp.app.R;
-import com.qamp.app.uihelper.Utils.OverLayFrameLayout;
-import com.qamp.app.uihelper.Utils.TouchInterceptLayout;
+ import com.qamp.app.uihelper.Utils.TouchInterceptLayout;
 
 import java.util.List;
 
@@ -38,7 +37,7 @@ public class WelcomeFragment extends Fragment implements View.OnTouchListener
     ViewPager mPictureViewPager;
     ViewPager mBannerViewPager;
     TouchInterceptLayout mTouchLayout;
-    OverLayFrameLayout mMobilePngView;
+   // OverLayFrameLayout mMobilePngView;
     List<WelcomeScreen> mDataList;
     private LinearLayout mPageIndicator;
     private int mPageDotCount;
@@ -57,7 +56,7 @@ public class WelcomeFragment extends Fragment implements View.OnTouchListener
     private String mParam2;
     private OnFragmentInteractionListener mListener;
     MesiboUiHelperConfig mConfig;
-    
+
     public WelcomeFragment() {
         this.imagePagerWidth = 1.0f;
         this.mBannerViewPagerWidth = 0.0f;
@@ -65,7 +64,7 @@ public class WelcomeFragment extends Fragment implements View.OnTouchListener
         this.mReverseScale = 1;
         this.mConfig = MesiboUiHelper.getConfig();
     }
-    
+
     public static WelcomeFragment newInstance(final String param1, final String param2) {
         final WelcomeFragment fragment = new WelcomeFragment();
         final Bundle args = new Bundle();
@@ -74,7 +73,7 @@ public class WelcomeFragment extends Fragment implements View.OnTouchListener
         fragment.setArguments(args);
         return fragment;
     }
-    
+
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (this.getArguments() != null) {
@@ -82,7 +81,7 @@ public class WelcomeFragment extends Fragment implements View.OnTouchListener
             this.mParam2 = this.getArguments().getString("param2");
         }
     }
-    
+
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.welcome_launch_fragment, container, false);
         final MesiboUiHelperConfig config = MesiboUiHelper.getConfig();
@@ -90,7 +89,7 @@ public class WelcomeFragment extends Fragment implements View.OnTouchListener
             return v;
         }
         this.mDataList = MesiboUiHelperConfig.mScreens;
-        this.mPictureViewPager = (ViewPager)v.findViewById(R.id.viewpager_picture);
+       // this.mPictureViewPager = (ViewPager)v.findViewById(R.id.viewpager_picture);
         final PagerAdapter pagerAdapter = new WelcomePictureViewPagerAdapter((Context)this.getActivity(), this.mDataList);
         this.mPictureViewPager.setAdapter(pagerAdapter);
         this.mPictureViewPager.setPageMargin(0);
@@ -101,17 +100,17 @@ public class WelcomeFragment extends Fragment implements View.OnTouchListener
                 WelcomeFragment.this.imagePagerWidth = (float)WelcomeFragment.this.mPictureViewPager.getMeasuredWidth();
             }
         });
-        (this.mMobilePngView = (OverLayFrameLayout)v.findViewById(R.id.overlay_frame)).requestLayout();
-        final ViewTreeObserver vto2 = this.mMobilePngView.getViewTreeObserver();
-        vto2.addOnGlobalLayoutListener((ViewTreeObserver.OnGlobalLayoutListener)new ViewTreeObserver.OnGlobalLayoutListener() {
-            public void onGlobalLayout() {
-                WelcomeFragment.this.mMobilePngView.getViewTreeObserver().removeGlobalOnLayoutListener((ViewTreeObserver.OnGlobalLayoutListener)this);
-                final ViewGroup.LayoutParams layoutParams = WelcomeFragment.this.mMobilePngView.getLayoutParams();
-                layoutParams.width = (int)(0.66 * WelcomeFragment.this.mMobilePngView.getMeasuredHeight());
-                layoutParams.height = WelcomeFragment.this.mMobilePngView.getMeasuredHeight();
-                WelcomeFragment.this.mMobilePngView.setLayoutParams(layoutParams);
-            }
-        });
+//        (this.mMobilePngView = (OverLayFrameLayout)v.findViewById(R.id.overlay_frame)).requestLayout();
+//        final ViewTreeObserver vto2 = this.mMobilePngView.getViewTreeObserver();
+//        vto2.addOnGlobalLayoutListener((ViewTreeObserver.OnGlobalLayoutListener)new ViewTreeObserver.OnGlobalLayoutListener() {
+//            public void onGlobalLayout() {
+//                WelcomeFragment.this.mMobilePngView.getViewTreeObserver().removeGlobalOnLayoutListener((ViewTreeObserver.OnGlobalLayoutListener)this);
+//                final ViewGroup.LayoutParams layoutParams = WelcomeFragment.this.mMobilePngView.getLayoutParams();
+//                layoutParams.width = (int)(0.66 * WelcomeFragment.this.mMobilePngView.getMeasuredHeight());
+//                layoutParams.height = WelcomeFragment.this.mMobilePngView.getMeasuredHeight();
+//                WelcomeFragment.this.mMobilePngView.setLayoutParams(layoutParams);
+//            }
+//        });
         this.mTouchLayout = (TouchInterceptLayout)v.findViewById(R.id.main_relative_layout);
         this.mSignInBtn = (Button)v.findViewById(R.id.signin);
         final Button mSignInBtn = this.mSignInBtn;
@@ -199,7 +198,7 @@ public class WelcomeFragment extends Fragment implements View.OnTouchListener
         this.mPageDotView[0].setImageDrawable(this.getResources().getDrawable(R.drawable.selected_dot));
         this.mBannerViewPager.addOnPageChangeListener((ViewPager.OnPageChangeListener)new ViewPager.OnPageChangeListener() {
             private int mScrollState = 0;
-            
+
             public void onPageScrolled(final int position, final float positionOffset, final int positionOffsetPixels) {
                 WelcomeFragment.this.mBottomTextLong.setVisibility(8);
                 WelcomeFragment.this.mClosePaneBtn.setVisibility(8);
@@ -211,10 +210,10 @@ public class WelcomeFragment extends Fragment implements View.OnTouchListener
                 final int scrolled = (int)Math.round(dummy);
                 WelcomeFragment.this.mPictureViewPager.scrollTo(scrolled, WelcomeFragment.this.mPictureViewPager.getScrollY());
             }
-            
+
             public void onPageSelected(final int position) {
             }
-            
+
             public void onPageScrollStateChanged(final int state) {
                 this.mScrollState = state;
                 if (state == 0) {
@@ -224,7 +223,7 @@ public class WelcomeFragment extends Fragment implements View.OnTouchListener
         });
         this.mPictureViewPager.addOnPageChangeListener((ViewPager.OnPageChangeListener)new ViewPager.OnPageChangeListener() {
             private int mScrollState = 0;
-            
+
             public void onPageScrolled(final int position, final float positionOffset, final int positionOffsetPixels) {
                 if (this.mScrollState == 0) {
                     return;
@@ -234,14 +233,14 @@ public class WelcomeFragment extends Fragment implements View.OnTouchListener
                 final int scrolled = (int)Math.round(dummy);
                 WelcomeFragment.this.mBannerViewPager.scrollTo(scrolled, WelcomeFragment.this.mBannerViewPager.getScrollY());
             }
-            
+
             public void onPageSelected(final int position) {
                 for (int i = 0; i < WelcomeFragment.this.mPageDotCount; ++i) {
                     WelcomeFragment.this.mPageDotView[i].setImageDrawable(WelcomeFragment.this.getResources().getDrawable(R.drawable.unselected_dot));
                 }
                 WelcomeFragment.this.mPageDotView[position].setImageDrawable(WelcomeFragment.this.getResources().getDrawable(R.drawable.selected_dot));
             }
-            
+
             public void onPageScrollStateChanged(final int state) {
                 this.mScrollState = state;
                 if (state == 0) {
@@ -251,13 +250,13 @@ public class WelcomeFragment extends Fragment implements View.OnTouchListener
         });
         return v;
     }
-    
+
     public void onButtonPressed(final Uri uri) {
         if (this.mListener != null) {
             this.mListener.onFragmentInteraction(uri);
         }
     }
-    
+
     public void onAttach(final Context context) {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
@@ -266,17 +265,17 @@ public class WelcomeFragment extends Fragment implements View.OnTouchListener
         }
         throw new RuntimeException(context.toString() + " must implement OnLoginInteactionListener");
     }
-    
+
     public void onDetach() {
         super.onDetach();
         this.mListener = null;
     }
-    
+
     public boolean onTouch(final View view, final MotionEvent event) {
         this.mBannerViewPager.onTouchEvent(event);
         return false;
     }
-    
+
     public interface OnFragmentInteractionListener
     {
         void onFragmentInteraction(final Uri p0);

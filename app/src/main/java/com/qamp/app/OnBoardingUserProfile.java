@@ -338,6 +338,7 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
                         JSONObject error = (JSONObject) errors.get(0);
                         String errMsg = error.getString("errMsg");
                         String errorCode = error.getString("errCode");
+
                     }
                 } catch (Exception e) {
                     AppUtils.closeProgresDialog();

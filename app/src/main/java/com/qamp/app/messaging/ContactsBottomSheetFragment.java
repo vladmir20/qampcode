@@ -8,6 +8,7 @@ import static com.qamp.app.messaging.MesiboConfiguration.ATTACHMENT_STRING;
 import static com.qamp.app.messaging.MesiboConfiguration.DELETED_DRAWABLE;
 import static com.qamp.app.messaging.MesiboConfiguration.IMAGE_ICON;
 import static com.qamp.app.messaging.MesiboConfiguration.IMAGE_STRING;
+import static com.qamp.app.messaging.MesiboConfiguration.JOIN_HUDDLE_MESSAGE;
 import static com.qamp.app.messaging.MesiboConfiguration.LOCATION_ICON;
 import static com.qamp.app.messaging.MesiboConfiguration.LOCATION_STRING;
 import static com.qamp.app.messaging.MesiboConfiguration.MESIBO_INTITIAL_READ_USERLIST;
@@ -73,6 +74,7 @@ import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboGroupProfile;
 import com.mesibo.api.MesiboMessage;
 import com.mesibo.api.MesiboProfile;
+import com.qamp.app.QampConstants;
 import com.qamp.app.R;
 
 import org.jetbrains.annotations.NotNull;
@@ -821,7 +823,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                         @Override
                         public void onClick(View v) {
                             if (null != user.getStatus() && user.getStatus().equals("0")) {
-                                sendMessage("JOIN_HUDDLE_MESSAGE", user.address);
+                                sendMessage(JOIN_HUDDLE_MESSAGE, user.address);
                             }
                         }
                     });
@@ -847,7 +849,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                         @Override
                         public void onClick(View view) {
                             if (null != user.getStatus() && user.getStatus().equals("0")) {
-                                sendMessage("JOIN_HUDDLE_MESSAGE", user.address);
+                                sendMessage(JOIN_HUDDLE_MESSAGE, user.address);
                             } else {
                                 if (mSelectionMode == MesiboUserListFragment.MODE_SELECTCONTACT_FORWARD || mSelectionMode == MesiboUserListFragment.MODE_SELECTGROUP || mSelectionMode == MesiboUserListFragment.MODE_EDITGROUP) {
                                     if ((user.uiFlags & MesiboProfile.FLAG_MARKED) == MesiboProfile.FLAG_MARKED) {
@@ -900,7 +902,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                         @Override
                         public void onClick(View v) {
                             if (null != user.getStatus() && user.getStatus().equals("0")) {
-                                sendMessage("JOIN_HUDDLE_MESSAGE", user.address);
+                                sendMessage(JOIN_HUDDLE_MESSAGE, user.address);
                             } else {
                                 if (mSelectionMode == MesiboUserListFragment.MODE_SELECTCONTACT_FORWARD || mSelectionMode == MesiboUserListFragment.MODE_SELECTGROUP || mSelectionMode == MesiboUserListFragment.MODE_EDITGROUP) {
                                     if ((user.uiFlags & MesiboProfile.FLAG_MARKED) == MesiboProfile.FLAG_MARKED) {
@@ -1017,7 +1019,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
         public void sendMessage(String message, String contact) {
             String url = null;
             try {
-                url = "QampConstants.whatsappURL" + contact + "&text=" + URLEncoder.encode(message, "UTF-8");
+                url = QampConstants.whatsappURL + contact + "&text=" + URLEncoder.encode(message, "UTF-8");
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }

@@ -52,6 +52,23 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".qampCalls.QampDefaultCallActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".qampcallss.api.p000ui.MesiboDefaultCallActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".qampCalls.QampCallActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".qampcallss.api.p000ui.QampCallsActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar" />
 
 
         <activity
@@ -171,6 +188,8 @@
         <activity
             android:name=".SelectLanguage"
             android:screenOrientation="portrait" />
+        <activity android:name=".ZoomPictureActivity"
+            android:screenOrientation="portrait"/>
 
     </application>
 

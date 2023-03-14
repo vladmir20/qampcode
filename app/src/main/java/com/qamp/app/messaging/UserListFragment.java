@@ -109,6 +109,10 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
     long[] mForwardIds = {0};
     int mMode = 0;
     Bundle mEditGroupBundle = null;
+    ImageView search_image;
+    LinearLayout name_tite_layout, search_view;
+    androidx.appcompat.widget.SearchView search_func;
+    android.widget.SearchView searchChats;
 
 
 
@@ -210,6 +214,56 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             @Override
             public void onClick(View view) {
                 showConatcts();
+            }
+        });
+//        searchChats = view.findViewById(R.id.searchChats);
+//        searchChats.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                mAdapter.filter(newText);
+//                mAdapter.notifyDataSetChanged();
+//                return false;
+//            }
+//        });
+        search_image = getActivity().findViewById(R.id.search_image);
+        name_tite_layout = getActivity().findViewById(R.id.name_tite_layout);
+        search_view = getActivity().findViewById(R.id.search_view);
+        search_func = getActivity().findViewById(R.id.search_func);
+
+        search_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                name_tite_layout.setVisibility(View.GONE);
+                search_view.setVisibility(View.VISIBLE);
+                search_func.setIconified(false);
+                search_func.requestFocus();
+            }
+        });
+
+        search_func.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mAdapter.filter(newText);
+                mAdapter.notifyDataSetChanged();
+                return false;
+            }
+        });
+        search_func.setOnCloseListener(new androidx.appcompat.widget.SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                name_tite_layout.setVisibility(View.VISIBLE);
+                search_view.setVisibility(View.GONE);
+                return false;
             }
         });
         return view;

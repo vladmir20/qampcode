@@ -255,7 +255,7 @@
                         android:singleLine="false"
                         android:inputType="textMultiLine"
                         android:textColorHint="#c4c0bd"
-                        android:textColor="@color/md_green_900"
+                        android:textColor="@color/text_color17"
                         android:background="@null"
                         android:layout_marginTop="5dp" />
 

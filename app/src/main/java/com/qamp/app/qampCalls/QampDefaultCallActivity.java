@@ -17,12 +17,15 @@ public class QampDefaultCallActivity extends QampCallActivity  {
     }
 
     public void onCreate(Bundle var1) {
-        super.onCreate(var1);
-        this.setContentView(R.layout.activity_mesibocall);//==========
-        int var2;
-        if ((var2 = this.checkPermissions(this.mCp.video.enabled)) < 0) {
+//        Log.e("AdityaCall",String.valueOf(this.mCp.video.enabled));
+        //super.onCreate(var1);
+        setContentView(R.layout.activity_mesibocalll);//==========
+        int var2=this.checkPermissions(this.mCp.video.enabled);
+
+        if (var2 < 0) {
             this.finish();
         } else if (var2 == 0) {
+
             this.initCall();
         }
     }
@@ -42,7 +45,7 @@ public class QampDefaultCallActivity extends QampCallActivity  {
             this.mCall = MesiboCall.getInstance().getActiveCall();
             if (this.mCall == null) {
                 if (null == this.mCp.parent) {
-                    this.mCp.parent = this;
+                    this.mCp.parent = (QampDefaultCallActivity)this;
                 }
 
                 this.mCp.activity = this;

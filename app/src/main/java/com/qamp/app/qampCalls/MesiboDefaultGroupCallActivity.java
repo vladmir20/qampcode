@@ -31,7 +31,7 @@ public class MesiboDefaultGroupCallActivity extends QampCallActivity {
         if (this.mGid < 1000L) {
             this.finish();
         } else {
-            this.setContentView(R.layout.activity_mesibocall); //=========
+            this.setContentView(R.layout.activity_mesibocalll); //=========
             int var2;
             if ((var2 = this.checkPermissions(true)) < 0) {
                 this.finish();

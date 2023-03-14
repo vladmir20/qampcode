@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import com.qamp.app.Utils.AppUtils;
 import com.qamp.app.messaging.MesiboUserListActivityNew;
+import com.qamp.app.messaging.Utils;
 
 import java.util.Locale;
 
@@ -25,6 +26,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
  //       getSupportActionBar().hide();
+        AppUtils.setStatusBarColor(SplashScreenActivity.this, R.color.colorAccent);
         setContentView(R.layout.activity_splash_screen);
         SharedPreferences sh = getSharedPreferences("checkactivity", MODE_PRIVATE);
         s1 = sh.getString("checker", "");

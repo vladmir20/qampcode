@@ -25,28 +25,6 @@
             android:paddingTop="20dp"
             android:layout_weight="1" />
 
-        <com.qamp.app.uihelper.Utils.OverLayFrameLayout
-            android:id="@+id/overlay_frame"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:paddingBottom="41dp"
-            android:paddingTop="41dp"
-            android:paddingLeft="21dp"
-            android:paddingRight="21dp"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:layout_below="@id/viewpager_text"
-            android:background="@drawable/mobile9"
-            android:clipChildren="false"
-            android:animateLayoutChanges="true"
-            >
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/viewpager_picture"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1" />
-        </com.qamp.app.uihelper.Utils.OverLayFrameLayout>
 
         <LinearLayout
             android:id="@+id/viewPagerIndicator"

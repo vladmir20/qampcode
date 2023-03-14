@@ -175,6 +175,7 @@
                 android:fontFamily="@font/montserrat_semibold"
                 android:hint="@string/onboarding_profile_field_hint"
                 android:inputType="textPersonName"
+                android:maxLength="50"
                 android:lineHeight="20sp"
                 android:lineSpacingExtra="7sp"
                 android:textAlignment="viewStart"

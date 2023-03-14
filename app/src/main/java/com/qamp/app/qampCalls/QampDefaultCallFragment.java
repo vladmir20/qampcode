@@ -33,7 +33,7 @@ public class QampDefaultCallFragment extends Fragment implements OnClickListener
     }
 
     public View onCreateView(LayoutInflater var1, ViewGroup var2, Bundle var3) {
-        int var6 = R.layout.audio_call_fragment;
+        int var6 = R.layout.audio_call_fragmentt;
         if (this.mCp.ui.layout_id > 0) {
             var6 = this.mCp.ui.layout_id;
         }

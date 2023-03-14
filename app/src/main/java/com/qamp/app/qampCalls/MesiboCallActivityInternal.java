@@ -17,6 +17,7 @@ public class MesiboCallActivityInternal extends HardwareAwareActivity {
     private CallPrivate mCall = null;
     private CallContext mCallCtx = null;
     protected MesiboCall.CallProperties mCp = null;
+
     private Thread closerThread = null;
     private boolean mGroupCallActivity = false;
     MesiboCall.MesiboParticipant mPublisher;

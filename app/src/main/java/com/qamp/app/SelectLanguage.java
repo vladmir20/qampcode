@@ -76,7 +76,6 @@ public class SelectLanguage extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         SelectLanguage.this.finish();
-
         QampUiHelper.launchEditProfile(SelectLanguage.this, 0, 0, false);
     }
 

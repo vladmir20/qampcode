@@ -111,7 +111,7 @@ public class ZoomPictureActivity extends AppCompatActivity {
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_left));
+//        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_left));
         setSupportActionBar(toolbar);
 
         ActionBar actionBar = getSupportActionBar();
@@ -184,7 +184,7 @@ public class ZoomPictureActivity extends AppCompatActivity {
             final String imageFileName = imageArray.get(position);
 
             if (SocialUtilities.isImageFile(imageFileName)) {
-                View v = (ImageView) swipeView.findViewById(R.id.video_layer);
+                View v =  swipeView.findViewById(R.id.video_layer);
                 v.setVisibility(GONE);
                 ImageViewTouch touchLayout = (ImageViewTouch) swipeView.findViewById(R.id.imageViewz);
 

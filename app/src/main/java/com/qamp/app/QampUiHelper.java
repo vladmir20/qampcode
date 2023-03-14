@@ -24,8 +24,10 @@ import java.util.List;
 
 public class QampUiHelper {
     public static MesiboConfiguration mesiboConfiguration = new MesiboConfiguration();
+    public static boolean mMesiboLaunched = false;
     private static boolean mTestMode = false;
     private static WeakReference<MesiboMessagingActivity> mMessagingActivity = null;
+    private static WeakReference<MesiboMessagingActivity> mMessagingActivityNew = null;
 
     public static void setConfig(com.qamp.app.messaging.MesiboConfiguration mesiboConfiguration) {
         mesiboConfiguration = mesiboConfiguration;
@@ -40,6 +42,29 @@ public class QampUiHelper {
         Intent mainActivity = new Intent(context, MesiboUserListActivityNew.class);
         context.startActivity(mainActivity);
     }
+
+    /**public static void launchContactActivity(Context context, long forwardid, int selectionMode, int flag, boolean startInBackground, boolean keepRunning, Bundle bundle, String forwardMessage) {
+     Intent intent = new Intent(context, MesiboActivity.class);
+     intent.putExtra(MesiboUserListFragment.MESSAGE_LIST_MODE, selectionMode)
+     .putExtra(MesiboUI.MESSAGE_ID, forwardid)
+     .putExtra(MesiboUI.START_IN_BACKGROUND, startInBackground)
+     .putExtra(MesiboUI.KEEP_RUNNING, keepRunning);
+
+     if (!TextUtils.isEmpty(forwardMessage)) {
+     intent.putExtra(MesiboUI.MESSAGE_CONTENT, forwardMessage);
+     }
+
+     if (flag > 0)
+     intent.setFlags(flag);
+
+     if (null != bundle)
+     intent.putExtra(MesiboUI.BUNDLE, bundle);
+     context.startActivity(intent);
+     }
+
+     public static void launchContactActivity(Context context, long forwardid, int selectionMode, int flag, boolean startInBackground, boolean keepRunning, Bundle bundle) {
+     launchContactActivity(context, forwardid, selectionMode, flag, startInBackground, keepRunning, bundle, null);
+     }*/
 
     public static void launchMessagingActivity(Context context, long forwardid, String peer, long groupid) {
         Intent intent = new Intent(context, MesiboMessagingActivity.class);
@@ -62,35 +87,14 @@ public class QampUiHelper {
 //        context.startActivity(intent);
     }
 
-    /**public static void launchContactActivity(Context context, long forwardid, int selectionMode, int flag, boolean startInBackground, boolean keepRunning, Bundle bundle, String forwardMessage) {
-        Intent intent = new Intent(context, MesiboActivity.class);
-        intent.putExtra(MesiboUserListFragment.MESSAGE_LIST_MODE, selectionMode)
-                .putExtra(MesiboUI.MESSAGE_ID, forwardid)
-                .putExtra(MesiboUI.START_IN_BACKGROUND, startInBackground)
-                .putExtra(MesiboUI.KEEP_RUNNING, keepRunning);
-
-        if (!TextUtils.isEmpty(forwardMessage)) {
-            intent.putExtra(MesiboUI.MESSAGE_CONTENT, forwardMessage);
-        }
-
-        if (flag > 0)
-            intent.setFlags(flag);
-
-        if (null != bundle)
-            intent.putExtra(MesiboUI.BUNDLE, bundle);
-        context.startActivity(intent);
-    }
-
-    public static void launchContactActivity(Context context, long forwardid, int selectionMode, int flag, boolean startInBackground, boolean keepRunning, Bundle bundle) {
-        launchContactActivity(context, forwardid, selectionMode, flag, startInBackground, keepRunning, bundle, null);
-    }*/
-
-   /** public static void launchContactActivity(Context context, int selectionMode, long[] mids) {
-        Intent intent = new Intent(context, MesiboActivity.class);
-        intent.putExtra(MesiboUserListFragment.MESSAGE_LIST_MODE, selectionMode)
-                .putExtra(MesiboUI.MESSAGE_IDS, mids);
-        context.startActivity(intent);
-    }*/
+    /**
+     * public static void launchContactActivity(Context context, int selectionMode, long[] mids) {
+     * Intent intent = new Intent(context, MesiboActivity.class);
+     * intent.putExtra(MesiboUserListFragment.MESSAGE_LIST_MODE, selectionMode)
+     * .putExtra(MesiboUI.MESSAGE_IDS, mids);
+     * context.startActivity(intent);
+     * }
+     */
 
     public static boolean enableSecureScreen(AppCompatActivity activity) {
         if (!Mesibo.isSetSecureScreen()) return false;
@@ -101,7 +105,7 @@ public class QampUiHelper {
     }
 
     public static void launchEditProfile(Context context, int flag, long groupid, boolean launchMesibo) {
-        Intent subActivity = new Intent(context, EditProfileActivity.class);
+        Intent subActivity = new Intent(context, EditProfileActivityNew.class);
         if (flag > 0)
             subActivity.setFlags(flag);
         subActivity.putExtra("groupid", groupid);
@@ -128,25 +132,28 @@ public class QampUiHelper {
         context.startActivity(subActivity);
     }
 
-
-    /**public static void launchGroupProfile(Context context, int flag, long groupid, boolean launchMesibo) {
-        Intent subActivity = new Intent(context, EditGroupProfileActivity.class);
-        if (flag > 0)
-            subActivity.setFlags(flag);
-        subActivity.putExtra("groupid", groupid);
-        subActivity.putExtra("launchMesibo", launchMesibo);
-
-        context.startActivity(subActivity);
-    }*/
+    /**
+     * public static void launchGroupProfile(Context context, int flag, long groupid, boolean launchMesibo) {
+     * Intent subActivity = new Intent(context, EditGroupProfileActivity.class);
+     * if (flag > 0)
+     * subActivity.setFlags(flag);
+     * subActivity.putExtra("groupid", groupid);
+     * subActivity.putExtra("launchMesibo", launchMesibo);
+     * <p>
+     * context.startActivity(subActivity);
+     * }
+     */
 
     public static void launchStartupActivity(Context context, boolean skipTour) {
         Intent intent = new Intent(context, LoginActivity.class);
         context.startActivity(intent);
     }
 
-   /** public static void launchMesiboContacts(Context context, long forwardid, int selectionMode, int flag, Bundle bundle) {
-        MesiboUI.launchContacts(context, forwardid, selectionMode, flag, bundle);
-    }*/
+    /**
+     * public static void launchMesiboContacts(Context context, long forwardid, int selectionMode, int flag, Bundle bundle) {
+     * MesiboUI.launchContacts(context, forwardid, selectionMode, flag, bundle);
+     * }
+     */
 
     public static void launchAlbum(Activity context, List<AlbumListData> albumList) {
         MediaPicker.launchAlbum(context, albumList);
@@ -173,11 +180,6 @@ public class QampUiHelper {
     public static void setMessagingActivity(MesiboMessagingActivity activity) {
         mMessagingActivity = new WeakReference<MesiboMessagingActivity>(activity);
     }
-
-    private static WeakReference<MesiboMessagingActivity> mMessagingActivityNew = null;
-
-
-    public static boolean mMesiboLaunched = false;
 
     public static void launchMesibo(Context context, int flag, boolean startInBackground, boolean keepRunningOnBackPressed) {
         mMesiboLaunched = true;

@@ -91,6 +91,7 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
         initViews();
         fetchNumber();
         initPermissions();
+        AppUtils.setStatusBarColor(LoginQampActivity.this, R.color.colorAccent);
         generateOTPButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -632,7 +633,7 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
 
                                 AppConfig.save();
                                 closeKeyboard();
-                                String sharedString;
+                                String sharedString,sharedString2;
                                 SharedPreferences sh = getSharedPreferences("OnBoardingValidity", MODE_PRIVATE);
                                 sharedString = sh.getString("onBoardingChecker", "");
                                 if (sharedString.equals("1")) {
