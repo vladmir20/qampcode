@@ -1,34 +1,78 @@
 {
   "project_info": {
-    "project_number": "123456",
-    "firebase_url": "https://messenger.firebaseio.com",
-    "project_id": "messenger",
-    "storage_bucket": "messenger.appspot.com"
+    "project_number": "561724286789",
+    "project_id": "qamp-2a629",
+    "storage_bucket": "qamp-2a629.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:123456:android:134824",
+        "mobilesdk_app_id": "1:561724286789:android:0d1e124284d8ffcdf8402c",
         "android_client_info": {
-          "package_name": "com.qampmessenger.app"
+          "package_name": "com.qamp.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "use-your-own-google-services-file.apps.googleusercontent.com",
+          "client_id": "561724286789-sc8t0rtgc93kmrho5ltn34jfmr5j74ji.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.qamp.app",
+            "certificate_hash": "f06c181d17b0bf06642c5dd799994a5154877062"
+          }
+        },
+        {
+          "client_id": "561724286789-tl1r2g13lb2oihqivgkjeffqqjam2j8k.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "use_your_own_api_key"
+          "current_key": "AIzaSyDk34yQEwS2qKRrZ2owU8qt4Xv-zMkPIYY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "use-your-own-google-services-file.apps.googleusercontent.com",
+              "client_id": "561724286789-tl1r2g13lb2oihqivgkjeffqqjam2j8k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:561724286789:android:2f224918eef0cfa0f8402c",
+        "android_client_info": {
+          "package_name": "com.qampmessenger.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "561724286789-gqpek4nm0p97pts9lie2r14k83jd1abq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.qampmessenger.app",
+            "certificate_hash": "f06c181d17b0bf06642c5dd799994a5154877062"
+          }
+        },
+        {
+          "client_id": "561724286789-tl1r2g13lb2oihqivgkjeffqqjam2j8k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDk34yQEwS2qKRrZ2owU8qt4Xv-zMkPIYY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "561724286789-tl1r2g13lb2oihqivgkjeffqqjam2j8k.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

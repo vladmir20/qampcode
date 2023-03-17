@@ -50,7 +50,8 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class UserListFragment extends Fragment implements Mesibo.MessageListener, Mesibo.PresenceListener, Mesibo.ConnectionListener, Mesibo.ProfileListener, Mesibo.SyncListener, Mesibo.GroupListener {
+public class UserListFragment extends Fragment implements Mesibo.MessageListener,
+        Mesibo.PresenceListener, Mesibo.ConnectionListener, Mesibo.ProfileListener, Mesibo.SyncListener, Mesibo.GroupListener {
     public static MesiboGroupProfile.Member[] mExistingMembers = null;
     public static ArrayList<MesiboProfile> mMemberProfiles = new ArrayList<>();
     /* access modifiers changed from: private */
@@ -89,6 +90,15 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
     MesiboUI.Config mMesiboUIOptions = null;
     RecyclerView mRecyclerView = null;
     ArrayList<MesiboProfile> memberProfiles = new ArrayList<>();
+    long mForwardIdForContactList = 0;
+    String forwardMessage = MesiboUI.MESSAGE_CONTENT;
+    long[] mForwardIds = {0};
+    int mMode = 0;
+    Bundle mEditGroupBundle = null;
+    ImageView search_image;
+    LinearLayout name_tite_layout, search_view;
+    androidx.appcompat.widget.SearchView search_func;
+    SearchView searchChats;
     private ArrayList<MesiboProfile> mAdhocUserList = null;
     private MesiboReadSession mDbSession = null;
     private boolean mFirstOnline = false;
@@ -103,20 +113,6 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
     private ArrayList<MesiboProfile> mUserProfiles = null;
     private LinearLayout mforwardLayout;
     private LinearLayout fabadd;
-
-    long mForwardIdForContactList = 0;
-    String forwardMessage = MesiboUI.MESSAGE_CONTENT;
-    long[] mForwardIds = {0};
-    int mMode = 0;
-    Bundle mEditGroupBundle = null;
-    ImageView search_image;
-    LinearLayout name_tite_layout, search_view;
-    androidx.appcompat.widget.SearchView search_func;
-    android.widget.SearchView searchChats;
-
-
-
-
 
     public void updateTitle(String title) {
         MesiboUserListFragment.FragmentListener l = getListener();
@@ -216,20 +212,20 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                 showConatcts();
             }
         });
-//        searchChats = view.findViewById(R.id.searchChats);
-//        searchChats.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                mAdapter.filter(newText);
-//                mAdapter.notifyDataSetChanged();
-//                return false;
-//            }
-//        });
+        searchChats = view.findViewById(R.id.searchChats);
+        searchChats.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mAdapter.filter(newText);
+                mAdapter.notifyDataSetChanged();
+                return false;
+            }
+        });
         search_image = getActivity().findViewById(R.id.search_image);
         name_tite_layout = getActivity().findViewById(R.id.name_tite_layout);
         search_view = getActivity().findViewById(R.id.search_view);
@@ -306,6 +302,11 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         }
     }
 
+public void setDataonBackPress(){
+
+}
+
+
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         UserListFragment.super.onCreateOptionsMenu(menu, inflater);
         menu.clear();
@@ -370,21 +371,21 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
     }
 
     public void showForwardLayout() {
-        this.mforwardLayout.setVisibility(0);
+        this.mforwardLayout.setVisibility(View.VISIBLE);
     }
 
     public void handleEmptyUserList(int userListsize) {
         if (userListsize == 0) {
-            this.mRecyclerView.setVisibility(4);
-            this.mEmptyView.setVisibility(0);
+            this.mRecyclerView.setVisibility(View.INVISIBLE);
+            this.mEmptyView.setVisibility(View.VISIBLE);
             return;
         }
-        this.mRecyclerView.setVisibility(0);
-        this.mEmptyView.setVisibility(8);
+        this.mRecyclerView.setVisibility(View.VISIBLE);
+        this.mEmptyView.setVisibility(View.GONE);
     }
 
     public void hideForwardLayout() {
-        this.mforwardLayout.setVisibility(8);
+        this.mforwardLayout.setVisibility(View.GONE);
     }
 
     private void updateNotificationBadge() {
@@ -474,70 +475,41 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         }
     }
 
-    /* JADX WARNING: Code restructure failed: missing block: B:17:0x003b, code lost:
-        r0 = com.qamp.app.messaging.UserData.getUserData(r3);
-     */
-    /* Code decompiled incorrectly, please refer to instructions dump. */
-    public void Mesibo_onPresence(MesiboPresence r11) {
-        /*
-            r10 = this;
-            r8 = 3
-            long r4 = r11.presence
-            int r4 = (r8 > r4 ? 1 : (r8 == r4 ? 0 : -1))
-            if (r4 == 0) goto L_0x0019
-            r4 = 4
-            long r6 = r11.presence
-            int r4 = (r4 > r6 ? 1 : (r4 == r6 ? 0 : -1))
-            if (r4 == 0) goto L_0x0019
-            r4 = 11
-            long r6 = r11.presence
-            int r4 = (r4 > r6 ? 1 : (r4 == r6 ? 0 : -1))
-            if (r4 == 0) goto L_0x0019
-        L_0x0018:
-            return
-        L_0x0019:
-            if (r11 == 0) goto L_0x0018
-            com.mesibo.api.MesiboProfile r4 = r11.profile
-            if (r4 == 0) goto L_0x0018
-            long r4 = r11.groupid
-            r6 = 0
-            int r4 = (r4 > r6 ? 1 : (r4 == r6 ? 0 : -1))
-            if (r4 <= 0) goto L_0x002b
-            com.mesibo.api.MesiboProfile r4 = r11.groupProfile
-            if (r4 == 0) goto L_0x0018
-        L_0x002b:
-            com.mesibo.api.MesiboProfile r3 = r11.profile
-            boolean r4 = r11.isGroupMessage()
-            if (r4 == 0) goto L_0x003b
-            long r4 = r11.groupid
-            com.mesibo.api.MesiboProfile r3 = com.mesibo.api.Mesibo.getProfile(r4)
-            if (r3 == 0) goto L_0x0018
-        L_0x003b:
-            com.qamp.app.messaging.UserData r0 = com.qamp.app.messaging.UserData.getUserData((com.mesibo.api.MesiboProfile) r3)
-            int r2 = r0.getUserListPosition()
-            if (r2 < 0) goto L_0x0018
-            java.util.ArrayList<com.mesibo.api.MesiboProfile> r4 = r10.mAdhocUserList
-            int r4 = r4.size()
-            if (r4 <= r2) goto L_0x0018
-            long r4 = r11.presence
-            int r4 = (r8 > r4 ? 1 : (r8 == r4 ? 0 : -1))
-            if (r4 != 0) goto L_0x005e
-            boolean r4 = r11.isGroupMessage()
-            if (r4 == 0) goto L_0x005e
-            com.mesibo.api.MesiboProfile r4 = r11.profile
-            r0.setTypingUser(r4)
-        L_0x005e:
-            java.util.ArrayList<com.mesibo.api.MesiboProfile> r4 = r10.mAdhocUserList     // Catch:{ Exception -> 0x006c }
-            java.lang.Object r4 = r4.get(r2)     // Catch:{ Exception -> 0x006c }
-            if (r3 != r4) goto L_0x0018
-            com.qamp.app.messaging.UserListFragment$MessageContactAdapter r4 = r10.mAdapter
-            r4.notifyItemChanged(r2)
-            goto L_0x0018
-        L_0x006c:
-            r1 = move-exception
-            goto L_0x0018
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.qamp.app.messaging.UserListFragment.Mesibo_onPresence(com.mesibo.api.MesiboPresence):void");
+
+    public void Mesibo_onPresence(MesiboPresence msg) {
+        if (3L == msg.presence || 4L == msg.presence || 11L == msg.presence) {
+            if (null != msg && null != msg.profile) {
+                if (msg.groupid <= 0L || null != msg.groupProfile) {
+                    MesiboProfile profile = msg.profile;
+                    if (msg.isGroupMessage()) {
+                        profile = Mesibo.getProfile(msg.groupid);
+                        if (null == profile) {
+                            return;
+                        }
+                    }
+
+                    UserData data = UserData.getUserData(profile);
+                    int position = data.getUserListPosition();
+                    if (position >= 0) {
+                        if (this.mAdhocUserList.size() > position) {
+                            if (3L == msg.presence && msg.isGroupMessage()) {
+                                data.setTypingUser(msg.profile);
+                            }
+
+                            try {
+                                if (profile != this.mAdhocUserList.get(position)) {
+                                    return;
+                                }
+                            } catch (Exception var6) {
+                                return;
+                            }
+
+                            this.mAdapter.notifyItemChanged(position);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public void Mesibo_onPresenceRequest(MesiboPresence mesiboPresence) {
@@ -869,10 +841,10 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             UserData data = userdata;
             holder.mContactsName.setText(data.getUserName());
             if (this.mHost.mSelectionMode == MesiboUserListFragment.MODE_MESSAGELIST) {
-                holder.mContactsTime.setVisibility(0);
+                holder.mContactsTime.setVisibility(View.VISIBLE);
                 holder.mContactsTime.setText(data.getTime());
             } else {
-                holder.mContactsTime.setVisibility(8);
+                holder.mContactsTime.setVisibility(View.GONE);
             }
             Drawable imageDrawable = null;
             int padding = 5;
@@ -929,27 +901,27 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             new RoundImageDrawable(b);
             holder.mContactsProfile.setImageDrawable(new RoundImageDrawable(b));
             if (this.mHost.mSelectionMode != MesiboUserListFragment.MODE_MESSAGELIST || data.getUnreadCount().intValue() <= 0) {
-                holder.mNewMesAlert.setVisibility(4);
+                holder.mNewMesAlert.setVisibility(View.INVISIBLE);
             } else {
-                holder.mNewMesAlert.setVisibility(0);
+                holder.mNewMesAlert.setVisibility(View.VISIBLE);
                 holder.mNewMesAlert.setText(String.valueOf(data.getUnreadCount()));
             }
-            holder.mContactsDeliveryStatus.setVisibility(8);
+            holder.mContactsDeliveryStatus.setVisibility(View.GONE);
             if (!typing && this.mHost.mSelectionMode == MesiboUserListFragment.MODE_MESSAGELIST) {
-                holder.mContactsDeliveryStatus.setVisibility(0);
+                holder.mContactsDeliveryStatus.setVisibility(View.VISIBLE);
                 int sts = data.getStatus().intValue();
                 if (sts == 19 || sts == 18 || sts == 21 || sts == 32 || data.isDeletedMessage()) {
-                    holder.mContactsDeliveryStatus.setVisibility(8);
+                    holder.mContactsDeliveryStatus.setVisibility(View.GONE);
                 } else {
                     holder.mContactsDeliveryStatus.setImageBitmap(MesiboImages.getStatusImage(sts));
                 }
             }
             if (UserListFragment.this.mSelectionMode == MesiboUserListFragment.MODE_SELECTCONTACT_FORWARD || UserListFragment.this.mSelectionMode == MesiboUserListFragment.MODE_SELECTGROUP || UserListFragment.this.mSelectionMode == MesiboUserListFragment.MODE_EDITGROUP) {
                 if ((this.mDataList.get(position).uiFlags & 16777216) == 16777216) {
-                    holder.mHighlightView.setVisibility(0);
+                    holder.mHighlightView.setVisibility(View.VISIBLE);
                     this.mHost.showForwardLayout();
                 } else {
-                    holder.mHighlightView.setVisibility(8);
+                    holder.mHighlightView.setVisibility(View.GONE);
                 }
             }
             final MesiboProfile mesiboProfile = user;

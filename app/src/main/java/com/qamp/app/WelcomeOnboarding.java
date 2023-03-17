@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.qamp.app.Utils.AppUtils;
+
 public class WelcomeOnboarding extends AppCompatActivity {
 
     /** Duration of wait **/
@@ -24,7 +26,7 @@ public class WelcomeOnboarding extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_onboarding);
        // Utils.setStatusBarTheme(WelcomeOnboarding.this);
-
+        AppUtils.setStatusBarColor(WelcomeOnboarding.this,R.color.colorAccent);
         pictureViewContainer = findViewById(R.id.pictureViewContainer);
         pictureViewContainer.setVisibility(View.GONE);
         big_logo = findViewById(R.id.big_logo);
