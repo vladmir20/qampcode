@@ -85,11 +85,9 @@ public class MesiboMessagingActivity extends AppCompatActivity implements Mesibo
             long groupId = args.getLong(MesiboUI.GROUP_ID);
             if (groupId > 0) {
                 this.mUser = Mesibo.getProfile(groupId);
-                Toast.makeText(this, "" + groupId, Toast.LENGTH_SHORT).show();
-            } else {
+             } else {
                 this.mUser = Mesibo.getProfile(peer);
-                Toast.makeText(this, "" + groupId, Toast.LENGTH_SHORT).show();
-            }
+             }
             if (this.mUser == null) {
                 finish();
                 return;
@@ -295,7 +293,7 @@ public class MesiboMessagingActivity extends AppCompatActivity implements Mesibo
             this.isOnlineDot.setVisibility(View.GONE);
             return;
         }
-        if (!profile.isGroup()&&(status.equals("online") || status.equals("Online"))) {
+        if (!profile.isGroup() && (status.equals("online") || status.equals("Online"))) {
             this.isOnlineDot.setVisibility(View.VISIBLE);
         }
         this.mUserStatus.setVisibility(View.VISIBLE);

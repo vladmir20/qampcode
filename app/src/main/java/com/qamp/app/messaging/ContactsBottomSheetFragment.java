@@ -272,6 +272,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
             @Override
             public void onClick(View view) {
                 if (slectedgtoup.size() >= 2) {
+                    groupmaker = 1;
                     Iterator<MesiboProfile> it = slectedgtoup.iterator();
                     while (it.hasNext()) {
                         MesiboProfile d = it.next();
@@ -336,8 +337,8 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
     private void OpenContactRecycler(boolean isCreatingGroup) {
         contactsRecycle.setLayoutManager(new LinearLayoutManager(contactsRecycle.getContext()));
         mAdapter = new MessageContactAdapter(getContext(), this, mUserProfiles, mSearchResultList, isCreatingGroup);
+        mAdapter.notifyChangeInData();
         contactsRecycle.setAdapter(mAdapter);
-
     }
 
     private void checkPermissionAndFetchContacts() {
@@ -685,16 +686,6 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
             this.isGroup = isGroup;
         }
 
-        public MessageContactAdapter(Context context,
-                                     ArrayList<MesiboProfile> list,
-                                     ArrayList<MesiboProfile> searchResults, boolean isGroup) {
-            this.mContext = context;
-            mUsers = list;
-            mSearchResults = searchResults;
-            mDataList = list;
-            mSelectionItems = new SparseBooleanArray();
-            this.isGroup = isGroup;
-        }
 
         public ArrayList<MesiboProfile> getActiveUserlist() {
             if (mIsMessageSearching)
@@ -869,7 +860,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
 
                                     //TBD, it's checking user name, instead we should set flag
                                     if (null != user.getName() && null != getString(R.string.create_new_group) && user.getName().equals(getString(R.string.create_new_group)) && mSelectionMode == MesiboUserListFragment.MODE_SELECTCONTACT) {
-                                        MesiboUIManager.launchContactActivity(getContext(), 0, MesiboUserListFragment.MODE_SELECTGROUP, 0, false, false, null);
+                                        MesiboUIManager.launchContactActivity(getContext(), 0, MesiboUserListFragment.MODE_SELECTGROUP, 0, false, false, null, "");
                                         getActivity().finish();
                                         return;
                                     }
@@ -922,7 +913,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
 
                                     //TBD, it's checking user name, instead we should set flag
                                     if (null != user.getName() && null != getString(R.string.create_new_group) && user.getName().equals(getString(R.string.create_new_group)) && mSelectionMode == MesiboUserListFragment.MODE_SELECTCONTACT) {
-                                        MesiboUIManager.launchContactActivity(getContext(), 0, MesiboUserListFragment.MODE_SELECTGROUP, 0, false, false, null);
+                                        MesiboUIManager.launchContactActivity(getContext(), 0, MesiboUserListFragment.MODE_SELECTGROUP, 0, false, false, null, "");
                                         getActivity().finish();
                                         return;
                                     }
@@ -987,16 +978,12 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                         public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                             if (b) {
                                 slectedgtoup.add(mDataList.get(position));
-                                Toast.makeText(getContext(), "" + slectedgtoup.size(), Toast.LENGTH_SHORT).show();
                             } else if (!b) {
                                 slectedgtoup.remove(mDataList.get(position));
-                                Toast.makeText(getContext(), "" + slectedgtoup.size(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
                 }
-
-
             }
         }
 

@@ -56,9 +56,9 @@
 
     <style name="Theme.Huddle.AppTheme">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#2CB9B0</item>
-        <item name="colorPrimaryDark">#2CB9B0</item>
-        <item name="colorAccent">#2CB9B0</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -111,9 +111,8 @@
 
     <style name="DialogTheme1" parent="@android:style/Theme.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="colorControlNormal">#2CB9B0</item>
-        <item name="colorControlActivated">#2CB9B0</item>
-        <item name="colorControlHighlight">#2CB9B0</item>
-
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="colorControlHighlight">@color/colorPrimary</item>
     </style>
 </resources>

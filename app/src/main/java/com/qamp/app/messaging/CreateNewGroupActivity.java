@@ -1,10 +1,12 @@
 package com.qamp.app.messaging;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -20,7 +22,7 @@ public class CreateNewGroupActivity extends AppCompatActivity {
     Bundle mGroupEditBundle = null;
     int mGroupMode;
     Fragment mRequestingFragment;
-
+    FragmentTransaction ft;
     /* access modifiers changed from: protected */
     public void onCreate(Bundle savedInstanceState) {
         CreateNewGroupActivity.super.onCreate(savedInstanceState);
@@ -42,7 +44,7 @@ public class CreateNewGroupActivity extends AppCompatActivity {
         Utils.setTitleAndColor(ab, title);
         CreateNewGroupFragment createNewGroupFragment = CreateNewGroupFragment.newInstance(this.mGroupEditBundle);
         this.mRequestingFragment = createNewGroupFragment;
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.nugroup_fragment_place, createNewGroupFragment, "null");
         ft.commit();
     }
@@ -56,6 +58,17 @@ public class CreateNewGroupActivity extends AppCompatActivity {
                 return CreateNewGroupActivity.super.onOptionsItemSelected(item);
         }
     }
+
+
+//    @Override
+//    public void onBackPressed() {
+//        if(CreateNewGroupFragment.backpressedlistener!=null){
+//            CreateNewGroupFragment.backpressedlistener.onBackPressed();
+//            Intent intent = new Intent(CreateNewGroupActivity.this,MesiboUserListActivityNew.class);
+////            ft.remove(this.mRequestingFragment).commit();
+//            startActivity(intent);
+//         }
+//    }
 
     /* access modifiers changed from: protected */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

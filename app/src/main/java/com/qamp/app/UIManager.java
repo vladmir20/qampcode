@@ -77,8 +77,8 @@ public class UIManager {
         MesiboUI.launch(context, flag, startInBackground, keepRunningOnBackPressed);
     }
 
-    public static void launchMesiboContacts(Context context, long forwardid, int selectionMode, int flag, Bundle bundle) {
-        MesiboUI.launchContacts(context, forwardid, selectionMode, flag, bundle);
+    public static void launchMesiboContacts(Context context, long forwardid, int selectionMode, int flag, Bundle bundle, String task) {
+        MesiboUI.launchContacts(context, forwardid, selectionMode, flag, bundle,task);
     }
 
     public static void launchUserProfile(Context context, long groupid, String peer) {

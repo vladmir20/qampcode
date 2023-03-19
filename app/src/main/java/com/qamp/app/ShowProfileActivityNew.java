@@ -479,10 +479,9 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
             mAddMemebers.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     Bundle bundle = new Bundle();
                     bundle.putLong("groupid", mUserProfile.groupid);
-                    UIManager.launchMesiboContacts(ShowProfileActivityNew.this, 0, MODE_EDITGROUP, 0, bundle);
+                    UIManager.launchMesiboContacts(ShowProfileActivityNew.this, 0, MODE_EDITGROUP, 0, bundle,"addMembers");
                     ShowProfileActivityNew.this.finish();
                 }
             });

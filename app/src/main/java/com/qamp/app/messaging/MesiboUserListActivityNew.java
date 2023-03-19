@@ -2,6 +2,7 @@ package com.qamp.app.messaging;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -46,6 +47,7 @@ import com.qamp.app.Fragments.FeedFragment;
 import com.qamp.app.LoginQampActivity;
 import com.qamp.app.QampUiHelper;
 import com.qamp.app.R;
+import com.qamp.app.SampleAPI;
 import com.qamp.app.Utilss;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -77,6 +79,7 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
     private long pressedTime;
     private long mGroupId = 0;
     SearchView search_func;
+    public static Activity MesiboUserListActivityNewActivity;
     private BottomNavigationView.OnNavigationItemSelectedListener selectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
@@ -206,6 +209,7 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
             @Override
             public void onClick(View v) {
                 AppConfig.reset();
+                SampleAPI.startLogout();
                 Intent intent1 = new Intent(MesiboUserListActivityNew.this, LoginQampActivity.class);
                 startActivity(intent1);
                 finish();
@@ -238,7 +242,7 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
             }
         });
 
-
+        MesiboUserListActivityNewActivity = MesiboUserListActivityNew.this;
     }
 
     private void initFragment() {

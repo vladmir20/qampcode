@@ -1,77 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:emojicon="http://schemas.android.com/tools">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/outgoing_layout_bubble"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:paddingRight="11dp"
-        android:background="@drawable/chat_bubble_background"
-        android:paddingBottom="1dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="4dp"
         android:layout_alignParentRight="true"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="2dp"
+        android:paddingRight="11dp"
+        android:paddingBottom="1dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="2dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
 
-            <com.qamp.app.messaging.MessageView
-                android:id="@+id/mesibo_message_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="700dp"
-                android:paddingBottom="0dp"
-                android:layout_marginBottom="7dp"
-                android:layout_marginLeft="1dp"
-                android:layout_marginRight="10dp"/>
-        </LinearLayout>
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="bottom|right" >
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/m_star"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_gravity="bottom"
-                android:paddingBottom="0dp"
-                android:layout_marginRight="1dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_star_black_18dp"
-                app:tint="@color/md_grey_600" />
-            <TextView
-                android:id="@+id/m_time"
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_width="wrap_content"
-                android:layout_marginRight="1dp"
-                android:paddingBottom="0dp"
-                android:text="@string/Sample_Time"
-                style="@style/chat_timings"/>
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/m_status"
+                <com.qamp.app.messaging.MessageView
+                    android:id="@+id/mesibo_message_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginBottom="7dp"
+                    android:minWidth="100dp"
+                    android:paddingBottom="0dp" />
+            </LinearLayout>
+
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
+                android:layout_gravity="bottom|right"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp"
+                android:paddingRight="4dp"
                 android:paddingBottom="0dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_done_black_18dp"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
-        </LinearLayout>
+                <ImageView
+                    android:id="@+id/m_star"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginRight="1dp"
+                    android:paddingBottom="0dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_star_black_18dp"
+                    android:tint="@color/md_grey_600" />
+
+                <TextView
+                    android:id="@+id/m_time"
+                    style="@style/chat_timings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="1dp"
+                    android:paddingBottom="0dp"
+                    android:text="11:15" />
+
+                <ImageView
+                    android:id="@+id/m_status"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="bottom"
+                    android:paddingBottom="0dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_done_black_18dp" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.cardview.widget.CardView>
@@ -81,12 +97,11 @@
         android:id="@+id/selected_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_alignBottom="@+id/outgoing_layout_bubble"
         android:layout_alignParentTop="true"
+        android:layout_weight="1"
         android:background="@color/overlaySelection"
-        android:visibility="gone"
-        android:layout_alignBottom="@+id/outgoing_layout_bubble" />
-
+        android:visibility="gone" />
 
 
 </RelativeLayout>

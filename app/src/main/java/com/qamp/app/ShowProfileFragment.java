@@ -534,10 +534,9 @@ public class ShowProfileFragment extends Fragment implements Mesibo.MessageListe
             mAddMemebers.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     Bundle bundle = new Bundle();
                     bundle.putLong("groupid", mUser.groupid);
-                    UIManager.launchMesiboContacts(getActivity(), 0, MODE_EDITGROUP, 0,bundle);
+                    UIManager.launchMesiboContacts(getActivity(), 0, MODE_EDITGROUP, 0,bundle,"addMembers");
                     getActivity().finish();
                 }
             });

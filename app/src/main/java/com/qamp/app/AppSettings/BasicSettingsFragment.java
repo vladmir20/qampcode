@@ -174,4 +174,5 @@ public class BasicSettingsFragment extends Fragment {
             mUserStatus.setText("");
         }
     }
+
 }

@@ -1,5 +1,7 @@
 package com.qamp.app.messaging;
 
+import static com.qamp.app.messaging.MesiboUserListActivityNew.MesiboUserListActivityNewActivity;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -89,6 +91,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
     LetterTileProvider mLetterTileProvider = null;
     MesiboUI.Config mMesiboUIOptions = null;
     RecyclerView mRecyclerView = null;
+    LinearLayout horizontal_channel_recycler;
     ArrayList<MesiboProfile> memberProfiles = new ArrayList<>();
     long mForwardIdForContactList = 0;
     String forwardMessage = MesiboUI.MESSAGE_CONTENT;
@@ -205,6 +208,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(this.mRecyclerView.getContext()));
         this.mAdapter = new MessageContactAdapter(getActivity(), this, this.mUserProfiles, this.mSearchResultList);
         this.mRecyclerView.setAdapter(this.mAdapter);
+        this.horizontal_channel_recycler = view.findViewById(R.id.horizontal_channel_recycler);
         this.fabadd = view.findViewById(R.id.fab_add);
         this.fabadd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -230,38 +234,41 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         name_tite_layout = getActivity().findViewById(R.id.name_tite_layout);
         search_view = getActivity().findViewById(R.id.search_view);
         search_func = getActivity().findViewById(R.id.search_func);
+        if (getActivity() == MesiboUserListActivityNewActivity && MesiboUserListActivityNewActivity != null) {
+            this.horizontal_channel_recycler.setVisibility(View.VISIBLE);
+            this.fabadd.setVisibility(View.VISIBLE);
+            search_image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    name_tite_layout.setVisibility(View.GONE);
+                    search_view.setVisibility(View.VISIBLE);
+                    search_func.setIconified(false);
+                    search_func.requestFocus();
+                }
+            });
+            search_func.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    return false;
+                }
 
-        search_image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                name_tite_layout.setVisibility(View.GONE);
-                search_view.setVisibility(View.VISIBLE);
-                search_func.setIconified(false);
-                search_func.requestFocus();
-            }
-        });
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    mAdapter.filter(newText);
+                    mAdapter.notifyDataSetChanged();
+                    return false;
+                }
+            });
+            search_func.setOnCloseListener(new androidx.appcompat.widget.SearchView.OnCloseListener() {
+                @Override
+                public boolean onClose() {
+                    name_tite_layout.setVisibility(View.VISIBLE);
+                    search_view.setVisibility(View.GONE);
+                    return false;
+                }
+            });
+        }
 
-        search_func.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                mAdapter.filter(newText);
-                mAdapter.notifyDataSetChanged();
-                return false;
-            }
-        });
-        search_func.setOnCloseListener(new androidx.appcompat.widget.SearchView.OnCloseListener() {
-            @Override
-            public boolean onClose() {
-                name_tite_layout.setVisibility(View.VISIBLE);
-                search_view.setVisibility(View.GONE);
-                return false;
-            }
-        });
         return view;
     }
 
@@ -302,9 +309,9 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         }
     }
 
-public void setDataonBackPress(){
+    public void setDataonBackPress() {
 
-}
+    }
 
 
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -348,7 +355,7 @@ public void setDataonBackPress(){
         Context context = getActivity();
         if (context != null) {
             if (item.getItemId() == R.id.mesibo_contacts) {
-                MesiboUIManager.launchContactActivity(context, 0, MesiboUserListFragment.MODE_SELECTCONTACT, 0, false, false, (Bundle) null);
+                MesiboUIManager.launchContactActivity(context, 0, MesiboUserListFragment.MODE_SELECTCONTACT, 0, false, false, (Bundle) null, "");
             } else if (!(item.getItemId() == R.id.mesibo_search || this.mMesiboUIHelperListener == null)) {
                 this.mMesiboUIHelperListener.MesiboUI_onMenuItemSelected(context, 0, (MesiboProfile) null, item.getItemId());
             }
@@ -952,7 +959,7 @@ public void setDataonBackPress(){
                         }
                         MessageContactAdapter.this.mHost.mForwardId = 0;
                     } else {
-                        MesiboUIManager.launchContactActivity(UserListFragment.this.getActivity(), 0, MesiboUserListFragment.MODE_SELECTGROUP, 0, false, false, (Bundle) null);
+                        MesiboUIManager.launchContactActivity(UserListFragment.this.getActivity(), 0, MesiboUserListFragment.MODE_SELECTGROUP, 0, false, false, (Bundle) null, "");
                         UserListFragment.this.getActivity().finish();
                     }
                 }

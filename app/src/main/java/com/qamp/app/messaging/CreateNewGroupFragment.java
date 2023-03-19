@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.view.menu.MenuPopupHelper;
@@ -35,14 +36,17 @@ import com.mesibo.emojiview.EmojiconTextView;
 import com.mesibo.emojiview.EmojiconsPopup;
 import com.mesibo.emojiview.emoji.Emojicon;
 import com.mesibo.mediapicker.MediaPicker;
+import com.qamp.app.Backpressedlistener;
 import com.qamp.app.R;
 
 import java.util.ArrayList;
 
-public class CreateNewGroupFragment extends Fragment implements MediaPicker.ImageEditorListener, Mesibo.GroupListener, MesiboProfile.Listener {
+public class CreateNewGroupFragment extends Fragment implements MediaPicker.ImageEditorListener,
+        Mesibo.GroupListener, MesiboProfile.Listener, Backpressedlistener {
     static final int CAMERA_PERMISSION_CODE = 102;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    public static Backpressedlistener backpressedlistener;
     RecyclerView.Adapter mAdapter;
     //TextView mCharCounter;
     TextView mCreateGroupBtn;
@@ -246,6 +250,23 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
 //            }
 //        });
         return v;
+    }
+
+    @Override
+    public void onPause() {
+        backpressedlistener = null;
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        backpressedlistener = this;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(getContext(), "back button pressed", Toast.LENGTH_LONG).show();
     }
 
     /* access modifiers changed from: package-private */
