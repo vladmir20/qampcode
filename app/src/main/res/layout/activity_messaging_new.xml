@@ -16,32 +16,55 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/white"
+            android:background="@color/black_white_2"
+            app:contentInsetEnd="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetRight="0dp"
+            app:contentInsetStart="0dp"
             app:contentInsetStartWithNavigation="0dp">
+
 
             <ImageView
                 android:id="@+id/chat_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="5dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="2dp"
-                android:src="@drawable/ic_back_white_18dp"
-                android:tint="@color/black" />
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/ic_arrow_left" />
 
-            <ImageView
-                android:id="@+id/chat_profile_pic"
-                android:layout_width="38dp"
-                android:layout_height="38dp"
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="0dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp">
+
+                <ImageView
+                    android:id="@+id/chat_profile_pic"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_gravity="center_vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/isOnlineDot"
+                    android:layout_width="13dp"
+                    android:layout_height="14dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/circle_green" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <RelativeLayout
                 android:id="@+id/name_tite_layout"
-                android:layout_width="match_parent"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:animateLayoutChanges="true"
                 android:minHeight="30dp">
@@ -49,15 +72,15 @@
 
                 <TextView
                     android:id="@+id/chat_profile_title"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:ellipsize="end"
+                    android:fontFamily="@font/sfpro_semibold"
                     android:maxLines="1"
-                    android:singleLine="true"
-                    android:text="mesibo username"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
+                    android:text="@string/testUserSample"
+                    android:textColor="@color/text_color_black_white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/chat_profile_subtitle"
@@ -66,33 +89,71 @@
                     android:layout_below="@+id/chat_profile_title"
                     android:layout_gravity="center_vertical"
                     android:ellipsize="end"
+                    android:fontFamily="@font/sfpro_regular"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="This is user status"
-                    android:textColor="@android:color/black"
+                    android:text="@string/user_status"
+                    android:textColor="@color/text_color_black_white"
                     android:textSize="12sp"
                     android:visibility="gone" />
 
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@id/imageView4"
-                    android:paddingRight="20dp"
-                    app:srcCompat="@drawable/ic_phone" />
-
-                <ImageView
-                    android:id="@+id/imageView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:paddingRight="15dp"
-                    app:srcCompat="@drawable/ic_video_camera" />
-
             </RelativeLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/action_call"
+                    android:layout_width="30dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@android:color/transparent"
+                    android:foregroundGravity="right"
+                    android:src="@drawable/ic_phone"
+                    android:title="Call"
+                    android:visible="true"
+                    app:showAsAction="always"
+
+                    />
+
+                <ImageButton
+                    android:id="@+id/action_videocall"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@android:color/transparent"
+                    android:foregroundGravity="right"
+                    android:src="@drawable/ic_video_camera"
+                    android:title="Video Call"
+
+                    android:visible="true"
+                    app:showAsAction="always" />
+
+                <ImageButton
+                    android:id="@+id/options"
+                    android:layout_width="30dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_more_option_verical"
+                    android:title="Call"
+                    android:visible="true"
+                    app:showAsAction="always"
+
+                    />
+            </LinearLayout>
 
         </androidx.appcompat.widget.Toolbar>
+
 
     </com.google.android.material.appbar.AppBarLayout>
 

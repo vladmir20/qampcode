@@ -1,24 +1,25 @@
-/** Copyright (c) 2021 Mesibo
+/**
+ * Copyright (c) 2021 Mesibo
  * https://mesibo.com
  * All rights reserved.
- *
+ * <p>
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the terms and condition mentioned on https://mesibo.com
  * as well as following conditions are met:
- *
+ * <p>
  * Redistributions of source code must retain the above copyright notice, this list
  * of conditions, the following disclaimer and links to documentation and source code
  * repository.
- *
+ * <p>
  * Redistributions in binary form must reproduce the above copyright notice, this
  * list of conditions and the following disclaimer in the documentation and/or other
  * materials provided with the distribution.
- *
+ * <p>
  * Neither the name of Mesibo nor the names of its contributors may be used to endorse
  * or promote products derived from this software without specific prior written
  * permission.
- *
- *
+ * <p>
+ * <p>
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
@@ -29,13 +30,12 @@
  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- *
+ * <p>
  * Documentation
  * https://mesibo.com/documentation/
- *
+ * <p>
  * Source Code Repository
  * https://github.com/mesibo/messenger-app-android
- *
  */
 
 package com.qamp.app;
@@ -58,6 +58,7 @@ import com.mesibo.api.Mesibo;
 public class EditProfileActivity extends AppCompatActivity {
 
     Fragment mRequestingFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,13 +78,13 @@ public class EditProfileActivity extends AppCompatActivity {
         mRequestingFragment = registerNewProfileFragment;
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.register_new_profile_fragment_place, registerNewProfileFragment,"null");
+        ft.replace(R.id.register_new_profile_fragment_place, registerNewProfileFragment, "null");
         ft.addToBackStack("registerNewProfileFragment");
         ft.commit();
     }
 
     @Override
-    public  void onResume() {
+    public void onResume() {
         super.onResume();
         Mesibo.setForegroundContext(this, 0x101, true);
     }
@@ -96,9 +97,10 @@ public class EditProfileActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(getSupportFragmentManager().getBackStackEntryCount() > 1)
+        super.onBackPressed();
+        if (getSupportFragmentManager().getBackStackEntryCount() > 1)
             getSupportFragmentManager().popBackStackImmediate();
-
+        finish();
     }
 
 
@@ -121,16 +123,17 @@ public class EditProfileActivity extends AppCompatActivity {
         }
 
         for (Fragment fragment : getSupportFragmentManager().getFragments()) {
-            if(fragment instanceof EditProfileFragment && fragment.isVisible())
+            if (fragment instanceof EditProfileFragment && fragment.isVisible())
                 fragment.onActivityResult(requestCode, resultCode, data);
         }
 
     }
 
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(mRequestingFragment!=null)
+        if (mRequestingFragment != null)
             mRequestingFragment.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }

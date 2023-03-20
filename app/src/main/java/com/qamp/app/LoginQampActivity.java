@@ -54,6 +54,7 @@ import com.hbb20.CountryCodePicker;
 import com.mesibo.api.Mesibo;
 import com.qamp.app.Utils.AppUtils;
 import com.qamp.app.messaging.MesiboConfiguration;
+import com.qamp.app.messaging.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -73,7 +74,7 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
     String phoneNumber = "";
     String selectedCountryCode = "91";
     private ImageView loginLogo = null, onboardingImage = null, pageSelectorImage = null;
-    private TextView enterPhoneNumberTextView, otpFieldPhoneNumber, onBoardingHeading, onBoardingSubHeading;
+    private TextView enterPhoneNumberTextView, otpFieldPhoneNumber, onBoardingHeading, onBoardingSubHeading,wrongOtpText;
     private EditText phoneEditText;
     private Button generateOTPButton, signInButton, resendOTP;
     private LinearLayout enterPhoneView, otpView;
@@ -91,6 +92,7 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
         initViews();
         fetchNumber();
         initPermissions();
+        Utilss.setLanguage(LoginQampActivity.this);
         AppUtils.setStatusBarColor(LoginQampActivity.this, R.color.colorAccent);
         generateOTPButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +120,7 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
                     }
 
                 } else {
-                    Toast.makeText(LoginQampActivity.this, ENTER_PHONE_NUMBER, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginQampActivity.this, getResources().getString(R.string.pleaseSelect), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -201,6 +203,8 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
             }
         });
 
+
+
     }
 
 
@@ -234,6 +238,7 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
         enterPhoneView.setVisibility(View.VISIBLE);
         otpView = findViewById(R.id.otpView);
         otpView.setVisibility(View.GONE);
+        wrongOtpText = findViewById(R.id.wrongOtpText);
 
 
         otpTextView1 = findViewById(R.id.otpET1);
@@ -631,6 +636,8 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
                                     MesiboAPI.startSync();
                                 }
 
+
+
                                 AppConfig.save();
                                 closeKeyboard();
                                 String sharedString,sharedString2;
@@ -722,8 +729,8 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
 
     private void otpBackgroundRed(boolean b) {
         otpBackgroundRed = b;
-        final int sdk = Build.VERSION.SDK_INT;
-        if (sdk < Build.VERSION_CODES.JELLY_BEAN) {
+        final int sdk = android.os.Build.VERSION.SDK_INT;
+        if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
             otp_layout1.setBackgroundDrawable(ContextCompat.getDrawable(LoginQampActivity.this, R.drawable.otp_red_corner));
             otp_layout2.setBackgroundDrawable(ContextCompat.getDrawable(LoginQampActivity.this, R.drawable.otp_red_corner));
             otp_layout3.setBackgroundDrawable(ContextCompat.getDrawable(LoginQampActivity.this, R.drawable.otp_red_corner));
@@ -734,6 +741,7 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
             otp_layout3.setBackgroundDrawable(ContextCompat.getDrawable(LoginQampActivity.this, R.drawable.otp_red_corner));
             otp_layout4.setBackgroundDrawable(ContextCompat.getDrawable(LoginQampActivity.this, R.drawable.otp_red_corner));
         }
+        wrongOtpText.setVisibility(View.VISIBLE);
     }
 
     private void resendOTP() {

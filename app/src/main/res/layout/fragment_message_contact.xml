@@ -54,8 +54,10 @@
                         android:visibility="gone" />
 
                     <LinearLayout
+                        android:id="@+id/horizontal_channel_recycler"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         android:orientation="horizontal">
 
                         <androidx.cardview.widget.CardView
@@ -134,7 +136,7 @@
                                             android:background="@color/grey_5"
                                             android:orientation="horizontal">
 
-                                            <ImageView
+                                            <de.hdodenhof.circleimageview.CircleImageView
                                                 android:layout_width="40dp"
                                                 android:layout_height="40dp"
                                                 android:padding="5dp"
@@ -233,11 +235,11 @@
                                             android:background="@color/grey_5"
                                             android:orientation="horizontal">
 
-                                            <ImageView
+                                            <de.hdodenhof.circleimageview.CircleImageView
                                                 android:layout_width="40dp"
                                                 android:layout_height="40dp"
                                                 android:padding="5dp"
-                                                android:src="@drawable/illustration" />
+                                                android:src="@drawable/photo_male" />
 
                                             <View
                                                 android:layout_width="15dp"
@@ -332,11 +334,11 @@
                                             android:background="@color/grey_5"
                                             android:orientation="horizontal">
 
-                                            <ImageView
+                                            <de.hdodenhof.circleimageview.CircleImageView
                                                 android:layout_width="40dp"
                                                 android:layout_height="40dp"
                                                 android:padding="5dp"
-                                                android:src="@drawable/ic_logo_gradient" />
+                                                android:src="@drawable/photo_male" />
 
                                             <View
                                                 android:layout_width="15dp"
@@ -432,11 +434,11 @@
                                             android:background="@color/grey_5"
                                             android:orientation="horizontal">
 
-                                            <ImageView
+                                            <de.hdodenhof.circleimageview.CircleImageView
                                                 android:layout_width="40dp"
                                                 android:layout_height="40dp"
                                                 android:padding="5dp"
-                                                android:src="@drawable/ic_logo_gradient" />
+                                                android:src="@drawable/photo_male" />
 
                                             <View
                                                 android:layout_width="15dp"
@@ -548,6 +550,7 @@
 
 
         <LinearLayout
+            android:visibility="gone"
             android:id="@+id/fab_add"
             android:layout_width="wrap_content"
             android:layout_height="50dp"

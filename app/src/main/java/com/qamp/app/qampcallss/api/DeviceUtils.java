@@ -17,8 +17,10 @@ import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Set;
 
 public class DeviceUtils {
@@ -168,64 +170,49 @@ public class DeviceUtils {
         return displayMetrics;
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:12:0x0034 A[SYNTHETIC, Splitter:B:12:0x0034] */
-    /* JADX WARNING: Removed duplicated region for block: B:18:0x003f A[SYNTHETIC, Splitter:B:18:0x003f] */
-    /* Code decompiled incorrectly, please refer to instructions dump. */
-    public static String getSystemProperty(String r4) {
-        /*
-            r0 = 0
-            java.lang.Runtime r1 = java.lang.Runtime.getRuntime()     // Catch:{ IOException -> 0x002e, all -> 0x003a }
-            java.lang.String r2 = "getprop "
-            java.lang.String r3 = java.lang.String.valueOf(r4)     // Catch:{ IOException -> 0x002e, all -> 0x003a }
-            java.lang.String r2 = r2.concat(r3)     // Catch:{ IOException -> 0x002e, all -> 0x003a }
-            java.lang.Process r2 = r1.exec(r2)     // Catch:{ IOException -> 0x002e, all -> 0x003a }
-            java.io.BufferedReader r1 = new java.io.BufferedReader     // Catch:{ IOException -> 0x002e, all -> 0x003a }
-            java.io.InputStreamReader r3 = new java.io.InputStreamReader     // Catch:{ IOException -> 0x002e, all -> 0x003a }
-            java.io.InputStream r2 = r2.getInputStream()     // Catch:{ IOException -> 0x002e, all -> 0x003a }
-            r3.<init>(r2)     // Catch:{ IOException -> 0x002e, all -> 0x003a }
-            r2 = 1024(0x400, float:1.435E-42)
-            r1.<init>(r3, r2)     // Catch:{ IOException -> 0x002e, all -> 0x003a }
-            java.lang.String r0 = r1.readLine()     // Catch:{ IOException -> 0x004b, all -> 0x0047 }
-            r1.close()     // Catch:{ IOException -> 0x004b, all -> 0x0047 }
-            r1.close()     // Catch:{ IOException -> 0x0043 }
-        L_0x002d:
-            return r0
-        L_0x002e:
-            r1 = move-exception
-            r1 = r0
-        L_0x0030:
-            java.lang.String r0 = ""
-            if (r1 == 0) goto L_0x002d
-            r1.close()     // Catch:{ IOException -> 0x0038 }
-            goto L_0x002d
-        L_0x0038:
-            r1 = move-exception
-            goto L_0x002d
-        L_0x003a:
-            r1 = move-exception
-            r2 = r1
-            r3 = r0
-        L_0x003d:
-            if (r3 == 0) goto L_0x0042
-            r3.close()     // Catch:{ IOException -> 0x0045 }
-        L_0x0042:
-            throw r2
-        L_0x0043:
-            r1 = move-exception
-            goto L_0x002d
-        L_0x0045:
-            r0 = move-exception
-            goto L_0x0042
-        L_0x0047:
-            r0 = move-exception
-            r2 = r0
-            r3 = r1
-            goto L_0x003d
-        L_0x004b:
-            r0 = move-exception
-            goto L_0x0030
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.mesibo.calls.api.DeviceUtils.getSystemProperty(java.lang.String):java.lang.String");
+    public static String getSystemProperty(String var0) {
+        BufferedReader var1 = null;
+        boolean var7 = false;
+
+        label81: {
+            try {
+                var7 = true;
+                Process var13 = Runtime.getRuntime().exec("getprop ".concat(String.valueOf(var0)));
+                var0 = (var1 = new BufferedReader(new InputStreamReader(var13.getInputStream()), 1024)).readLine();
+                var1.close();
+                var7 = false;
+                break label81;
+            } catch (IOException var11) {
+                var7 = false;
+            } finally {
+                if (var7) {
+                    if (var1 != null) {
+                        try {
+                            var1.close();
+                        } catch (IOException var8) {
+                        }
+                    }
+
+                }
+            }
+
+            var0 = "";
+            if (var1 != null) {
+                try {
+                    var1.close();
+                } catch (IOException var9) {
+                }
+            }
+
+            return var0;
+        }
+
+        try {
+            var1.close();
+        } catch (IOException var10) {
+        }
+
+        return var0;
     }
 
     public static boolean hasGingerbread() {

@@ -62,21 +62,32 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class OnBoardingUserProfile extends AppCompatActivity implements MesiboProfile.Listener {
 
+    static final int CAMERA_PERMISSION_CODE = 102;
+    static final int EXTENAL_STORAGE_READ_PERMISSION_CODE = 103;
+    private static Boolean mSettingsMode = false;
     private ImageView cameraIcon = null, editUserImage = null;
     private TextView cameraText, onboardingProfileSubtitle, onboardingProfileTitle;
     private EditText nameEditText;
     private Button saveButton;
     private LinearLayout editPhoto;
     private CircleImageView circleImageView;
-    static final int CAMERA_PERMISSION_CODE = 102;
-    static final int EXTENAL_STORAGE_READ_PERMISSION_CODE = 103;
-
-    private static Boolean mSettingsMode = false;
     private long mGroupId = 0;
     private boolean mLaunchMesibo = false;
 
     public OnBoardingUserProfile() {
         mGroupId = 0;
+    }
+
+    public static Bitmap decodeUriAsBitmap(Context context, Uri uri) {
+        Bitmap bitmap = null;
+
+        try {
+            bitmap = BitmapFactory.decodeStream(context.getContentResolver().openInputStream(uri));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return bitmap;
     }
 
     public void setGroupId(long groupid) {
@@ -158,14 +169,13 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
         }
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppUtils.setStatusBarColor(OnBoardingUserProfile.this, R.color.colorAccent);
         Utilss.setLanguage(OnBoardingUserProfile.this);
         setContentView(R.layout.activity_on_boarding_user_profile);
         initaliseViews();
-        Toast.makeText(this, ""+getProfile().getAddress().toString(), Toast.LENGTH_SHORT).show();
         nameEditText.setOnTouchListener(new View.OnTouchListener() {
             @SuppressLint("ClickableViewAccessibility")
             @Override
@@ -232,7 +242,7 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
     @Override
     protected void onResume() {
         super.onResume();
-      Utilss.setLanguage(OnBoardingUserProfile.this);
+        Utilss.setLanguage(OnBoardingUserProfile.this);
     }
 
     @Override
@@ -240,7 +250,6 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
         updateUI(profile);
         setUserPicture();
     }
-
 
     public Uri getImageUri(Context inContext, Bitmap inImage) {
         File imagesFolder = new File(inContext.getCacheDir(), "images");
@@ -261,14 +270,13 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
         return uri;
     }
 
-
     private void updateUI(MesiboProfile profile) {
         if (!profile.isGroup()) {
-            nameEditText.setText(profile.getAddress());
+            nameEditText.setText(profile.getName());
         }
         if (!TextUtils.isEmpty(profile.getName())) nameEditText.setText(profile.getName());
+        nameEditText.setText(profile.getName());
     }
-
 
     private void saveProfile() {
         if (AppUtils.isNetWorkAvailable(this)) {
@@ -338,7 +346,6 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
                         JSONObject error = (JSONObject) errors.get(0);
                         String errMsg = error.getString("errMsg");
                         String errorCode = error.getString("errCode");
-
                     }
                 } catch (Exception e) {
                     AppUtils.closeProgresDialog();
@@ -431,8 +438,8 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
 
             public void afterTextChanged(Editable s) {
                 if (!nameEditText.getText().toString().equals("")) {
-                    final int sdk = Build.VERSION.SDK_INT;
-                    if (sdk < Build.VERSION_CODES.JELLY_BEAN) {
+                    final int sdk = android.os.Build.VERSION.SDK_INT;
+                    if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
                         saveButton.setBackgroundDrawable(ContextCompat.getDrawable(OnBoardingUserProfile.this, R.drawable.corner_radius_button));
                         saveButton.setTextColor(ContextCompat.getColor(OnBoardingUserProfile.this, R.color.text_color_black));
                     } else {
@@ -440,8 +447,8 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
                         saveButton.setTextColor(ContextCompat.getColor(OnBoardingUserProfile.this, R.color.text_color_black));
                     }
                 } else {
-                    final int sdk = Build.VERSION.SDK_INT;
-                    if (sdk < Build.VERSION_CODES.JELLY_BEAN) {
+                    final int sdk = android.os.Build.VERSION.SDK_INT;
+                    if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
                         saveButton.setBackgroundDrawable(ContextCompat.getDrawable(OnBoardingUserProfile.this, R.drawable.corner_radius_gray_button));
                         saveButton.setTextColor(ContextCompat.getColor(OnBoardingUserProfile.this, R.color.text_color_button));
                     } else {
@@ -514,24 +521,12 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
         setImageProfile(uri);
         saveProfilePhoto(uri);
         MesiboProfile profile = getProfile();
-        if(resultCode!=RESULT_CANCELED){
-            if(uri!=null){
+        if (resultCode != RESULT_CANCELED) {
+            if (uri != null) {
                 profile.setImage(decodeUriAsBitmap(OnBoardingUserProfile.this, uri));
             }
         }
         profile.save();
-    }
-
-    public static Bitmap decodeUriAsBitmap(Context context, Uri uri) {
-        Bitmap bitmap = null;
-
-        try {
-            bitmap = BitmapFactory.decodeStream(context.getContentResolver().openInputStream(uri));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        }
-        return bitmap;
     }
 
     public void openCamera() {

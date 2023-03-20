@@ -2,6 +2,7 @@ package com.qamp.app.messaging;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,6 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.PermissionChecker;
@@ -45,6 +47,7 @@ import com.qamp.app.Fragments.FeedFragment;
 import com.qamp.app.LoginQampActivity;
 import com.qamp.app.QampUiHelper;
 import com.qamp.app.R;
+import com.qamp.app.SampleAPI;
 import com.qamp.app.Utilss;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -75,6 +78,8 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
     private ImageView search_image;
     private long pressedTime;
     private long mGroupId = 0;
+    SearchView search_func;
+    public static Activity MesiboUserListActivityNewActivity;
     private BottomNavigationView.OnNavigationItemSelectedListener selectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
@@ -204,6 +209,7 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
             @Override
             public void onClick(View v) {
                 AppConfig.reset();
+                SampleAPI.startLogout();
                 Intent intent1 = new Intent(MesiboUserListActivityNew.this, LoginQampActivity.class);
                 startActivity(intent1);
                 finish();
@@ -236,7 +242,7 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
             }
         });
 
-
+        MesiboUserListActivityNewActivity = MesiboUserListActivityNew.this;
     }
 
     private void initFragment() {
@@ -277,6 +283,7 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
         name_tite_layout = findViewById(R.id.name_tite_layout);
         search_view = findViewById(R.id.search_view);
         search_image = findViewById(R.id.search_image);
+        search_func = findViewById(R.id.search_func);
 
 //        if (AppConfig.getConfig().profileId != "") {
 //            setUserPicture();
@@ -436,12 +443,14 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
     }
 
     public void onBackPressed() {
-        if (this.mKeepRunning) {
+
+
             moveTaskToBack(true);
-        } else {
+
             if (search_view.getVisibility() == View.VISIBLE) {
                 search_view.setVisibility(View.GONE);
                 name_tite_layout.setVisibility(View.VISIBLE);
+                search_func.setQuery("",true);
             } else if (mDrawer.isDrawerOpen(GravityCompat.START)) {
                 mDrawer.closeDrawer(GravityCompat.START);
             } else {
@@ -449,13 +458,13 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
                     super.onBackPressed();
                     finish();
                 } else {
-                    Toast.makeText(getBaseContext(), R.string.exitWarning, Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getBaseContext(), R.string.exitWarning, Toast.LENGTH_SHORT).show();
                 }
                 pressedTime = System.currentTimeMillis();
             }
         }
 
-    }
+
 
     /* JADX WARNING: type inference failed for: r2v0, types: [android.content.Context, com.qamp.app.messaging.MesiboUserListActivity, androidx.appcompat.app.AppCompatActivity] */
     public void onResume() {

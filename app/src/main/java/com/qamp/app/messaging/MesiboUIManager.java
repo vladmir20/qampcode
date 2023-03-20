@@ -20,23 +20,62 @@ public class MesiboUIManager {
         mTestMode = testMode;
     }
 
-    public static void launchContactActivity(Context context, long forwardid, int selectionMode, int flag, boolean startInBackground, boolean keepRunning, Bundle bundle, String forwardMessage) {
-        Intent intent = new Intent(context, MesiboUserListActivityNew.class);
-        intent.putExtra(MesiboUserListFragment.MESSAGE_LIST_MODE, selectionMode).putExtra("mid", forwardid).putExtra(MesiboUI.START_IN_BACKGROUND, startInBackground).putExtra(MesiboUI.KEEP_RUNNING, keepRunning);
-        if (!TextUtils.isEmpty(forwardMessage)) {
-            intent.putExtra("message", forwardMessage);
+    public static void launchContactActivity(Context context, long forwardid, int selectionMode, int flag, boolean startInBackground, boolean keepRunning, Bundle bundle, String forwardMessage, String task) {
+        if (task.equals("addMembers")) {
+            Intent intent = new Intent(context, MesiboUserListActivity.class);
+            intent.putExtra(MesiboUserListFragment.MESSAGE_LIST_MODE, selectionMode)
+                    .putExtra("mid", forwardid).putExtra(MesiboUI.START_IN_BACKGROUND, startInBackground)
+                    .putExtra(MesiboUI.KEEP_RUNNING, keepRunning);
+            intent.putExtra("isTask", "true");
+            if (!TextUtils.isEmpty(forwardMessage)) {
+                intent.putExtra("message", forwardMessage);
+            }
+            if (flag > 0) {
+                intent.setFlags(flag);
+            }
+            if (bundle != null) {
+                intent.putExtra(MesiboUI.BUNDLE, bundle);
+            }
+
+            context.startActivity(intent);
+        } else if (task.equals("")) {
+            Intent intent = new Intent(context, MesiboUserListActivityNew.class);
+            intent.putExtra(MesiboUserListFragment.MESSAGE_LIST_MODE, selectionMode)
+                    .putExtra("mid", forwardid).putExtra(MesiboUI.START_IN_BACKGROUND, startInBackground)
+                    .putExtra(MesiboUI.KEEP_RUNNING, keepRunning);
+            intent.putExtra("isTask", "false");
+            if (!TextUtils.isEmpty(forwardMessage)) {
+                intent.putExtra("message", forwardMessage);
+            }
+            if (flag > 0) {
+                intent.setFlags(flag);
+            }
+            if (bundle != null) {
+                intent.putExtra(MesiboUI.BUNDLE, bundle);
+            }
+            context.startActivity(intent);
+        } else {
+            Intent intent = new Intent(context, MesiboUserListActivity.class);
+            intent.putExtra(MesiboUserListFragment.MESSAGE_LIST_MODE, selectionMode)
+                    .putExtra("mid", forwardid).putExtra(MesiboUI.START_IN_BACKGROUND, startInBackground)
+                    .putExtra(MesiboUI.KEEP_RUNNING, keepRunning);
+            intent.putExtra("isTask", "true");
+            if (!TextUtils.isEmpty(forwardMessage)) {
+                intent.putExtra("message", forwardMessage);
+            }
+            if (flag > 0) {
+                intent.setFlags(flag);
+            }
+            if (bundle != null) {
+                intent.putExtra(MesiboUI.BUNDLE, bundle);
+            }
+            context.startActivity(intent);
         }
-        if (flag > 0) {
-            intent.setFlags(flag);
-        }
-        if (bundle != null) {
-            intent.putExtra(MesiboUI.BUNDLE, bundle);
-        }
-        context.startActivity(intent);
+
     }
 
-    public static void launchContactActivity(Context context, long forwardid, int selectionMode, int flag, boolean startInBackground, boolean keepRunning, Bundle bundle) {
-        launchContactActivity(context, forwardid, selectionMode, flag, startInBackground, keepRunning, bundle, (String) null);
+    public static void launchContactActivity(Context context, long forwardid, int selectionMode, int flag, boolean startInBackground, boolean keepRunning, Bundle bundle, String task) {
+        launchContactActivity(context, forwardid, selectionMode, flag, startInBackground, keepRunning, bundle, (String) null, task);
     }
 
     public static void launchContactActivity(Context context, int selectionMode, long[] mids) {

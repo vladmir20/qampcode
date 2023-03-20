@@ -10,6 +10,7 @@ import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 
 public class MesiboImages {
     public static int[] deliveryStatus = {MesiboConfiguration.STATUS_TIMER, MesiboConfiguration.STATUS_SEND, MesiboConfiguration.STATUS_NOTIFIED, MesiboConfiguration.STATUS_READ, MesiboConfiguration.STATUS_ERROR};
@@ -157,82 +158,39 @@ public class MesiboImages {
         return mContext.getResources().getIdentifier("file_audio", "drawable", mContext.getPackageName()) + mContext.getResources().getIdentifier("file_doc", "drawable", mContext.getPackageName()) + mContext.getResources().getIdentifier("file_file", "drawable", mContext.getPackageName()) + mContext.getResources().getIdentifier("file_pdf", "drawable", mContext.getPackageName()) + mContext.getResources().getIdentifier("file_txt", "drawable", mContext.getPackageName()) + mContext.getResources().getIdentifier("file_xls", "drawable", mContext.getPackageName()) + mContext.getResources().getIdentifier("file_xml", "drawable", mContext.getPackageName());
     }
 
-    /* JADX WARNING: Code restructure failed: missing block: B:24:0x0088, code lost:
-        r0 = mContext.getResources().getIdentifier("file_audio", "drawable", mContext.getPackageName());
-     */
-    /* Code decompiled incorrectly, please refer to instructions dump. */
-    public static int getFileDrawable(String r7) {
-        /*
-            r5 = 3
-            boolean r3 = android.text.TextUtils.isEmpty(r7)
-            if (r3 == 0) goto L_0x000a
-            int r0 = com.qamp.app.messaging.MesiboConfiguration.DEFAULT_FILE_IMAGE
-        L_0x0009:
-            return r0
-        L_0x000a:
-            java.lang.String r3 = "."
-            int r1 = r7.lastIndexOf(r3)
-            if (r1 >= 0) goto L_0x0015
-            int r0 = com.qamp.app.messaging.MesiboConfiguration.DEFAULT_FILE_IMAGE
-            goto L_0x0009
-        L_0x0015:
-            java.lang.String r3 = "."
-            int r3 = r7.lastIndexOf(r3)
-            int r3 = r3 + 1
-            int r4 = r7.length()
-            java.lang.String r2 = r7.substring(r3, r4)
-            boolean r3 = android.text.TextUtils.isEmpty(r2)
-            if (r3 == 0) goto L_0x002e
-            int r0 = com.qamp.app.messaging.MesiboConfiguration.DEFAULT_FILE_IMAGE
-            goto L_0x0009
-        L_0x002e:
-            int r3 = r2.length()
-            if (r3 <= r5) goto L_0x0039
-            r3 = 0
-            java.lang.String r2 = r2.substring(r3, r5)
-        L_0x0039:
-            android.content.Context r3 = mContext
-            android.content.res.Resources r3 = r3.getResources()
-            java.lang.StringBuilder r4 = new java.lang.StringBuilder
-            r4.<init>()
-            java.lang.String r5 = "file_"
-            java.lang.StringBuilder r4 = r4.append(r5)
-            java.lang.StringBuilder r4 = r4.append(r2)
-            java.lang.String r4 = r4.toString()
-            java.lang.String r5 = "drawable"
-            android.content.Context r6 = mContext
-            java.lang.String r6 = r6.getPackageName()
-            int r0 = r3.getIdentifier(r4, r5, r6)
-            if (r0 != 0) goto L_0x0009
-            java.lang.String r3 = "mp3"
-            boolean r3 = r2.equalsIgnoreCase(r3)
-            if (r3 != 0) goto L_0x0088
-            java.lang.String r3 = "wav"
-            boolean r3 = r2.equalsIgnoreCase(r3)
-            if (r3 != 0) goto L_0x0088
-            java.lang.String r3 = "amr"
-            boolean r3 = r2.equalsIgnoreCase(r3)
-            if (r3 != 0) goto L_0x0088
-            java.lang.String r3 = "aif"
-            boolean r3 = r2.equalsIgnoreCase(r3)
-            if (r3 != 0) goto L_0x0088
-            java.lang.String r3 = "wma"
-            boolean r3 = r2.equalsIgnoreCase(r3)
-            if (r3 == 0) goto L_0x009e
-        L_0x0088:
-            android.content.Context r3 = mContext
-            android.content.res.Resources r3 = r3.getResources()
-            java.lang.String r4 = "file_audio"
-            java.lang.String r5 = "drawable"
-            android.content.Context r6 = mContext
-            java.lang.String r6 = r6.getPackageName()
-            int r0 = r3.getIdentifier(r4, r5, r6)
-            if (r0 != 0) goto L_0x0009
-        L_0x009e:
-            int r0 = com.qamp.app.messaging.MesiboConfiguration.DEFAULT_FILE_IMAGE
-            goto L_0x0009
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.qamp.app.messaging.MesiboImages.getFileDrawable(java.lang.String):int");
+
+    public static int getFileDrawable(String fileName) {
+        if (TextUtils.isEmpty(fileName)) {
+            return com.mesibo.messaging.MesiboConfiguration.DEFAULT_FILE_IMAGE;
+        } else {
+            int dotindex = fileName.lastIndexOf(".");
+            if (dotindex < 0) {
+                return com.mesibo.messaging.MesiboConfiguration.DEFAULT_FILE_IMAGE;
+            } else {
+                String ext = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
+                if (TextUtils.isEmpty(ext)) {
+                    return com.mesibo.messaging.MesiboConfiguration.DEFAULT_FILE_IMAGE;
+                } else {
+                    if (ext.length() > 3) {
+                        ext = ext.substring(0, 3);
+                    }
+
+                    int checkExistence = mContext.getResources().getIdentifier("file_" + ext, "drawable", mContext.getPackageName());
+                    if (checkExistence != 0) {
+                        return checkExistence;
+                    } else {
+                        if (ext.equalsIgnoreCase("mp3") || ext.equalsIgnoreCase("wav") || ext.equalsIgnoreCase("amr") || ext.equalsIgnoreCase("aif") || ext.equalsIgnoreCase("wma")) {
+                            checkExistence = mContext.getResources().getIdentifier("file_audio", "drawable", mContext.getPackageName());
+                            if (checkExistence != 0) {
+                                return checkExistence;
+                            }
+                        }
+
+                        return com.mesibo.messaging.MesiboConfiguration.DEFAULT_FILE_IMAGE;
+                    }
+                }
+            }
+        }
     }
 
     public static Bitmap tint(Bitmap bmp, int color) {
