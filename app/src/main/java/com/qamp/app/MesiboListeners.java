@@ -59,11 +59,12 @@ import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboGroupProfile;
 import com.mesibo.api.MesiboMessage;
 import com.mesibo.api.MesiboProfile;
-import com.mesibo.calls.api.MesiboCall;
-import com.mesibo.calls.ui.MesiboCallUi;
+import com.qamp.app.qampcallss.api.MesiboCall;
+//import com.mesibo.calls.ui.MesiboCallUi;
 import com.mesibo.contactutils.ContactUtils;
 import com.qamp.app.fcm.MesiboRegistrationIntentService;
 import com.qamp.app.messaging.MesiboUI;
+import com.qamp.app.qampcallss.api.p000ui.MesiboDefaultCallActivity;
 import com.qamp.app.uihelper.ILoginInterface;
 import com.qamp.app.uihelper.ILoginResultsInterface;
 import com.qamp.app.uihelper.IProductTourListener;
@@ -302,7 +303,7 @@ public class MesiboListeners implements Mesibo.ConnectionListener, ILoginInterfa
             } else if(item == R.id.action_conf) {
                 MesiboCall.getInstance().groupCallJoinRoomUi(context, "Mesibo Conferencing Demo");
             } else if(item == R.id.action_calllogs) {
-                MesiboCallUi.getInstance().launchCallLogs(context, 0);
+                //MesiboCallUi.getInstance().launchCallLogs(context, 0);
             } else if(item == R.id.action_menu_e2ee) {
                 MesiboUI.showEndToEndEncryptionInfoForSelf(context);
             } else if(item == R.id.mesibo_share) {
@@ -354,7 +355,16 @@ public class MesiboListeners implements Mesibo.ConnectionListener, ILoginInterfa
 
     @Override
     public boolean MesiboCall_OnShowUserInterface(MesiboCall.Call call, MesiboCall.CallProperties callProperties) {
-        return false;
+        launchCustomCallActivity(callProperties.user.address, callProperties.video.enabled, true);
+        return true;
+    }
+    protected void launchCustomCallActivity(String destination, boolean video, boolean incoming) {
+        //Intent intent = new Intent(getApplicationContext(), MesiboDefaultCallActivity.class);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        //intent.putExtra("video", video);
+        //intent.putExtra("address", destination);
+        //intent.putExtra("incoming", incoming);
+        //startActivity(intent);
     }
 
     @Override

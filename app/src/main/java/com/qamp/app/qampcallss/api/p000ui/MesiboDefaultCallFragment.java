@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.load.ImageHeaderParser;
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboUtils;
 import com.mesibo.calls.api.R.raw;
@@ -198,7 +199,7 @@ public class MesiboDefaultCallFragment extends Fragment implements OnClickListen
         }
 
 
-        this.ui.background = (ImageView)var4.findViewById(R.id.userImage);
+        this.ui.background = (ImageView)var4.findViewById(R.id.onGoing_image);
         if (!this.mCp.f2ui.showScreenSharing) {
             this.ui.sourceSwitchLayout.setVisibility(View.GONE);
         }
@@ -206,6 +207,9 @@ public class MesiboDefaultCallFragment extends Fragment implements OnClickListen
         this.ui.thumbnailLayout = var4.findViewById(R.id.photo_layout);
         var5 = (TextView)var4.findViewById(R.id.call_name);
         ImageView var8 = (ImageView)var4.findViewById(R.id.photo_image);
+        ImageView var9 = (ImageView) var4.findViewById(R.id.onGoing_image);
+        TextView var21 = var4.findViewById(R.id.textView4);
+        this.setUserDetails(var21,var9);
         this.setUserDetails(var5, var8);
         this.setStatusView(View.VISIBLE);
         this.setSwappedFeeds(this.mCall.isVideoViewsSwapped());
@@ -288,7 +292,7 @@ public class MesiboDefaultCallFragment extends Fragment implements OnClickListen
                 if (var2 == R.id.four) {
                     var3 = this.mCall.toggleAudioMute();
                     if(muteFirst == true){
-                        this.ui.mute.setImageResource(drawable.ic_microphone);
+                        this.ui.mute.setImageResource(drawable.mute);
                         muteFirst = false;
                     }else {
                         this.ui.mute.setImageResource(drawable.microphone_off__2_);
@@ -355,6 +359,15 @@ public class MesiboDefaultCallFragment extends Fragment implements OnClickListen
             this.ui.status.setText("");
             this.ui.status.setBase(this.mCall.getAnswerTime());
             this.ui.status.start();
+            if(this.mCall.isVideoCall()){
+                this.ui.thumbnailLayout.setVisibility(View.GONE);
+                this.ui.contactView.setVisibility(View.GONE);
+            }else  {
+                //this.ui.background.setVisibility(View.VISIBLE);
+            }
+
+            //this.ui.thumbnailLayout.setVisibility(View.GONE);
+            //this.ui.contactView.setVisibility(View.GONE);
         } else {
             this.ui.status.stop();
             if (var2 != null) {
@@ -457,6 +470,7 @@ public class MesiboDefaultCallFragment extends Fragment implements OnClickListen
             if(var1.video != null){
                 this.ui.speaker.setVisibility(View.GONE);
                 this.ui.star.setVisibility(View.VISIBLE);
+                //this.ui.thumbnailLayout.setVisibility(View.GONE);
 
             }
             this.ui.star.setVisibility(View.GONE);

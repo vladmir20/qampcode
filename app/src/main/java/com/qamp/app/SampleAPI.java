@@ -51,7 +51,7 @@ import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboHttp;
 import com.mesibo.api.MesiboMessage;
 import com.mesibo.api.MesiboProfile;
-import com.mesibo.calls.api.MesiboCall;
+import com.qamp.app.qampcallss.api.MesiboCall;
 import com.mesibo.contactutils.ContactUtils;
 import com.mesibo.mediapicker.MediaPicker;
 import com.qamp.app.fcm.MesiboRegistrationIntentService;
@@ -280,7 +280,7 @@ public class SampleAPI {
         // add lister
         Mesibo.addListener(MesiboListeners.getInstance());
         MesiboUI.setListener(MesiboListeners.getInstance());
-        MesiboCall.getInstance().setListener(MesiboListeners.getInstance());
+        com.qamp.app.qampcallss.api.MesiboCall.getInstance().setListener(MesiboListeners.getInstance());
 
         // add file transfer handler
         MesiboFileTransferHelper fileTransferHelper = new MesiboFileTransferHelper();

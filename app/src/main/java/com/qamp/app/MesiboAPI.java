@@ -15,7 +15,7 @@ import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboHttp;
 import com.mesibo.api.MesiboMessageProperties;
 import com.mesibo.api.MesiboProfile;
-import com.mesibo.calls.api.MesiboCall;
+import com.qamp.app.qampcallss.api.MesiboCall;
 import com.mesibo.contactutils.ContactUtils;
 import com.mesibo.mediapicker.MediaPicker;
 
@@ -354,7 +354,7 @@ public class MesiboAPI extends Observable {
 
         // add lister
         Mesibo.addListener(MesiboListeners.getInstance());
-        MesiboCall.getInstance().setListener(MesiboListeners.getInstance());
+        com.qamp.app.qampcallss.api.MesiboCall.getInstance().setListener(MesiboListeners.getInstance());
 
         // add file transfer handler
         MesiboFileTransferHelper fileTransferHelper = new MesiboFileTransferHelper();

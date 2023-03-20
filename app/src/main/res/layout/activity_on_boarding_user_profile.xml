@@ -175,7 +175,6 @@
                 android:hint="@string/onboarding_profile_field_hint"
                 android:inputType="textPersonName"
                 android:lineHeight="20sp"
-                android:maxLength="50"
                 android:lineSpacingExtra="7sp"
                 android:maxLength="20"
                 android:textAlignment="viewStart"

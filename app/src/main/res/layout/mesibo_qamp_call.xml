@@ -102,16 +102,22 @@
                 android:textColor="#0B0B0A" />
 
             <ImageView
-                android:id="@+id/userImage"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_below="@+id/call_status"
-                android:layout_gravity="center"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:src="@drawable/default_user_image"
-                android:visibility="gone" />
+                android:id="@+id/onGoing_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="120dp"
+                android:src="@drawable/profile"
+                android:visibility="gone"
+                app:srcCompat="@drawable/default_user_image" />
 
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="TextView"
+                android:visibility="gone" />
 
             <FrameLayout
                 android:id="@+id/outgoing_call_container"
@@ -139,7 +145,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30dp"
                         android:layout_toStartOf="@id/two"
-                        android:paddingTop="32dp"
+                        android:paddingTop="34dp"
                         android:paddingRight="32dp"
                         android:paddingBottom="32dp"
                         android:visibility="gone"

@@ -214,6 +214,9 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
         mEmptyView = view.findViewById(R.id.emptyview_tex);
         mMesiboUIOptions = MesiboUI.getConfig();
         mSelectionMode = MesiboUserListFragment.MODE_MESSAGELIST;
+
+
+
         imageView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -959,11 +962,12 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                         }
                     });
                     String destination =  "destination";
+                    MesiboProfile mUserr = Mesibo.getProfile("peer");
 
                     holder.audioCallIcon.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                        if (!MesiboCall.getInstance().callUi(getContext(), mUser, false))
+                        if (!MesiboCall.getInstance().callUi(getContext(), mUserr, false))
                             MesiboCall.getInstance().callUiForExistingCall(getContext());
 //                            Toast.makeText(mContext, "Call Function", Toast.LENGTH_SHORT).show();
                         }
@@ -972,7 +976,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                     holder.videoCallIcon.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(!MesiboCall.getInstance().callUi(getApplicationContext(), mUser, true))
+                            if(!MesiboCall.getInstance().callUi(getApplicationContext(), mUserr, true))
                                 //MesiboCall.getInstance().callUiForExistingCall(getApplicationContext());
                                 launchCustomCallActivity(destination, true, false);//                            Toast.makeText(mContext, "Video Call Function", Toast.LENGTH_SHORT).show();
 

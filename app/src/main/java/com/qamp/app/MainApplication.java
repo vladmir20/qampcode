@@ -47,8 +47,8 @@ import android.util.Log;
 import androidx.lifecycle.LifecycleObserver;
 
 import com.mesibo.api.Mesibo;
-import com.mesibo.calls.api.MesiboCall;
-import com.mesibo.calls.ui.MesiboCallUi;
+import com.qamp.app.qampcallss.api.MesiboCall;
+//import com.mesibo.calls.ui.MesiboCallUi;
 import com.mesibo.mediapicker.ImagePicker;
 import com.mesibo.mediapicker.MediaPicker;
 import com.qamp.app.messaging.MesiboUI;
@@ -56,7 +56,7 @@ import com.qamp.app.messaging.MesiboUI;
 public class MainApplication extends Application implements Mesibo.RestartListener, LifecycleObserver {
     public static final String TAG = "MesiboDemoApplication";
     private static Context mContext = null;
-    private static MesiboCallUi mCallUi = null;
+    //private static MesiboCallUi mCallUi = null;
     private static AppConfig mConfig = null;
 
     @Override
@@ -67,7 +67,7 @@ public class MainApplication extends Application implements Mesibo.RestartListen
         mConfig = new AppConfig(this);
         SampleAPI.init(getApplicationContext());
 
-        mCallUi = MesiboCallUi.getInstance();
+        //mCallUi = MesiboCallUi.getInstance();
         MesiboCall.getInstance().init(mContext);
 
         MesiboUI.Config opt = MesiboUI.getConfig();

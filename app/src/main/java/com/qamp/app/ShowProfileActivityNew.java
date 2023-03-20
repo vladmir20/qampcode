@@ -4,14 +4,18 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static com.qamp.app.messaging.MesiboUserListFragment.MODE_EDITGROUP;
 
+import static org.webrtc.ContextUtils.getApplicationContext;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,12 +40,14 @@ import com.mesibo.mediapicker.AlbumPhotosData;
 import com.qamp.app.Utils.AppUtils;
 import com.qamp.app.messaging.MesiboUI;
 import com.qamp.app.messaging.RoundImageDrawable;
+import com.qamp.app.qampcallss.api.MesiboCall;
+import com.qamp.app.qampcallss.api.p000ui.MesiboDefaultCallActivity;
 
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ShowProfileActivityNew extends AppCompatActivity implements MesiboProfile.Listener, Mesibo.MessageListener, Mesibo.GroupListener {
+public class ShowProfileActivityNew extends AppCompatActivity implements MesiboProfile.Listener, Mesibo.MessageListener, Mesibo.GroupListener,Mesibo.ConnectionListener, MesiboCall.IncomingListener {
 
     private static final int MAX_THUMBNAIL_GALERY_SIZE = 35;
     private static MesiboProfile mUser;
@@ -63,6 +69,7 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
     TextView mStatusTime;
     TextView mMobileNumber;
     TextView mPhoneType;
+    ImageView audioCall,videoCall;
     private ShowProfileFragment.OnFragmentInteractionListener mListener;
     private ArrayList<String> mThumbnailMediaFiles;
     private LinearLayout mGallery;
@@ -95,6 +102,10 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
             return;
         }
 
+        audioCall = findViewById(R.id.imageView8);
+        videoCall = findViewById(R.id.imageView9);
+
+
 
         mPeer = args.getString("peer");
         mGroupId = args.getLong("groupid");
@@ -124,6 +135,7 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
         TextView userName = (TextView) findViewById(R.id.up_user_name);
         TextView userstatus = (TextView) findViewById(R.id.up_current_status);
 
+
         userName.setText(mUserProfile.getName());
         long lastSeen = mUserProfile.getLastSeen();
         userstatus.setVisibility(View.VISIBLE);
@@ -151,6 +163,34 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
             userstatus.setText("Last seen " + seenStatus);
         }
         fragmentFunctions();
+
+        String destination =  "destination";
+
+        audioCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!MesiboCall.getInstance().callUi(getApplicationContext(), mUserProfile, false))
+                    MesiboCall.getInstance().callUiForExistingCall(getApplicationContext());
+            }
+        });
+
+        videoCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!MesiboCall.getInstance().callUi(getApplicationContext(), mUserProfile, true))
+                    //MesiboCall.getInstance().callUiForExistingCall(getApplicationContext());
+                    launchCustomCallActivity(destination, true, false);//
+            }
+        });
+    }
+
+    protected void launchCustomCallActivity(String destination, boolean video, boolean incoming) {
+        Intent intent = new Intent(getApplicationContext(), MesiboDefaultCallActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        intent.putExtra("video", video);
+        intent.putExtra("address", destination);
+        intent.putExtra("incoming", incoming);
+        startActivity(intent);
     }
 
     private void fragmentFunctions() {
@@ -533,6 +573,36 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
     public void finish() {
         super.finish();
         overridePendingTransition(0, 0);
+    }
+
+    @Override
+    public void Mesibo_onConnectionStatus(int i) {
+        Log.d("Qamp", "Connection status: " + i);
+    }
+
+    @Override
+    public void MesiboCall_OnError(MesiboCall.CallProperties callProperties, int i) {
+
+    }
+
+    @Override
+    public MesiboCall.CallProperties MesiboCall_OnIncoming(MesiboProfile mesiboProfile, boolean z) {
+        MesiboCall.CallProperties cc = MesiboCall.getInstance().createCallProperties(z);
+        cc.parent = getApplicationContext();
+        cc.user = mesiboProfile;
+        cc.className = MesiboDefaultCallActivity.class;
+        return cc;
+    }
+
+    @Override
+    public boolean MesiboCall_OnShowUserInterface(MesiboCall.Call call, MesiboCall.CallProperties callProperties) {
+        launchCustomCallActivity(callProperties.user.address, callProperties.video.enabled, true);
+        return true;
+    }
+
+    @Override
+    public boolean MesiboCall_onNotify(int i, MesiboProfile mesiboProfile, boolean z) {
+        return false;
     }
 
     public class GroupMemeberAdapter

@@ -481,6 +481,7 @@ public class CallManager implements AudioManager.OnAudioFocusChangeListener, Mes
 
     /* access modifiers changed from: protected */
     public void launchIncomingActivity(MesiboCall.CallProperties callProperties, boolean z, Context context) {
+        Log.e("aditya","Launching here");
         MesiboCall.IncomingListener listener = getListener();
         if (callProperties == null) {
             callProperties = this.mCallp2p.getCallProperties();
