@@ -371,8 +371,8 @@ public class MesiboListeners implements Mesibo.ConnectionListener, ILoginInterfa
         if(MesiboCall.MESIBOCALL_NOTIFY_INCOMING == type) {
 
         } else if(MesiboCall.MESIBOCALL_NOTIFY_MISSED == type) {
-            subject = "Mesibo Missed Call";
-            message = "You missed a mesibo " + (video?"video ":"") + "call from " + profile.getNameOrAddress("+");
+            subject = "Missed Call";
+            message = "You missed a " + (video?"video ":"") + "call from " + profile.getNameOrAddress("+");
 
         }
 

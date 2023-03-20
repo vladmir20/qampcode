@@ -19,6 +19,8 @@ import static com.qamp.app.messaging.MesiboConfiguration.VIDEO_ICON;
 import static com.qamp.app.messaging.MesiboConfiguration.VIDEO_STRING;
 import static com.qamp.app.messaging.MesiboImages.getMissedCallDrawable;
 
+import static org.webrtc.ContextUtils.getApplicationContext;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -76,6 +78,8 @@ import com.mesibo.api.MesiboMessage;
 import com.mesibo.api.MesiboProfile;
 import com.qamp.app.QampConstants;
 import com.qamp.app.R;
+import com.qamp.app.qampcallss.api.MesiboCall;
+import com.qamp.app.qampcallss.api.p000ui.MesiboDefaultCallActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -119,6 +123,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
     ImageView imageView3;
     Context context;
     private ArrayList<MesiboProfile> mUserProfiles = null;
+    public MesiboProfile mUser = null;
     private ArrayList<MesiboProfile> mSearchResultList = null;
     private Boolean mIsMessageSearching = false;
     private String mSearchQuery = null;
@@ -659,7 +664,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
     }
 
 
-    public class MessageContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    public class MessageContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Mesibo.ConnectionListener,MesiboCall.IncomingListener {
         public final static int SECTION_HEADER = 100;
         public final static int SECTION_CELLS = 300;
         public int mCountProfileMatched = 0;
@@ -962,21 +967,23 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                             return true;
                         }
                     });
+                    String destination =  "destination";
 
                     holder.audioCallIcon.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-//                        if (!MesiboCall.getInstance().callUi(getContext(), getActiveUserlist().get(position).address, false))
-//                            MesiboCall.getInstance().callUiForExistingCall(getContext());
-                            Toast.makeText(mContext, "Call Function", Toast.LENGTH_SHORT).show();
+                        if (!MesiboCall.getInstance().callUi(getContext(), mUser, false))
+                            MesiboCall.getInstance().callUiForExistingCall(getContext());
+//                            Toast.makeText(mContext, "Call Function", Toast.LENGTH_SHORT).show();
                         }
                     });
 
                     holder.videoCallIcon.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-//                        if (!MesiboCall.getInstance().callUi(getContext(), getActiveUserlist().get(position).address, true))                            MesiboCall.getInstance().callUiForExistingCall(getContext());
-                            Toast.makeText(mContext, "Video Call Function", Toast.LENGTH_SHORT).show();
+                            if(!MesiboCall.getInstance().callUi(getApplicationContext(), mUser, true))
+                                //MesiboCall.getInstance().callUiForExistingCall(getApplicationContext());
+                                launchCustomCallActivity(destination, true, false);//                            Toast.makeText(mContext, "Video Call Function", Toast.LENGTH_SHORT).show();
 
                         }
                     });
@@ -1105,6 +1112,44 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                     }
                 }
             }
+        }
+
+        @Override
+        public void Mesibo_onConnectionStatus(int i) {
+            Log.d("Qamp", "Connection status: " + i);
+        }
+
+        @Override
+        public void MesiboCall_OnError(MesiboCall.CallProperties callProperties, int i) {
+
+        }
+
+        @Override
+        public MesiboCall.CallProperties MesiboCall_OnIncoming(MesiboProfile mesiboProfile, boolean z) {
+            MesiboCall.CallProperties cc = MesiboCall.getInstance().createCallProperties(z);
+            cc.parent = getApplicationContext();
+            cc.user = mesiboProfile;
+            cc.className = MesiboDefaultCallActivity.class;
+            return cc;
+        }
+
+        @Override
+        public boolean MesiboCall_OnShowUserInterface(MesiboCall.Call call, MesiboCall.CallProperties callProperties) {
+            launchCustomCallActivity(callProperties.user.address, callProperties.video.enabled, true);
+            return true;
+        }
+
+        protected void launchCustomCallActivity(String destination, boolean video, boolean incoming) {
+            Intent intent = new Intent(getContext(), MesiboDefaultCallActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            intent.putExtra("video", video);
+            intent.putExtra("address", destination);
+            intent.putExtra("incoming", incoming);
+            startActivity(intent);
+        }
+        @Override
+        public boolean MesiboCall_onNotify(int i, MesiboProfile mesiboProfile, boolean z) {
+            return false;
         }
 
         public class SectionHeaderViewHolder extends RecyclerView.ViewHolder {

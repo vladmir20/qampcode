@@ -9,7 +9,7 @@ import com.qamp.app.R;
 import com.qamp.app.qampcallss.api.CallManager;
 import com.qamp.app.qampcallss.api.MesiboCall;
 
-/* renamed from: com.mesibo.calls.api.ui.MesiboDefaultCallActivity */
+
 public class MesiboDefaultCallActivity extends QampCallsActivity {
     MesiboCall.Call mCall = null;
     private boolean mInit = false;

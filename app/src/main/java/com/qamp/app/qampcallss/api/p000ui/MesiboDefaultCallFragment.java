@@ -275,7 +275,7 @@ public class MesiboDefaultCallFragment extends Fragment implements OnClickListen
             } else if (var2 == R.id.one) {
                 this.mCall.toggleAudioDevice(AudioDevice.SPEAKER);
                 if(speakerFirst == true){
-                    this.ui.speaker.setImageResource(drawable.ic_attach);
+                    this.ui.speaker.setImageResource(drawable.speakerlow);
                     speakerFirst = false;
                 }else {
                     this.ui.speaker.setImageResource(drawable.ic_speakerhigh);
@@ -291,7 +291,7 @@ public class MesiboDefaultCallFragment extends Fragment implements OnClickListen
                         this.ui.mute.setImageResource(drawable.ic_microphone);
                         muteFirst = false;
                     }else {
-                        this.ui.mute.setImageResource(drawable.ic_microphone_off);
+                        this.ui.mute.setImageResource(drawable.microphone_off__2_);
                         muteFirst = true;
                     }
 

@@ -333,7 +333,7 @@ public class QampDefaultCallFragment extends Fragment implements OnClickListener
             this.mCall.stopInCallSound();
             return true;
         } else {
-            this.mCall.playInCallSound(this.mActivity.getApplicationContext(), var2 == 0 ? R.raw.mesibo_ring : R.raw.mesibo_busy, true);
+            this.mCall.playInCallSound(this.mActivity.getApplicationContext(), var2 == 0 ? R.raw.ring : R.raw.busy, true);
             return true;
         }
     }

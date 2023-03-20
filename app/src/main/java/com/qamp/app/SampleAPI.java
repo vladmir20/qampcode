@@ -438,8 +438,8 @@ public class SampleAPI {
         }
 
         if (params.isMissedCall()) {
-            String subject = "Mesibo Missed Call";
-            message = "You missed a mesibo " + (params.isVideoCall() ? "video " : "") + "call from " + profile.getNameOrAddress("+");
+            String subject = "Missed Call";
+            message = "You missed a  " + (params.isVideoCall() ? "video " : "") + "call from " + profile.getNameOrAddress("+");
             SampleAPI.notify(2, subject, message);
             return;
         }
