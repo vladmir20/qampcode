@@ -10,10 +10,6 @@ import com.mesibo.emojiview.EmojiconEditText;
 public class ChatEditText extends EmojiconEditText {
     private KeyImeChange keyImeChangeListener;
 
-    public interface KeyImeChange {
-        void onKeyIme(int i, KeyEvent keyEvent);
-    }
-
     public ChatEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
@@ -28,5 +24,9 @@ public class ChatEditText extends EmojiconEditText {
         }
         this.keyImeChangeListener.onKeyIme(keyCode, event);
         return false;
+    }
+
+    public interface KeyImeChange {
+        void onKeyIme(int i, KeyEvent keyEvent);
     }
 }

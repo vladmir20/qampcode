@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -85,9 +84,9 @@ public class MesiboMessagingActivity extends AppCompatActivity implements Mesibo
             long groupId = args.getLong(MesiboUI.GROUP_ID);
             if (groupId > 0) {
                 this.mUser = Mesibo.getProfile(groupId);
-             } else {
+            } else {
                 this.mUser = Mesibo.getProfile(peer);
-             }
+            }
             if (this.mUser == null) {
                 finish();
                 return;
@@ -261,13 +260,11 @@ public class MesiboMessagingActivity extends AppCompatActivity implements Mesibo
         if (f == null || !f.Mesibo_onBackPressed()) {
             //  Toast.makeText(this, "yes", Toast.LENGTH_SHORT).show();
             MesiboMessagingActivity.super.onBackPressed();
-            Intent mainActivity = new Intent(MesiboMessagingActivity.this,
-                    MesiboUserListActivityNew.class);
+            Intent mainActivity = new Intent(MesiboMessagingActivity.this, MesiboUserListActivityNew.class);
             startActivity(mainActivity);
             finish();
         } else {
-            Intent mainActivity = new Intent(MesiboMessagingActivity.this,
-                    MesiboUserListActivityNew.class);
+            Intent mainActivity = new Intent(MesiboMessagingActivity.this, MesiboUserListActivityNew.class);
             startActivity(mainActivity);
             finish();
         }
@@ -299,6 +296,7 @@ public class MesiboMessagingActivity extends AppCompatActivity implements Mesibo
         this.mUserStatus.setVisibility(View.VISIBLE);
         this.mUserStatus.setText(status);
     }
+
 
     public void Mesibo_onShowInContextUserInterface() {
         this.mActionMode = startSupportActionMode(this.mActionModeCallback);
@@ -455,4 +453,5 @@ public class MesiboMessagingActivity extends AppCompatActivity implements Mesibo
             ActionMode unused = MesiboMessagingActivity.this.mActionMode = null;
         }
     }
+
 }

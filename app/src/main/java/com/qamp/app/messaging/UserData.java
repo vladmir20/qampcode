@@ -27,6 +27,26 @@ public class UserData {
         this.mLastMessage = "";
     }
 
+    public static UserData getUserData(MesiboMessage params) {
+        if (params == null || params.profile == null) {
+            return null;
+        }
+        return getUserData(params.profile);
+    }
+
+    public static UserData getUserData(MesiboProfile profile) {
+        if (profile == null) {
+            return null;
+        }
+        UserData d = (UserData) profile.other;
+        if (d != null) {
+            return d;
+        }
+        UserData d2 = new UserData(profile);
+        profile.other = d2;
+        return d2;
+    }
+
     private String appendNameToMessage(MesiboMessage params, String message) {
         String name = params.peer;
         if (!(params.profile == null || params.profile.getFirstName() == null)) {
@@ -39,6 +59,20 @@ public class UserData {
             name = name.substring(0, 12);
         }
         return name + ": " + message;
+    }
+
+    public String getLastMessage() {
+        if (TextUtils.isEmpty(this.mLastMessage)) {
+            return "";
+        }
+        if (this.mLastMessage.length() >= 36) {
+            return this.mLastMessage.substring(0, 33) + "...";
+        }
+        return this.mLastMessage;
+    }
+
+    public MesiboMessage getMessage() {
+        return this.msg;
     }
 
     public void setMessage(MesiboMessage message) {
@@ -78,20 +112,6 @@ public class UserData {
 
     public void setMessage(String message) {
         this.mLastMessage = message;
-    }
-
-    public String getLastMessage() {
-        if (TextUtils.isEmpty(this.mLastMessage)) {
-            return "";
-        }
-        if (this.mLastMessage.length() >= 36) {
-            return this.mLastMessage.substring(0, 33) + "...";
-        }
-        return this.mLastMessage;
-    }
-
-    public MesiboMessage getMessage() {
-        return this.msg;
     }
 
     public String getPeer() {
@@ -210,31 +230,11 @@ public class UserData {
         return this.mTypingProfile;
     }
 
-    public void setUserListPosition(int position) {
-        this.mUserListPosition = position;
-    }
-
     public int getUserListPosition() {
         return this.mUserListPosition;
     }
 
-    public static UserData getUserData(MesiboMessage params) {
-        if (params == null || params.profile == null) {
-            return null;
-        }
-        return getUserData(params.profile);
-    }
-
-    public static UserData getUserData(MesiboProfile profile) {
-        if (profile == null) {
-            return null;
-        }
-        UserData d = (UserData) profile.other;
-        if (d != null) {
-            return d;
-        }
-        UserData d2 = new UserData(profile);
-        profile.other = d2;
-        return d2;
+    public void setUserListPosition(int position) {
+        this.mUserListPosition = position;
     }
 }

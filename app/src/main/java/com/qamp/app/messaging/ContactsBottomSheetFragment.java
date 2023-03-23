@@ -170,6 +170,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
             public void onShow(DialogInterface dialogInterface) {
                 BottomSheetDialog bottomSheetDialog = (BottomSheetDialog) dialogInterface;
                 setupFullHeight(bottomSheetDialog);
+                UserListFragment.isSheetOpen = true;
             }
         });
         return dialog;
@@ -201,7 +202,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_contacts_bottom_sheet, container, false);
-
+        UserListFragment.isSheetOpen = true;
         createGroup = view.findViewById(R.id.create_group);
         next_group = view.findViewById(R.id.next_group);
 
@@ -665,8 +666,20 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
     @Override
     public void onCancel(DialogInterface dialog) {
         super.onCancel(dialog);
+        UserListFragment.isSheetOpen = false;
     }
 
+    @Override
+    public void onDismiss(@NonNull DialogInterface dialog) {
+        super.onDismiss(dialog);
+        UserListFragment.isSheetOpen = false;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        UserListFragment.isSheetOpen = false;
+    }
 
     public class MessageContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Mesibo.ConnectionListener,MesiboCall.IncomingListener {
         public final static int SECTION_HEADER = 100;

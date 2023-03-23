@@ -383,7 +383,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
                                     popup.showAtBottomPending();
                                     InputMethodManager inputMethodManager = (InputMethodManager) MessagingFragment.this.myActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                                     inputMethodManager.showSoftInput(MessagingFragment.this.mEmojiEditText, 1);
-                                    MessagingFragment.this.changeEmojiKeyboardIcon(MessagingFragment.this.mEmojiButton,MesiboConfiguration.KEYBOARD_ICON);
+                                    MessagingFragment.this.changeEmojiKeyboardIcon(MessagingFragment.this.mEmojiButton, MesiboConfiguration.KEYBOARD_ICON);
                                 }
                             } else {
                                 popup.dismiss();
@@ -693,7 +693,6 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
             } else {
                 this.getListener().Mesibo_onUpdateUserOnlineStatus(this.mUser, this.mGroupStatus);
             }
-
             return 0;
         } else {
             this.getListener().Mesibo_onUpdateUserOnlineStatus(this.mUser, status);

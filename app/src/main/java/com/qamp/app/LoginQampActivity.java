@@ -97,7 +97,7 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
         generateOTPButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (validatePhoneNumber()) {
+                if (validatePhoneNumber()&&(ccp.getSelectedCountryCodeWithPlus().equals("+91"))) {
                     if (QAMPAPIConstants.statusTwilio.contains("on")) {
                         generateOTP();
                     } else {
@@ -120,7 +120,7 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
                     }
 
                 } else {
-                    Toast.makeText(LoginQampActivity.this, getResources().getString(R.string.pleaseSelect), Toast.LENGTH_SHORT).show();
+                     Toast.makeText(LoginQampActivity.this, getResources().getString(R.string.pleaseSelect), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -459,7 +459,6 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
         try {
             Phonenumber.PhoneNumber swissNumberProto = phoneUtil.parse(swissNumberStr, ccp.getSelectedCountryNameCode());
             boolean isValid = phoneUtil.isValidNumber(swissNumberProto); // returns true
-
             if (isValid) {
                 return true;
             }

@@ -60,7 +60,8 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class OnBoardingUserProfile extends AppCompatActivity implements MesiboProfile.Listener {
+public class
+OnBoardingUserProfile extends AppCompatActivity implements MesiboProfile.Listener {
 
     static final int CAMERA_PERMISSION_CODE = 102;
     static final int EXTENAL_STORAGE_READ_PERMISSION_CODE = 103;
@@ -299,7 +300,7 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
     }
 
     private void updateProfile(String url) {
-
+        AppUtils.closeProgresDialog();
         RequestQueue requestQueue = Volley.newRequestQueue(OnBoardingUserProfile.this);
         String URL = url;
         JSONObject jsonBody = new JSONObject();
@@ -364,9 +365,11 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
         };
 
         requestQueue.add(request);
+        AppUtils.closeProgresDialog();
     }
 
     private void updateProfilePhoto(String url, Uri uri) {
+        AppUtils.closeProgresDialog();
         String URL = url;
         VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, URL, new Response.Listener<NetworkResponse>() {
             @Override
@@ -424,7 +427,7 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
         };
         //adding the request to volley
         Volley.newRequestQueue(this).add(volleyMultipartRequest);
-
+        AppUtils.closeProgresDialog();
     }
 
     private void textFieldListeners() {
@@ -530,11 +533,17 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
     }
 
     public void openCamera() {
-        ImagePicker.Companion.with(this).saveDir(getExternalFilesDir(Environment.DIRECTORY_DCIM)).cameraOnly().cropSquare().compress(1024).maxResultSize(1080, 1080).start();
+        ImagePicker.Companion.with(this).
+                saveDir(getExternalFilesDir(Environment.DIRECTORY_DCIM)).cameraOnly()
+                .cropSquare().
+                maxResultSize(1080, 1080).start();
     }
 
     public void openGallery() {
-        ImagePicker.with(this).saveDir(getExternalFilesDir(Environment.DIRECTORY_DCIM)).galleryOnly().cropSquare().compress(1024).maxResultSize(1080, 1080).start();
+        ImagePicker.with(this).
+                saveDir(getExternalFilesDir(Environment.DIRECTORY_DCIM)).
+                galleryOnly().cropSquare()
+                .maxResultSize(1080, 1080).start();
     }
 
     public void setImageProfile(Uri uri) {
