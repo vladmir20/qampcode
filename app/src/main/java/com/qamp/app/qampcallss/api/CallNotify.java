@@ -80,12 +80,12 @@ public class CallNotify {
         intent2.putExtra("answer", true);
         TaskStackBuilder.create(context).addNextIntentWithParentStack(intent2);
         intent2.setFlags(268566528);
-        PendingIntent activity = PendingIntent.getActivity(context, ANSWER_REQUEST_CODE, intent2, 134217728 | i2);
+        PendingIntent activity = PendingIntent.getActivity(context, ANSWER_REQUEST_CODE, intent2, PendingIntent.FLAG_UPDATE_CURRENT | i2);
         Intent intent3 = new Intent(context, MesiboCallsReceiver.class);
         intent3.putExtra("action", "hangup");
         intent3.putExtra("nid", i);
         intent2.putExtra("answer", false);
-        builder.addAction(callProperties.notify.icon_hangup, getActionText(callProperties.notify.hangup, -3407872), PendingIntent.getBroadcast(context, 2, intent3, i2 | 134217728));
+        builder.addAction(callProperties.notify.icon_hangup, getActionText(callProperties.notify.hangup, -3407872), PendingIntent.getBroadcast(context, 2, intent3, i2 | PendingIntent.FLAG_UPDATE_CURRENT));
         builder.addAction(callProperties.notify.icon_answer, callProperties.notify.answer, activity);
         builder.setChannelId(channelId);
         return builder.build();
@@ -119,7 +119,7 @@ public class CallNotify {
     @TargetApi(23)
     public static void cancelCallNotifications(Context context) {
         if (Build.VERSION.SDK_INT >= 23) {
-            NotificationManager notificationManager = (NotificationManager) context.getSystemService("notification");
+            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             for (StatusBarNotification statusBarNotification : notificationManager.getActiveNotifications()) {
                 String tag = statusBarNotification.getTag();
                 if (tag != null && tag.equals(callTag)) {

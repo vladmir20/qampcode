@@ -142,6 +142,9 @@ public class MesiboDefaultCallFragment extends Fragment implements OnClickListen
         //var5.setText(var7);
         this.ui.backgroundRelative = var4 .findViewById(R.id.background);
         this.ui.controlLayout = var4.findViewById(R.id.control_container);
+        this.ui.contactOngoinName = var4.findViewById(R.id.textView4);
+        this.ui.backArrow = var4.findViewById(R.id.imageView4);
+        this.ui.chatOngoing = var4.findViewById(R.id.imageView5);
         this.ui.speaker = (ImageView) var4.findViewById(R.id.one);
         this.ui.mute = (ImageView) var4.findViewById(R.id.four);
         this.ui.switchS = (ImageView) var4.findViewById(R.id.two);
@@ -204,17 +207,22 @@ public class MesiboDefaultCallFragment extends Fragment implements OnClickListen
             this.ui.sourceSwitchLayout.setVisibility(View.GONE);
         }
 
+
         this.ui.thumbnailLayout = var4.findViewById(R.id.photo_layout);
         var5 = (TextView)var4.findViewById(R.id.call_name);
         ImageView var8 = (ImageView)var4.findViewById(R.id.photo_image);
         ImageView var9 = (ImageView) var4.findViewById(R.id.onGoing_image);
         TextView var21 = var4.findViewById(R.id.textView4);
-        this.setUserDetails(var21,var9);
+        this.setUserOngoingDetails(var21,var9);
         this.setUserDetails(var5, var8);
         this.setStatusView(View.VISIBLE);
         this.setSwappedFeeds(this.mCall.isVideoViewsSwapped());
         this.ui.pipVideo.setVisibility(this.mCall.isAnswered() ? View.VISIBLE : View.GONE);
         this.mCall.start((QampCallsActivity) this.getActivity(), this);
+        if(this.mCall.isVideoCall()){
+            this.ui.star.setVisibility(View.VISIBLE);
+            this.ui.speaker.setVisibility(View.GONE);
+        }
         return var4;
     }
 
@@ -304,7 +312,10 @@ public class MesiboDefaultCallFragment extends Fragment implements OnClickListen
                 else if (var2 == R.id.switch_source) {
                     this.mCall.switchCamera();
                 } else if (var2 == R.id.two) {
-                    this.mCall.switchSource();
+                    //this.mCall.switchSource();
+                    //this.mCall.toggleVideoMute();
+                    var3 = this.mCall.toggleVideoMute();
+                    this.setButtonAlpha(this.ui.switchS, var3);
                 } else {
                     if (var2 == R.id.swipe_to_button) {
                         var3 = this.mCall.toggleVideoMute();
@@ -337,6 +348,19 @@ public class MesiboDefaultCallFragment extends Fragment implements OnClickListen
 
         if (var2 != null) {
             var2.setImageDrawable(MesiboUtils.getRoundImageDrawable(this.mCp.f2ui.userImageSmall));
+        }
+
+    }
+
+    public void setUserOngoingDetails(TextView textView, ImageView imageView){
+        if (!TextUtils.isEmpty(this.mCp.user.getName())) {
+            textView.setText(this.mCp.user.getName());
+        } else {
+            textView.setText(this.mCp.user.address);
+        }
+
+        if (imageView != null) {
+            imageView.setImageDrawable(MesiboUtils.getRoundImageDrawable(this.mCp.f2ui.userImage));
         }
 
     }
@@ -407,10 +431,18 @@ public class MesiboDefaultCallFragment extends Fragment implements OnClickListen
     private void callConnected() {
         if (!this.mConnected) {
             this.mConnected = true;
+            this.ui.thumbnailLayout.setVisibility(View.GONE);
+            this.ui.contactView.setVisibility(View.GONE);
+            this.ui.background.setVisibility(View.VISIBLE);
+            this.ui.contactOngoinName.setVisibility(View.VISIBLE);
+            this.ui.backArrow.setVisibility(View.VISIBLE);
+            this.ui.chatOngoing.setVisibility(View.VISIBLE);
             if (this.mCall.isVideoCall()) {
                 this.ui.pipVideo.setVisibility(View.VISIBLE);
                 this.ui.star.setVisibility(View.VISIBLE);
                 this.ui.speaker.setVisibility(View.GONE);
+                this.ui.background.setVisibility(View.GONE);
+                this.ui.contactOngoinName.setVisibility(View.GONE);
                 this.setSwappedFeeds(false);
             }
 
@@ -746,6 +778,7 @@ public class MesiboDefaultCallFragment extends Fragment implements OnClickListen
         public MesiboVideoView pipVideo;
         public MesiboVideoView fullscreenVideo;
         public TextView contactView;
+        public TextView contactOngoinName;
         public ImageView cameraSwitchButton;
         public ImageView sourceSwitchButton;
         public ImageView toggleCameraButton;
@@ -758,6 +791,8 @@ public class MesiboDefaultCallFragment extends Fragment implements OnClickListen
         public ImageView switchSource;
         public ImageView speaker;
         public ImageView mute;
+        public ImageView backArrow;
+        public ImageView chatOngoing;
         public ImageView disconnectButton;
         public ImageView buttonDisconnect;
         public ImageView background;

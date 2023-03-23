@@ -962,7 +962,18 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                         }
                     });
                     String destination =  "destination";
-                    MesiboProfile mUserr = Mesibo.getProfile("peer");
+                    //MesiboProfile mUserr = Mesibo.getProfile("peer");
+                    //MesiboProfile mUserr = user;
+
+                    String peer = user.address;
+                    long groupId = user.groupid;
+                    MesiboProfile mUserr;
+                    if (groupId > 0) {
+                        mUserr = Mesibo.getProfile(groupId);
+                    } else {
+                        mUserr = Mesibo.getProfile(peer);
+                    }
+
 
                     holder.audioCallIcon.setOnClickListener(new View.OnClickListener() {
                         @Override

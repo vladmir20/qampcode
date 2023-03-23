@@ -39,6 +39,29 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/ic_arrow_left" />
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/chat_feed_icons" />
+            </RelativeLayout>
+
             <TextView
                 android:id="@+id/titlee"
                 android:layout_width="match_parent"
@@ -97,27 +120,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/call_address"
+                android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:text="00:00"
                 android:textColor="#0B0B0A" />
 
-            <ImageView
-                android:id="@+id/onGoing_image"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="120dp"
-                android:src="@drawable/profile"
-                android:visibility="gone"
-                app:srcCompat="@drawable/default_user_image" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
+                <ImageView
+                    android:id="@+id/onGoing_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="120dp"
+                    android:src="@drawable/profile"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/default_user_image" />
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="TextView"
-                android:visibility="gone" />
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:gravity="center"
+                    android:text="TextView"
+                    android:textColor="#0C0C0C"
+                    android:textSize="20dp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
 
             <FrameLayout
                 android:id="@+id/outgoing_call_container"
