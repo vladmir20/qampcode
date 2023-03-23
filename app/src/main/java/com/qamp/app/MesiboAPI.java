@@ -15,9 +15,9 @@ import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboHttp;
 import com.mesibo.api.MesiboMessageProperties;
 import com.mesibo.api.MesiboProfile;
-import com.qamp.app.qampcallss.api.MesiboCall;
 import com.mesibo.contactutils.ContactUtils;
 import com.mesibo.mediapicker.MediaPicker;
+import com.qamp.app.qampcallss.api.MesiboCall;
 
 import org.json.JSONObject;
 
@@ -26,7 +26,16 @@ import java.util.Observable;
 
 
 public class MesiboAPI extends Observable {
-    private static final String TAG="HuddleAPI";
+    public final static String KEY_SYNCEDCONTACTS = "AppSyncedContacts";
+    public final static String KEY_SYNCEDDEVICECONTACTSTIME = "AppSyncedPhoneContactTs";
+    public final static String KEY_SYNCEDCONTACTSTIME = "AppSyncedTsNew";
+    public final static String KEY_AUTODOWNLOAD = "autodownload";
+    public final static String KEY_GCMTOKEN = "gcmtoken";
+    public static final int VISIBILITY_HIDE = 0;
+    public static final int VISIBILITY_VISIBLE = 1;
+    public static final int VISIBILITY_UNCHANGED = 2;
+    private static final String TAG = "HuddleAPI";
+    private static final String DEFAULT_FILE_URL = "https://media.mesibo.com/files/";
     private static NotifyUser mNotifyUser = null;
     private static boolean mSyncPending = true;
     private static boolean mContactSyncOver = false;
@@ -35,19 +44,7 @@ public class MesiboAPI extends Observable {
     private static String mAkClientToken = null;
     private static String mAkAppId = null;
     private static boolean mAutoDownload = true;
-
-    public final static String KEY_SYNCEDCONTACTS = "AppSyncedContacts";
-    public final static String KEY_SYNCEDDEVICECONTACTSTIME = "AppSyncedPhoneContactTs";
-    public final static String KEY_SYNCEDCONTACTSTIME = "AppSyncedTsNew";
-    public final static String KEY_AUTODOWNLOAD = "autodownload";
-    public final static String KEY_GCMTOKEN = "gcmtoken";
-
-    public static final int VISIBILITY_HIDE = 0;
-    public static final int VISIBILITY_VISIBLE = 1;
-    public static final int VISIBILITY_UNCHANGED = 2;
-
-    private static final String DEFAULT_FILE_URL = "https://media.mesibo.com/files/";
-    private static String FCM_SENDER_ID= QampConstants.FCM_SENDER_ID;
+    private static String FCM_SENDER_ID = QampConstants.FCM_SENDER_ID;
 
     private static Gson mGson = new Gson();
     private static String mApiUrl = QampConstants.mApiUrl;
@@ -65,8 +62,8 @@ public class MesiboAPI extends Observable {
         Mesibo.uploadCrashLogs();
         //Mesibo.setSecureConnection(true);
 
-        if(!TextUtils.isEmpty(AppConfig.getConfig().token)) {
-            if(startMesibo(false))
+        if (!TextUtils.isEmpty(AppConfig.getConfig().token)) {
+            if (startMesibo(false))
                 startSync();
         }
     }
@@ -88,148 +85,44 @@ public class MesiboAPI extends Observable {
         handler.sendRequest(b, null, null);
     }
 
-    public static abstract class ResponseHandler implements MesiboHttp.Listener {
-        private MesiboHttp http = null;
-        private Bundle mRequest = null;
-        private boolean mBlocking = false;
-        private boolean mOnUiThread = false;
-        public static boolean result = true;
-        public Context mContext = null;
-
-        @Override
-        public boolean Mesibo_onHttpProgress(MesiboHttp http, int state, int percent) {
-            if(percent < 0) {
-                HandleAPIResponse(null);
-                return true;
-            }
-
-            if(100 == percent && MesiboHttp.STATE_DOWNLOAD == state) {
-                String strResponse = http.getDataString();
-                Response response = null;
-
-                if (null != strResponse) {
-                    try {
-                        response = mGson.fromJson(strResponse, Response.class);
-                    } catch (Exception e) {
-                        result = false;
-                    }
-                }
-
-                if(null == response)
-                    result = false;
-
-                final Context context = (null == this.mContext)?MesiboAPI.mContext:this.mContext;
-
-                if(!mOnUiThread) {
-                    parseResponse(response, context, false);
-                    HandleAPIResponse(response);
-                }
-                else {
-                    final Response r = response;
-
-                    if(null == context)
-                        return true;
-
-                    Handler uiHandler = new Handler(context.getMainLooper());
-
-                    Runnable myRunnable = new Runnable() {
-                        @Override
-                        public void run() {
-                            parseResponse(r, context, true);
-                            HandleAPIResponse(r);
-                        }
-                    };
-                    uiHandler.post(myRunnable);
-                }
-            }
-            return true;
-        }
-
-        public void setBlocking(boolean blocking) {
-            mBlocking = blocking;
-        }
-
-        public void setOnUiThread(boolean onUiThread) {
-            mOnUiThread = onUiThread;
-        }
-
-        public boolean sendRequest(JSONObject j, String filePath, String formFieldName) {
-            try {
-                j.put("dt", String.valueOf(Mesibo.getDeviceType()));
-            } catch (Exception e) {
-
-            }
-            int nwtype = Mesibo.getNetworkConnectivity();
-            if(nwtype == 0xFF) {
-
-            }
-
-            http = new MesiboHttp();
-            http.url = mApiUrl;
-            try {
-                http.post = j.toString().getBytes();
-            } catch (Exception e) {}
-
-            http.contentType = "application/json";
-            http.uploadFile = filePath;
-            http.uploadFileField = formFieldName;
-            http.notifyOnCompleteOnly = true;
-            http.concatData = true;
-            http.listener = this;
-            if(mBlocking)
-                return http.executeAndWait();
-            return http.execute();
-        }
-
-        public void setContext(Context context) {
-            this.mContext = context;
-        }
-
-        public Context getContext() {
-            return this.mContext;
-        }
-
-        public abstract void HandleAPIResponse(Response response);
-    }
-
     private static boolean parseResponse(Response response, Context context, boolean uiThread) {
-        if(null == response || null == response.result) {
-            if(uiThread && null != context) {
+        if (null == response || null == response.result) {
+            if (uiThread && null != context) {
                 showConnectionError(context);
             }
 
             return false;
         }
 
-        if(!response.result.equalsIgnoreCase("OK") ) {
-            if(null != response.error && response.error.equalsIgnoreCase("AUTHFAIL")) {
+        if (!response.result.equalsIgnoreCase("OK")) {
+            if (null != response.error && response.error.equalsIgnoreCase("AUTHFAIL")) {
                 Toast.makeText(mContext, R.string.general_error, Toast.LENGTH_SHORT).show();
                 return false;
             }
 
-            if(null != response.error && response.error.equalsIgnoreCase("UPDATE")) {
+            if (null != response.error && response.error.equalsIgnoreCase("UPDATE")) {
             }
 
-            if(null != response.errmsg) {
-                if(null == response.errtitle) response.errtitle = "Failed";
+            if (null != response.errmsg) {
+                if (null == response.errtitle) response.errtitle = "Failed";
                 Toast.makeText(mContext, R.string.general_error, Toast.LENGTH_SHORT).show();
             }
             return false;
         }
 
         boolean save = false;
-        if(null != response.urls) {
+        if (null != response.urls) {
             AppConfig.getConfig().uploadurl = response.urls.upload;
             AppConfig.getConfig().downloadurl = response.urls.download;
             save = true;
         }
 
-        if(null != response.share) {
+        if (null != response.share) {
             AppConfig.getConfig().invite = response.share;
             save = true;
         }
 
-        if(response.op.equals("login") && !TextUtils.isEmpty(response.token)) {
+        if (response.op.equals("login") && !TextUtils.isEmpty(response.token)) {
             AppConfig.getConfig().token = response.token; //TBD, save into preference
             AppConfig.getConfig().phone = response.phone;
             AppConfig.getConfig().cc = response.cc;
@@ -245,16 +138,15 @@ public class MesiboAPI extends Observable {
             save = true;
 
             Mesibo.reset();
-            if(startMesibo(true)) {
+            if (startMesibo(true)) {
                 startSync();
             }
-        }
-        else if(response.op.equals("logout")) {
+        } else if (response.op.equals("logout")) {
 //            forceLogout();
             AppConfig.reset();
         }
 
-        if(save)
+        if (save)
             AppConfig.save();
         return true;
     }
@@ -262,67 +154,6 @@ public class MesiboAPI extends Observable {
     public static void setSyncFlags() {
         mResetSyncedContacts = true;
         mSyncPending = true;
-    }
-
-    public static class Urls {
-        public String upload = "";
-        public String download = "";
-    }
-
-    public static class Invite {
-        public String text = "";
-        public String subject = "";
-        public String title = "";
-    }
-
-    public static class Contacts {
-        public String name = "";
-        public String phone = "";
-        public long   gid = 0;
-        public long   ts = 0;
-        public String status = "";
-        public String photo = "";
-        public String tn = "";
-        public String members = "";
-    }
-
-    public static class Response {
-        public String result;
-        public String op;
-        public String error;
-        public String errmsg;
-        public String errtitle;
-        public String token;
-        public Contacts[] contacts;
-        public String name;
-        public String status;
-        public String members;
-        public String photo;
-        public String phone;
-        public String cc;
-
-        public Urls urls;
-        public Invite share;
-
-        public long gid;
-        public int type;
-        public int profile;
-        public long ts = 0;
-        public String tn = null;
-
-        Response() {
-            result = null;
-            op = null;
-            error = null;
-            errmsg = null;
-            errtitle = null;
-            token = null;
-            contacts = null;
-            gid = 0;
-            type = 0;
-            profile = 0;
-            urls = null;
-        }
     }
 
     private static boolean invokeApi(final Context context, final JSONObject postBunlde, String filePath, String formFieldName, boolean uiThread) {
@@ -360,13 +191,14 @@ public class MesiboAPI extends Observable {
         MesiboFileTransferHelper fileTransferHelper = new MesiboFileTransferHelper();
         Mesibo.addListener(fileTransferHelper);
 
-         //this will also register listener from the constructor
+        //this will also register listener from the constructor
         mNotifyUser = new NotifyUser(MainApplication.getAppContext());
 
         // set access token
-        if(0 != Mesibo.setAccessToken(AppConfig.getConfig().token)) {
+        if (0 != Mesibo.setAccessToken(AppConfig.getConfig().token)) {
 //            AppConfig.getConfig().token = "";
             AppConfig.save();
+            Mesibo.setMessageRetractionInterval(172800);
             return false;
         }
 
@@ -374,7 +206,7 @@ public class MesiboAPI extends Observable {
         Mesibo.setDatabase("mesibo.db", 0);
 
         // do this after setting token and db
-        if(resetContacts) {
+        if (resetContacts) {
             MesiboAPI.saveLocalSyncedContacts("", 0);
             MesiboAPI.saveSyncedTimestamp(0);
         }
@@ -382,9 +214,10 @@ public class MesiboAPI extends Observable {
         initAutoDownload();
 
         // Now start mesibo
-        if(0 != Mesibo.start()) {
+        if (0 != Mesibo.start()) {
             return false;
         }
+        Mesibo.setMessageRetractionInterval(172800);
 
         String ts = Mesibo.readKey(KEY_SYNCEDCONTACTSTIME);
 
@@ -392,7 +225,7 @@ public class MesiboAPI extends Observable {
         int cc = Mesibo.getCountryCodeFromPhone(AppConfig.getConfig().phone);
         ContactUtils.setCountryCode(String.valueOf(cc));
 
-        if(resetContacts) {
+        if (resetContacts) {
             ContactUtils.syncReset();
         }
 
@@ -400,7 +233,7 @@ public class MesiboAPI extends Observable {
     }
 
     public static boolean startLogout() {
-        if(TextUtils.isEmpty(AppConfig.getConfig().token))
+        if (TextUtils.isEmpty(AppConfig.getConfig().token))
             return false;
         JSONObject b = new JSONObject();
         try {
@@ -422,47 +255,47 @@ public class MesiboAPI extends Observable {
     public static void notify(MesiboMessageProperties params, String message) {
         // if call is in progress, we must give notification even if reading because user is in call
         // screen
-        if(!MesiboCall.getInstance().isCallInProgress() && Mesibo.isReading(params))
+        if (!MesiboCall.getInstance().isCallInProgress() && Mesibo.isReading(params))
             return;
 
-        if(Mesibo.ORIGIN_REALTIME != 0 || Mesibo.MSGSTATUS_OUTBOX == params.getStatus())///test out
+        if (Mesibo.ORIGIN_REALTIME != 0 || Mesibo.MSGSTATUS_OUTBOX == params.getStatus())///test out
             return;
 
         //MUST not happen for realtime message
-        if(params.groupid > 0 && null == params.groupProfile)
+        if (params.groupid > 0 && null == params.groupProfile)
             return;
 
         MesiboProfile profile = Mesibo.getProfile(params);
 
         // this will also mute message from user in group
-        if(null != profile && profile.isMuted())
+        if (null != profile && profile.isMuted())
             return;
 
         String name = params.peer;
-        if(null != profile) {
+        if (null != profile) {
             name = profile.getName();
         }
 
-        if(params.groupid > 0) {
+        if (params.groupid > 0) {
             MesiboProfile gp = Mesibo.getProfile(params.groupid);
-            if(null == gp)
+            if (null == gp)
                 return; // must not happen
 
-            if(gp.isMuted())
+            if (gp.isMuted())
                 return;
 
             name += " @ " + gp.getName();
         }
 
-        if(params.isMissedCall()) {
+        if (params.isMissedCall()) {
             String subject = MISSED_CALL;
-            message = "You missed a huddle " + (params.isVideoCall()?"video ":"") + "call from " + profile.getName();
+            message = "You missed a huddle " + (params.isVideoCall() ? "video " : "") + "call from " + profile.getName();
             MesiboAPI.notify(2, subject, message);
             return;
         }
 
         // outgoing or incoming call
-        if(params.isCall()) return;
+        if (params.isCall()) return;
 
         mNotifyUser.sendNotificationInList(name, message);
     }
@@ -474,8 +307,14 @@ public class MesiboAPI extends Observable {
     public static String getToken() {
         return AppConfig.getConfig().token;
     }
-    public static String getUploadUrl() { return AppConfig.getConfig().uploadurl; }
-    public static String getDownloadUrl() { return AppConfig.getConfig().downloadurl; }
+
+    public static String getUploadUrl() {
+        return AppConfig.getConfig().uploadurl;
+    }
+
+    public static String getDownloadUrl() {
+        return AppConfig.getConfig().downloadurl;
+    }
 
     public static void startOnlineAction() {
         sendGCMToken();
@@ -494,7 +333,7 @@ public class MesiboAPI extends Observable {
     public static void startSync() {
 
         synchronized (MesiboAPI.class) {
-            if(!mSyncPending)
+            if (!mSyncPending)
                 return;
             mSyncPending = false;
         }
@@ -503,7 +342,7 @@ public class MesiboAPI extends Observable {
     }
 
     private static Bundle createPostBundle(String op) {
-        if(TextUtils.isEmpty(AppConfig.getConfig().token))
+        if (TextUtils.isEmpty(AppConfig.getConfig().token))
             return null;
 
         Bundle b = new Bundle();
@@ -514,8 +353,8 @@ public class MesiboAPI extends Observable {
 
     public static String array2String(String[] a) {
         String str = "";
-        for( int i = 0; i < a.length; i++) {
-            if(i > 0)
+        for (int i = 0; i < a.length; i++) {
+            if (i > 0)
                 str += ",";
             str += a[i];
         }
@@ -524,7 +363,7 @@ public class MesiboAPI extends Observable {
     }
 
     public static boolean getContacts(ArrayList<String> contacts, boolean contact, boolean syncNow) {
-        if(null == contacts || contacts.size() == 0)
+        if (null == contacts || contacts.size() == 0)
             return false;
 
         String[] c = contacts.toArray(new String[contacts.size()]);
@@ -535,13 +374,13 @@ public class MesiboAPI extends Observable {
     public static void addContacts(ArrayList<MesiboProfile> profiles, boolean hidden) {
         ArrayList<String> c = new ArrayList<String>();
 
-        for(int i=0; i < profiles.size(); i++) {
+        for (int i = 0; i < profiles.size(); i++) {
             MesiboProfile profile = profiles.get(i);
-            if(!TextUtils.isEmpty(profile.address))
+            if (!TextUtils.isEmpty(profile.address))
                 c.add(profile.address);
         }
 
-        if(c.size() == 0)
+        if (c.size() == 0)
             return;
 
         getContacts(c, hidden, true);
@@ -573,8 +412,8 @@ public class MesiboAPI extends Observable {
     public static void onGCMMessage(boolean inService) {
         Mesibo.setForegroundContext(null, -1, true);
 
-        while(inService) {
-            if(Mesibo.STATUS_ONLINE == Mesibo.getConnectionStatus())
+        while (inService) {
+            if (Mesibo.STATUS_ONLINE == Mesibo.getConnectionStatus())
                 break;
 
             try {
@@ -588,6 +427,64 @@ public class MesiboAPI extends Observable {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
         }
+    }
+
+    public static void syncDone() {
+        synchronized (MesiboAPI.class) {
+
+        }
+    }
+
+    public static String getPhone() {
+        if (!TextUtils.isEmpty(AppConfig.getConfig().phone)) {
+            return AppConfig.getConfig().phone;
+        }
+
+
+        MesiboProfile u = Mesibo.getSelfProfile();
+
+        //MUST not happen
+        if (null == u) {
+//            forceLogout();
+            return null;
+        }
+        AppConfig.getConfig().phone = u.address;
+        AppConfig.save();
+        return AppConfig.getConfig().phone;
+    }
+
+    public static boolean deleteContacts(ArrayList<String> contacts) {
+        if (null == contacts || 0 == contacts.size())
+            return false;
+
+        String[] c = contacts.toArray(new String[contacts.size()]);
+        Mesibo.syncContacts(c, false, true, 0, true);
+
+        return true;
+    }
+
+    public static void startContactsSync() {
+        String synced = Mesibo.readKey(KEY_SYNCEDCONTACTS);
+        String syncedts = Mesibo.readKey(KEY_SYNCEDDEVICECONTACTSTIME);
+        long ts = 0;
+        if (!TextUtils.isEmpty(syncedts)) {
+            try {
+                ts = Long.parseLong(syncedts);
+            } catch (Exception e) {
+            }
+        }
+        //       if (PermissionChecker.checkSelfPermission(mContext, Manifest.permission.READ_CONTACTS) != PermissionChecker.PERMISSION_GRANTED) {
+
+        //    } else {
+        ContactUtils.sync(synced, ts, false, MesiboListeners.getInstance());
+        //  }
+    }
+
+    public static String phoneBookLookup(String phone) {
+        if (TextUtils.isEmpty(phone))
+            return null;
+
+        return ContactUtils.reverseLookup(phone);
     }
 
 //    public static synchronized  void autoAddContact(Mesibo.MessageParams params) {
@@ -619,54 +516,122 @@ public class MesiboAPI extends Observable {
 //        mPendingHiddenContacts = null;
 //    }
 
-    public static void syncDone() {
-        synchronized (MesiboAPI.class) {
-
-        }
+    private static void initAutoDownload() {
+        String autodownload = Mesibo.readKey(KEY_AUTODOWNLOAD);
+        mAutoDownload = (TextUtils.isEmpty(autodownload));
     }
 
-    public static String getPhone() {
-        if(!TextUtils.isEmpty(AppConfig.getConfig().phone)) {
-            return AppConfig.getConfig().phone;
-        }
-
-
-        MesiboProfile u = Mesibo.getSelfProfile();
-
-        //MUST not happen
-        if(null == u) {
-//            forceLogout();
-            return null;
-        }
-        AppConfig.getConfig().phone = u.address;
-        AppConfig.save();
-        return AppConfig.getConfig().phone;
+    public static boolean getMediaAutoDownload() {
+        return mAutoDownload;
     }
 
-    public static boolean deleteContacts(ArrayList<String> contacts) {
-        if(null == contacts || 0 == contacts.size())
-            return false;
-
-        String[] c = contacts.toArray(new String[contacts.size()]);
-        Mesibo.syncContacts(c, false, true, 0, true);
-
-        return true;
+    public static void setMediaAutoDownload(boolean autoDownload) {
+        mAutoDownload = autoDownload;
+        Mesibo.setKey(KEY_AUTODOWNLOAD, mAutoDownload ? "" : "0");
     }
 
-    public static void startContactsSync() {
-        String synced = Mesibo.readKey(KEY_SYNCEDCONTACTS);
-        String syncedts = Mesibo.readKey(KEY_SYNCEDDEVICECONTACTSTIME);
-        long ts = 0;
-        if(!TextUtils.isEmpty(syncedts)) {
+    public static abstract class ResponseHandler implements MesiboHttp.Listener {
+        public static boolean result = true;
+        public Context mContext = null;
+        private MesiboHttp http = null;
+        private Bundle mRequest = null;
+        private boolean mBlocking = false;
+        private boolean mOnUiThread = false;
+
+        @Override
+        public boolean Mesibo_onHttpProgress(MesiboHttp http, int state, int percent) {
+            if (percent < 0) {
+                HandleAPIResponse(null);
+                return true;
+            }
+
+            if (100 == percent && MesiboHttp.STATE_DOWNLOAD == state) {
+                String strResponse = http.getDataString();
+                Response response = null;
+
+                if (null != strResponse) {
+                    try {
+                        response = mGson.fromJson(strResponse, Response.class);
+                    } catch (Exception e) {
+                        result = false;
+                    }
+                }
+
+                if (null == response)
+                    result = false;
+
+                final Context context = (null == this.mContext) ? MesiboAPI.mContext : this.mContext;
+
+                if (!mOnUiThread) {
+                    parseResponse(response, context, false);
+                    HandleAPIResponse(response);
+                } else {
+                    final Response r = response;
+
+                    if (null == context)
+                        return true;
+
+                    Handler uiHandler = new Handler(context.getMainLooper());
+
+                    Runnable myRunnable = new Runnable() {
+                        @Override
+                        public void run() {
+                            parseResponse(r, context, true);
+                            HandleAPIResponse(r);
+                        }
+                    };
+                    uiHandler.post(myRunnable);
+                }
+            }
+            return true;
+        }
+
+        public void setBlocking(boolean blocking) {
+            mBlocking = blocking;
+        }
+
+        public void setOnUiThread(boolean onUiThread) {
+            mOnUiThread = onUiThread;
+        }
+
+        public boolean sendRequest(JSONObject j, String filePath, String formFieldName) {
             try {
-                ts = Long.parseLong(syncedts);
-            } catch (Exception e) {}
-        }
- //       if (PermissionChecker.checkSelfPermission(mContext, Manifest.permission.READ_CONTACTS) != PermissionChecker.PERMISSION_GRANTED) {
+                j.put("dt", String.valueOf(Mesibo.getDeviceType()));
+            } catch (Exception e) {
 
-    //    } else {
-            ContactUtils.sync(synced, ts, false, MesiboListeners.getInstance());
-      //  }
+            }
+            int nwtype = Mesibo.getNetworkConnectivity();
+            if (nwtype == 0xFF) {
+
+            }
+
+            http = new MesiboHttp();
+            http.url = mApiUrl;
+            try {
+                http.post = j.toString().getBytes();
+            } catch (Exception e) {
+            }
+
+            http.contentType = "application/json";
+            http.uploadFile = filePath;
+            http.uploadFileField = formFieldName;
+            http.notifyOnCompleteOnly = true;
+            http.concatData = true;
+            http.listener = this;
+            if (mBlocking)
+                return http.executeAndWait();
+            return http.execute();
+        }
+
+        public Context getContext() {
+            return this.mContext;
+        }
+
+        public void setContext(Context context) {
+            this.mContext = context;
+        }
+
+        public abstract void HandleAPIResponse(Response response);
     }
 
 //    public static void createContact(String name, String phone,  long groupid, String status, String members, String photo, String tnBasee64, long ts, long when, boolean selfProfile, boolean refresh, int visibility) {
@@ -745,25 +710,65 @@ public class MesiboAPI extends Observable {
 //            Mesibo.setUserProfile(u, refresh);
 //    }
 
-    public static String phoneBookLookup(String phone) {
-        if(TextUtils.isEmpty(phone))
-            return null;
-
-        return  ContactUtils.reverseLookup(phone);
+    public static class Urls {
+        public String upload = "";
+        public String download = "";
     }
 
-    private static void initAutoDownload() {
-        String autodownload = Mesibo.readKey(KEY_AUTODOWNLOAD);
-        mAutoDownload = (TextUtils.isEmpty(autodownload));
+    public static class Invite {
+        public String text = "";
+        public String subject = "";
+        public String title = "";
     }
 
-    public static void setMediaAutoDownload(boolean autoDownload) {
-        mAutoDownload = autoDownload;
-        Mesibo.setKey(KEY_AUTODOWNLOAD, mAutoDownload?"":"0");
+    public static class Contacts {
+        public String name = "";
+        public String phone = "";
+        public long gid = 0;
+        public long ts = 0;
+        public String status = "";
+        public String photo = "";
+        public String tn = "";
+        public String members = "";
     }
 
-    public static boolean getMediaAutoDownload() {
-        return mAutoDownload;
+    public static class Response {
+        public String result;
+        public String op;
+        public String error;
+        public String errmsg;
+        public String errtitle;
+        public String token;
+        public Contacts[] contacts;
+        public String name;
+        public String status;
+        public String members;
+        public String photo;
+        public String phone;
+        public String cc;
+
+        public Urls urls;
+        public Invite share;
+
+        public long gid;
+        public int type;
+        public int profile;
+        public long ts = 0;
+        public String tn = null;
+
+        Response() {
+            result = null;
+            op = null;
+            error = null;
+            errmsg = null;
+            errtitle = null;
+            token = null;
+            contacts = null;
+            gid = 0;
+            type = 0;
+            profile = 0;
+            urls = null;
+        }
     }
 
 //    public static boolean setProfilePicture(String filePath, long groupid, ResponseHandler handler) {
