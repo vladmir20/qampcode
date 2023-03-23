@@ -4,8 +4,6 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static com.qamp.app.messaging.MesiboUserListFragment.MODE_EDITGROUP;
 
-import static org.webrtc.ContextUtils.getApplicationContext;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -47,7 +45,7 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ShowProfileActivityNew extends AppCompatActivity implements MesiboProfile.Listener, Mesibo.MessageListener, Mesibo.GroupListener,Mesibo.ConnectionListener, MesiboCall.IncomingListener {
+public class ShowProfileActivityNew extends AppCompatActivity implements MesiboProfile.Listener, Mesibo.MessageListener, Mesibo.GroupListener, Mesibo.ConnectionListener, MesiboCall.IncomingListener {
 
     private static final int MAX_THUMBNAIL_GALERY_SIZE = 35;
     private static MesiboProfile mUser;
@@ -69,7 +67,7 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
     TextView mStatusTime;
     TextView mMobileNumber;
     TextView mPhoneType;
-    ImageView audioCall,videoCall;
+    ImageView audioCall, videoCall, isOnlineDt;
     private ShowProfileFragment.OnFragmentInteractionListener mListener;
     private ArrayList<String> mThumbnailMediaFiles;
     private LinearLayout mGallery;
@@ -83,6 +81,7 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
     private CardView mExitGroupCard;
     private TextView mExitGroupText;
     private MesiboReadSession mReadSession = null;
+    private TextView number_text, up_status_text;
 
 //    public static ShowProfileActivityNew newInstance(MesiboProfile userdata) {
 //        ShowProfileActivityNew fragment = new ShowProfileActivityNew();
@@ -106,7 +105,6 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
         videoCall = findViewById(R.id.imageView9);
 
 
-
         mPeer = args.getString("peer");
         mGroupId = args.getLong("groupid");
 
@@ -121,6 +119,9 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
         mUserProfile.addListener(ShowProfileActivityNew.this);
 
         mUsermageView = (CircleImageView) findViewById(R.id.up_image_profile);
+        isOnlineDt = (ImageView) findViewById(R.id.isOnlineDot);
+        number_text = (TextView) findViewById(R.id.number_text);
+        up_status_text = (TextView) findViewById(R.id.up_status_text);
 
         Mesibo.addListener(this);
 
@@ -135,8 +136,15 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
         TextView userName = (TextView) findViewById(R.id.up_user_name);
         TextView userstatus = (TextView) findViewById(R.id.up_current_status);
 
-
         userName.setText(mUserProfile.getName());
+        if (mUserProfile.isOnline()) {
+            isOnlineDt.setVisibility(VISIBLE);
+        } else {
+            isOnlineDt.setVisibility(View.INVISIBLE);
+        }
+        number_text.setText(AppUtils.getFormatedNumber(mUserProfile.getAddress()));
+        up_status_text.setText(mUserProfile.getStatus());
+
         long lastSeen = mUserProfile.getLastSeen();
         userstatus.setVisibility(View.VISIBLE);
         if (0 == lastSeen) {
@@ -164,7 +172,7 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
         }
         fragmentFunctions();
 
-        String destination =  "destination";
+        String destination = "destination";
 
         audioCall.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,7 +185,7 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
         videoCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!MesiboCall.getInstance().callUi(getApplicationContext(), mUserProfile, true))
+                if (!MesiboCall.getInstance().callUi(getApplicationContext(), mUserProfile, true))
                     //MesiboCall.getInstance().callUiForExistingCall(getApplicationContext());
                     launchCustomCallActivity(destination, true, false);//
             }
@@ -521,7 +529,7 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
                 public void onClick(View v) {
                     Bundle bundle = new Bundle();
                     bundle.putLong("groupid", mUserProfile.groupid);
-                    UIManager.launchMesiboContacts(ShowProfileActivityNew.this, 0, MODE_EDITGROUP, 0, bundle,"addMembers");
+                    UIManager.launchMesiboContacts(ShowProfileActivityNew.this, 0, MODE_EDITGROUP, 0, bundle, "addMembers");
                     ShowProfileActivityNew.this.finish();
                 }
             });

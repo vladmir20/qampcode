@@ -132,7 +132,7 @@ public class MesiboImages {
         if (mDefaultGroupBmp != null) {
             return mDefaultGroupBmp;
         }
-        mDefaultGroupBmp = BitmapFactory.decodeResource(mContext.getResources(), MesiboConfiguration.DEFAULT_GROUP_PICTURE);
+            mDefaultGroupBmp = BitmapFactory.decodeResource(mContext.getResources(), MesiboConfiguration.DEFAULT_GROUP_PICTURE);
         return mDefaultGroupBmp;
     }
 

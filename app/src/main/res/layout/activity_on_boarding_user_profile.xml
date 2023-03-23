@@ -176,7 +176,7 @@
                 android:inputType="textPersonName"
                 android:lineHeight="20sp"
                 android:lineSpacingExtra="7sp"
-                android:maxLength="20"
+                android:maxLength="50"
                 android:textAlignment="viewStart"
                 android:textColor="@color/text_color16"
                 android:textColorHint="@color/text_color15"

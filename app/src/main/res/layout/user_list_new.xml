@@ -29,7 +29,6 @@
             android:layout_width="13dp"
             android:layout_height="14dp"
             android:layout_marginTop="4dp"
-            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/mes_rv_profile"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/circle_green" />

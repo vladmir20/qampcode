@@ -42,7 +42,7 @@
     <string name="onboarding_profile_save_button">"सहेजें "</string>
     <string name="onboarding_profile_camera_text">अपना प्रोफ़ाइल चित्र चुनें</string>
     <string name="bottomsheet_field_text">नाम से खोजें बटन...</string>
-    <string name="onboarding_completion_text">कॉम्प आपका स्वागत करता है</string>
+    <string name="onboarding_completion_text">Qamp आपका स्वागत करता है</string>
     <string name="profile">प्रोफ़ाइल</string>
     <string name="profile_bottom_sheet_title">छवि विकल्प</string>
     <string name="success_profile">प्रोफ़ाइल सहेजी गई</string>
@@ -169,7 +169,7 @@
     <string name="copy_text">Copy</string>
     <string name="shared_files">Shared Files</string>
     <string name="add_channel">Add Channel</string>
-    <string name="create_qamp_room">Create a Qamp Room</string>
+    <string name="create_qamp_room">"एक क्यूम्प कक्ष बनाएँ "</string>
     <string name="new_group" >New Group</string>
     <string name="start_conversation">Start Conversation</string>
     <string name="enter_group_name">Enter Group Name</string>

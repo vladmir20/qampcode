@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 
 import com.mesibo.api.MesiboProfile;
 
+import java.util.ArrayList;
+
 public class MesiboMessagingFragment extends MessagingFragment {
     public static final String CREATE_PROFILE = "createprofile";
     public static final int ERROR_FILE = 3;
@@ -25,6 +27,7 @@ public class MesiboMessagingFragment extends MessagingFragment {
         void Mesibo_onShowInContextUserInterface();
 
         void Mesibo_onUpdateUserOnlineStatus(MesiboProfile mesiboProfile, String str);
+
 
         void Mesibo_onUpdateUserPicture(MesiboProfile mesiboProfile, Bitmap bitmap, String str);
     }

@@ -211,6 +211,9 @@ public class ProfileFragment extends Fragment implements MesiboProfile.Listener,
                 if (getProfile().getImagePath() != null) {
                     QampUiHelper.launchImageViewer(getActivity(), getProfile().getImagePath());
                 }
+                else{
+                    Toast.makeText(getActivity(), "Some Problem Occurred, Please try again later", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         edit_lang.setOnClickListener(new View.OnClickListener() {

@@ -4,6 +4,7 @@ import static com.qamp.app.messaging.MesiboUserListActivityNew.MesiboUserListAct
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.view.menu.MenuPopupHelper;
@@ -56,6 +58,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         Mesibo.PresenceListener, Mesibo.ConnectionListener, Mesibo.ProfileListener, Mesibo.SyncListener, Mesibo.GroupListener {
     public static MesiboGroupProfile.Member[] mExistingMembers = null;
     public static ArrayList<MesiboProfile> mMemberProfiles = new ArrayList<>();
+    public static boolean isSheetOpen = false;
     /* access modifiers changed from: private */
     public boolean mCloseAfterForward = false;
     public boolean mContactView = false;
@@ -116,6 +119,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
     private ArrayList<MesiboProfile> mUserProfiles = null;
     private LinearLayout mforwardLayout;
     private LinearLayout fabadd;
+    private ImageView isOnlineDot;
 
     public void updateTitle(String title) {
         MesiboUserListFragment.FragmentListener l = getListener();
@@ -213,9 +217,12 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         this.fabadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showConatcts();
+                if (!isSheetOpen)
+                    showConatcts();
             }
         });
+        this.isOnlineDot = (ImageView) view.findViewById(R.id.isOnlineDot);
+
         searchChats = view.findViewById(R.id.searchChats);
         searchChats.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -268,7 +275,6 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                 }
             });
         }
-
         return view;
     }
 
@@ -853,6 +859,11 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             } else {
                 holder.mContactsTime.setVisibility(View.GONE);
             }
+            if (user.isOnline()) {
+                holder.isOnlineDot.setVisibility(View.VISIBLE);
+            } else {
+                holder.isOnlineDot.setVisibility(View.INVISIBLE);
+            }
             Drawable imageDrawable = null;
             int padding = 5;
             MesiboMessage msg = data.getMessage();
@@ -979,16 +990,37 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                                 public boolean onMenuItemSelected(MenuBuilder menu, MenuItem item) {
                                     if (item.getItemId() != R.id.menu_remove) {
                                         return false;
+                                    } else {
+                                        AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
+                                        builder1.setMessage("Do you really want to delete this chat?,it cannot be recovered");
+                                        builder1.setCancelable(true);
+                                        builder1.setPositiveButton("Ok",
+                                                new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int id) {
+                                                        //put your code that needed to be executed when okay is clicked
+                                                        if (MessageContactAdapter.this.mHost.mSelectionMode == MesiboUserListFragment.MODE_MESSAGELIST) {
+                                                            Mesibo.deleteMessages(mesiboProfile2.address, mesiboProfile2.groupid, 0);
+                                                            UserData userData = (UserData) mesiboProfile2.other;
+                                                            MessageContactAdapter.this.mDataList.remove(i2);
+                                                            MessageContactAdapter.this.notifyDataSetChanged();
+                                                        } else if (MessageContactAdapter.this.mHost.mSelectionMode == MesiboUserListFragment.MODE_SELECTCONTACT) {
+                                                            MessageContactAdapter.this.mDataList.remove(i2);
+                                                            MessageContactAdapter.this.notifyDataSetChanged();
+                                                        }
+                                                        dialog.cancel();
+                                                    }
+                                                });
+                                        builder1.setNegativeButton("Cancel",
+                                                new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int id) {
+                                                        dialog.cancel();
+                                                    }
+                                                });
+
+                                        AlertDialog alert11 = builder1.create();
+                                        alert11.show();
                                     }
-                                    if (MessageContactAdapter.this.mHost.mSelectionMode == MesiboUserListFragment.MODE_MESSAGELIST) {
-                                        Mesibo.deleteMessages(mesiboProfile2.address, mesiboProfile2.groupid, 0);
-                                        UserData userData = (UserData) mesiboProfile2.other;
-                                        MessageContactAdapter.this.mDataList.remove(i2);
-                                        MessageContactAdapter.this.notifyDataSetChanged();
-                                    } else if (MessageContactAdapter.this.mHost.mSelectionMode == MesiboUserListFragment.MODE_SELECTCONTACT) {
-                                        MessageContactAdapter.this.mDataList.remove(i2);
-                                        MessageContactAdapter.this.notifyDataSetChanged();
-                                    }
+
                                     return true;
                                 }
 
@@ -1161,6 +1193,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             public TextView mNewMesAlert = null;
             public View mView = null;
             public int position = 0;
+            public ImageView isOnlineDot;
 
             public SectionCellsViewHolder(View view) {
                 super(view);
@@ -1170,6 +1203,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                 this.mContactsTime = (TextView) view.findViewById(R.id.mes_rv_date);
                 this.mContactsMessage = view.findViewById(R.id.mes_cont_post_or_details);
                 this.mContactsDeliveryStatus = (ImageView) view.findViewById(R.id.mes_cont_status);
+                this.isOnlineDot = (ImageView) view.findViewById(R.id.isOnlineDot);
                 this.mNewMesAlert = (TextView) view.findViewById(R.id.mes_alert);
                 this.mHighlightView = (RelativeLayout) view.findViewById(R.id.highlighted_view);
             }

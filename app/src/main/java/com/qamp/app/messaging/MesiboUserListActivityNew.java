@@ -54,6 +54,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MesiboUserListActivityNew extends AppCompatActivity implements MesiboProfile.Listener, MesiboUserListFragment.FragmentListener {
     public static final String TAG = "MesiboMainActivity";
+    public static Activity MesiboUserListActivityNewActivity;
     public ImageView hamburgerButton;
     BottomNavigationView navView;
     LinearLayout name_tite_layout, search_view;
@@ -66,6 +67,7 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
     boolean mKeepRunning = false;
     MesiboUI.Config mMesiboUIOptions = null;
     int mMode = 0;
+    SearchView search_func;
     private DrawerLayout mDrawer;
     private NavigationView nvDrawer;
     private Toolbar toolbar;
@@ -78,8 +80,6 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
     private ImageView search_image;
     private long pressedTime;
     private long mGroupId = 0;
-    SearchView search_func;
-    public static Activity MesiboUserListActivityNewActivity;
     private BottomNavigationView.OnNavigationItemSelectedListener selectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
@@ -443,27 +443,25 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
     }
 
     public void onBackPressed() {
-
-
-            moveTaskToBack(true);
-
-            if (search_view.getVisibility() == View.VISIBLE) {
-                search_view.setVisibility(View.GONE);
-                name_tite_layout.setVisibility(View.VISIBLE);
-                search_func.setQuery("",true);
-            } else if (mDrawer.isDrawerOpen(GravityCompat.START)) {
-                mDrawer.closeDrawer(GravityCompat.START);
+        if (search_view.getVisibility() == View.VISIBLE) {
+            search_view.setVisibility(View.GONE);
+            name_tite_layout.setVisibility(View.VISIBLE);
+            search_func.setQuery("", true);
+        } else if (mDrawer.isDrawerOpen(GravityCompat.START)) {
+            mDrawer.closeDrawer(GravityCompat.START);
+        } else {
+            if (pressedTime + 1000 > System.currentTimeMillis()) {
+                moveTaskToBack(true);
+                super.onBackPressed();
+                finish();
             } else {
-                if (pressedTime + 1000 > System.currentTimeMillis()) {
-                    super.onBackPressed();
-                    finish();
-                } else {
-                   // Toast.makeText(getBaseContext(), R.string.exitWarning, Toast.LENGTH_SHORT).show();
-                }
-                pressedTime = System.currentTimeMillis();
+                Toast.makeText(getBaseContext(), R.string.exitWarning, Toast.LENGTH_SHORT).show();
             }
+            pressedTime = System.currentTimeMillis();
         }
 
+
+    }
 
 
     /* JADX WARNING: type inference failed for: r2v0, types: [android.content.Context, com.qamp.app.messaging.MesiboUserListActivity, androidx.appcompat.app.AppCompatActivity] */
