@@ -1,7 +1,5 @@
 package com.qamp.app;
 
-import static com.qamp.app.messaging.MesiboConfiguration.ENTER_PHONE_NUMBER;
-
 import android.Manifest;
 import android.app.Activity;
 import android.app.PendingIntent;
@@ -54,7 +52,6 @@ import com.hbb20.CountryCodePicker;
 import com.mesibo.api.Mesibo;
 import com.qamp.app.Utils.AppUtils;
 import com.qamp.app.messaging.MesiboConfiguration;
-import com.qamp.app.messaging.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -67,22 +64,22 @@ import java.util.Map;
 
 public class LoginQampActivity extends Activity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
-    private LinearLayout otp_layout1, otp_layout2, otp_layout3, otp_layout4;
-
     private static final int CREDENTIAL_PICKER_REQUEST = 1000;
     private static final int RESOLVE_HINT = 1001;
     String phoneNumber = "";
     String selectedCountryCode = "91";
+    CountryCodePicker ccp;
+    int swipeCount = 0;
+    //Declare timer
+    CountDownTimer cTimer = null;
+    private LinearLayout otp_layout1, otp_layout2, otp_layout3, otp_layout4;
     private ImageView loginLogo = null, onboardingImage = null, pageSelectorImage = null;
-    private TextView enterPhoneNumberTextView, otpFieldPhoneNumber, onBoardingHeading, onBoardingSubHeading,wrongOtpText;
+    private TextView enterPhoneNumberTextView, otpFieldPhoneNumber, onBoardingHeading, onBoardingSubHeading, wrongOtpText;
     private EditText phoneEditText;
     private Button generateOTPButton, signInButton, resendOTP;
     private LinearLayout enterPhoneView, otpView;
-    CountryCodePicker ccp;
     private EditText otpTextView1, otpTextView2, otpTextView3, otpTextView4;
-    int swipeCount = 0;
     private boolean otpBackgroundRed = false;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +94,7 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
         generateOTPButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (validatePhoneNumber()&&(ccp.getSelectedCountryCodeWithPlus().equals("+91"))) {
+                if (validatePhoneNumber() && (ccp.getSelectedCountryCodeWithPlus().equals("+91"))) {
                     if (QAMPAPIConstants.statusTwilio.contains("on")) {
                         generateOTP();
                     } else {
@@ -120,7 +117,7 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
                     }
 
                 } else {
-                     Toast.makeText(LoginQampActivity.this, getResources().getString(R.string.pleaseSelect), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginQampActivity.this, getResources().getString(R.string.pleaseSelect), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -204,9 +201,7 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
         });
 
 
-
     }
-
 
     private void initPermissions() {
         MesiboConfiguration config = new MesiboConfiguration();
@@ -425,9 +420,6 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
         });
     }
 
-    //Declare timer
-    CountDownTimer cTimer = null;
-
     //start timer function
     void startTimer() {
         cTimer = new CountDownTimer(30000, 1000) {
@@ -634,22 +626,19 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
                                 if (MesiboAPI.startMesibo(true)) {
                                     MesiboAPI.startSync();
                                 }
-
-
-
                                 AppConfig.save();
                                 closeKeyboard();
-                                String sharedString,sharedString2;
-                                SharedPreferences sh = getSharedPreferences("OnBoardingValidity", MODE_PRIVATE);
-                                sharedString = sh.getString("onBoardingChecker", "");
-                                if (sharedString.equals("1")) {
-                                    Intent intent = new Intent(LoginQampActivity.this, OnBoardingUserProfile.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
+                                SharedPreferences sh = getSharedPreferences("OnBoardingDone", MODE_PRIVATE);
+                                String s1 = sh.getString("isOnBoardingScreensDone", "");
+                                if (s1.equals("")) {
                                     Intent intent = new Intent(LoginQampActivity.this, OnBoardingScreens.class);
                                     startActivity(intent);
                                     finish();
+                                } else {
+                                    Intent intent = new Intent(LoginQampActivity.this, OnBoardingUserProfile.class);
+                                    startActivity(intent);
+                                    finish();
+//                                    }
                                 }
 
                             }

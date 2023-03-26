@@ -1,5 +1,6 @@
 package com.qamp.app;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -60,6 +61,10 @@ public class WelcomeOnboarding extends AppCompatActivity {
                         QampUiHelper.launchMainActivity(WelcomeOnboarding.this);
                         WelcomeOnboarding.this.finish();
                         finishAffinity();
+                        SharedPreferences sharedPreferences = getSharedPreferences("checkactivity", MODE_PRIVATE);
+                        SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                        myEdit.putString("checker", "1");
+                        myEdit.commit();
                     }
                 }
             }, WELCOME_DISPLAY_LENGTH);

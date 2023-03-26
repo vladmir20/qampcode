@@ -133,6 +133,7 @@
 
 
             <ImageButton
+
                 android:visibility="visible"
                 android:id="@+id/location"
                 android:layout_width="35dp"
@@ -149,7 +150,7 @@
             </View>
 
             <ImageButton
-                android:visibility="visible"
+                android:visibility="gone"
                 android:id="@+id/audio"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
@@ -159,6 +160,7 @@
                 android:src="@drawable/ic_library_music_black_24dp"/>
 
             <View
+                android:visibility="gone"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_weight="1" >

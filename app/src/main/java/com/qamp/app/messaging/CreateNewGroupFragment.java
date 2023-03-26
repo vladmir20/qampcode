@@ -63,6 +63,7 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
     RecyclerView mRecyclerView;
     private String mParam1;
     private String mParam2;
+    private boolean isLessMembers = false;
 
     public static CreateNewGroupFragment newInstance(Bundle bundle) {
         CreateNewGroupFragment fragment = new CreateNewGroupFragment();
@@ -115,8 +116,12 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
         this.mCreateGroupBtn = v.findViewById(R.id.nugroup_create_btn);
         this.members_list = v.findViewById(R.id.members_list);
         this.mCreateGroupBtn.setOnClickListener(new View.OnClickListener() {
+
             public void onClick(View v) {
-                if (UserListFragment.mMemberProfiles.size() == 0 && CreateNewGroupFragment.this.mGroupMode == 0 && (UserListFragment.mMemberProfiles.size() == 1 && CreateNewGroupFragment.this.mGroupMode == 1)) {
+//                if (UserListFragment.mMemberProfiles.size() == 0 &&
+//                        CreateNewGroupFragment.this.mGroupMode == 0 &&
+//                        (UserListFragment.mMemberProfiles.size() == 1 && CreateNewGroupFragment.this.mGroupMode == 1)) {
+                if (isLessMembers) {
                     Utils.showAlert(CreateNewGroupFragment.this.getActivity(), MesiboConfiguration.CREATE_GROUP_NOMEMEBER_TITLE_STRING, MesiboConfiguration.CREATE_GROUP_NOMEMEBER_MESSAGE_STRING);
                 } else if (CreateNewGroupFragment.this.mGroupSubjectEditor.getText().toString().length() < 2) {
                     Utils.showAlert(CreateNewGroupFragment.this.getActivity(), null, MesiboConfiguration.CREATE_GROUP_GROUPNAME_ERROR_MESSAGE_STRING);
@@ -127,7 +132,7 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
                         gs.name = CreateNewGroupFragment.this.mGroupSubjectEditor.getText().toString();
                         gs.flags = 0;
                         Mesibo.createGroup(gs, CreateNewGroupFragment.this);
-
+                        ContactsBottomSheetFragment.groupmaker = 0;
                         return;
                     }
                     Mesibo.getProfile(CreateNewGroupFragment.this.mGroupId).setName(CreateNewGroupFragment.this.mGroupSubjectEditor.getText().toString());
@@ -250,6 +255,15 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
 //            }
 //        });
         return v;
+    }
+
+
+    private void lessMembers(int size) {
+        if (size <= 2) {
+            isLessMembers = true;
+        } else {
+            isLessMembers = false;
+        }
     }
 
     @Override
@@ -444,6 +458,7 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
 
         public void removeItem(int position) {
             this.mDataList.remove(position);
+            lessMembers(this.mDataList.size());
             notifyItemRemoved(position);
             notifyDataSetChanged();
         }

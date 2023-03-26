@@ -6,7 +6,6 @@ import static com.qamp.app.messaging.MesiboConfiguration.TITLE_PERMISON_CAMERA_F
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -334,11 +333,6 @@ OnBoardingUserProfile extends AppCompatActivity implements MesiboProfile.Listene
                         AppConfig.getConfig().status = profileStatus;
                         AppConfig.getConfig().version = responseVersion;
                         //AppConfig.getConfig().profileId = profileId;
-
-                        SharedPreferences sharedPreferences = getSharedPreferences("checkactivity", MODE_PRIVATE);
-                        SharedPreferences.Editor myEdit = sharedPreferences.edit();
-                        myEdit.putString("checker", "1");
-                        myEdit.commit();
                         Intent intent = new Intent(OnBoardingUserProfile.this, WelcomeOnboarding.class);
                         finish();
                         startActivity(intent);
@@ -393,7 +387,7 @@ OnBoardingUserProfile extends AppCompatActivity implements MesiboProfile.Listene
                         JSONObject error = (JSONObject) errors.get(0);
                         String errMsg = error.getString("errMsg");
                         String errorCode = error.getString("errCode");
-                        Toast.makeText(OnBoardingUserProfile.this, errMsg, Toast.LENGTH_LONG).show();
+                        //   Toast.makeText(OnBoardingUserProfile.this, errMsg, Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -402,7 +396,7 @@ OnBoardingUserProfile extends AppCompatActivity implements MesiboProfile.Listene
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                //    Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
                 Log.e("GotError", "" + error.getMessage());
             }
         }) {
