@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +23,7 @@ import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboMessage;
 import com.mesibo.api.MesiboProfile;
 import com.qamp.app.R;
+import com.qamp.app.Utils.AppUtils;
 import com.qamp.app.qampcallss.api.MesiboCall;
 import com.qamp.app.qampcallss.api.p000ui.MesiboDefaultCallActivity;
 
@@ -290,7 +292,8 @@ public class MesiboMessagingActivity extends AppCompatActivity implements Mesibo
             this.isOnlineDot.setVisibility(View.GONE);
             return;
         }
-        if (!profile.isGroup() && (status.equals("online") || status.equals("Online"))) {
+        if (!profile.isGroup() && (status.equals("online") || status.equals("Online")) &&
+                (AppUtils.isNetWorkAvailable(MesiboMessagingActivity.this))) {
             this.isOnlineDot.setVisibility(View.VISIBLE);
         }
         this.mUserStatus.setVisibility(View.VISIBLE);

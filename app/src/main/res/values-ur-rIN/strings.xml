@@ -123,7 +123,7 @@
     <string name="SampleMsg">"لمبا میسج لمبا ہے mskr iy moter long message to make it haappen "</string>
     <string name="new_chat">"نئی چیٹ "</string>
     <string name="change_app_lang">"درخواست کی زبان تبدیل کریں۔ "</string>
-    <string name="select_language" >"زبان منتخب کریں۔ "</string>
+    <string name="select_language">"زبان منتخب کریں۔ "</string>
     <string name="Default">"طے شدہ "</string>
     <string name="English">انگریزی</string>
     <string name="Hindi">ہندی</string>
@@ -170,7 +170,7 @@
     <string name="shared_files">Shared Files</string>
     <string name="add_channel">Add Channel</string>
     <string name="create_qamp_room">"قمپ روم بنائیں "</string>
-    <string name="new_group" >New Group</string>
+    <string name="new_group">New Group</string>
     <string name="start_conversation">Start Conversation</string>
     <string name="enter_group_name">Enter Group Name</string>
     <string name="enter_group_desc">Enter Group Description</string>

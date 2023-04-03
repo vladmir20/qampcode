@@ -3,6 +3,7 @@ package com.qamp.app;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -73,6 +74,10 @@ public class OnBoardingScreens extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(OnBoardingScreens.this, OnBoardingUserProfile.class);
                 startActivity(intent);
+                SharedPreferences sharedPreferences = getSharedPreferences("OnBoardingDone", MODE_PRIVATE);
+                SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                myEdit.putString("isOnBoardingScreensDone", "1");
+                myEdit.commit();
                 finish();
             }
         });

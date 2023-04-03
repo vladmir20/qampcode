@@ -48,7 +48,7 @@ import com.google.gson.Gson;
 
 public class AppConfig {
     public static final String sharedPrefKey = "com.qampmessenger.app";
-    //public static final String sharedPrefKey = "com.qamp.app";
+    //public static final StXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxxxxxxxxxxxxxxxxxxring sharedPrefKey = "com.qamp.app";
     private static final String TAG = "AppSettings";
     private static final String systemPreferenceKey = "mesibo-app-settings";
     //System Specific Preferences - does not change across logins
@@ -112,7 +112,6 @@ public class AppConfig {
 
     private void putAppSetting(SharedPreferences.Editor spe) {
         Gson gson = new Gson();
-
         String json = gson.toJson(mConfig);
         spe.putString(systemPreferenceKey, json);
         spe.commit();

@@ -18,7 +18,6 @@ import static com.qamp.app.messaging.MesiboConfiguration.USERS_STRING_USERLIST_S
 import static com.qamp.app.messaging.MesiboConfiguration.VIDEO_ICON;
 import static com.qamp.app.messaging.MesiboConfiguration.VIDEO_STRING;
 import static com.qamp.app.messaging.MesiboImages.getMissedCallDrawable;
-
 import static org.webrtc.ContextUtils.getApplicationContext;
 
 import android.Manifest;
@@ -111,6 +110,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
     public static ArrayList<MesiboProfile> slectedgtoup = new ArrayList<>();
     public TextView mEmptyView;
     public long mForwardId = 0;
+    public MesiboProfile mUser = null;
     RecyclerView contactsRecycle;
     TextView createGroup;
     LinearLayout next_group;
@@ -123,7 +123,6 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
     ImageView imageView3;
     Context context;
     private ArrayList<MesiboProfile> mUserProfiles = null;
-    public MesiboProfile mUser = null;
     private ArrayList<MesiboProfile> mSearchResultList = null;
     private Boolean mIsMessageSearching = false;
     private String mSearchQuery = null;
@@ -215,7 +214,6 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
         mEmptyView = view.findViewById(R.id.emptyview_tex);
         mMesiboUIOptions = MesiboUI.getConfig();
         mSelectionMode = MesiboUserListFragment.MODE_MESSAGELIST;
-
 
 
         imageView3.setOnClickListener(new View.OnClickListener() {
@@ -599,8 +597,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
         super.onResume();
         showUserList(MESIBO_INTITIAL_READ_USERLIST);
         Mesibo_onConnectionStatus(Mesibo.getConnectionStatus());
-
-        com.mesibo.messaging.Utils.showServicesSuspendedAlert(getContext());
+        Utils.showServicesSuspendedAlert(getContext());
     }
 
     private void updateContacts(MesiboProfile userProfile) {
@@ -681,7 +678,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
         UserListFragment.isSheetOpen = false;
     }
 
-    public class MessageContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Mesibo.ConnectionListener,MesiboCall.IncomingListener {
+    public class MessageContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Mesibo.ConnectionListener, MesiboCall.IncomingListener {
         public final static int SECTION_HEADER = 100;
         public final static int SECTION_CELLS = 300;
         public int mCountProfileMatched = 0;
@@ -974,7 +971,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                             return true;
                         }
                     });
-                    String destination =  "destination";
+                    String destination = "destination";
                     //MesiboProfile mUserr = Mesibo.getProfile("peer");
                     //MesiboProfile mUserr = user;
                     //mesibo mesibo
@@ -992,8 +989,8 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                     holder.audioCallIcon.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                        if (!MesiboCall.getInstance().callUi(getContext(), mUserr, false))
-                            MesiboCall.getInstance().callUiForExistingCall(getContext());
+                            if (!MesiboCall.getInstance().callUi(getContext(), mUserr, false))
+                                MesiboCall.getInstance().callUiForExistingCall(getContext());
 //                            Toast.makeText(mContext, "Call Function", Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -1001,7 +998,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                     holder.videoCallIcon.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(!MesiboCall.getInstance().callUi(getApplicationContext(), mUserr, true))
+                            if (!MesiboCall.getInstance().callUi(getApplicationContext(), mUserr, true))
                                 //MesiboCall.getInstance().callUiForExistingCall(getApplicationContext());
                                 launchCustomCallActivity(destination, true, false);//                            Toast.makeText(mContext, "Video Call Function", Toast.LENGTH_SHORT).show();
 
@@ -1163,6 +1160,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
             intent.putExtra("incoming", incoming);
             startActivity(intent);
         }
+
         @Override
         public boolean MesiboCall_onNotify(int i, MesiboProfile mesiboProfile, boolean z) {
             return false;

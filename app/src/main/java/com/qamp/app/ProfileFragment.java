@@ -202,16 +202,15 @@ public class ProfileFragment extends Fragment implements MesiboProfile.Listener,
         mView = v;
         initaliseViews(mView);
         Utilss.setLanguage(getActivity());
-        SharedPreferences preferences = getActivity().getSharedPreferences("Settings", MODE_PRIVATE);
-        String language = preferences.getString("app_lang", "");
-        current_Lang.setText(getResources().getString(R.string.current_language) + language);
+        SharedPreferences preferences = getActivity().getSharedPreferences("userEmail", MODE_PRIVATE);
+        String email = preferences.getString("userEmail", "");
+        eMail.setText(email);
         circleImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (getProfile().getImagePath() != null) {
                     QampUiHelper.launchImageViewer(getActivity(), getProfile().getImagePath());
-                }
-                else{
+                } else {
                     Toast.makeText(getActivity(), "Some Problem Occurred, Please try again later", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -445,6 +444,8 @@ public class ProfileFragment extends Fragment implements MesiboProfile.Listener,
         cameraIcon = v.findViewById(R.id.cameraIcon);
         editPhoto = v.findViewById(R.id.editPhoto);
         eMail = v.findViewById(R.id.email);
+        SharedPreferences lang = getActivity().getSharedPreferences("Settings", MODE_PRIVATE);
+        String s2 = lang.getString("app_lang", "");
         mEmojiNameEditText = v.findViewById(R.id.name_emoji_edittext);
         mEmojiStatusEditText = v.findViewById(R.id.status_emoji_edittext);
         cameraText = v.findViewById(R.id.cameraText);
@@ -1161,23 +1162,19 @@ public class ProfileFragment extends Fragment implements MesiboProfile.Listener,
 
                 TextView cancel2 = bottomSheetDialog.findViewById(R.id.cancel3);
                 TextView submit2 = bottomSheetDialog.findViewById(R.id.submit);
-                EditText contactNo = bottomSheetDialog.findViewById(R.id.editTextTextPersonName3);
-
+                EditText editTextTextPersonName3 = bottomSheetDialog.findViewById(R.id.editTextTextPersonName3);
                 submit2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        String email = eMail.getText().toString();
-
-
-                        if (!TextUtils.isEmpty(email)) {
+                        String email = editTextTextPersonName3.getText().toString();
+                        if (!email.isEmpty()) {
                             AppUtils.closeProgresDialog();
+                            eMail.setText(email);
                             UpdateNameStatusEmail(email, "Email", AppConfig.getConfig().version);
                         }
                         if (mLaunchMesibo) {
                             QampUiHelper.launchMesibo(getActivity(), 0, false, true);
                         }
-                        Toast toast1 = Toast.makeText(getContext(), getResources().getString(R.string.updated_successfully), Toast.LENGTH_LONG);
-                        toast1.show();
                         bottomSheetDialog.dismiss();
                     }
                 });
@@ -1217,6 +1214,10 @@ public class ProfileFragment extends Fragment implements MesiboProfile.Listener,
                 jsonBody.put("lastName", "TEST");
                 jsonBody.put("profilePicId", AppConfig.getConfig().profileId);
                 jsonBody.put("email", data);
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("userEmail", MODE_PRIVATE);
+                SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                myEdit.putString("userEmail", data);
+                myEdit.commit();
             } else if (key.equals("Status")) {
                 jsonBody.put("version", version);
                 jsonBody.put("token", AppConfig.getConfig().token);
@@ -1251,13 +1252,14 @@ public class ProfileFragment extends Fragment implements MesiboProfile.Listener,
                                 AppConfig.getConfig().name = fullName; //TBD, save into preference
                                 AppConfig.getConfig().status = profileStatus;
                                 AppConfig.getConfig().version = responseVersion;
-                               // AppConfig.getConfig().email = email;
+                                Toast toast1 = Toast.makeText(getContext(), getResources().getString(R.string.updated_successfully), Toast.LENGTH_LONG);
+                                toast1.show();
                             } else {
                                 JSONArray errors = response.getJSONArray("error");
                                 JSONObject error = (JSONObject) errors.get(0);
                                 String errMsg = error.getString("errMsg");
                                 String errorCode = error.getString("errCode");
-                                //    Toast.makeText(getContext(), errMsg, Toast.LENGTH_LONG).show();
+                                Toast.makeText(getContext(), errMsg, Toast.LENGTH_LONG).show();
                             }
                         } catch (Exception e) {
                             AppUtils.closeProgresDialog();

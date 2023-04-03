@@ -38,6 +38,7 @@
         <activity
             android:name="com.qamp.app.EditProfileActivity"
             android:screenOrientation="portrait"
+            android:supportsRtl="false"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
 
@@ -74,6 +75,7 @@
         <activity
             android:name="com.qamp.app.ShowProfileActivity"
             android:screenOrientation="portrait"
+            android:supportsRtl="false"
             android:theme="@style/AppTheme.NoActionBar" />
 
 

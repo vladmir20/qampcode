@@ -83,7 +83,7 @@
                  android:backgroundTint="@color/transparent_color"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="@string/name_text"
+                android:hint="@string/email_address"
                 android:textColor="@color/text_color17"
                 android:textSize="12dp"
                 tools:ignore="NotSibling" />
