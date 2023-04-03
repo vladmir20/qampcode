@@ -542,10 +542,12 @@ OnBoardingUserProfile extends AppCompatActivity implements MesiboProfile.Listene
 
     public void setImageProfile(Uri uri) {
         if (null == uri) {
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 circleImageView.setImageDrawable(getDrawable(R.drawable.rounded_profile_view));
             }
             circleImageView.setImageURI(null);
+            setUserPicture();
         } else {
             circleImageView.setImageURI(uri);
         }

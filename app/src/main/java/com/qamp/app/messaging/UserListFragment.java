@@ -315,10 +315,6 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         }
     }
 
-    public void setDataonBackPress() {
-
-    }
-
 
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         UserListFragment.super.onCreateOptionsMenu(menu, inflater);

@@ -30,6 +30,7 @@
                 android:orientation="horizontal"
                 app:contentInsetEnd="0dp"
                 app:contentInsetLeft="0dp"
+                android:theme="@style/ToolbarStyle"
                 app:contentInsetRight="0dp"
                 app:contentInsetStart="0dp"
                 app:contentInsetStartWithNavigation="0dp">

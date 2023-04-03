@@ -443,21 +443,24 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
     }
 
     public void onBackPressed() {
-        if (search_view.getVisibility() == View.VISIBLE) {
-            search_view.setVisibility(View.GONE);
-            name_tite_layout.setVisibility(View.VISIBLE);
-            search_func.setQuery("", true);
-        } else if (mDrawer.isDrawerOpen(GravityCompat.START)) {
-            mDrawer.closeDrawer(GravityCompat.START);
-        } else {
-            if (pressedTime + 1000 > System.currentTimeMillis()) {
-                moveTaskToBack(true);
-                super.onBackPressed();
-                finish();
+
+        if (UserListFragment.isSheetOpen) {
+            if (search_view.getVisibility() == View.VISIBLE) {
+                search_view.setVisibility(View.GONE);
+                name_tite_layout.setVisibility(View.VISIBLE);
+                search_func.setQuery("", true);
+            } else if (mDrawer.isDrawerOpen(GravityCompat.START)) {
+                mDrawer.closeDrawer(GravityCompat.START);
             } else {
-                Toast.makeText(getBaseContext(), R.string.exitWarning, Toast.LENGTH_SHORT).show();
+                if (pressedTime + 1000 > System.currentTimeMillis()) {
+                    moveTaskToBack(true);
+                    super.onBackPressed();
+                    finish();
+                } else {
+                    Toast.makeText(getBaseContext(), R.string.exitWarning, Toast.LENGTH_SHORT).show();
+                }
+                pressedTime = System.currentTimeMillis();
             }
-            pressedTime = System.currentTimeMillis();
         }
 
 

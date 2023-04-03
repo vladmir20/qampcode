@@ -6,6 +6,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+        <item name="autoCompleteTextViewStyle">@style/cursorColor</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -59,6 +60,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="autoCompleteTextViewStyle">@style/cursorColor</item>
+
         <!-- Customize your theme here. -->
     </style>
 
@@ -92,6 +95,11 @@
         <item name="android:textCursorDrawable">@drawable/curson</item>
     </style>
 
+    <style name="ToolbarStyle" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        ...
+        <item name="colorAccent">@color/text_color17</item>
+    </style>
+
     <style name="Theme.Huddle.SplashTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -116,5 +124,6 @@
         <item name="colorControlNormal">@color/colorPrimary</item>
         <item name="colorControlActivated">@color/colorPrimary</item>
         <item name="colorControlHighlight">@color/colorPrimary</item>
+        <item name="autoCompleteTextViewStyle">@style/cursorColor</item>
     </style>
 </resources>
