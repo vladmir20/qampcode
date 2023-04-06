@@ -5,7 +5,8 @@
     android:id="@+id/mes_rv_card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="MissingDefaultResource">
 
     <LinearLayout
         android:id="@+id/top_layout"
@@ -21,8 +22,7 @@
             android:id="@+id/isChecked"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:visibility="gone"
-            android:gravity="center"
+             android:gravity="center"
             android:layout_gravity="center"/>
 
         <ImageView

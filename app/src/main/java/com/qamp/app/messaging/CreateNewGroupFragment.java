@@ -481,4 +481,6 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
             }
         }
     }
+
+
 }

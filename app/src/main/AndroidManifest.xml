@@ -190,8 +190,30 @@
         <activity
             android:name=".SelectLanguage"
             android:screenOrientation="portrait" />
-        <activity android:name=".ZoomPictureActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ZoomPictureActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".StartUpActivity"
+            android:screenOrientation="portrait" />
+
+<!--        <service-->
+<!--            android:name=".java.MyFirebaseMessagingService"-->
+<!--            android:exported="false">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="com.google.firebase.MESSAGING_EVENT" />-->
+<!--            </intent-filter>-->
+<!--        </service>-->
+
+<!--        <meta-data-->
+<!--            android:name="com.google.firebase.messaging.default_notification_icon"-->
+<!--            android:resource="@drawable/ic_logo_gradient" />-->
+<!--        <meta-data-->
+<!--            android:name="com.google.firebase.messaging.default_notification_color"-->
+<!--            android:resource="@color/colorPrimary" />-->
+<!--        <meta-data-->
+<!--            android:name="com.google.firebase.messaging.default_notification_channel_id"-->
+<!--            android:value="@string/default_notification_channel_id" />-->
 
     </application>
 

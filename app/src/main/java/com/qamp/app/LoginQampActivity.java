@@ -653,9 +653,9 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
                             otpTextView4.getText().clear();
 
                             otpBackgroundRed(true);
-
-                            WrongVibrate();
                             otpTextView1.requestFocus();
+                             WrongVibrate();
+
                             Toast.makeText(LoginQampActivity.this, errMsg, Toast.LENGTH_LONG).show();
                         }
                     } catch (JSONException e) {

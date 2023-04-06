@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,7 +49,9 @@ import com.qamp.app.messaging.AllUtils.LetterTileProvider;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Set;
 import java.util.Timer;
@@ -58,6 +61,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         Mesibo.PresenceListener, Mesibo.ConnectionListener, Mesibo.ProfileListener, Mesibo.SyncListener, Mesibo.GroupListener {
     public static MesiboGroupProfile.Member[] mExistingMembers = null;
     public static ArrayList<MesiboProfile> mMemberProfiles = new ArrayList<>();
+    public static ArrayList<MesiboProfile> mMemberGroup = new ArrayList<>();
     public static boolean isSheetOpen = false;
     /* access modifiers changed from: private */
     public boolean mCloseAfterForward = false;
@@ -95,6 +99,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
     MesiboUI.Config mMesiboUIOptions = null;
     RecyclerView mRecyclerView = null;
     LinearLayout horizontal_channel_recycler;
+    ArrayList<MesiboProfile> tempmemberProfiles = new ArrayList<>();
     ArrayList<MesiboProfile> memberProfiles = new ArrayList<>();
     long mForwardIdForContactList = 0;
     String forwardMessage = MesiboUI.MESSAGE_CONTENT;
@@ -199,7 +204,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                 if (UserListFragment.this.mSelectionMode == MesiboUserListFragment.MODE_SELECTGROUP) {
                     UserListFragment.this.mAdapter.createNewGroup();
                 } else if (UserListFragment.this.mSelectionMode == MesiboUserListFragment.MODE_EDITGROUP) {
-                    UserListFragment.this.mAdapter.modifyGroupDetail();
+                     UserListFragment.this.mAdapter.modifyGroupDetail();
                 } else if (UserListFragment.this.mSelectionMode == MesiboUserListFragment.MODE_SELECTCONTACT_FORWARD) {
                     UserListFragment.this.mAdapter.forwardMessageToContacts();
                 }
@@ -279,6 +284,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
     }
 
     private void showConatcts() {
+
         ContactsBottomSheetFragment contactsBottomSheetFragment = new ContactsBottomSheetFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(MesiboUserListFragment.MESSAGE_LIST_MODE, MesiboUserListFragment.MODE_SELECTCONTACT);
@@ -313,10 +319,6 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         } else {
             this.mEmptyView.setText(MesiboUI.getConfig().emptyUserListMessage);
         }
-    }
-
-    public void setDataonBackPress() {
-
     }
 
 
@@ -697,6 +699,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                     Mesibo.getProfile(this.mGroupId).getGroupProfile().getMembers(100, true, this);
                     return;
                 }
+
                 this.mUserProfiles.addAll(this.memberProfiles);
                 MesiboProfile tempUserProfile2 = new MesiboProfile();
                 tempUserProfile2.setName(String.valueOf(this.mMesiboUIOptions.groupMembersTitle));
@@ -770,15 +773,19 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
 
     public void Mesibo_onGroupLeft(MesiboProfile mesiboProfile) {
     }
-
     public void Mesibo_onGroupMembers(MesiboProfile mesiboProfile, MesiboGroupProfile.Member[] members) {
         mExistingMembers = members;
+
         for (MesiboGroupProfile.Member m : members) {
-            this.memberProfiles.add(m.getProfile());
+            this.tempmemberProfiles.add(m.getProfile());
         }
+
+        Set<MesiboProfile> s = new HashSet<MesiboProfile>(tempmemberProfiles);
+     memberProfiles = new ArrayList<>(s);
         if (this.memberProfiles.size() > 0) {
             showUserList(100);
         }
+
     }
 
     public void Mesibo_onGroupMembersJoined(MesiboProfile mesiboProfile, MesiboGroupProfile.Member[] members) {
@@ -1096,6 +1103,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             }
             MesiboUIManager.launchGroupActivity(UserListFragment.this.getActivity(), UserListFragment.this.mGroupEditBundle);
             UserListFragment.this.getActivity().finish();
+
         }
 
         public void forwardMessageToContacts() {

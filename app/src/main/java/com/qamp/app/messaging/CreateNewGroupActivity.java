@@ -101,4 +101,12 @@ public class CreateNewGroupActivity extends AppCompatActivity {
     public void onPause() {
         CreateNewGroupActivity.super.onPause();
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+ContactsBottomSheetFragment.slectedgtoup.clear();
+
+    }
 }

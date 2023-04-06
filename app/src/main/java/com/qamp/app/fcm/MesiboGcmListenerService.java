@@ -46,7 +46,7 @@ public class MesiboGcmListenerService extends FirebaseMessagingService {
 
             MesiboRegistrationIntentService.sendMessageToListener( false);
 
-            Intent intent = new Intent("com.mesibo.someintent");
+            Intent intent = new Intent("com.qamp.app");
             intent.putExtras(data);
             MesiboJobIntentService.enqueueWork(MainApplication.getAppContext(), intent);
 

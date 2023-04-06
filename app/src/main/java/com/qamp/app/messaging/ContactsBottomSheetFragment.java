@@ -278,19 +278,18 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
         next_group.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                UserListFragment.mMemberProfiles.clear();
                 if (slectedgtoup.size() >= 2) {
                     groupmaker = 1;
                     Iterator<MesiboProfile> it = slectedgtoup.iterator();
                     while (it.hasNext()) {
                         MesiboProfile d = it.next();
                         UserListFragment.mMemberProfiles.add(d);
-
                     }
-                    MesiboUIManager.launchGroupActivity(ContactsBottomSheetFragment.this.getActivity(), (Bundle) null);
-                    ContactsBottomSheetFragment.this.getActivity().finish();
+                  //  MesiboUIManager.launchGroupActivity(ContactsBottomSheetFragment.this.getActivity(), (Bundle) null);
                     Intent intent = new Intent(getActivity(), CreateNewGroupActivity.class);
                     startActivity(intent);
-                    getActivity().finish();
+
                 } else if (slectedgtoup.size() == 0 || slectedgtoup.size() == 1) {
                     Toast.makeText(getContext(), "Please Select atleast two members to create group", Toast.LENGTH_SHORT).show();
                 }
@@ -303,7 +302,6 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                 dismiss();
             }
         });
-
 
         editTextTextPersonName5.addTextChangedListener(new TextWatcher() {
             @Override
@@ -1016,7 +1014,14 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                         }
                     });
                 }
+
             }
+
+
+
+
+
+
         }
 
         @Override
@@ -1283,4 +1288,10 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
         }
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        slectedgtoup.clear();
+
+    }
 }

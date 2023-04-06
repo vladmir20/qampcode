@@ -92,8 +92,7 @@ public class SampleAPI {
     }
 
     public static String phoneBookLookup(String phone) {
-        if (TextUtils.isEmpty(phone))
-            return null;
+        if (TextUtils.isEmpty(phone)) return null;
 
         return ContactUtils.reverseLookup(phone);
     }
@@ -167,8 +166,7 @@ public class SampleAPI {
             AppConfig.reset();
         }
 
-        if (save)
-            AppConfig.save();
+        if (save) AppConfig.save();
         return true;
     }
 
@@ -197,8 +195,7 @@ public class SampleAPI {
         Mesibo.uploadCrashLogs();
 
         if (!TextUtils.isEmpty(AppConfig.getConfig().token)) {
-            if (startMesibo(false))
-                startSync();
+            if (startMesibo(false)) startSync();
         }
     }
 
@@ -240,8 +237,7 @@ public class SampleAPI {
     public static void startSync() {
 
         synchronized (SampleAPI.class) {
-            if (!mSyncPending)
-                return;
+            if (!mSyncPending) return;
             mSyncPending = false;
         }
 
@@ -321,8 +317,7 @@ public class SampleAPI {
         int cc = Mesibo.getCountryCodeFromPhone(AppConfig.getConfig().phone);
         ContactUtils.setCountryCode(String.valueOf(cc));
 
-        if (resetContacts)
-            ContactUtils.syncReset();
+        if (resetContacts) ContactUtils.syncReset();
 
         Intent restartIntent = new Intent(MainApplication.getRestartIntent());
 
@@ -346,8 +341,7 @@ public class SampleAPI {
     }
 
     public static boolean startLogout() {
-        if (TextUtils.isEmpty(AppConfig.getConfig().token))
-            return false;
+        if (TextUtils.isEmpty(AppConfig.getConfig().token)) return false;
         JSONObject b = new JSONObject();
         try {
             b.put("op", "logout");
@@ -367,8 +361,7 @@ public class SampleAPI {
             b.put("op", "login");
             b.put("appid", mContext.getPackageName());
             b.put("phone", phoneNumber);
-            if (!TextUtils.isEmpty(verificationCode))
-                b.put("otp", verificationCode);
+            if (!TextUtils.isEmpty(verificationCode)) b.put("otp", verificationCode);
         } catch (Exception e) {
 
         }
@@ -378,8 +371,7 @@ public class SampleAPI {
     }
 
     public static boolean getContacts(ArrayList<String> contacts, boolean contact, boolean syncNow) {
-        if (null == contacts || contacts.size() == 0)
-            return false;
+        if (null == contacts || contacts.size() == 0) return false;
 
         String[] c = contacts.toArray(new String[contacts.size()]);
         Mesibo.syncContacts(c, contact, true, 0, syncNow);
@@ -387,8 +379,7 @@ public class SampleAPI {
     }
 
     public static boolean deleteContacts(ArrayList<String> contacts) {
-        if (null == contacts || 0 == contacts.size())
-            return false;
+        if (null == contacts || 0 == contacts.size()) return false;
 
         String[] c = contacts.toArray(new String[contacts.size()]);
         Mesibo.syncContacts(c, false, true, 0, true);
@@ -398,28 +389,24 @@ public class SampleAPI {
     }
 
     public static void notify(int id, String title, String message) {
-        mNotifyUser.sendNotification(id, title, message);
+///        mNotifyUser.sendNotification(id, title, message);
     }
 
     public static void notify(MesiboMessage params, String message) {
         // if call is in progress, we must give notification even if reading because user is in call
         // screen
-        if (!MesiboCall.getInstance().isCallInProgress() && Mesibo.isReading(params))
-            return;
+        if (!MesiboCall.getInstance().isCallInProgress() && Mesibo.isReading(params)) return;
 
         // TBD, create read session for unread messages in database
-        if (!params.isRealtimeMessage() || Mesibo.MSGSTATUS_OUTBOX == params.getStatus())
-            return;
+        if (!params.isRealtimeMessage() || Mesibo.MSGSTATUS_OUTBOX == params.getStatus()) return;
 
         //MUST not happen for realtime message
-        if (params.groupid > 0 && null == params.groupProfile)
-            return;
+        if (params.groupid > 0 && null == params.groupProfile) return;
 
         MesiboProfile profile = Mesibo.getProfile(params);
 
         // this will also mute message from user in group
-        if (null != profile && profile.isMuted())
-            return;
+        if (null != profile && profile.isMuted()) return;
 
         String name = params.peer;
         if (null != profile) {
@@ -428,11 +415,9 @@ public class SampleAPI {
 
         if (params.groupid > 0) {
             MesiboProfile gp = Mesibo.getProfile(params.groupid);
-            if (null == gp)
-                return; // must not happen
+            if (null == gp) return; // must not happen
 
-            if (gp.isMuted())
-                return;
+            if (gp.isMuted()) return;
 
             name += " @ " + gp.getName();
         }
@@ -456,13 +441,11 @@ public class SampleAPI {
 
         for (int i = 0; i < profiles.size(); i++) {
             MesiboProfile profile = profiles.get(i);
-            if (!TextUtils.isEmpty(profile.address))
-                c.add(profile.address);
+            if (!TextUtils.isEmpty(profile.address)) c.add(profile.address);
 
         }
 
-        if (c.size() == 0)
-            return;
+        if (c.size() == 0) return;
 
         getContacts(c, hidden, true);
     }
@@ -478,8 +461,7 @@ public class SampleAPI {
         }
 
         synchronized (SampleAPI.class) {
-            if (mGCMTokenSent)
-                return;
+            if (mGCMTokenSent) return;
             mGCMTokenSent = true;
         }
 
@@ -494,8 +476,7 @@ public class SampleAPI {
         Mesibo.setForegroundContext(null, -1, true);
 
         while (inService) {
-            if (Mesibo.STATUS_ONLINE == Mesibo.getConnectionStatus())
-                break;
+            if (Mesibo.STATUS_ONLINE == Mesibo.getConnectionStatus()) break;
 
             try {
                 Thread.sleep(1000);
@@ -555,8 +536,7 @@ public class SampleAPI {
                     }
                 }
 
-                if (null == response)
-                    result = false;
+                if (null == response) result = false;
 
                 final Context context = (null == this.mContext) ? SampleAPI.mContext : this.mContext;
 
@@ -566,8 +546,7 @@ public class SampleAPI {
                 } else {
                     final Response r = response;
 
-                    if (null == context)
-                        return true;
+                    if (null == context) return true;
 
                     Handler uiHandler = new Handler(context.getMainLooper());
 
@@ -613,8 +592,7 @@ public class SampleAPI {
             http.notifyOnCompleteOnly = true;
             http.concatData = true;
             http.listener = this;
-            if (mBlocking)
-                return http.executeAndWait();
+            if (mBlocking) return http.executeAndWait();
             return http.execute();
         }
 
