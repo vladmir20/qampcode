@@ -444,7 +444,8 @@ public class ShowProfileFragment extends Fragment implements Mesibo.MessageListe
         }
 
         //only owner can delete group
-        mExitGroupText.setText(mSelfMember.isOwner() ? "Delete Group" : "Exit Group");
+        mExitGroupText.setText(mSelfMember.isOwner() ? getResources().getString(R.string.delete_group) :
+                getResources().getString(R.string.exit_group));
 
         if(mUser.groupid > 0) {
             mAddMemebers.setVisibility(mSelfMember.isAdmin() && mUser.isActive() ? VISIBLE : GONE);

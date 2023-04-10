@@ -707,7 +707,9 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
         } else if (10 == connectionStatus) {
             return this.updateUserStatus(this.mMesiboUIOptions.suspendIndicationTitle, 0L);
         } else if (8 == connectionStatus) {
-            return this.updateUserStatus(this.mMesiboUIOptions.noNetworkIndicationTitle, 0L);
+            return this.updateUserStatus(getActivity().getResources().
+                            getString(R.string.no_network_text),
+                    0L);
         } else if (7 == connectionStatus) {
             return this.updateUserStatus(this.mMesiboUIOptions.offlineIndicationTitle, 0L);
         } else if (1 != connectionStatus) {
@@ -731,11 +733,11 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
                     status = profile.getName() + " is ";
                 }
 
-                status = status + this.mMesiboUIOptions.typingIndicationTitle;
+                status = status + getActivity().getResources().getString(R.string.typing_text);
             } else if (profile.isChatting() && 0L == groupid) {
                 status = this.mMesiboUIOptions.joinedIndicationTitle;
             } else if (profile.isOnline() && 0L == groupid) {
-                status = this.mMesiboUIOptions.userOnlineIndicationTitle;
+                status = getActivity().getResources().getString(R.string.online_text);
             }
 
             return this.updateUserStatus(status, 0L);
@@ -1648,8 +1650,11 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
     public void promptAndDeleteMessage(final List<Integer> selection) {
         MesiboUI.Config opts = MesiboUI.getConfig();
         AlertDialog.Builder builder = new AlertDialog.Builder(this.mActivity);
-        builder.setTitle(opts.deleteMessagesTitle);
-        String[] items = new String[]{opts.deleteForEveryoneTitle, opts.deleteForMeTitle, opts.cancelTitle};
+        builder.setTitle(getActivity().getResources().getString(R.string.delete_messages));
+        String[] items = new String[]{getActivity().getResources()
+                .getString(R.string.delete_for_everyone_text),
+                getActivity().getResources().getString(R.string.delete_for_me),
+                getActivity().getResources().getString(R.string.cancel_text)};
         builder.setItems(items, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 if (2 != which) {

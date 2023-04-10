@@ -59,13 +59,13 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class
-OnBoardingUserProfile extends AppCompatActivity implements MesiboProfile.Listener {
+public class OnBoardingUserProfile extends AppCompatActivity implements MesiboProfile.Listener {
 
     static final int CAMERA_PERMISSION_CODE = 102;
     static final int EXTENAL_STORAGE_READ_PERMISSION_CODE = 103;
     private static Boolean mSettingsMode = false;
-    private ImageView cameraIcon = null, editUserImage = null;
+    private final ImageView editUserImage = null;
+    private ImageView cameraIcon = null;
     private TextView cameraText, onboardingProfileSubtitle, onboardingProfileTitle;
     private EditText nameEditText;
     private Button saveButton;
@@ -108,7 +108,7 @@ OnBoardingUserProfile extends AppCompatActivity implements MesiboProfile.Listene
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == CAMERA_PERMISSION_CODE) {
@@ -311,7 +311,6 @@ OnBoardingUserProfile extends AppCompatActivity implements MesiboProfile.Listene
             jsonBody.put("firstName", "");
             jsonBody.put("lastName", "");
             jsonBody.put("profilePicId", AppConfig.getConfig().profileId);
-
         } catch (JSONException ex) {
             ex.printStackTrace();
         }
@@ -333,7 +332,10 @@ OnBoardingUserProfile extends AppCompatActivity implements MesiboProfile.Listene
                         AppConfig.getConfig().status = profileStatus;
                         AppConfig.getConfig().version = responseVersion;
                         //AppConfig.getConfig().profileId = profileId;
-                        Intent intent = new Intent(OnBoardingUserProfile.this, WelcomeOnboarding.class);
+                        Intent intent = new
+                                Intent(
+                                OnBoardingUserProfile.this,
+                                WelcomeOnboarding.class);
                         finish();
                         startActivity(intent);
                     } else {
@@ -341,6 +343,7 @@ OnBoardingUserProfile extends AppCompatActivity implements MesiboProfile.Listene
                         JSONObject error = (JSONObject) errors.get(0);
                         String errMsg = error.getString("errMsg");
                         String errorCode = error.getString("errCode");
+                        Toast.makeText(OnBoardingUserProfile.this, "" + errMsg, Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
                     AppUtils.closeProgresDialog();
@@ -487,15 +490,15 @@ OnBoardingUserProfile extends AppCompatActivity implements MesiboProfile.Listene
 
     private void initaliseViews() {
         // Text Field
-        cameraText = (TextView) findViewById(R.id.cameraText);
-        onboardingProfileSubtitle = (TextView) findViewById(R.id.onboardingProfileSubtitle);
-        onboardingProfileTitle = (TextView) findViewById(R.id.onboardingProfileTitle);
-        nameEditText = (EditText) findViewById(R.id.nameEditText);
-        saveButton = (Button) findViewById(R.id.saveButton);
-        circleImageView = (CircleImageView) findViewById(R.id.circleImageView);
-        editPhoto = (LinearLayout) findViewById(R.id.editPhoto);
-        cameraIcon = (ImageView) findViewById(R.id.cameraIcon);
-        cameraText = (TextView) findViewById(R.id.cameraText);
+        cameraText = findViewById(R.id.cameraText);
+        onboardingProfileSubtitle = findViewById(R.id.onboardingProfileSubtitle);
+        onboardingProfileTitle = findViewById(R.id.onboardingProfileTitle);
+        nameEditText = findViewById(R.id.nameEditText);
+        saveButton = findViewById(R.id.saveButton);
+        circleImageView = findViewById(R.id.circleImageView);
+        editPhoto = findViewById(R.id.editPhoto);
+        cameraIcon = findViewById(R.id.cameraIcon);
+        cameraText = findViewById(R.id.cameraText);
         textFieldListeners();
         editPhoto.setVisibility(View.GONE);
         cameraText.setVisibility(View.VISIBLE);
@@ -527,17 +530,11 @@ OnBoardingUserProfile extends AppCompatActivity implements MesiboProfile.Listene
     }
 
     public void openCamera() {
-        ImagePicker.Companion.with(this).
-                saveDir(getExternalFilesDir(Environment.DIRECTORY_DCIM)).cameraOnly()
-                .cropSquare().
-                maxResultSize(1080, 1080).start();
+        ImagePicker.Companion.with(this).saveDir(getExternalFilesDir(Environment.DIRECTORY_DCIM)).cameraOnly().cropSquare().maxResultSize(1080, 1080).start();
     }
 
     public void openGallery() {
-        ImagePicker.with(this).
-                saveDir(getExternalFilesDir(Environment.DIRECTORY_DCIM)).
-                galleryOnly().cropSquare()
-                .maxResultSize(1080, 1080).start();
+        ImagePicker.with(this).saveDir(getExternalFilesDir(Environment.DIRECTORY_DCIM)).galleryOnly().cropSquare().maxResultSize(1080, 1080).start();
     }
 
     public void setImageProfile(Uri uri) {

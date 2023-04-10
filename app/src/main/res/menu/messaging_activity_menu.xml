@@ -10,7 +10,7 @@
 
     <item
         android:id="@+id/action_menu_e2ee"
-        android:title="End-To-End Encryption"
+        android:title="@string/EtoEEncryption"
         app:showAsAction="never" />
 
     <item

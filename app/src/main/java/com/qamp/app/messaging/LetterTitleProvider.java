@@ -121,7 +121,7 @@ public class LetterTitleProvider extends LetterTileProvider {
             mFirstChar[0] = Character.toUpperCase(firstChar);
         } else {
             //c.drawBitmap(mDefaultBitmap, 0, 0, null);
-            mFirstChar[0] = '*';
+            mFirstChar[0] = firstChar;
         }
 
         mPaint.setTextSize(mTileLetterFontSize);

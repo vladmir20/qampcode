@@ -409,5 +409,14 @@
     <string name="enter_group_desc">Enter Group Description</string>
     <string name="privacy_settings">Privacy Settings</string>
     <string name="group_interaction_text">Group Interaction Settings</string>
+    <string name="online_text">Online</string>
+    <string name="typing_text">Typing</string>
+    <string name="no_network_text">No Network</string>
+    <string name="delete_messages">Delete Messages?</string>
+    <string name="delete_for_everyone_text">Delete For Everyone</string>
+    <string name="delete_for_me">Delete For Me</string>
+    <string name="Create_group_text">Create Group</string>
+    <string name="all_users">All Users</string>
+    <string name="select_group_members">Select group members</string>
 
 </resources>

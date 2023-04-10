@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.qamp.app.Utils.AppUtils;
 
 import java.util.ArrayList;
@@ -76,6 +75,7 @@ public class SelectLanguage extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         SelectLanguage.this.finish();
+
         QampUiHelper.launchEditProfile(SelectLanguage.this, 0, 0, false);
     }
 

@@ -41,7 +41,7 @@
                     android:textStyle="bold"
                     android:layout_gravity="center_vertical"
                     android:textColor="@android:color/white"
-                    android:text="End-to-End Encryption"
+                    android:text="@string/EtoEEncryption"
                     />
                 <TextView
                     android:id="@+id/e2e_subtitle"

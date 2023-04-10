@@ -178,9 +178,9 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         } else if (this.mSelectionMode == MesiboUserListFragment.MODE_SELECTCONTACT_FORWARD) {
             updateTitle(this.mMesiboUIOptions.forwardTitle);
         } else if (this.mSelectionMode == MesiboUserListFragment.MODE_SELECTGROUP) {
-            updateTitle(this.mMesiboUIOptions.selectGroupContactsTitle);
+            updateTitle(getActivity().getResources().getString(R.string.select_group_members));
         } else if (this.mSelectionMode == MesiboUserListFragment.MODE_EDITGROUP) {
-            updateTitle(this.mMesiboUIOptions.selectGroupContactsTitle);
+            updateTitle(getActivity().getResources().getString(R.string.select_group_members));
             this.mGroupEditBundle = getArguments().getBundle(MesiboUI.BUNDLE);
             if (this.mGroupEditBundle != null) {
                 this.mGroupId = this.mGroupEditBundle.getLong(MesiboUI.GROUP_ID);
@@ -590,7 +590,8 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             updateSubTitle(this.mMesiboUIOptions.suspendIndicationTitle);
             Utils.showServicesSuspendedAlert(getActivity());
         } else if (status2 == 8) {
-            updateSubTitle(this.mMesiboUIOptions.noNetworkIndicationTitle);
+            updateSubTitle(getActivity().getResources().
+                    getString(R.string.no_network_text));
         } else if (status2 == 22) {
             getActivity().finish();
         } else {
@@ -690,7 +691,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                     this.mUserProfiles.add(0, tempUserProfile);
                 }
                 MesiboProfile tempUserProfile1 = new MesiboProfile();
-                tempUserProfile1.setName(String.valueOf(this.mMesiboUIOptions.allUsersTitle));
+                tempUserProfile1.setName(String.valueOf(getActivity().getResources().getString(R.string.all_users)));
                 this.mUserProfiles.add(tempUserProfile1);
             }
             if (this.mSelectionMode == MesiboUserListFragment.MODE_EDITGROUP) {
@@ -702,10 +703,10 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
 
                 this.mUserProfiles.addAll(this.memberProfiles);
                 MesiboProfile tempUserProfile2 = new MesiboProfile();
-                tempUserProfile2.setName(String.valueOf(this.mMesiboUIOptions.groupMembersTitle));
+                tempUserProfile2.setName(String.valueOf(getActivity().getResources().getString(R.string.group_members)));
                 this.mUserProfiles.add(0, tempUserProfile2);
                 MesiboProfile tempUserProfile12 = new MesiboProfile();
-                tempUserProfile12.setName(String.valueOf(this.mMesiboUIOptions.allUsersTitle));
+                tempUserProfile12.setName(String.valueOf(getActivity().getResources().getString(R.string.all_users)));
                 this.mUserProfiles.add(tempUserProfile12);
             }
             this.mUserProfiles.addAll(Mesibo.getSortedUserProfiles());
@@ -722,7 +723,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                             showForwardLayout();
                         }
                     }
-                } else if (!user2.getName().equalsIgnoreCase(this.mMesiboUIOptions.allUsersTitle) && !user2.getName().equalsIgnoreCase(this.mMesiboUIOptions.recentUsersTitle) && !user2.getName().equalsIgnoreCase(this.mMesiboUIOptions.groupMembersTitle)) {
+                } else if (!user2.getName().equalsIgnoreCase(getActivity().getResources().getString(R.string.all_users)) && !user2.getName().equalsIgnoreCase(this.mMesiboUIOptions.recentUsersTitle) && !user2.getName().equalsIgnoreCase(getActivity().getResources().getString(R.string.group_members))) {
                     this.mUserProfiles.remove(i);
                 }
             }
@@ -912,9 +913,9 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                     holder.mContactsMessage.setTextColor(UserListFragment.this.mMesiboUIOptions.mUserListStatusColor);
                 } else {
                     MesiboProfile typingProfile = data.getTypingProfile();
-                    String typingText = UserListFragment.this.mMesiboUIOptions.typingIndicationTitle;
+                    String typingText = getActivity().getResources().getString(R.string.typing_text);
                     if (typingProfile != null) {
-                        typingText = typingProfile.getName() + " is " + UserListFragment.this.mMesiboUIOptions.typingIndicationTitle;
+                        typingText = typingProfile.getName() + " is " + getActivity().getResources().getString(R.string.typing_text);
                     }
                     holder.mContactsMessage.setText(typingText);
                     holder.mContactsMessage.setTextColor(UserListFragment.this.mMesiboUIOptions.mUserListTypingIndicationColor);
@@ -1157,7 +1158,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             Iterator<MesiboProfile> it = this.mUsers.iterator();
             while (it.hasNext()) {
                 MesiboProfile item = it.next();
-                if (item.getName().toLowerCase().contains(text2) || item.getName().equals(UserListFragment.this.mMesiboUIOptions.allUsersTitle) || item.getName().equals(UserListFragment.this.mMesiboUIOptions.recentUsersTitle) || item.getName().equals(UserListFragment.this.mMesiboUIOptions.groupMembersTitle)) {
+                if (item.getName().toLowerCase().contains(text2) || item.getName().equals(getActivity().getResources().getString(R.string.all_users)) || item.getName().equals(UserListFragment.this.mMesiboUIOptions.recentUsersTitle) || item.getName().equals(getActivity().getResources().getString(R.string.group_members))) {
                     this.mSearchResults.add(item);
                 }
             }

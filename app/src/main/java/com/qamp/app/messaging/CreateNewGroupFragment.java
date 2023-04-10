@@ -124,7 +124,7 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
                 if (isLessMembers) {
                     Utils.showAlert(CreateNewGroupFragment.this.getActivity(), MesiboConfiguration.CREATE_GROUP_NOMEMEBER_TITLE_STRING, MesiboConfiguration.CREATE_GROUP_NOMEMEBER_MESSAGE_STRING);
                 } else if (CreateNewGroupFragment.this.mGroupSubjectEditor.getText().toString().length() < 2) {
-                    Utils.showAlert(CreateNewGroupFragment.this.getActivity(), null, MesiboConfiguration.CREATE_GROUP_GROUPNAME_ERROR_MESSAGE_STRING);
+                    Utils.showAlert(CreateNewGroupFragment.this.getActivity(), null, getActivity().getResources().getString(R.string.group_valid_text));
                 } else {
                     CreateNewGroupFragment.this.mCreateGroupBtn.setEnabled(false);
                     if (0 == CreateNewGroupFragment.this.mGroupId) {

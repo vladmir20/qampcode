@@ -98,9 +98,9 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
     public static final String MESSAGE_DELETED_STRING = "This message was deleted";
     public static final String MISSED_VIDEO_CALL = "Missed video call";
     public static final String MISSED_VOICE_CALL = "Missed voice call";
-    public static final String ALL_USERS_STRING = "All Users";
+    //public static final String ALL_USERS_STRING = "All Users";
     public static final String FREQUENT_USERS_STRING = "Recent Users";
-    public static final String GROUP_MEMBERS_STRING = "Group Members";
+    //public static final String GROUP_MEMBERS_STRING = "Group Members";
     public static final String[] PROJECTION = new String[]{
             ContactsContract.CommonDataKinds.Phone.CONTACT_ID,
             ContactsContract.Contacts.DISPLAY_NAME,
@@ -1098,15 +1098,15 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                 text = text.toLowerCase();
 
                 for (MesiboProfile item : mUsers) {
-                    if (item.getName().toLowerCase().contains(text) || item.getName().equals(ALL_USERS_STRING) ||
+                    if (item.getName().toLowerCase().contains(text) || item.getName().equals(getActivity().getResources().getString(R.string.all_users)) ||
                             item.getName().equals(FREQUENT_USERS_STRING) ||
-                            item.getName().equals(GROUP_MEMBERS_STRING)) {
+                            item.getName().equals(getActivity().getResources().getString(R.string.group_members))) {
                         mSearchResults.add(item);
                     }
                     if (item.getAddress().toLowerCase().contains(text) ||
-                            item.getAddress().equals(ALL_USERS_STRING) ||
+                            item.getAddress().equals(getActivity().getResources().getString(R.string.all_users)) ||
                             item.getAddress().equals(FREQUENT_USERS_STRING) ||
-                            item.getAddress().equals(GROUP_MEMBERS_STRING)) {
+                            item.getAddress().equals(getActivity().getResources().getString(R.string.group_members))) {
                         mSearchResults.add(item);
                     }
                 }

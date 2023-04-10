@@ -69,7 +69,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
-                        android:text="Online"
+                        android:text="@string/online_text"
                         android:textSize="15dp"
                         android:textColor="@color/md_white_1000"
                         />

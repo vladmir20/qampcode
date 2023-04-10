@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -148,7 +149,7 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
         long lastSeen = mUserProfile.getLastSeen();
         userstatus.setVisibility(View.VISIBLE);
         if (0 == lastSeen) {
-            userstatus.setText("Online");
+            userstatus.setText(getResources().getString(R.string.online_text));
         } else if (lastSeen < 0) {
             // never seen or group
             userstatus.setVisibility(View.GONE);
@@ -353,7 +354,9 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
             mUsermageView.setImageDrawable(new com.mesibo.messaging.RoundImageDrawable(b));
             //mUsermageView.setImageBitmap(b);
         } else {
-            mUsermageView.setImageDrawable(getDrawable(R.drawable.default_user_image));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                mUsermageView.setImageDrawable(getDrawable(R.drawable.default_user_image));
+            }
         }
     }
 
@@ -424,7 +427,8 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
         }
 
         //only owner can delete group
-        mExitGroupText.setText(mSelfMember.isOwner() ? "Delete Group" : "Exit Group");
+        mExitGroupText.setText(mSelfMember.isOwner() ? getResources().getString(R.string.delete_group) :
+                getResources().getString(R.string.exit_group));
 
         if (mUserProfile.groupid > 0) {
             mAddMemebers.setVisibility(mSelfMember.isAdmin() && mUserProfile.isActive() ? VISIBLE : GONE);

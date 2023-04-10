@@ -120,7 +120,7 @@ public class ShowProfileActivity extends AppCompatActivity implements ShowProfil
         long lastSeen = mUserProfile.getLastSeen();
         userstatus.setVisibility(View.VISIBLE);
         if (0 == lastSeen) {
-            userstatus.setText("Online");
+            userstatus.setText(getResources().getString(R.string.online_text));
         } else if (lastSeen < 0) {
             // never seen or group
             userstatus.setVisibility(View.GONE);

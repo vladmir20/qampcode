@@ -48,8 +48,8 @@
             android:drawablePadding="10dp"
             android:gravity="left"
             android:paddingLeft="16dp"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:text="@string/create_new_group"
             android:textColor="@color/text_color_black_white"
             android:textSize="15sp" />
@@ -64,8 +64,8 @@
             android:drawablePadding="10dp"
             android:gravity="left"
             android:paddingLeft="16dp"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:text="@string/create_qamp_room"
             android:textColor="@color/text_color_black_white"
             android:textSize="15sp" />
@@ -171,7 +171,7 @@
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
             android:gravity="center"
-            android:text="Create Group"
+            android:text="@string/Create_group_text"
             android:textColor="@color/black"
             android:textSize="14sp" />
 

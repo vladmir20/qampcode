@@ -28,7 +28,7 @@ public class MesiboUI {
 
     public static class Config {
         public static final int e2eeIcon = R.drawable.ic_lock_black_18dp;
-        public String allUsersTitle = "All Users";
+        //public String allUsersTitle = "All Users";
 
         /* renamed from: at */
         public String f0at = "at";
@@ -36,9 +36,9 @@ public class MesiboUI {
         public String connectingIndicationTitle = "Connecting...";
         public Bitmap contactPlaceHolder = null;
         public String createGroupTitle = "Create a New Group";
-        public String deleteForEveryoneTitle = "Delete For Everyone";
-        public String deleteForMeTitle = "Delete For Me";
-        public String deleteMessagesTitle = "Delete Messages?";
+        //public String deleteForEveryoneTitle = "Delete For Everyone";
+        //public String deleteForMeTitle = "Delete For Me";
+        //public String deleteMessagesTitle = "Delete Messages?";
         public String deleteTitle = "Delete";
         public String deletedMessageTitle = "This message was deleted";
         public String e2eeActive = "Messages and Calls are End-To-End Encrypted. No one including AppName can read or listen to your communication";
@@ -57,7 +57,7 @@ public class MesiboUI {
         public boolean enableVoiceCall = false;
         public String forwardTitle = "Forward To";
         public String forwardedTitle = "Forwarded";
-        public String groupMembersTitle = "Group Members";
+        //public String groupMembersTitle = "Group Members";
         public int headerIcon = R.drawable.ic_info_black;
         public int headerIconColor = -16742773;
         public String headerTitle = "";
@@ -85,13 +85,14 @@ public class MesiboUI {
         public String missedVideoCallTitle = "Missed video call";
         public String missedVoiceCallTitle = "Missed voice call";
         public String modifyGroupTitle = "Modify Group details";
-        public String noNetworkIndicationTitle = "No Network";
+       // public String noNetworkIndicationTitle = "No Network";
         public String offlineIndicationTitle = "Not connected";
         public String onlineIndicationTitle = null;
         public int progressbarColor = -16742773;
         public String recentUsersTitle = "Recent Users";
         public String selectContactTitle = "Select a contact";
-        public String selectGroupContactsTitle = "Select group members";
+
+        //public String selectGroupContactsTitle = "Select group members";
         public String sendAnotherLocation = "To send other location, long press on the map and then click on the address";
         public String sendCurrentLocation = "Send Current Location";
         public boolean showRecentInForward = true;
@@ -99,11 +100,13 @@ public class MesiboUI {
         public int titleBackgroundColorForMe = -4198174;
         public int titleBackgroundColorForPeer = -1118482;
         public String today = "Today";
-        public String typingIndicationTitle = "typing...";
+        //public String typingIndicationTitle = "typing...";
         public String unknownTitle = "Unknown";
         public boolean useLetterTitleImage = true;
+
         public String userListTitle = "Contacts";
-        public String userOnlineIndicationTitle = "online";
+
+        //public String userOnlineIndicationTitle = "online";
         public String videoFromGalleryTitle = "Gallery";
         public String videoFromRecorderTitle = "Video Recorder";
         public String videoSelectTitle = "Send your video from?";

@@ -85,11 +85,11 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        Utilss.setLanguage(LoginQampActivity.this);
         setContentView(R.layout.activity_login);
         initViews();
         fetchNumber();
         initPermissions();
-        Utilss.setLanguage(LoginQampActivity.this);
         AppUtils.setStatusBarColor(LoginQampActivity.this, R.color.colorAccent);
         generateOTPButton.setOnClickListener(new View.OnClickListener() {
             @Override

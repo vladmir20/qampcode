@@ -115,7 +115,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="End-To-End Encryption"
+                        android:text="@string/EtoEEncryption"
                         android:layout_gravity="left"
                         android:textColor="@color/md_green_900"
                         android:textSize="18sp"
@@ -556,7 +556,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Group Members"
+                            android:text="@string/group_members"
                             android:layout_gravity="left"
                             android:textColor="@color/md_green_900"
                             android:textSize="18sp"

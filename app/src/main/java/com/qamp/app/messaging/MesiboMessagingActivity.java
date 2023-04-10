@@ -292,7 +292,8 @@ public class MesiboMessagingActivity extends AppCompatActivity implements Mesibo
             this.isOnlineDot.setVisibility(View.GONE);
             return;
         }
-        if (!profile.isGroup() && (status.equals("online") || status.equals("Online")) &&
+        if (!profile.isGroup() && (status.equals(getResources().getString(R.string.online_text)) ||
+                status.equals(getResources().getString(R.string.online_text))) &&
                 (AppUtils.isNetWorkAvailable(MesiboMessagingActivity.this))) {
             this.isOnlineDot.setVisibility(View.VISIBLE);
         }

@@ -13,7 +13,7 @@ public class MesiboConfiguration {
     public static final int KEYBOARD_ICON = R.mipmap.keyboard;
     public static final int EMOJI_ICON = R.mipmap.emoji;
 
-    public static final String CREATE_GROUP_GROUPNAME_ERROR_MESSAGE_STRING = "Group name should be at least 2 characters";
+    //public static final String CREATE_GROUP_GROUPNAME_ERROR_MESSAGE_STRING = "Group name should be at least 2 characters";
 
     public static final String CREATE_GROUP_ERROR_TITLE_STRING = "Group Update Failed !";
     public static final String CREATE_GROUP_ERROR_MESSAGE_STRING = "Please check internet connection and try again later";
@@ -27,9 +27,9 @@ public class MesiboConfiguration {
 
     public static final int DEFAULT_GROUP_MODE = 0;
 
-    public static final String ALL_USERS_STRING = "All Users";
+    //public static final String ALL_USERS_STRING = "All Users";
     public static final String FREQUENT_USERS_STRING = "Recent Users";
-    public static final String GROUP_MEMBERS_STRING = "Group Members";
+    //public static final String GROUP_MEMBERS_STRING = "Group Members";
 
     public static final int STATUS_TIMER = R.drawable.ic_av_timer_black_18dp;
     public static final int STATUS_SEND = R.drawable.ic_done_black_18dp;
@@ -156,8 +156,8 @@ public class MesiboConfiguration {
     public static final String FILE_NOT_AVAILABLE_TITLE = "File not available";
     public static final String FILE_NOT_AVAILABLE_MSG = "Sorry, this File is no longer available on the server.";
 
-    public static final String USER_STATUS_TYPING = "typing...";
-    public static final String USER_STATUS_CHATTING = "chatting...";
+    //public static final String USER_STATUS_TYPING = "typing...";
+    //public static final String USER_STATUS_CHATTING = "chatting...";
 
     public static final String WHATSAPP_NOT_INSTALLED = "Whatsapp app not installed in your phone";
     public static final String PERMISSION_NEEDED = "Permission Needed";
