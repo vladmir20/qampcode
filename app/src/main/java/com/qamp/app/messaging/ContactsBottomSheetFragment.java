@@ -972,6 +972,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                     String destination = "destination";
                     //MesiboProfile mUserr = Mesibo.getProfile("peer");
                     //MesiboProfile mUserr = user;
+                    //mesibo mesibo
 
                     String peer = user.address;
                     long groupId = user.groupid;

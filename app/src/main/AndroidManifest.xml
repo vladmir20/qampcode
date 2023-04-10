@@ -193,9 +193,6 @@
         <activity
             android:name=".ZoomPictureActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".StartUpActivity"
-            android:screenOrientation="portrait" />
 
 <!--        <service-->
 <!--            android:name=".java.MyFirebaseMessagingService"-->
