@@ -42,7 +42,7 @@
     <string name="onboarding_profile_save_button">સાચવો</string>
     <string name="onboarding_profile_camera_text">"તમારું પ્રોફાઇલ ચિત્ર પસંદ કરો "</string>
     <string name="bottomsheet_field_text">"નામ દ્વારા શોધ બટન... "</string>
-    <string name="onboarding_completion_text">સ્વાગત છે         ઓનબોર્ડ</string>
+    <string name="onboarding_completion_text">"Qamp તમારું સ્વાગત કરે છે "</string>
     <string name="profile">"પ્રોફાઇલ "</string>
     <string name="profile_bottom_sheet_title">"છબી વિકલ્પ "</string>
     <string name="success_profile">"પ્રોફાઇલ સાચવી "</string>
@@ -166,25 +166,25 @@
     <string name="fav_text">"મનપસંદ "</string>
     <string name="resend_text">"ફરી મોકલો "</string>
     <string name="delete">"કાઢી નાખો "</string>
-    <string name="copy_text">Copy</string>
-    <string name="shared_files">Shared Files</string>
-    <string name="add_channel">Add Channel</string>
+    <string name="copy_text">"નકલ કરો "</string>
+    <string name="shared_files">"શેર કરેલી ફાઇલો "</string>
+    <string name="add_channel">"ચેનલ ઉમેરો "</string>
     <string name="create_qamp_room">"કૈમ્પ રૂમ બનાવો "</string>
-    <string name="new_group" >New Group</string>
-    <string name="start_conversation">Start Conversation</string>
+    <string name="new_group" >"નવું જૂથ "</string>
+    <string name="start_conversation">"વાતચીત શરૂ કરો "</string>
     <string name="enter_group_name">"જૂથનું નામ દાખલ કરો "</string>
-    <string name="enter_group_desc">Enter Group Description</string>
-    <string name="privacy_settings">Privacy Settings</string>
-    <string name="group_interaction_text">Group Interaction Settings</string>
-    <string name="online_text">Online</string>
-    <string name="typing_text">Typing</string>
-    <string name="no_network_text">No Network</string>
-    <string name="delete_messages">Delete Messages?</string>
-    <string name="delete_for_everyone_text">Delete For Everyone</string>
-    <string name="delete_for_me">Delete For Me</string>
-    <string name="Create_group_text">Create Group</string>
-    <string name="all_users">All Users</string>
-    <string name="select_group_members">Select group members</string>
+    <string name="enter_group_desc">"જૂથ વર્ણન દાખલ કરો "</string>
+    <string name="privacy_settings">"ગોપનીયતા સેટિંગ્સ "</string>
+    <string name="group_interaction_text">"જૂથ ક્રિયાપ્રતિક્રિયા સેટિંગ્સ "</string>
+    <string name="online_text">"ઓનલાઈન "</string>
+    <string name="typing_text">ટાઈપિંગ</string>
+    <string name="no_network_text">"નેટવર્ક નથી "</string>
+    <string name="delete_messages">"મેસેજ ડિલીટ કરીએ? "</string>
+    <string name="delete_for_everyone_text">"દરેક માટે કાઢી નાખો "</string>
+    <string name="delete_for_me">"મારા માટે કાઢી નાખો "</string>
+    <string name="Create_group_text">"જૂથ બનાવો "</string>
+    <string name="all_users">"બધા વપરાશકર્તાઓ "</string>
+    <string name="select_group_members">"જૂથના સભ્યો પસંદ કરો "</string>
 
 
 </resources>

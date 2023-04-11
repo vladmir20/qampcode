@@ -166,25 +166,25 @@
     <string name="fav_text">पसंदीदा</string>
     <string name="resend_text">"पुन: भेजें "</string>
     <string name="delete">"मिटाना "</string>
-    <string name="copy_text">Copy</string>
-    <string name="shared_files">Shared Files</string>
-    <string name="add_channel">Add Channel</string>
+    <string name="copy_text">प्रतिलिपि</string>
+    <string name="shared_files">"साझा की गई फ़ाइलें "</string>
+    <string name="add_channel">"चैनल जोड़ें "</string>
     <string name="create_qamp_room">"एक क्यूम्प कक्ष बनाएँ "</string>
-    <string name="new_group" >New Group</string>
-    <string name="start_conversation">Start Conversation</string>
+    <string name="new_group" >"नया समूह "</string>
+    <string name="start_conversation">"बातचीत शुरू करें "</string>
     <string name="enter_group_name">"समूह का नाम दर्ज करें "</string>
-    <string name="enter_group_desc">Enter Group Description</string>
-    <string name="privacy_settings">Privacy Settings</string>
-    <string name="group_interaction_text">Group Interaction Settings</string>
-    <string name="online_text">Online</string>
-    <string name="typing_text">Typing</string>
-    <string name="no_network_text">No Network</string>
-    <string name="delete_messages">Delete Messages?</string>
-    <string name="delete_for_everyone_text">Delete For Everyone</string>
-    <string name="delete_for_me">Delete For Me</string>
-    <string name="Create_group_text">Create Group</string>
-    <string name="all_users">All Users</string>
-    <string name="select_group_members">Select group members</string>
+    <string name="enter_group_desc">"समूह विवरण दर्ज करें "</string>
+    <string name="privacy_settings">"गोपनीय सेटिंग "</string>
+    <string name="group_interaction_text">"समूह इंटरेक्शन सेटिंग्स "</string>
+    <string name="online_text">"ऑनलाइन "</string>
+    <string name="typing_text">टाइपिंग</string>
+    <string name="no_network_text">"कोई नेटवर्क नहीं "</string>
+    <string name="delete_messages">"संदेश हटाएं? "</string>
+    <string name="delete_for_everyone_text">"सभी के लिए हटाएं "</string>
+    <string name="delete_for_me">"मेरे लिए हटाएं "</string>
+    <string name="Create_group_text">"समूह बनाना "</string>
+    <string name="all_users">"सभी उपयोगकर्ता "</string>
+    <string name="select_group_members">"समूह के सदस्यों का चयन करें "</string>
 
 
 </resources>
