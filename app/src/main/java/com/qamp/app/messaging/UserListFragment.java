@@ -315,7 +315,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
 
     public void setEmptyViewText() {
         if (this.mSelectionMode == MesiboUserListFragment.MODE_MESSAGELIST) {
-            this.mEmptyView.setText(MesiboUI.getConfig().emptyMessageListMessage);
+            this.mEmptyView.setText(getActivity().getResources().getString(R.string.not_having_messages));
         } else {
             this.mEmptyView.setText(MesiboUI.getConfig().emptyUserListMessage);
         }

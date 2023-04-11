@@ -185,6 +185,8 @@
     <string name="Create_group_text">"જૂથ બનાવો "</string>
     <string name="all_users">"બધા વપરાશકર્તાઓ "</string>
     <string name="select_group_members">"જૂથના સભ્યો પસંદ કરો "</string>
+    <string name="Message_hint">"સંદેશ "</string>
+    <string name="not_having_messages">"તમારી પાસે કોઈ સંદેશા નથી. વાતચીત શરૂ કરવા માટે ઉપરના મેસેજ બટન પર ક્લિક કરો "</string>
 
 
 </resources>

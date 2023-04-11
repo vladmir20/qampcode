@@ -47,7 +47,7 @@ public class MesiboUI {
         public String e2eeInactive = "End-To-End Encryption Not Active. TLS encryption is active.";
         public boolean e2eeIndicator = true;
         public String e2eeTitle = "End-To-End Encryption";
-        public String emptyMessageListMessage = "You do not have any messages. Click on the message button above to start a conversation";
+        //public String emptyMessageListMessage = "You do not have any messages. Click on the message button above to start a conversation";
         public String emptySearchListMessage = "Your search returned no results";
         public String emptyUserListMessage = "No Messages";
         public boolean enableBackButton = false;

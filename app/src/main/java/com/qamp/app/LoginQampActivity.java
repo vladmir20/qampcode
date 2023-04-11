@@ -142,7 +142,6 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
                 otpFieldPhoneNumber.setText(ccp.getSelectedCountryCodeWithPlus() + "-" + phoneNumber);
 
                 //MesiboListeners.getInstance().onLogin(this,selectedCountryCode + phoneNumber, "");
-                resendOTP();
 
                 otp_layout1.setBackgroundDrawable(ContextCompat.getDrawable(LoginQampActivity.this, R.drawable.otp_field_corners));
                 otp_layout2.setBackgroundDrawable(ContextCompat.getDrawable(LoginQampActivity.this, R.drawable.otp_field_corners));
@@ -158,8 +157,8 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
                 otpTextView2.clearFocus();
                 otpTextView3.clearFocus();
                 otpTextView4.clearFocus();
+                resendOTP();
 
-                otpTextView1.findFocus();
 
 
                 startTimer();
@@ -473,6 +472,7 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
     }
 
     private void generateOTPDataTask(String url) {
+        otpTextView1.requestFocus();
         try {
             RequestQueue requestQueue = Volley.newRequestQueue(LoginQampActivity.this);
             String URL = url;

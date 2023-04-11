@@ -201,5 +201,7 @@
     <string name="Create_group_text">Create Group</string>
     <string name="all_users">All Users</string>
     <string name="select_group_members">Select group members</string>
+    <string name="Message_hint">Message</string>
+    <string name="not_having_messages">You do not have any messages. Click on the message button above to start a conversation</string>
 
 </resources>
