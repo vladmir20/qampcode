@@ -133,6 +133,7 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
                         gs.flags = 0;
                         Mesibo.createGroup(gs, CreateNewGroupFragment.this);
                         ContactsBottomSheetFragment.groupmaker = 0;
+                        UserListFragment.isSheetOpen = false;
                         return;
                     }
                     Mesibo.getProfile(CreateNewGroupFragment.this.mGroupId).setName(CreateNewGroupFragment.this.mGroupSubjectEditor.getText().toString());

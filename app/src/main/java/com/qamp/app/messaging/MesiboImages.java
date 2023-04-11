@@ -12,6 +12,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 
+import com.qamp.app.R;
+
 public class MesiboImages {
     public static int[] deliveryStatus = {MesiboConfiguration.STATUS_TIMER, MesiboConfiguration.STATUS_SEND, MesiboConfiguration.STATUS_NOTIFIED, MesiboConfiguration.STATUS_READ, MesiboConfiguration.STATUS_ERROR};
     private static Context mContext = null;
@@ -56,7 +58,7 @@ public class MesiboImages {
         if (2 == status) {
             tintColor = MesiboConfiguration.DELETED_TINT_COLOR;
         } else if (3 == status) {
-            tintColor = MesiboConfiguration.READ_TINT_COLOR;
+            tintColor = mContext.getResources().getColor(R.color.read_message_color);
         } else if (status > 3) {
             status = 4;
             tintColor = 13369344;

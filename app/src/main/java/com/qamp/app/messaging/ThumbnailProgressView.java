@@ -54,7 +54,7 @@ public class ThumbnailProgressView extends FrameLayout {
         this.mPictureView = (ImageView) this.mFrameLayout.findViewById(R.id.imageView);
         this.mProgressBar = (ProgressBar) this.mFrameLayout.findViewById(R.id.progressBar);
         if (Build.VERSION.SDK_INT > 21) {
-            this.mProgressBar.setProgressTintList(ColorStateList.valueOf(MesiboUI.getConfig().progressbarColor));
+            this.mProgressBar.setProgressTintList(ColorStateList.valueOf(getContext().getResources().getColor(R.color.colorPrimary)));
         }
         MyTrace.stop();
         MyTrace.start("TPV-ProgressBarFilter");

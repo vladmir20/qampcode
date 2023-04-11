@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:id="@+id/chat_layout"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chat_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbarStyle="outsideOverlay"
         android:layout_above="@+id/customLayout"
-        />
+        android:background="@mipmap/chat_bg"
+        android:scrollbarStyle="outsideOverlay" />
 
     <!-- <include layout="@layout/attach_layout" /> -->
 
@@ -22,24 +20,21 @@
         android:id="@+id/messageLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_alignParentTop="true"
         android:background="@color/showMeessageBG"
+        android:orientation="horizontal"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:visibility="invisible"
-
-        >
+        android:visibility="invisible">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="show older messages"
-            android:textSize="20sp"
-            android:textAlignment="center"
             android:gravity="center_horizontal"
+            android:text="show older messages"
+            android:textAlignment="center"
             android:textColor="@android:color/white"
-            />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -49,8 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/bottomlayout"
         android:visibility="gone"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <LinearLayout
         android:id="@+id/bottomlayout"
@@ -58,190 +52,221 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginRight="4dp"
         android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
         android:animateLayoutChanges="true"
         android:background="@drawable/editchat_bg_rounded"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
 
-        <!-- android:background="@color/myAccentColor" -->
         <LinearLayout
-            android:visibility="gone"
             android:id="@+id/attachLayout"
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="2dp"
             android:animateLayoutChanges="true"
+            android:orientation="vertical"
+            android:padding="2dp"
+            android:visibility="gone">
 
-            >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
 
-            <!--
-            <ImageButton
-                android:visibility="visible"
-                android:id="@+id/closeAttachment"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:clickable="true"
-                android:alpha="0.6"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_cancel_black_24dp"/>
+                <LinearLayout
+                    android:id="@+id/linearLayout5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/qamp_outline"
+                    android:orientation="vertical"
+                    android:padding="5dp"
+                    app:layout_constraintEnd_toStartOf="@+id/linearLayout6"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" >
-            </View>
-            -->
+                    <ImageButton
+                        android:id="@+id/gallery"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:alpha="0.6"
+                        android:background="@android:color/transparent"
+                        android:clickable="true"
+                        android:src="@drawable/photo_msg"
+                        android:visibility="visible" />
 
-            <ImageButton
-                android:visibility="visible"
-                android:id="@+id/gallery"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:clickable="true"
-                android:alpha="0.6"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_photo_black_24dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/gallery_text"
+                        android:textColor="@color/text_color17"
+                        android:textSize="12sp" />
+                </LinearLayout>
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" >
-            </View>
+                <LinearLayout
+                    android:id="@+id/linearLayout6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/qamp_outline"
+                    android:orientation="vertical"
+                    android:padding="5dp"
+                    app:layout_constraintEnd_toStartOf="@+id/linearLayout7"
+                    app:layout_constraintStart_toEndOf="@+id/linearLayout5"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            <ImageButton
-                android:visibility="visible"
-                android:id="@+id/video"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:alpha="0.6"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_videocam_black_24dp"/>
+                    <ImageButton
+                        android:id="@+id/video"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:alpha="0.6"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/video_msg"
+                        android:visibility="visible" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" >
-            </View>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/video_text"
+                        android:textColor="@color/text_color17"
+                        android:textSize="12sp" />
 
+                </LinearLayout>
 
-            <ImageButton
+                <LinearLayout
+                    android:id="@+id/linearLayout7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/qamp_outline"
+                    android:orientation="vertical"
+                    android:padding="5dp"
+                    app:layout_constraintEnd_toStartOf="@+id/linearLayout8"
+                    app:layout_constraintStart_toEndOf="@+id/linearLayout6"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                android:visibility="visible"
-                android:id="@+id/location"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:background="@android:color/transparent"
-                android:alpha="0.6"
-                android:src="@drawable/ic_location_on_black_24dp"/>
+                    <ImageButton
+                        android:id="@+id/location"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:alpha="0.6"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/location_msg"
+                        android:visibility="visible" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" >
-            </View>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/location_text"
+                        android:textColor="@color/text_color17"
+                        android:textSize="12sp" />
+                </LinearLayout>
 
-            <ImageButton
-                android:visibility="gone"
-                android:id="@+id/audio"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:background="@android:color/transparent"
-                android:alpha="0.6"
-                android:src="@drawable/ic_library_music_black_24dp"/>
-
-            <View
-                android:visibility="gone"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" >
-            </View>
-
-
-
-            <ImageButton
-                android:visibility="visible"
-                android:id="@+id/document_btn"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:alpha="0.6"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_attach_file_black_24dp"/>
-
-            <!--
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" >
-            </View>
+                <LinearLayout
+                    android:id="@+id/linearLayout8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/qamp_outline"
+                    android:orientation="vertical"
+                    android:padding="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/linearLayout7"
+                    app:layout_constraintTop_toTopOf="parent">
 
 
-            <ImageButton
-                android:visibility="visible"
-                android:id="@+id/layout_slide2"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:alpha="0.6"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_library_music_black_24dp"/>
-            -->
+                    <ImageButton
+                        android:id="@+id/document_btn"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:alpha="0.6"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/doc_msg"
+                        android:visibility="visible" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/document_text"
+                        android:textColor="@color/text_color17"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/audio"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:alpha="0.6"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_library_music_black_24dp"
+                    android:visibility="gone"
+                    tools:ignore="MissingConstraints" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/reply_layout_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:id="@+id/reply_layout_id"
-            >
+            android:padding="10dp"
+            android:visibility="visible">
+
             <include layout="@layout/reply_layout">
 
             </include>
 
             <LinearLayout
                 android:id="@+id/edit_layout"
-                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
                 android:layout_weight="1"
+                android:animateLayoutChanges="true"
+                android:background="@drawable/qamp_outline"
                 android:minHeight="50dp"
                 android:orientation="horizontal"
-                android:layout_gravity="bottom"
-                android:paddingBottom="6dp"
                 android:paddingLeft="5dp"
-                android:animateLayoutChanges="true"
-                >
+                android:paddingBottom="6dp"
+                android:visibility="visible">
 
                 <ImageButton
-                    android:id="@+id/showAttachment"
+                    android:id="@+id/mojiButton"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:layout_marginBottom="0dp"
                     android:layout_gravity="bottom"
+                    android:layout_marginBottom="0dp"
+                    android:alpha="0.6"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/ic_add_black_24dp"/>
+                    android:clickable="true"
+                    android:src="@drawable/emoji_keyborad"
+                    app:tint="#828282" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
                     android:layout_gravity="bottom"
-                    android:animateLayoutChanges="true"
                     android:layout_marginBottom="4dp"
-                    >
-
+                    android:layout_weight="1"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical">
 
                     <com.mesibo.emojiview.EmojiconEditText
                         android:id="@+id/chat_edit_text1"
@@ -249,68 +274,66 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="3dp"
-                        android:paddingTop="2dp"
-                        android:hint="@string/Message_hint"
-                        android:textSize="18sp"
-                        android:singleLine="false"
-                        android:inputType="textMultiLine"
-                        android:textColorHint="#c4c0bd"
-                        android:textColor="@color/text_color17"
                         android:background="@null"
-                        android:layout_marginTop="5dp" />
+                        android:hint="@string/Message_hint"
+                        android:inputType="textMultiLine"
+                        android:paddingTop="2dp"
+                        android:singleLine="false"
+                        android:textColor="@color/text_color17"
+                        android:textColorHint="#c4c0bd"
+                        android:textSize="14sp" />
+
 
                 </LinearLayout>
 
-
-                <ImageButton
-                    android:id="@+id/mojiButton"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="bottom"
-                    android:clickable="true"
-                    android:alpha="0.6"
-                    android:layout_marginBottom="0dp"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/ic_sentiment_satisfied_black_24dp"/>
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:gravity="center_vertical"
                     android:layout_marginRight="4dp"
                     android:layout_marginBottom="0dp"
-                    >
+                    android:gravity="center_vertical">
 
                     <ImageButton
 
-                        android:visibility="gone"
                         android:id="@+id/sendmessage"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:layout_gravity="center"
                         android:background="@android:color/transparent"
-                        android:src="@drawable/ic_send_black_24dp"/>
+                        android:src="@drawable/ic_send_black_24dp"
+                        android:tint="#828282"
+                        android:visibility="gone" />
 
                     <ImageButton
-                        android:visibility="visible"
                         android:id="@+id/cameraButton"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:layout_gravity="center"
                         android:background="@android:color/transparent"
-                        android:src="@drawable/ic_photo_camera_black_24dp"/>
+                        android:src="@drawable/ic_camera_light"
+                        android:tint="#828282"
+                        android:visibility="visible" />
 
                 </RelativeLayout>
+
+                <ImageButton
+                    android:id="@+id/showAttachment"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="0dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/four_dot" />
 
 
             </LinearLayout>
 
         </LinearLayout>
-
-
 
 
     </LinearLayout>

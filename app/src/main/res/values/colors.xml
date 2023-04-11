@@ -421,7 +421,7 @@
     <color name="text_color_chat_date">#828282</color>
     <color name="text_color_success">#76CA66</color>
     <color name="send_message_background">#FFF8EB</color>
-
+    <color name="read_message_color">#76CA66</color>
 
 
 </resources>

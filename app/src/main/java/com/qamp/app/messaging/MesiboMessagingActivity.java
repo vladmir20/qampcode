@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -259,18 +258,22 @@ public class MesiboMessagingActivity extends AppCompatActivity implements Mesibo
 
     public void onBackPressed() {
         MessagingFragment f = this.mFragment;
+
         if (f == null || !f.Mesibo_onBackPressed()) {
-            //  Toast.makeText(this, "yes", Toast.LENGTH_SHORT).show();
             MesiboMessagingActivity.super.onBackPressed();
             Intent mainActivity = new Intent(MesiboMessagingActivity.this, MesiboUserListActivityNew.class);
             startActivity(mainActivity);
             finish();
-        } else {
-            Intent mainActivity = new Intent(MesiboMessagingActivity.this, MesiboUserListActivityNew.class);
-            startActivity(mainActivity);
-            finish();
         }
+//        else {
+//            Intent mainActivity = new Intent(MesiboMessagingActivity.this, MesiboUserListActivityNew.class);
+//            startActivity(mainActivity);
+//            finish();
+//            Toast.makeText(this, "that", Toast.LENGTH_SHORT).show();
+//
+//        }
     }
+
 
     public void Mesibo_onUpdateUserPicture(MesiboProfile profile, Bitmap thumbnail, String picturePath) {
         this.mProfileThumbnail = thumbnail;

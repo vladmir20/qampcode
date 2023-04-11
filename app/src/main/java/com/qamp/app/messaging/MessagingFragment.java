@@ -106,6 +106,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
     static final int MESSAGING_PERMISSION_CODE = 101;
     private static final String TAG = "MessagingFragment";
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 1000;
+    public static boolean isSharingOptionsOpen = false;
     static Bitmap mMapBitmap = null;
     private static int ONLINE_TIME = 60000;
     private static int UPDATE_INTERVAL = 10000;
@@ -252,7 +253,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
                     this.mUser.getImagePath();
                     this.mPresence = this.mUser.newPresence();
                     this.mRecyclerView = (RecyclerView) view.findViewById(R.id.chat_list_view);
-                    this.mRecyclerView.setBackgroundColor(MesiboUI.getConfig().messagingBackgroundColor);
+                    //this.mRecyclerView.setBackgroundColor(MesiboUI.getConfig().messagingBackgroundColor);
                     this.mCustomLayout = (FrameLayout) view.findViewById(R.id.customLayout);
                     this.onCreateCustomView(view, this.mCustomLayout, (String) null);
                     this.mLayoutManager = new LinearLayoutManager(this.getActivity());
@@ -308,6 +309,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
                         public void onClick(View view) {
                             MessagingFragment.this.mEditLayout.setVisibility(View.GONE);
                             MessagingFragment.this.mAttachLayout.setVisibility(View.VISIBLE);
+                            isSharingOptionsOpen = true;
                         }
                     });
                     this.ib_showattach.setVisibility(this.mMediaHandled ? View.VISIBLE : View.GONE);
@@ -377,6 +379,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
                                 if (popup.isKeyBoardOpen()) {
                                     popup.showAtBottom();
                                     MessagingFragment.this.changeEmojiKeyboardIcon(MessagingFragment.this.mEmojiButton, MesiboConfiguration.KEYBOARD_ICON);
+
                                 } else {
                                     MessagingFragment.this.mEmojiEditText.setFocusableInTouchMode(true);
                                     MessagingFragment.this.mEmojiEditText.requestFocus();
@@ -642,11 +645,13 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
 
     }
 
+
     public boolean Mesibo_onBackPressed() {
         if (this.mAttachLayout.getVisibility() == View.VISIBLE) {
             this.showAttachments(false);
             this.mPressed = false;
             this.hidden = true;
+            showAttachments(false);
             return true;
         } else {
             return false;
@@ -1115,6 +1120,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
         if (show != isVisible) {
             this.mEditLayout.setVisibility(show ? View.GONE : View.VISIBLE);
             this.mAttachLayout.setVisibility(show ? View.VISIBLE : View.GONE);
+            isSharingOptionsOpen = false;
         }
     }
 
@@ -1203,7 +1209,6 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
             if (this.mReplyEnabled && null != this.mReplyMessage) {
                 msg.refid = this.mReplyMessage.getMid();
             }
-
             this.mReplyEnabled = false;
             this.mReplyLayout.setVisibility(View.GONE);
             msg.send();

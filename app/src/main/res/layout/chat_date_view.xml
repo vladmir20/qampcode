@@ -11,9 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:padding="5dp"
+        android:padding="8dp"
         android:text="12/12/15"
-        android:textSize="14dp"
+        android:textSize="12sp"
+        android:textColor="#828282"
         android:background="@drawable/chat_date_rounded"
         />
 

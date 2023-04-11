@@ -10,8 +10,8 @@ public class MesiboConfiguration {
     public static final String CREATE_GROUP_NOMEMEBER_TITLE_STRING = "No Members";
     public static final String CREATE_GROUP_NOMEMEBER_MESSAGE_STRING = "Add two or more members to create a group.";
 
-    public static final int KEYBOARD_ICON = R.mipmap.keyboard;
-    public static final int EMOJI_ICON = R.mipmap.emoji;
+    public static final int KEYBOARD_ICON = R.drawable.normal_keyboard;
+    public static final int EMOJI_ICON = R.drawable.emoji_keyborad;
 
     //public static final String CREATE_GROUP_GROUPNAME_ERROR_MESSAGE_STRING = "Group name should be at least 2 characters";
 

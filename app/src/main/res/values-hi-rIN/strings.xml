@@ -185,8 +185,12 @@
     <string name="Create_group_text">"समूह बनाना "</string>
     <string name="all_users">"सभी उपयोगकर्ता "</string>
     <string name="select_group_members">"समूह के सदस्यों का चयन करें "</string>
-    <string name="Message_hint">"संदेश "</string>
+    <string name="Message_hint">"अपना संदेश टाइप करें... "</string>
     <string name="not_having_messages">"आपके पास कोई संदेश नहीं है। बातचीत शुरू करने के लिए ऊपर दिए गए संदेश बटन पर क्लिक करें "</string>
+    <string name="gallery_text">गेलरी</string>
+    <string name="video_text">वीडियो</string>
+    <string name="location_text">"जगह "</string>
+    <string name="document_text">"दस्तावेज़ "</string>
 
 
 </resources>

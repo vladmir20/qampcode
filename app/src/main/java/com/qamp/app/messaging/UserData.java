@@ -209,13 +209,12 @@ public class UserData {
     }
 
     public String getUserName() {
-        String name = this.mUser.getName();
-        if (TextUtils.isEmpty(name)) {
-            name = this.mUser.address;
-        }
-        if (name.length() > 24) {
-            return name.substring(0, 20) + "...";
-        }
+        String name = mUser.getName();
+        if (TextUtils.isEmpty(name))
+            name = mUser.address;
+
+        if (name.length() > 15)
+         name = name.substring(0, 10) + "...";
         return name;
     }
 

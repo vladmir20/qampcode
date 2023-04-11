@@ -286,7 +286,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                         MesiboProfile d = it.next();
                         UserListFragment.mMemberProfiles.add(d);
                     }
-                  //  MesiboUIManager.launchGroupActivity(ContactsBottomSheetFragment.this.getActivity(), (Bundle) null);
+                    //  MesiboUIManager.launchGroupActivity(ContactsBottomSheetFragment.this.getActivity(), (Bundle) null);
                     Intent intent = new Intent(getActivity(), CreateNewGroupActivity.class);
                     startActivity(intent);
 
@@ -322,7 +322,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                     // Needed when press close then back it goes back so..
                     mIsMessageSearching = true;
                     imageView3.setImageDrawable(getResources().getDrawable(R.mipmap.search_box));
-
+                    editTextTextPersonName5.clearFocus();
                 } else {
                     mIsMessageSearching = true;
                     if (!TextUtils.isEmpty(mSearchQuery)) {
@@ -332,6 +332,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
 
                     mAdapter.notifyChangeInData();
                 }
+
             }
         });
 
@@ -674,6 +675,13 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
     public void onDestroy() {
         super.onDestroy();
         UserListFragment.isSheetOpen = false;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        slectedgtoup.clear();
+
     }
 
     public class MessageContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Mesibo.ConnectionListener, MesiboCall.IncomingListener {
@@ -1019,10 +1027,6 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
             }
 
 
-
-
-
-
         }
 
         @Override
@@ -1287,12 +1291,5 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                 mHighlightView = (RelativeLayout) view.findViewById(R.id.highlighted_view);
             }
         }
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        slectedgtoup.clear();
-
     }
 }

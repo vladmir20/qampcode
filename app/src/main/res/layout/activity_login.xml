@@ -109,7 +109,7 @@
                             android:textAlignment="viewStart"
                             android:textColor="@color/text_color16"
                             android:textColorHint="@color/text_color15"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             tools:ignore="RtlCompat" />
                     </LinearLayout>
 

@@ -418,7 +418,11 @@
     <string name="Create_group_text">Create Group</string>
     <string name="all_users">All Users</string>
     <string name="select_group_members">Select group members</string>
-    <string name="Message_hint">Message</string>
+    <string name="Message_hint">Type your message...</string>
     <string name="not_having_messages">You do not have any messages. Click on the message button above to start a conversation</string>
+    <string name="gallery_text">Gallery</string>
+    <string name="video_text">Videos</string>
+    <string name="location_text">Location</string>
+    <string name="document_text">Documents</string>
 
 </resources>

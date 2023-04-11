@@ -23,7 +23,7 @@ public class LetterTileProvider {
         if (colors != null) {
             this.mColors = colors;
         }
-        this.mPaint.setTypeface(Typeface.create("sans-serif-light", 0));
+        this.mPaint.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
         this.mPaint.setColor(-1);
         this.mPaint.setTextAlign(Paint.Align.CENTER);
         this.mPaint.setAntiAlias(true);
@@ -49,7 +49,7 @@ public class LetterTileProvider {
         if (isEnglishLetterOrDigit(firstChar)) {
             this.mFirstChar[0] = Character.toUpperCase(firstChar);
         } else {
-            this.mFirstChar[0] = '*';
+            this.mFirstChar[0] = firstChar;
         }
         this.mPaint.setTextSize((float) this.mTileLetterFontSize);
         this.mPaint.getTextBounds(this.mFirstChar, 0, 1, this.mBounds);

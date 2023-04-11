@@ -14,7 +14,6 @@ import androidx.cardview.widget.CardView;
 import com.qamp.app.R;
 
 public class MessageViewHolder extends MesiboRecycleViewHolder implements View.OnClickListener, View.OnLongClickListener {
-    private ClickListener listener;
     protected FrameLayout mBubble;
     protected MessageData mData;
     protected ImageView mFavourite;
@@ -22,14 +21,9 @@ public class MessageViewHolder extends MesiboRecycleViewHolder implements View.O
     protected View mSelectedOverlay;
     protected ImageView mStatus;
     protected TextView mTime;
-    private LinearLayout m_titleLayout;
     protected TextView otherUserName;
-
-    public interface ClickListener {
-        void onItemClicked(int i);
-
-        boolean onItemLongClicked(int i);
-    }
+    private ClickListener listener;
+    private LinearLayout m_titleLayout;
 
     public MessageViewHolder(int type, View v, ClickListener listener2) {
         super(v);
@@ -70,9 +64,9 @@ public class MessageViewHolder extends MesiboRecycleViewHolder implements View.O
             setupBackgroundBubble(this.mBubble, -1, MesiboUI.getConfig().messageBackgroundColorForPeer);
             this.m_titleLayout.setBackgroundColor(MesiboUI.getConfig().titleBackgroundColorForPeer);
             if (!MesiboUI.getConfig().e2eeIndicator || !this.mData.isEncrypted()) {
-                this.mStatus.setVisibility(8);
+                this.mStatus.setVisibility(View.GONE);
             } else {
-                this.mStatus.setVisibility(0);
+                this.mStatus.setVisibility(View.VISIBLE);
             }
         } else {
             setupBackgroundBubble(this.mBubble, -1, MesiboUI.getConfig().messageBackgroundColorForMe);
@@ -155,5 +149,11 @@ public class MessageViewHolder extends MesiboRecycleViewHolder implements View.O
             return this.listener.onItemLongClicked(getAdapterPosition());
         }
         return false;
+    }
+
+    public interface ClickListener {
+        void onItemClicked(int i);
+
+        boolean onItemLongClicked(int i);
     }
 }

@@ -185,8 +185,12 @@
     <string name="Create_group_text">"گروپ بنائیں "</string>
     <string name="all_users">"تمام صارفین "</string>
     <string name="select_group_members">"گروپ ممبرز کو منتخب کریں۔ "</string>
-    <string name="Message_hint">پیغام</string>
+    <string name="Message_hint">"اپنا پیغام ٹائپ کریں... "</string>
     <string name="not_having_messages">"آپ کے پاس کوئی پیغامات نہیں ہیں۔ بات چیت شروع کرنے کے لیے اوپر میسج بٹن پر کلک کریں۔ "</string>
+    <string name="gallery_text">گیلری</string>
+    <string name="video_text">"ویڈیوز "</string>
+    <string name="location_text">مقام</string>
+    <string name="document_text">"دستاویزات "</string>
 
 
 </resources>
