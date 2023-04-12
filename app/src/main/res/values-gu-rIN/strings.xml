@@ -191,6 +191,9 @@
     <string name="video_text">"વિડિઓઝ "</string>
     <string name="location_text">"સ્થાન "</string>
     <string name="document_text">દસ્તાવેજો</string>
+    <string name="chat_delete_confirmation">"શું તમે ખરેખર આ ચેટ કાઢી નાખવા માંગો છો?,તે પુનઃપ્રાપ્ત કરી શકાતી નથી "</string>
+    <string name="delete_group_confirmation">"શું તમે ખરેખર આ જૂથને કાઢી નાખવા માંગો છો?, તે પુનઃપ્રાપ્ત કરી શકાતું નથી "</string>
+    <string name="leave_group_confirmation">"શું તમે ખરેખર આ જૂથ છોડવા માંગો છો?,તે પુનઃપ્રાપ્ત કરી શકાતું નથી "</string>
 
 
 </resources>

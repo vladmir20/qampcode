@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -128,7 +129,9 @@ public class MesiboUserListActivity extends AppCompatActivity implements MesiboU
     public void onBackPressed() {
         if (this.mKeepRunning) {
             moveTaskToBack(true);
+            Toast.makeText(this, "this", Toast.LENGTH_SHORT).show();
         } else {
+            Toast.makeText(this, "that", Toast.LENGTH_SHORT).show();
             finish();
         }
     }

@@ -223,7 +223,6 @@
                     android:id="@+id/status_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp"
                     card:cardCornerRadius="0dp"
                     card:cardElevation="1dp">
@@ -311,6 +310,7 @@
                         </View>
 
                         <RelativeLayout
+                            android:layout_marginTop="-05dp"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1">
@@ -325,9 +325,7 @@
                                 android:maxLines="1"
                                 android:text="@string/contact_number"
                                 android:textColor="@color/text_color_black_white"
-                                android:textSize="16sp"
-
-                                />
+                                android:textSize="16sp"/>
 
                             <ImageView
                                 android:id="@+id/edit3"
@@ -343,7 +341,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginTop="15dp"
+                            android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
                             android:layout_weight="1"
                             android:background="@color/transparent_color"
@@ -364,6 +362,7 @@
                             android:background="#d1d1d1" />
 
                         <RelativeLayout
+                            android:layout_marginTop="-5dp"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1">
@@ -393,8 +392,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginBottom="10dp"
                             android:background="@color/black_white_2"
                             android:editable="false"
                             android:focusable="false"
@@ -417,6 +414,7 @@
                         </View>
 
                         <RelativeLayout
+                            android:layout_marginTop="-5dp"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1">
@@ -479,7 +477,7 @@
                         android:padding="10dp"
                         android:paddingBottom="10dp">
 
-                        />
+
 
                         <TextView
                             android:id="@+id/previousProfiles"

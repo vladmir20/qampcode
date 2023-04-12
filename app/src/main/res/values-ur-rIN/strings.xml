@@ -191,6 +191,9 @@
     <string name="video_text">"ویڈیوز "</string>
     <string name="location_text">مقام</string>
     <string name="document_text">"دستاویزات "</string>
+    <string name="chat_delete_confirmation">"کیا آپ واقعی اس چیٹ کو حذف کرنا چاہتے ہیں؟، اسے بازیافت نہیں کیا جا سکتا "</string>
+    <string name="delete_group_confirmation">"کیا آپ واقعی اس گروپ کو ڈیلیٹ کرنا چاہتے ہیں؟، اسے بازیافت نہیں کیا جا سکتا "</string>
+    <string name="leave_group_confirmation">"کیا آپ واقعی اس گروپ کو چھوڑنا چاہتے ہیں؟، اسے دوبارہ حاصل نہیں کیا جا سکتا "</string>
 
 
 </resources>

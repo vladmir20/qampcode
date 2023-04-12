@@ -191,6 +191,9 @@
     <string name="video_text">वीडियो</string>
     <string name="location_text">"जगह "</string>
     <string name="document_text">"दस्तावेज़ "</string>
+    <string name="chat_delete_confirmation">"क्या आप वाकई इस चैट को हटाना चाहते हैं?, इसे पुनर्प्राप्त नहीं किया जा सकता "</string>
+    <string name="delete_group_confirmation">"क्या आप वास्तव में इस समूह को हटाना चाहते हैं?, इसे पुनर्प्राप्त नहीं किया जा सकता "</string>
+    <string name="leave_group_confirmation">"क्या आप वाकई इस समूह को छोड़ना चाहते हैं?, इसे पुनर्प्राप्त नहीं किया जा सकता "</string>
 
 
 </resources>

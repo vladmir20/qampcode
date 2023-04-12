@@ -1000,9 +1000,9 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                                         return false;
                                     } else {
                                         AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
-                                        builder1.setMessage("Do you really want to delete this chat?,it cannot be recovered");
+                                        builder1.setMessage(getActivity().getResources().getString(R.string.chat_delete_confirmation));
                                         builder1.setCancelable(true);
-                                        builder1.setPositiveButton("Ok",
+                                        builder1.setPositiveButton(getActivity().getResources().getString(R.string.ok_text),
                                                 new DialogInterface.OnClickListener() {
                                                     public void onClick(DialogInterface dialog, int id) {
                                                         //put your code that needed to be executed when okay is clicked
@@ -1018,7 +1018,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                                                         dialog.cancel();
                                                     }
                                                 });
-                                        builder1.setNegativeButton("Cancel",
+                                        builder1.setNegativeButton(getActivity().getResources().getString(R.string.cancel_text),
                                                 new DialogInterface.OnClickListener() {
                                                     public void onClick(DialogInterface dialog, int id) {
                                                         dialog.cancel();

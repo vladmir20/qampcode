@@ -26,7 +26,8 @@ public class MesiboUIManager {
             intent.putExtra(MesiboUserListFragment.MESSAGE_LIST_MODE, selectionMode)
                     .putExtra("mid", forwardid).putExtra(MesiboUI.START_IN_BACKGROUND, startInBackground)
                     .putExtra(MesiboUI.KEEP_RUNNING, keepRunning);
-            intent.putExtra("isTask", "true");
+            intent.putExtra("isTask", "true")
+                    .putExtra("task", "addMembers");
             if (!TextUtils.isEmpty(forwardMessage)) {
                 intent.putExtra("message", forwardMessage);
             }

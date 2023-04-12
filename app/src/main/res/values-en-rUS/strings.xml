@@ -207,5 +207,8 @@
     <string name="video_text">Videos</string>
     <string name="location_text">Location</string>
     <string name="document_text">Documents</string>
+    <string name="chat_delete_confirmation">Do you really want to delete this chat?,it cannot be recovered</string>
+    <string name="delete_group_confirmation">Do you really want to delete this Group?,it cannot be recovered</string>
+    <string name="leave_group_confirmation">Do you really want to leave this group?,it cannot be recovered</string>
 
 </resources>

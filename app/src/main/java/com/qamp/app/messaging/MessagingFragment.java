@@ -1658,8 +1658,8 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
         builder.setTitle(getActivity().getResources().getString(R.string.delete_messages));
         String[] items = new String[]{getActivity().getResources()
                 .getString(R.string.delete_for_everyone_text),
-                getActivity().getResources().getString(R.string.delete_for_me),
-                getActivity().getResources().getString(R.string.cancel_text)};
+                getActivity().getResources().getString(R.string.delete_for_me)};
+//                getActivity().getResources().getString(R.string.cancel_text)};
         builder.setItems(items, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 if (2 != which) {
@@ -1667,7 +1667,6 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
                     if (0 == which) {
                         remote = true;
                     }
-
                     MessagingFragment.this.deleteSelectedMessages(selection, remote);
                 }
             }

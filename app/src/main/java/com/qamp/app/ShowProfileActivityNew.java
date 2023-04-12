@@ -265,12 +265,55 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
         mExitGroupCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mSelfMember.isOwner())
-                    mUserProfile.getGroupProfile().deleteGroup();
-                else
-                    mUserProfile.getGroupProfile().leave();
+                if (mSelfMember.isOwner()) {
+                    AlertDialog.Builder builder1 = new AlertDialog.Builder(ShowProfileActivityNew.this);
+                    builder1.setMessage(getResources().getString(R.string.delete_group_confirmation));
+                    builder1.setCancelable(true);
+                    builder1.setPositiveButton(getResources().getString(R.string.ok_text),
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    //put your code that needed to be executed when okay is clicked
+                                    mUserProfile.getGroupProfile().deleteGroup();
+                                    finish();
+                                    dialog.cancel();
+                                }
+                            });
+                    builder1.setNegativeButton(getResources().getString(R.string.cancel_text),
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
 
-                finish();
+                    AlertDialog alert11 = builder1.create();
+                    alert11.show();
+
+                } else {
+
+                    AlertDialog.Builder builder1 = new AlertDialog.Builder(ShowProfileActivityNew.this);
+                    builder1.setMessage(getResources().getString(R.string.leave_group_confirmation));
+                    builder1.setCancelable(true);
+                    builder1.setPositiveButton(getResources().getString(R.string.ok_text),
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    //put your code that needed to be executed when okay is clicked
+                                    mUserProfile.getGroupProfile().leave();
+                                    finish();
+                                    dialog.cancel();
+                                }
+                            });
+                    builder1.setNegativeButton(getResources().getString(R.string.cancel_text),
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+
+                    AlertDialog alert11 = builder1.create();
+                    alert11.show();
+
+                }
+
             }
         });
 

@@ -74,6 +74,7 @@
                 <TextView
                     android:id="@+id/m_time"
                     style="@style/chat_timings"
+                    android:textSize="12sp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginRight="1dp"
