@@ -194,6 +194,9 @@
     <string name="chat_delete_confirmation">"क्या आप वाकई इस चैट को हटाना चाहते हैं?, इसे पुनर्प्राप्त नहीं किया जा सकता "</string>
     <string name="delete_group_confirmation">"क्या आप वास्तव में इस समूह को हटाना चाहते हैं?, इसे पुनर्प्राप्त नहीं किया जा सकता "</string>
     <string name="leave_group_confirmation">"क्या आप वाकई इस समूह को छोड़ना चाहते हैं?, इसे पुनर्प्राप्त नहीं किया जा सकता "</string>
+    <string name="invite_only">आमंत्रित</string>
+    <string name="today_text">"आज "</string>
+    <string name="deletedMessageTitle">"यह संदेश हटा दिया गया था "</string>
 
 
 </resources>

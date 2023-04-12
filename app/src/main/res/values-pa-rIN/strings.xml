@@ -194,6 +194,9 @@
     <string name="chat_delete_confirmation">"ਕੀ ਤੁਸੀਂ ਸੱਚਮੁੱਚ ਇਸ ਚੈਟ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?, ਇਸ ਨੂੰ ਮੁੜ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ "</string>
     <string name="delete_group_confirmation">"ਕੀ ਤੁਸੀਂ ਸੱਚਮੁੱਚ ਇਸ ਸਮੂਹ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?, ਇਸ ਨੂੰ ਮੁੜ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ "</string>
     <string name="leave_group_confirmation">"ਕੀ ਤੁਸੀਂ ਸੱਚਮੁੱਚ ਇਸ ਸਮੂਹ ਨੂੰ ਛੱਡਣਾ ਚਾਹੁੰਦੇ ਹੋ?, ਇਸ ਨੂੰ ਮੁੜ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ "</string>
+    <string name="invite_only">ਸੱਦਾ</string>
+    <string name="today_text">ਅੱਜ</string>
+    <string name="deletedMessageTitle">"ਇਹ ਸੁਨੇਹਾ ਮਿਟਾ ਦਿੱਤਾ ਗਿਆ ਸੀ "</string>
 
 
 </resources>

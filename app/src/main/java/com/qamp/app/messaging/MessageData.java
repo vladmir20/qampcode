@@ -7,6 +7,7 @@ import android.text.TextUtils;
 
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboMessage;
+import com.qamp.app.R;
 
 public class MessageData {
     private Bitmap image = null;
@@ -29,7 +30,8 @@ public class MessageData {
         this.mContext = context;
         if (msg2.isDate()) {
             MesiboUI.Config opts = MesiboUI.getConfig();
-            msg2.message = msg2.getDate(true, opts.today, opts.yesterday);
+            msg2.message = msg2.getDate(true, mContext.getResources().getString(R.string.today_text),
+                    mContext.getResources().getString(R.string.yesterday));
         }
     }
 
@@ -164,7 +166,7 @@ public class MessageData {
             return null;
         }
         if (isDeleted()) {
-            return MesiboUI.getConfig().deletedMessageTitle;
+            return mContext.getResources().getString(R.string.deletedMessageTitle);
         }
         return this.msg.message;
     }
@@ -239,7 +241,8 @@ public class MessageData {
 
     public String getDateStamp() {
         MesiboUI.Config opts = MesiboUI.getConfig();
-        return this.msg.getDate(true, opts.today, opts.yesterday);
+        return this.msg.getDate(true, mContext.getResources().getString(R.string.today_text),
+                mContext.getResources().getString(R.string.yesterday));
     }
 
     public void setStaus(int status) {

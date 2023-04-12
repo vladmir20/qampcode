@@ -557,7 +557,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             if (mcd.getmid() != 0 && mcd.getmid() == msg.mid) {
                 mcd.setMessage(msg);
                 if (msg.isDeleted()) {
-                    mcd.setMessage(MesiboUI.getConfig().deletedMessageTitle);
+                    mcd.setMessage(getString(R.string.deletedMessageTitle));
                     mcd.setDeletedMessage(true);
                 }
                 this.mAdapter.notifyItemChanged(i);

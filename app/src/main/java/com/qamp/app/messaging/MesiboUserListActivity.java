@@ -1,11 +1,12 @@
 package com.qamp.app.messaging;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -13,7 +14,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboMessage;
+import com.mesibo.api.MesiboProfile;
 import com.qamp.app.R;
+import com.qamp.app.ShowProfileActivityNew;
 
 public class MesiboUserListActivity extends AppCompatActivity implements MesiboUserListFragment.FragmentListener {
     public static final String TAG = "MesiboMainActivity";
@@ -97,10 +100,10 @@ public class MesiboUserListActivity extends AppCompatActivity implements MesiboU
 
     public void Mesibo_onUpdateSubTitle(String title) {
         if (title == null) {
-            this.contactsSubTitle.setVisibility(8);
+            this.contactsSubTitle.setVisibility(View.GONE);
             return;
         }
-        this.contactsSubTitle.setVisibility(0);
+        this.contactsSubTitle.setVisibility(View.VISIBLE);
         this.contactsSubTitle.setText(title);
     }
 
@@ -126,13 +129,12 @@ public class MesiboUserListActivity extends AppCompatActivity implements MesiboU
         }
     }
 
+
     public void onBackPressed() {
         if (this.mKeepRunning) {
             moveTaskToBack(true);
-            Toast.makeText(this, "this", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "that", Toast.LENGTH_SHORT).show();
-            finish();
+             finish();
         }
     }
 

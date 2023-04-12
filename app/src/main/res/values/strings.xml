@@ -427,5 +427,8 @@
     <string name="chat_delete_confirmation">Do you really want to delete this chat?,it cannot be recovered</string>
     <string name="delete_group_confirmation">Do you really want to delete this Group?,it cannot be recovered</string>
     <string name="leave_group_confirmation">Do you really want to leave this group?,it cannot be recovered</string>
+    <string name="invite_only">Invite</string>
+    <string name="today_text">Today</string>
+    <string name="deletedMessageTitle">This message was deleted</string>
 
 </resources>

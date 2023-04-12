@@ -194,6 +194,9 @@
     <string name="chat_delete_confirmation">"શું તમે ખરેખર આ ચેટ કાઢી નાખવા માંગો છો?,તે પુનઃપ્રાપ્ત કરી શકાતી નથી "</string>
     <string name="delete_group_confirmation">"શું તમે ખરેખર આ જૂથને કાઢી નાખવા માંગો છો?, તે પુનઃપ્રાપ્ત કરી શકાતું નથી "</string>
     <string name="leave_group_confirmation">"શું તમે ખરેખર આ જૂથ છોડવા માંગો છો?,તે પુનઃપ્રાપ્ત કરી શકાતું નથી "</string>
+    <string name="invite_only">"આમંત્રિત "</string>
+    <string name="today_text">"આજે "</string>
+    <string name="deletedMessageTitle">"આ સંદેશ કાઢી નાખવામાં આવ્યો હતો "</string>
 
 
 </resources>

@@ -77,6 +77,7 @@ import com.mesibo.api.MesiboMessage;
 import com.mesibo.api.MesiboProfile;
 import com.qamp.app.QampConstants;
 import com.qamp.app.R;
+import com.qamp.app.Utils.AppUtils;
 import com.qamp.app.qampcallss.api.MesiboCall;
 import com.qamp.app.qampcallss.api.p000ui.MesiboDefaultCallActivity;
 
@@ -764,7 +765,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                 final UserData data = userdata;
                 holder.mContactsName.setText(data.getUserName());
                 String number = data.getPeer();
-                holder.mContactsPhone.setText(number);//(PhoneNumberUtils.formatNumber(number));
+                holder.mContactsPhone.setText(AppUtils.getFormatedNumber(number));//(PhoneNumberUtils.formatNumber(number));
 
                 int imageDrawableId = 0;
                 Drawable imageDrawable = null;
@@ -798,7 +799,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                 }
 
                 if (null != user.getStatus() && user.getStatus().equals("0")) {
-                    holder.invite.setVisibility(View.VISIBLE);
+                    //holder.invite.setVisibility(View.VISIBLE);
                     holder.link.setVisibility(View.VISIBLE);
                     holder.messageIcon.setVisibility(View.GONE);
                     holder.audioCallIcon.setVisibility(View.GONE);
@@ -806,14 +807,14 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                     holder.isChecked.setVisibility(View.GONE);
 
                 } else if (user.getAddress() != "" && isGroup == true) {
-                    holder.invite.setVisibility(View.GONE);
+                   // holder.invite.setVisibility(View.GONE);
                     holder.link.setVisibility(View.GONE);
                     holder.messageIcon.setVisibility(View.VISIBLE);
                     holder.audioCallIcon.setVisibility(View.VISIBLE);
                     holder.videoCallIcon.setVisibility(View.VISIBLE);
                     holder.isChecked.setVisibility(View.VISIBLE);
                 } else {
-                    holder.invite.setVisibility(View.GONE);
+                  //  holder.invite.setVisibility(View.GONE);
                     holder.link.setVisibility(View.GONE);
                     holder.messageIcon.setVisibility(View.VISIBLE);
                     holder.audioCallIcon.setVisibility(View.VISIBLE);
@@ -834,14 +835,14 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                 }
 
                 if (groupmaker == 0) {
-                    holder.invite.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (null != user.getStatus() && user.getStatus().equals("0")) {
-                                sendMessage(JOIN_HUDDLE_MESSAGE, user.address);
-                            }
-                        }
-                    });
+//                    holder.invite.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            if (null != user.getStatus() && user.getStatus().equals("0")) {
+//                                sendMessage(JOIN_HUDDLE_MESSAGE, user.address);
+//                            }
+//                        }
+//                    });
 
                     holder.link.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -1267,7 +1268,8 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
             public String mBoundString = null;
             public View mView = null;
             public ImageView mContactsProfile = null;
-            public ImageView invite = null, link = null;
+            //public ImageView invite = null, link = null;
+            public TextView link = null;
             public ImageView messageIcon = null, videoCallIcon = null, audioCallIcon = null;
             public TextView mContactsName = null, mContactsPhone = null;
             public MenuPopupHelper PopupMenu = null;
@@ -1280,8 +1282,8 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                 super(view);
                 mView = view;
                 mContactsProfile = (ImageView) view.findViewById(R.id.mes_rv_profile);
-                invite = (ImageView) view.findViewById(R.id.invite);
-                link = (ImageView) view.findViewById(R.id.link);
+                //invite = (ImageView) view.findViewById(R.id.invite);
+                link = (TextView) view.findViewById(R.id.link);
                 isChecked = (CheckBox) view.findViewById(R.id.isChecked);
                 messageIcon = (ImageView) view.findViewById(R.id.message);
                 videoCallIcon = (ImageView) view.findViewById(R.id.video_call);
