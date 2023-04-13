@@ -21,6 +21,7 @@
             android:id="@+id/isChecked"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:theme="@style/checkBoxStyle"
             android:visibility="gone"
             android:gravity="center"
             android:layout_gravity="center"/>

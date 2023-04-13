@@ -6,12 +6,21 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
-        <item name="autoCompleteTextViewStyle">@style/cursorColor</item>
-        <!-- Customize your theme here. -->
+         <!-- Customize your theme here. -->
     </style>
 
+    <style name="Qamp" parent="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:layoutDirection">ltr</item>
+        <item name="android:textAlignment">gravity</item>
+    </style>
     <style name="Theme.Material" parent="Theme.MaterialComponents" />
-
+    <style name="checkBoxStyle" parent="Base.Theme.AppCompat">
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:textColorSecondary">#828282</item>
+    </style>
     <style name="TabTheme">
         <item name="android:textSize">12dp</item>
         <item name="android:textStyle">normal</item>
@@ -60,7 +69,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="autoCompleteTextViewStyle">@style/cursorColor</item>
 
         <!-- Customize your theme here. -->
     </style>
@@ -79,7 +87,7 @@
 
     <style name="AppSearchView" parent="Widget.AppCompat.SearchView">
         <!-- Text Size -->
-        <item name="android:textSize">@dimen/_12sdp</item>
+        <item name="android:textSize">12sp</item>
         <!-- Query Text Color -->
         <item name="colorControlActivated">@android:color/black</item>
 
@@ -88,12 +96,9 @@
         <item name="android:textColorHint">@color/text_color_subtitle</item>
         <!-- Icon Color -->
         <item name="android:tint">@color/text_color_subtitle</item>
-        <item name="autoCompleteTextViewStyle">@style/cursorColor</item>
-    </style>
+     </style>
 
-    <style name="cursorColor" parent="Widget.AppCompat.AutoCompleteTextView">
-        <item name="android:textCursorDrawable">@drawable/curson</item>
-    </style>
+
 
     <style name="ToolbarStyle" parent="@style/ThemeOverlay.AppCompat.ActionBar">
         ...
@@ -124,6 +129,5 @@
         <item name="colorControlNormal">@color/colorPrimary</item>
         <item name="colorControlActivated">@color/colorPrimary</item>
         <item name="colorControlHighlight">@color/colorPrimary</item>
-        <item name="autoCompleteTextViewStyle">@style/cursorColor</item>
-    </style>
+     </style>
 </resources>
