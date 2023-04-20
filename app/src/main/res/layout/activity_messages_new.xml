@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**
+  ~  * Created by Shivam Tiwari on 21/04/23, 3:40 AM
+  ~  * Copyright (c) 2023 . All rights reserved.
+  ~  * Last modified 20/04/23, 8:31 PM
+  ~  */
+  -->
+
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -268,6 +276,9 @@
                                 android:layout_marginRight="10dp"
                                 android:drawableLeft="@drawable/notification_dot"
                                 android:drawablePadding="5dp"
+                                android:layout_gravity="start"
+                                android:gravity="start"
+                                android:textAlignment="viewStart"
                                 android:text="@string/new_notifications_indicator"
                                 android:textColor="@color/text_color_orange"
                                 android:textSize="10sp" />
@@ -315,6 +326,9 @@
                                 android:textSize="12sp" />
 
                             <TextView
+                                android:layout_gravity="start"
+                                android:gravity="start"
+                                android:textAlignment="viewStart"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="10dp"

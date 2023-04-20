@@ -1,45 +1,14 @@
-/** Copyright (c) 2021 Mesibo
- * https://mesibo.com
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without modification,
- * are permitted provided that the terms and condition mentioned on https://mesibo.com
- * as well as following conditions are met:
- *
- * Redistributions of source code must retain the above copyright notice, this list
- * of conditions, the following disclaimer and links to documentation and source code
- * repository.
- *
- * Redistributions in binary form must reproduce the above copyright notice, this
- * list of conditions and the following disclaimer in the documentation and/or other
- * materials provided with the distribution.
- *
- * Neither the name of Mesibo nor the names of its contributors may be used to endorse
- * or promote products derived from this software without specific prior written
- * permission.
- *
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
- * IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
- * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
- * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
- * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- *
- * Documentation
- * https://mesibo.com/documentation/
- *
- * Source Code Repository
- * https://github.com/mesibo/messenger-app-android
+/*
+ * *
+ *  * Created by Shivam Tiwari on 21/04/23, 3:40 AM
+ *  * Copyright (c) 2023 . All rights reserved.
+ *  * Last modified 21/04/23, 2:12 AM
  *
  */
 package com.qamp.app.Utils;
 
 import static android.content.Context.MODE_PRIVATE;
+import static android.os.ParcelFileDescriptor.MODE_APPEND;
 import static com.qamp.app.messaging.MesiboConfiguration.TOOLBAR_COLOR;
 import static com.qamp.app.messaging.MesiboConfiguration.TOOLBAR_STATUSBAR_COLOR;
 
@@ -83,6 +52,7 @@ import java.util.Map;
 public class AppUtils {
 
     static private ProgressDialog progressDialog;
+
     public static void setLanguage(String language, Activity activity) {
         Locale locale = new Locale(language);
         Locale.setDefault(locale);
@@ -102,16 +72,31 @@ public class AppUtils {
         }
     }
 
+    public static void saveUserApiVersion(Activity activity, String userVersion) {
+        //Saving the user version in shared preferences
+        SharedPreferences sharedPreferences = activity.getSharedPreferences("MyVersion", MODE_PRIVATE);
+        SharedPreferences.Editor myEdit = sharedPreferences.edit();
+        myEdit.putString("userVersion", userVersion);
+        myEdit.commit();
+    }
+    public static String getUserApiVersion(Activity activity) {
+        //Returning the user version from shared preferences
+        SharedPreferences sh = activity.getSharedPreferences("MyVersion", MODE_PRIVATE);
+        String s1 = sh.getString("userVersion", "");
+        return s1;
+    }
+
+
     public static boolean aquireUserPermission(Context context, final String permission, int REQUEST_CODE) {
         if (ContextCompat.checkSelfPermission(context, permission)
                 != PackageManager.PERMISSION_GRANTED) {
 
             // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale((AppCompatActivity)context,
+            if (ActivityCompat.shouldShowRequestPermissionRationale((AppCompatActivity) context,
                     permission)) {
 
             } else {
-                ActivityCompat.requestPermissions((AppCompatActivity)context,
+                ActivityCompat.requestPermissions((AppCompatActivity) context,
                         new String[]{permission},
                         REQUEST_CODE);
             }
@@ -168,6 +153,7 @@ public class AppUtils {
         }
         return directory.getAbsolutePath();
     }
+
     public static String getFormatedNumber(String fullNumberWithPlus) {
         try {
             PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
@@ -238,6 +224,7 @@ public class AppUtils {
         AlertDialog alert = builder.create();
         alert.show();
     }
+
     public static void setLocalLanguage(String language, Activity activity) {
         if (language.contains("hi"))
             language = "hi";

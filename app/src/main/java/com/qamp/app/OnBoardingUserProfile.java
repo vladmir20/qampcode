@@ -1,3 +1,11 @@
+/*
+ * *
+ *  * Created by Shivam Tiwari on 21/04/23, 3:40 AM
+ *  * Copyright (c) 2023 . All rights reserved.
+ *  * Last modified 21/04/23, 2:44 AM
+ *
+ */
+
 package com.qamp.app;
 
 import static com.qamp.app.messaging.MesiboConfiguration.MSG_PERMISON_CAMERA_FAIL;
@@ -311,6 +319,9 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
             jsonBody.put("firstName", "");
             jsonBody.put("lastName", "");
             jsonBody.put("profilePicId", AppConfig.getConfig().profileId);
+            if (AppConfig.getConfig().deviceToken != "") {
+                jsonBody.put("androidToken", AppConfig.getConfig().deviceToken);
+            }
         } catch (JSONException ex) {
             ex.printStackTrace();
         }

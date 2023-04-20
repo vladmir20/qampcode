@@ -1,3 +1,11 @@
+/*
+ * *
+ *  * Created by Shivam Tiwari on 21/04/23, 3:40 AM
+ *  * Copyright (c) 2023 . All rights reserved.
+ *  * Last modified 21/04/23, 3:28 AM
+ *
+ */
+
 package com.qamp.app.messaging;
 
 //
@@ -82,6 +90,8 @@ import com.mesibo.emojiview.EmojiconsPopup;
 import com.mesibo.emojiview.emoji.Emojicon;
 import com.mesibo.mediapicker.MediaPicker;
 import com.mesibo.mediapicker.MediaPicker.ImageEditorListener;
+import com.qamp.app.AppConfig;
+import com.qamp.app.NotificationSendClass;
 import com.qamp.app.R;
 import com.qamp.app.messaging.AllUtils.LetterTileProvider;
 import com.qamp.app.messaging.AllUtils.TextToEmoji;
@@ -1212,7 +1222,10 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
             this.mReplyEnabled = false;
             this.mReplyLayout.setVisibility(View.GONE);
             msg.send();
-            this.mEmojiEditText.getText().clear();
+            MesiboProfile mUserProfile = Mesibo.getProfile(mPeer);
+            NotificationSendClass.pushNotifications(getContext(), mUser.getAddress()
+                    , "New Message from - " + mUserProfile.getName(), "" + newText);
+             this.mEmojiEditText.getText().clear();
         }
     }
 
@@ -1223,7 +1236,8 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
         this.mEmojiEditText.setText("");
         Entry entry;
         if (MesiboUI.getConfig().mConvertSmilyToEmoji) {
-            for (Iterator iitr = this.mEmojiMap.entrySet().iterator(); iitr.hasNext(); newText = newText.replace((CharSequence) entry.getKey(), (CharSequence) entry.getValue())) {
+            for (Iterator iitr = this.mEmojiMap.entrySet().iterator(); iitr.hasNext();
+                 newText = newText.replace((CharSequence) entry.getKey(), (CharSequence) entry.getValue())) {
                 entry = (Entry) iitr.next();
             }
         }
@@ -1239,7 +1253,6 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
                 if (newStr.length() > 0) {
                     MessagingFragment.this.mPresence.sendTyping();
                 }
-
             }
 
             public void beforeTextChanged(CharSequence s, int st, int c, int a) {

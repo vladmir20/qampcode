@@ -1,3 +1,11 @@
+/*
+ * *
+ *  * Created by Shivam Tiwari on 21/04/23, 3:40 AM
+ *  * Copyright (c) 2023 . All rights reserved.
+ *  * Last modified 21/04/23, 2:36 AM
+ *
+ */
+
 package com.qamp.app;
 
 import android.Manifest;
@@ -158,7 +166,6 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
                 otpTextView3.clearFocus();
                 otpTextView4.clearFocus();
                 resendOTP();
-
 
 
                 startTimer();
@@ -570,7 +577,10 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
             jsonBody.put("password", otp);
             jsonBody.put("region", "TEST");
             jsonBody.put("countryCode", countryCode);
-
+//            NotificationsTest.getFirebaseDeviceToken();
+//            if (AppConfig.getConfig().deviceToken!="") {
+//                jsonBody.put("androidToken", AppConfig.getConfig().deviceToken);
+//             }
             StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
@@ -583,13 +593,13 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
                         if (status.contains(QampConstants.success)) {
                             JSONObject data = jsonObject.getJSONObject("data");
                             String mobileNumber = data.getString("mobileNumber");
-                            //                            String password = data.getString("password");
-//                            String firstName = data.getString("firstName");
+                            //String password = data.getString("password");
+                            //String firstName = data.getString("firstName");
                             String token = data.getString("token");
                             int responseVersion = data.getInt("version");
-//                            String region = data.getString("region");
-//                            String creationDate = data.getString("creationDate");
-//                            String updatedDate = data.getString("updatedDate");
+                            //String region = data.getString("region");
+                            //String creationDate = data.getString("creationDate");
+                            //String updatedDate = data.getString("updatedDate");
                             String profileStatus = "";
                             String fullName = "";
                             String profilePicId = "";
@@ -619,9 +629,10 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
                                 AppConfig.getConfig().tnm = "1649220290";
                                 AppConfig.getConfig().version = responseVersion;
                                 AppConfig.getConfig().profileId = profilePicId;
-
+                                AppUtils.saveUserApiVersion(LoginQampActivity.this, String.valueOf(responseVersion));
+                                Toast.makeText(LoginQampActivity.this, "Response Version is-" + String.valueOf(responseVersion), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginQampActivity.this, "Saved Version is-" + AppUtils.getUserApiVersion(LoginQampActivity.this), Toast.LENGTH_SHORT).show();
                                 MesiboAPI.setSyncFlags();
-
                                 Mesibo.reset();
                                 if (MesiboAPI.startMesibo(true)) {
                                     MesiboAPI.startSync();
@@ -654,7 +665,7 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
 
                             otpBackgroundRed(true);
                             otpTextView1.requestFocus();
-                             WrongVibrate();
+                            WrongVibrate();
 
                             Toast.makeText(LoginQampActivity.this, errMsg, Toast.LENGTH_LONG).show();
                         }

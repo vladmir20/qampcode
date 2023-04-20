@@ -1,3 +1,11 @@
+<!--
+  ~ /**
+  ~  * Created by Shivam Tiwari on 21/04/23, 3:40 AM
+  ~  * Copyright (c) 2023 . All rights reserved.
+  ~  * Last modified 20/04/23, 8:31 PM
+  ~  */
+  -->
+
 <vector android:height="30dp" android:viewportHeight="24"
     android:viewportWidth="24" android:width="30dp" xmlns:android="http://schemas.android.com/apk/res/android">
     <path android:fillColor="#F4B63F" android:pathData="M1.0022,4.9397V17.7926L4.8706,13.322H15.3706C16.6969,13.322 17.3969,12.2044 17.5811,11.6455V5.4985C17.5811,4.1573 16.4759,3.4495 15.9232,3.2632H3.2127C1.8864,3.2632 1.1864,4.3808 1.0022,4.9397Z"/>
