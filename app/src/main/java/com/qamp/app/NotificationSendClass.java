@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class NotificationSendClass {
+
 //    private static String BASE_URL = "https://dcore.qampservices.in/v1/notification-service/notification/send";
 //    private static String server_key = "";
     private static String BASE_URL = "https://dcore.qampservices.in/v1/notification-service/notification/mobilenumber/send";

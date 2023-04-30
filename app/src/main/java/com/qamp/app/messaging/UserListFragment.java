@@ -13,6 +13,7 @@ import static com.qamp.app.messaging.MesiboUserListActivityNew.MesiboUserListAct
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -44,6 +45,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboGroupProfile;
 import com.mesibo.api.MesiboMessage;
@@ -51,7 +53,9 @@ import com.mesibo.api.MesiboPresence;
 import com.mesibo.api.MesiboProfile;
 import com.mesibo.api.MesiboReadSession;
 import com.mesibo.emojiview.EmojiconTextView;
+import com.qamp.app.AddChannelActivity;
 import com.qamp.app.R;
+import com.qamp.app.Utils.AppUtils;
 import com.qamp.app.messaging.AllUtils.LetterTileProvider;
 
 import java.lang.ref.WeakReference;
@@ -133,6 +137,8 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
     private LinearLayout mforwardLayout;
     private LinearLayout fabadd;
     private ImageView isOnlineDot;
+
+    private LinearLayout add_channel;
 
     public void updateTitle(String title) {
         MesiboUserListFragment.FragmentListener l = getListener();
@@ -288,7 +294,63 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                 }
             });
         }
+        add_channel = view.findViewById(R.id.add_channel);
+        add_channel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                addChannelDialog();
+            }
+        });
         return view;
+    }
+
+    private void addChannelDialog() {
+        BottomSheetDialog dialog = new BottomSheetDialog(getContext());
+        dialog.setContentView(R.layout.select_channel_type);
+
+        LinearLayout peopleProfit = (LinearLayout) dialog.findViewById(R.id.peopleProfile);
+        LinearLayout community = (LinearLayout) dialog.findViewById(R.id.community);
+        LinearLayout business = (LinearLayout) dialog.findViewById(R.id.business);
+        ImageView cancel = (ImageView) dialog.findViewById(R.id.cancel);
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        peopleProfit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Intent intent = new Intent(getContext(), AddChannelActivity.class);
+//                startActivity(intent);
+                AppUtils.under_development_message(getActivity());
+                dialog.dismiss();
+            }
+        });
+
+        community.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(getContext(), AddChannelActivity.class);
+                startActivity(intent1);
+                //AppUtils.under_development_message(getActivity());
+            }
+        });
+
+        business.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Intent intent2 = new Intent(getContext(), AddChannelActivity.class);
+//                startActivity(intent2);
+                AppUtils.under_development_message(getActivity());
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+
     }
 
     private void showConatcts() {

@@ -17,12 +17,16 @@
          <!-- Customize your theme here. -->
     </style>
 
-    <style name="Qamp" parent="AppTheme.NoActionBar">
+    <style name="Qamp" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowActionModeOverlay">true</item>
         <item name="android:layoutDirection">ltr</item>
         <item name="android:textAlignment">gravity</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
     </style>
     <style name="Theme.Material" parent="Theme.MaterialComponents" />
     <style name="checkBoxStyle" parent="Base.Theme.AppCompat">

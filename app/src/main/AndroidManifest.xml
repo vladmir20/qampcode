@@ -210,7 +210,15 @@
             android:name=".NotificationsTest"
             android:screenOrientation="portrait" />
 
-<!--        <service-->
+        <activity
+            android:name=".AddChannelActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".CommunityDashboard"
+            android:screenOrientation="portrait" />
+
+        <!--        <service-->
 <!--            android:name=".java.MyFirebaseMessagingService"-->
 <!--            android:exported="false">-->
 <!--            <intent-filter>-->

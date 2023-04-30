@@ -221,5 +221,13 @@
     <string name="invite_only">Invite</string>
     <string name="today_text">Today</string>
     <string name="deletedMessageTitle">This message was deleted</string>
+    <string name="create_community">Create a Community</string>
+    <string name="community_name_text_description">What do you wish you call your Community?</string>
+    <string name="Channel_title">Channel Title</string>
+    <string name="Channel_Description">Channel Description</string>
+    <string name="EmptychannelNameandDescription">Channel Name and Channel Discription can\'t be empty</string>
+    <string name="business_type">Enter-Channel Name</string>
+    <string name="whereLocatedText">Where are you located?</string>
+    <string name="pickedLocationText">We have picked your current location by default. You can also search for another locaiton</string>
 
 </resources>

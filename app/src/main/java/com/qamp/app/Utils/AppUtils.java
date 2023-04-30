@@ -24,15 +24,20 @@ import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
 
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
@@ -277,6 +282,38 @@ public class AppUtils {
                 encodedParams.append(URLEncoder.encode(entry.getKey(), paramsEncoding));
                 encodedParams.append('=');
                 encodedParams.append(URLEncoder.encode(entry.getValue(), paramsEncoding));
+                encodedParams.append('&');
+            }
+            return encodedParams.toString().getBytes(paramsEncoding);
+        } catch (UnsupportedEncodingException uee) {
+            throw new RuntimeException("Encoding not supported: " + paramsEncoding, uee);
+        }
+    }
+
+    public static void under_development_message(Activity activity){
+        LayoutInflater inflater = activity.getLayoutInflater();
+        View layout = inflater.inflate(R.layout.under_development,
+                (ViewGroup) activity.findViewById(R.id.toast_layout_root));
+
+//        ImageView image = (ImageView) layout.findViewById(R.id.image);
+//        image.setImageResource(R.drawable.loader);
+//        TextView text = (TextView) layout.findViewById(R.id.text);
+//        text.setText("Hello! This is a custom toast!");
+
+        Toast toast = new Toast(activity.getApplicationContext());
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
+    }
+
+    public static byte[] encodeParameter(Map<String, Object> params, String paramsEncoding) {
+        StringBuilder encodedParams = new StringBuilder();
+        try {
+            for (Map.Entry<String, Object> entry : params.entrySet()) {
+                encodedParams.append(URLEncoder.encode(entry.getKey(), paramsEncoding));
+                encodedParams.append('=');
+                encodedParams.append(URLEncoder.encode((String) entry.getValue(), paramsEncoding));
                 encodedParams.append('&');
             }
             return encodedParams.toString().getBytes(paramsEncoding);
