@@ -748,6 +748,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
             } else if (profile.isChatting() && 0L == groupid) {
                 status = this.mMesiboUIOptions.joinedIndicationTitle;
             } else if (profile.isOnline() && 0L == groupid) {
+                if (getActivity().getResources().getString(R.string.online_text)!=null)
                 status = getActivity().getResources().getString(R.string.online_text);
             }
 
@@ -893,6 +894,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
 
     public void Mesibo_onPresence(MesiboPresence params) {
         if (this.isForMe(params)) {
+            if (this!=null)
             this.updateUserActivity(params, (int) params.presence);
         }
     }

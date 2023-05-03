@@ -8,8 +8,8 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mes_rv_card_view"
-    android:background="?android:attr/selectableItemBackground"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -38,7 +38,6 @@
             android:layout_width="13dp"
             android:layout_height="14dp"
             android:layout_marginTop="4dp"
-            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/mes_rv_profile"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/circle_green" />
@@ -66,6 +65,8 @@
             android:layout_alignTop="@id/mes_rv_name"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
             android:text="22 minutes"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#868686"
@@ -105,39 +106,45 @@
                 android:layout_centerVertical="true"
                 android:layout_weight="3"
                 android:maxLines="1"
-                android:text="This is a long message which will cover two lines, thanks"
+                android:text="This is a  This is a  This is a This is a This is a This is a This is a This is a This is a This is a This is a This is a This is a "
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#868686"
                 android:textSize="14sp"
                 android:textStyle="normal"
                 android:visibility="visible" />
 
-            <LinearLayout
-                android:id="@+id/mes_alertbg"
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mes_alertbg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/attachment_button_background"
+            android:gravity="center"
+            android:padding="5dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mes_rv_date">
+
+            <TextView
+                android:id="@+id/mes_alert"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="6dp"
-                android:background="@drawable/attachment_button_background"
                 android:gravity="center"
-                android:padding="5dp"
-                android:visibility="invisible">
-
-                <TextView
-                    android:id="@+id/mes_alert"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:text="99"
-                    android:textColor="@color/text_color17"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
+                android:maxLines="1"
+                android:text="99"
+                android:textColor="@color/text_color17"
+                android:textSize="10sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -165,7 +172,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
             android:src="@drawable/ic_check_circle_black_24dp"
-            android:tint="@color/md_teal_700" />
+            app:tint="@color/colorPrimary" />
 
 
     </RelativeLayout>

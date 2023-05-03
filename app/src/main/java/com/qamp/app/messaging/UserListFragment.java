@@ -998,9 +998,15 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             holder.mContactsProfile.setImageDrawable(new RoundImageDrawable(b));
             if (this.mHost.mSelectionMode != MesiboUserListFragment.MODE_MESSAGELIST || data.getUnreadCount().intValue() <= 0) {
                 holder.mNewMesAlert.setVisibility(View.INVISIBLE);
+                holder.mes_alertbg.setVisibility(View.INVISIBLE);
+                Toast.makeText(mContext, "under if", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, ""+String.valueOf(data.getUnreadCount()), Toast.LENGTH_SHORT).show();
             } else {
+                Toast.makeText(mContext, "under else", Toast.LENGTH_SHORT).show();
                 holder.mNewMesAlert.setVisibility(View.VISIBLE);
+                holder.mes_alertbg.setVisibility(View.VISIBLE);
                 holder.mNewMesAlert.setText(String.valueOf(data.getUnreadCount()));
+                Toast.makeText(mContext, ""+String.valueOf(data.getUnreadCount()), Toast.LENGTH_SHORT).show();
             }
             holder.mContactsDeliveryStatus.setVisibility(View.GONE);
             if (!typing && this.mHost.mSelectionMode == MesiboUserListFragment.MODE_MESSAGELIST) {
@@ -1270,6 +1276,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             public TextView mContactsTime = null;
             public RelativeLayout mHighlightView = null;
             public TextView mNewMesAlert = null;
+            public LinearLayout mes_alertbg = null;
             public View mView = null;
             public int position = 0;
             public ImageView isOnlineDot;
@@ -1284,6 +1291,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                 this.mContactsDeliveryStatus = (ImageView) view.findViewById(R.id.mes_cont_status);
                 this.isOnlineDot = (ImageView) view.findViewById(R.id.isOnlineDot);
                 this.mNewMesAlert = (TextView) view.findViewById(R.id.mes_alert);
+                this.mes_alertbg = (LinearLayout) view.findViewById(R.id.mes_alertbg);
                 this.mHighlightView = (RelativeLayout) view.findViewById(R.id.highlighted_view);
             }
         }
