@@ -40,9 +40,9 @@ public class NotificationSendClass {
         if (destination_id.length()==12){
             destination_id = destination_id.substring(2,12);
         }
-        Toast.makeText(context, ""+destination_id, Toast.LENGTH_SHORT).show();
-        Toast.makeText(context, ""+notification_title, Toast.LENGTH_SHORT).show();
-        Toast.makeText(context, ""+notification_body, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, ""+destination_id, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, ""+notification_title, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, ""+notification_body, Toast.LENGTH_SHORT).show();
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         RequestQueue queue = Volley.newRequestQueue(context);
@@ -60,15 +60,15 @@ public class NotificationSendClass {
                     , json, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
-                    Toast.makeText(context, ""+response, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(context, "Here Response", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, ""+response, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, "Here Response", Toast.LENGTH_SHORT).show();
 
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(context, ""+error.toString(), Toast.LENGTH_SHORT).show();
-                    Toast.makeText(context, "Here Volley", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, ""+error.toString(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, "Here Volley", Toast.LENGTH_SHORT).show();
                 }
             }){
                 @Override
@@ -82,8 +82,8 @@ public class NotificationSendClass {
             };
             queue.add(jsonObjectRequest);
         } catch (JSONException e) {
-            Toast.makeText(context, ""+e.getMessage().toString(), Toast.LENGTH_SHORT).show();
-            Toast.makeText(context, "Here", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, ""+e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, "Here", Toast.LENGTH_SHORT).show();
             throw new RuntimeException(e);
         }
 

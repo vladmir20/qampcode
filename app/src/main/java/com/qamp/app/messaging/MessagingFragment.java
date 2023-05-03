@@ -10,6 +10,7 @@ package com.qamp.app.messaging;
 
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -711,6 +712,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
         }
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private int updateUserActivity(MesiboMessageProperties params, int activity) {
         int connectionStatus = Mesibo.getConnectionStatus();
         if (6 == connectionStatus) {
@@ -744,12 +746,12 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
                     status = profile.getName() + " is ";
                 }
 
-                status = status + getActivity().getResources().getString(R.string.typing_text);
+                status = status + getContext().getResources().getString(R.string.typing_text);
             } else if (profile.isChatting() && 0L == groupid) {
                 status = this.mMesiboUIOptions.joinedIndicationTitle;
             } else if (profile.isOnline() && 0L == groupid) {
-                if (getActivity().getResources().getString(R.string.online_text)!=null)
-                status = getActivity().getResources().getString(R.string.online_text);
+                if (getContext().getResources().getString(R.string.online_text)!=null)
+                status = getContext().getResources().getString(R.string.online_text);
             }
 
             return this.updateUserStatus(status, 0L);
@@ -894,8 +896,8 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
 
     public void Mesibo_onPresence(MesiboPresence params) {
         if (this.isForMe(params)) {
-            if (this!=null)
-            this.updateUserActivity(params, (int) params.presence);
+//            if (this!=null)
+//            this.updateUserActivity(params, (int) params.presence);
         }
     }
 

@@ -999,14 +999,10 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             if (this.mHost.mSelectionMode != MesiboUserListFragment.MODE_MESSAGELIST || data.getUnreadCount().intValue() <= 0) {
                 holder.mNewMesAlert.setVisibility(View.INVISIBLE);
                 holder.mes_alertbg.setVisibility(View.INVISIBLE);
-                Toast.makeText(mContext, "under if", Toast.LENGTH_SHORT).show();
-                Toast.makeText(mContext, ""+String.valueOf(data.getUnreadCount()), Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(mContext, "under else", Toast.LENGTH_SHORT).show();
-                holder.mNewMesAlert.setVisibility(View.VISIBLE);
+                 holder.mNewMesAlert.setVisibility(View.VISIBLE);
                 holder.mes_alertbg.setVisibility(View.VISIBLE);
                 holder.mNewMesAlert.setText(String.valueOf(data.getUnreadCount()));
-                Toast.makeText(mContext, ""+String.valueOf(data.getUnreadCount()), Toast.LENGTH_SHORT).show();
             }
             holder.mContactsDeliveryStatus.setVisibility(View.GONE);
             if (!typing && this.mHost.mSelectionMode == MesiboUserListFragment.MODE_MESSAGELIST) {
