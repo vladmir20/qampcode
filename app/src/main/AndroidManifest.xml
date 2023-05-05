@@ -33,10 +33,10 @@
         android:allowBackup="false"
         android:fullBackupContent="false"
         android:taskAffinity=".string"
-        android:icon="@mipmap/ic_launcher_o"
+        android:icon="@mipmap/qamp_mini_logo"
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/qamp_mini_logo"
         android:theme="@style/Qamp"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup , android:supportsRtl">

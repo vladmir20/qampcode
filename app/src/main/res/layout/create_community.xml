@@ -130,7 +130,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextTextPersonName"
                     android:layout_width="match_parent"
-                    android:text=" "
+                    android:hint="@string/Channel_title"
+                    android:textColorHint="@color/field_color"
                     android:layout_height="wrap_content"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -140,9 +141,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="38dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginRight="38dp"
+                android:layout_marginRight="16dp"
                 android:layout_weight="1"
                 android:hint="@string/business_type"
                 app:boxStrokeColor="@color/field_color"
@@ -150,8 +151,11 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/businessType"
-                    android:text="Business"
+                    android:hint="Ex- Restaurant, Kirana Shop etc...."
+                    android:textColorHint="@color/field_color"
                     android:layout_width="match_parent"
+                    android:drawableTint="@color/text_color_subtitle"
+                    android:drawableRight="@drawable/ic_search"
                     android:layout_height="wrap_content"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -172,7 +176,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextTextPersonName2"
                     android:layout_width="match_parent"
-                    android:text=" "
+                    android:hint="@string/Channel_Description"
+                    android:textColorHint="@color/field_color"
                     android:layout_height="wrap_content" />
 
             </com.google.android.material.textfield.TextInputLayout>

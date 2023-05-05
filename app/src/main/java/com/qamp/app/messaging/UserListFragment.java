@@ -40,6 +40,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.appcompat.widget.SearchView;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -54,6 +55,7 @@ import com.mesibo.api.MesiboProfile;
 import com.mesibo.api.MesiboReadSession;
 import com.mesibo.emojiview.EmojiconTextView;
 import com.qamp.app.AddChannelActivity;
+import com.qamp.app.CommunityDashboard;
 import com.qamp.app.R;
 import com.qamp.app.Utils.AppUtils;
 import com.qamp.app.messaging.AllUtils.LetterTileProvider;
@@ -140,6 +142,8 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
 
     private LinearLayout add_channel;
 
+    private CardView ChannelCardLayout;
+
     public void updateTitle(String title) {
         MesiboUserListFragment.FragmentListener l = getListener();
         if (l != null) {
@@ -213,6 +217,16 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         View view = inflater.inflate(layout, container, false);
         setHasOptionsMenu(true);
         this.mforwardLayout = (LinearLayout) view.findViewById(R.id.bottom_forward_btn);
+        this.ChannelCardLayout = (CardView) view.findViewById(R.id.ChannelCardLayout);
+
+        this.ChannelCardLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CommunityDashboard.class);
+                startActivity(intent);
+            }
+        });
+
         this.mforwardLayout.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (UserListFragment.this.mSelectionMode == MesiboUserListFragment.MODE_SELECTGROUP) {

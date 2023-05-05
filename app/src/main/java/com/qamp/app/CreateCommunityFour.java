@@ -1,18 +1,19 @@
 package com.qamp.app;
 
 
-
+import static com.qamp.app.Utilss.getLetterTile;
 import static com.qamp.app.messaging.MesiboConfiguration.CONTACT_PERMISSION_MESSAGE;
-import static com.qamp.app.messaging.MesiboConfiguration.MESIBO_INTITIAL_READ_USERLIST;
 import static com.qamp.app.messaging.MesiboConfiguration.PERMISSION_DENIED_CONTACTS;
 import static com.qamp.app.messaging.MesiboConfiguration.PERMISSION_NEEDED;
 
 import android.Manifest;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -22,14 +23,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.PermissionChecker;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -45,6 +52,7 @@ import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboProfile;
 import com.qamp.app.Utils.AppUtils;
 import com.qamp.app.messaging.Contact;
+import com.qamp.app.messaging.RoundImageDrawable;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -55,16 +63,26 @@ import java.util.HashSet;
 import java.util.Map;
 
 
-public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener {
+public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener, Backpressedlistener {
 
     private static final String[] PROJECTION = new String[]{ContactsContract.CommonDataKinds.Phone.CONTACT_ID, ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER};
+    public static Backpressedlistener backpressedlistener;
     Button skip, shareInvite;
     ImageView cancel;
     ArrayList<Contact> contactList = new ArrayList<>();
     String lat, lng, channelTitle, channelDescription;
     TextView channelName;
     String latitude, longitude;
+    RecyclerView contactsRecycle;
+    MesiboProfile profile;
+    ArrayList<String> mesiboProfileArrayList = new ArrayList<>();
+    LinearLayout button3;
+    boolean isSelectedAll = false;
     private ArrayList<MesiboProfile> mUserProfiles = null;
+    private ArrayList<MesiboProfile> mSearchResultList = null;
+    //ContactAdapter mAdapter = null;
+    private CommunityContactAdapter listAdapter;
+    private ArrayList<ContactCommunityData> contactsList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -76,6 +94,9 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
         cancel = view.findViewById(R.id.cancel_1);
         channelName = view.findViewById(R.id.channelName);
         shareInvite = view.findViewById(R.id.button);
+        contactsRecycle = view.findViewById(R.id.contactRecycler);
+        button3 = view.findViewById(R.id.button3);
+        //OpenContactRecycler();
 
         Bundle bundle = getArguments();
         if (bundle != null) {
@@ -104,10 +125,6 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
                 getActivity().finish();
             }
         });
-
-        //Intent intent= new Intent(getActivity(), CommunityDashboard.class);
-        //                startActivity(intent);
-
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,7 +158,7 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(getActivity(), "UNSUCCESS CREATED"+e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "UNSUCCESS CREATED" + e.getMessage().toString(), Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -188,8 +205,33 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
             }
         });
 
+        checkPermissionAndFetchContacts();
+        showUserList();
+
+        CommunityContactAdapter adapter = new CommunityContactAdapter(getActivity(), contactsList);
+        contactsRecycle.setHasFixedSize(true);
+        contactsRecycle.setLayoutManager(new LinearLayoutManager(getActivity()));
+        contactsRecycle.setAdapter(adapter);
+        ViewCompat.setNestedScrollingEnabled(contactsRecycle, false);
+        adapter.notifyDataSetChanged();
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isSelectedAll) {
+                    adapter.selectAll();
+                    isSelectedAll = true;
+                    mesiboProfileArrayList.clear();
+                } else {
+                    isSelectedAll = false;
+                    adapter.selectAll();
+                    mesiboProfileArrayList.clear();
+                }
+            }
+        });
         return view;
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -219,7 +261,7 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
             new Handler(Looper.getMainLooper()).post(new Runnable() {
                 @Override
                 public void run() {
-                    showUserList(MESIBO_INTITIAL_READ_USERLIST);
+                    //showUserList(MESIBO_INTITIAL_READ_USERLIST);
                 }
             });
 
@@ -257,12 +299,7 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
         }
     }
 
-    public void showUserList(int readCount) {
-        Log.d("showUserList", "showUserList");
-
-        //setEmptyViewText();
-
-
+    public void showUserList() {
         mUserProfiles.clear();
         ArrayList<MesiboProfile> otherContactsList = new ArrayList<>();
         for (int j = 0; j < contactList.size(); j++) {
@@ -277,13 +314,12 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
             }
 
             MesiboProfile userProfile = new MesiboProfile();
+            profile = userProfile;
             userProfile.address = state == false ? "91" + contactList.get(j).phoneNumber : contactList.get(j).phoneNumber.substring(1);
             userProfile.setName(contactList.get(j).name);
             userProfile.setStatus("0");
             userProfile.draft = null;
-            //userProfile.unread = 0;
             userProfile.groupid = 0;
-//            userProfile.lastActiveTime = 0;
             userProfile.lookedup = false;
             userProfile.other = null;
             otherContactsList.add(userProfile);
@@ -299,19 +335,27 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
             }
         }
 
+
         mUserProfiles.addAll(Mesibo.getSortedUserProfiles());
         mUserProfiles.addAll(otherContactsList);
 
 
-        /**if (mUserProfiles.size() == 0) {
-         subtitle.setText("");
-         } else if (mUserProfiles.size() == 1) {
-         subtitle.setText(String.valueOf(mUserProfiles.size() + " Contact"));
-         } else {
-         subtitle.setText(String.valueOf(mUserProfiles.size() + " Contacts"));
-         }**/
-
-        //mAdapter.notifyChangeInData();
+        if (mUserProfiles.size() == 0) {
+            //subtitle.setText("");
+        } else if (mUserProfiles.size() == 1) {
+            //subtitle.setText(String.valueOf(mUserProfiles.size() + " Contact"));
+        } else {
+            // subtitle.setText(String.valueOf(mUserProfiles.size() + " Contacts"));
+        }
+        for (int i = 0; i < mUserProfiles.size(); i++) {
+            if (!mUserProfiles.get(i).getAddress().toString().isEmpty()) {
+                Bitmap b = mUserProfiles.get(i).getImage();
+                if (b != null)
+                    contactsList.add(new ContactCommunityData(mUserProfiles.get(i).getName(), mUserProfiles.get(i).getAddress(), b));
+                else
+                    contactsList.add(new ContactCommunityData(mUserProfiles.get(i).getName(), mUserProfiles.get(i).getAddress()));
+            }
+        }
     }
 
     private void checkPermissionAndFetchContacts() {
@@ -339,5 +383,118 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
         }
     }
 
+    @Override
+    public void onBackPressed() {
 
+    }
+
+    @Override
+    public void onPause() {
+        backpressedlistener = null;
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        backpressedlistener = this;
+    }
+
+    public class CommunityContactAdapter extends RecyclerView.Adapter<CommunityContactAdapter.ViewHolder> {
+        private final Context context;
+        private final ArrayList<ContactCommunityData> contactCommunityData;
+
+        public CommunityContactAdapter(Context context, ArrayList<ContactCommunityData> contactCommunityData) {
+            this.context = context;
+            this.contactCommunityData = contactCommunityData;
+        }
+
+        @Override
+        public CommunityContactAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.show_contact_item_community, parent, false);
+            CommunityContactAdapter.ViewHolder viewHolder = new CommunityContactAdapter.ViewHolder(v);
+            return viewHolder;
+        }
+
+        @Override
+        public void onBindViewHolder(CommunityContactAdapter.ViewHolder holder, final int position) {
+            final ContactCommunityData contact = contactCommunityData.get(position);
+            holder.setContactName(contact.getName());
+            holder.setContactNumber(contact.getNumber());
+            if (contact.getProfilePic() != null)
+                holder.mContactsProfile.setImageDrawable(new RoundImageDrawable(contact.getProfilePic()));
+            else
+                holder.mContactsProfile.setImageDrawable(new RoundImageDrawable(getLetterTile(contact.getName())));
+
+            if (!isSelectedAll) {
+                holder.checkBox.setChecked(false);
+                isSelectedAll = false;
+            } else {
+                holder.checkBox.setChecked(true);
+                isSelectedAll = true;
+            }
+
+            if (holder.checkBox.isChecked())
+                mesiboProfileArrayList.add(contact.getNumber());
+            else
+                mesiboProfileArrayList.remove(contact.getNumber());
+
+            setShareNumber();
+
+            holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (!isChecked){
+                        mesiboProfileArrayList.remove(contact.getNumber());
+                    }else if ((!isSelectedAll)&&isChecked){
+                            mesiboProfileArrayList.add(contact.getNumber());
+                    }
+                    setShareNumber();
+                }
+            });
+
+        }
+
+        private void setShareNumber() {
+            shareInvite.setText("" + getActivity().getResources().getString(R.string.share_invite_text) + " (" + mesiboProfileArrayList.size() + ")");
+        }
+
+        @Override
+        public int getItemCount() {
+            return contactCommunityData.size();
+        }
+
+        public void selectAll() {
+            Log.e("onClickSelectAll", "yes");
+            isSelectedAll = true;
+            notifyDataSetChanged();
+        }
+
+        public class ViewHolder extends RecyclerView.ViewHolder {
+
+            private TextView txtName;
+            private TextView txtNumber;
+
+            private ImageView mContactsProfile;
+
+            private CheckBox checkBox;
+
+            public ViewHolder(View itemView) {
+                super(itemView);
+                txtName = itemView.findViewById(R.id.textView14);
+                txtNumber = itemView.findViewById(R.id.number);
+                mContactsProfile = itemView.findViewById(R.id.mes_rv_profile);
+                checkBox = itemView.findViewById(R.id.checkBox);
+            }
+
+            public void setContactName(String name) {
+                txtName.setText(name);
+            }
+
+            public void setContactNumber(String number) {
+                txtNumber.setText(number);
+            }
+        }
+
+    }
 }

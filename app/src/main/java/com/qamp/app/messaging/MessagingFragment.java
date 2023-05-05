@@ -1222,11 +1222,18 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
             this.mReplyEnabled = false;
             this.mReplyLayout.setVisibility(View.GONE);
             msg.send();
-            MesiboProfile mUserProfile = Mesibo.getProfile(mPeer);
+            MesiboProfile profile = getProfile();
+            profile.addListener(this);
+            profile = getProfile();
             NotificationSendClass.pushNotifications(getContext(), mUser.getAddress()
-                    , "New Message from - " + mUserProfile.getName(), "" + newText);
+                    , ""+profile.getName(), ""+newText);
              this.mEmojiEditText.getText().clear();
         }
+    }
+
+    public MesiboProfile getProfile() {
+        if (mGroupId > 0) return Mesibo.getProfile(mGroupId);
+        return Mesibo.getSelfProfile();
     }
 
     private void onSend() {
