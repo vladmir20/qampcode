@@ -1,3 +1,11 @@
+/*
+ * *
+ *  * Created by Shivam Tiwari on 05/05/23, 3:15 PM
+ *  * Copyright (c) 2023 . All rights reserved.
+ *  * Last modified 05/05/23, 3:14 PM
+ *
+ */
+
 package com.qamp.app;
 
 
@@ -336,8 +344,8 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
         }
 
 
-        mUserProfiles.addAll(Mesibo.getSortedUserProfiles());
-        mUserProfiles.addAll(otherContactsList);
+       mUserProfiles.addAll(Mesibo.getSortedUserProfiles());
+        //mUserProfiles.addAll(otherContactsList);
 
 
         if (mUserProfiles.size() == 0) {

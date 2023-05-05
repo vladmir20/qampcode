@@ -1,13 +1,16 @@
 /*
  * *
- *  * Created by Shivam Tiwari on 30/04/23, 4:13 PM
+ *  * Created by Shivam Tiwari on 05/05/23, 3:15 PM
  *  * Copyright (c) 2023 . All rights reserved.
- *  * Last modified 30/04/23, 4:13 PM
+ *  * Last modified 05/05/23, 2:19 PM
  *
  */
 
 package com.qamp.app;
 
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -17,11 +20,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.qamp.app.Utils.AppUtils;
+import com.qamp.app.messaging.MesiboUserListActivityNew;
 
 public class CommunityDashboard extends AppCompatActivity {
 
     LinearLayout chatLayout,feedlayout,pinlayout,aboutlayout;
     FrameLayout frameLayout;
+    LinearLayout alertLayout;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Utilss.setLanguage(CommunityDashboard.this);
@@ -62,6 +67,7 @@ public class CommunityDashboard extends AppCompatActivity {
         pinlayout = findViewById(R.id.pinlayout);
         aboutlayout = findViewById(R.id.aboutlayout);
         frameLayout = findViewById(R.id.frameLayout);
+        alertLayout = findViewById(R.id.alertLayout);
     }
 
     private void setFrame(String layout) {
@@ -70,8 +76,10 @@ public class CommunityDashboard extends AppCompatActivity {
             feedlayout.setBackgroundColor(getResources().getColor(R.color.white));
             pinlayout.setBackgroundColor(getResources().getColor(R.color.white));
             aboutlayout.setBackgroundColor(getResources().getColor(R.color.white));
+            alertLayout.getBackground().setColorFilter(Color.parseColor("#76CA66"), PorterDuff.Mode.SRC_ATOP);
             ChatLayoutFragment chatLayoutFragment = new ChatLayoutFragment();
             final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.setCustomAnimations(R.anim.fade_in, R.anim.no_animation);
             transaction.replace(R.id.frameLayout, chatLayoutFragment,layout);
             transaction.addToBackStack(null);
             transaction.commit();
@@ -80,8 +88,10 @@ public class CommunityDashboard extends AppCompatActivity {
             chatLayout.setBackgroundColor(getResources().getColor(R.color.white));
             pinlayout.setBackgroundColor(getResources().getColor(R.color.white));
             aboutlayout.setBackgroundColor(getResources().getColor(R.color.white));
+            alertLayout.getBackground().setColorFilter(Color.parseColor("#76CA66"), PorterDuff.Mode.SRC_ATOP);
             FeedLayoutFragment feedLayoutFragment = new FeedLayoutFragment();
             final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.setCustomAnimations(R.anim.fade_in, R.anim.no_animation);
             transaction.replace(R.id.frameLayout, feedLayoutFragment,layout);
             transaction.addToBackStack(null);
             transaction.commit();
@@ -90,8 +100,10 @@ public class CommunityDashboard extends AppCompatActivity {
             chatLayout.setBackgroundColor(getResources().getColor(R.color.white));
             feedlayout.setBackgroundColor(getResources().getColor(R.color.white));
             aboutlayout.setBackgroundColor(getResources().getColor(R.color.white));
+            alertLayout.getBackground().setColorFilter(Color.parseColor("#FE5858"), PorterDuff.Mode.SRC_ATOP);
             PinLayoutFragment pinLayoutFragment = new PinLayoutFragment();
             final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.setCustomAnimations(R.anim.fade_in, R.anim.no_animation);
             transaction.replace(R.id.frameLayout, pinLayoutFragment,layout);
             transaction.addToBackStack(null);
             transaction.commit();
@@ -100,12 +112,35 @@ public class CommunityDashboard extends AppCompatActivity {
             chatLayout.setBackgroundColor(getResources().getColor(R.color.white));
             feedlayout.setBackgroundColor(getResources().getColor(R.color.white));
             pinlayout.setBackgroundColor(getResources().getColor(R.color.white));
+            alertLayout.getBackground().setColorFilter(Color.parseColor("#FE5858"), PorterDuff.Mode.SRC_ATOP);
             AboutLayoutFragment aboutLayoutFragment = new AboutLayoutFragment();
             final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.setCustomAnimations(R.anim.fade_in, R.anim.no_animation);
             transaction.replace(R.id.frameLayout, aboutLayoutFragment,layout);
             transaction.addToBackStack(null);
             transaction.commit();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+//        if (getSupportFragmentManager().findFragmentByTag("chatLayout") != null &&
+//                getSupportFragmentManager().findFragmentByTag("chatLayout").isVisible()) {
+//            ChatLayoutFragment.backpressedlistener.onBackPressed();
+//        }else if (getSupportFragmentManager().findFragmentByTag("feedlayout") != null &&
+//                getSupportFragmentManager().findFragmentByTag("feedlayout").isVisible()) {
+//            FeedLayoutFragment.backpressedlistener.onBackPressed();
+//        }else if (getSupportFragmentManager().findFragmentByTag("pinlayout") != null &&
+//                getSupportFragmentManager().findFragmentByTag("pinlayout").isVisible()) {
+//            PinLayoutFragment.backpressedlistener.onBackPressed();
+//        }else if (getSupportFragmentManager().findFragmentByTag("aboutlayout") != null &&
+//                getSupportFragmentManager().findFragmentByTag("aboutlayout").isVisible()) {
+//            AboutLayoutFragment.backpressedlistener.onBackPressed();
+//        }else{
+            Intent mainActivity = new Intent(CommunityDashboard.this, MesiboUserListActivityNew.class);
+            startActivity(mainActivity);
+//        }
     }
 
 }

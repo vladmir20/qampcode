@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?><!--
   ~ /**
-  ~  * Created by Shivam Tiwari on 05/05/23, 2:07 AM
+  ~  * Created by Shivam Tiwari on 05/05/23, 3:15 PM
   ~  * Copyright (c) 2023 . All rights reserved.
-  ~  * Last modified 05/05/23, 2:07 AM
+  ~  * Last modified 05/05/23, 2:11 PM
   ~  */
   -->
 
@@ -132,6 +132,7 @@
     </androidx.core.widget.NestedScrollView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/postCardButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"

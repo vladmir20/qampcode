@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Shivam Tiwari on 05/05/23, 2:00 AM
+ *  * Created by Shivam Tiwari on 05/05/23, 3:15 PM
  *  * Copyright (c) 2023 . All rights reserved.
- *  * Last modified 05/05/23, 2:00 AM
+ *  * Last modified 05/05/23, 2:08 AM
  *
  */
 
@@ -32,5 +32,15 @@ public class PinLayoutFragment extends Fragment implements Backpressedlistener {
     @Override
     public void onBackPressed() {
 
+    }
+    @Override
+    public void onPause() {
+        backpressedlistener=null;
+        super.onPause();
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        backpressedlistener=this;
     }
 }

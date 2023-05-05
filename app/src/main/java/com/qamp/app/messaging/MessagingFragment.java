@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Shivam Tiwari on 21/04/23, 3:40 AM
+ *  * Created by Shivam Tiwari on 05/05/23, 3:15 PM
  *  * Copyright (c) 2023 . All rights reserved.
- *  * Last modified 21/04/23, 3:28 AM
+ *  * Last modified 05/05/23, 1:34 PM
  *
  */
 
@@ -750,8 +750,8 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
             } else if (profile.isChatting() && 0L == groupid) {
                 status = this.mMesiboUIOptions.joinedIndicationTitle;
             } else if (profile.isOnline() && 0L == groupid) {
-                if (getContext().getResources().getString(R.string.online_text)!=null)
-                status = getContext().getResources().getString(R.string.online_text);
+//                if (getContext().getResources().getString(R.string.online_text)!=null)
+//                status = getContext().getResources().getString(R.string.online_text);
             }
 
             return this.updateUserStatus(status, 0L);
@@ -896,8 +896,8 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
 
     public void Mesibo_onPresence(MesiboPresence params) {
         if (this.isForMe(params)) {
-//            if (this!=null)
-//            this.updateUserActivity(params, (int) params.presence);
+            if (this!=null)
+            this.updateUserActivity(params, (int) params.presence);
         }
     }
 

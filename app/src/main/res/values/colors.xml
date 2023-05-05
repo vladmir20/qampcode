@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ /**
-  ~  * Created by Shivam Tiwari on 21/04/23, 3:40 AM
+  ~  * Created by Shivam Tiwari on 05/05/23, 3:15 PM
   ~  * Copyright (c) 2023 . All rights reserved.
-  ~  * Last modified 20/04/23, 8:31 PM
+  ~  * Last modified 05/05/23, 2:15 PM
   ~  */
   -->
 
@@ -430,6 +430,7 @@
     <color name="text_color_success">#76CA66</color>
     <color name="send_message_background">#FFF8EB</color>
     <color name="read_message_color">#76CA66</color>
+    <color name="error">#FE5858</color>
 
 
 </resources>
