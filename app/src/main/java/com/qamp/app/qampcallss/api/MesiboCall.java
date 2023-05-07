@@ -155,13 +155,14 @@ public class MesiboCall {
         public boolean disableSpeakerOnProximity = false;
         public boolean enableCameraAtStart = true;
         public boolean hideOnProximity = false;
-        private boolean holdOnCellularIncoming = true;
+        public boolean holdOnCellularIncoming = true;
         public MesiboIceServer[] iceServers = null;
         protected boolean incoming = false;
         public int intentFlags = -1;
         public Notification notify = new Notification();
         public Object other = null;
         public Context parent = null;
+        protected boolean fullscreen = true;
         public VideoProperties record = null;
         public boolean runInBackground = true;
         public boolean stopVideoInBackground = true;

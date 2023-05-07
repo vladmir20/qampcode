@@ -25,12 +25,14 @@
             android:id="@+id/fullscreen_video_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scaleX="-1"
             android:layout_gravity="center" />
 
         <com.qamp.app.qampcallss.api.MesiboVideoView
             android:id="@+id/pip_video_view"
             android:layout_width="wrap_content"
             android:layout_height="120dp"
+            android:scaleX="-1"
             android:layout_gravity="bottom"
             android:layout_margin="16dp" />
 
@@ -86,14 +88,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="50sp"
                 android:gravity="center"
                 android:visibility="visible">
 
                 <ImageView
                     android:id="@+id/photo_image"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="60sp"
+                    android:layout_height="60sp"
                     android:layout_weight="1.4"
                     android:src="@drawable/profile"
                     app:srcCompat="@drawable/default_user_image" />
@@ -109,7 +111,7 @@
                 android:gravity="center"
                 android:text="Mabel Bay"
                 android:textColor="#0C0C0C"
-                android:textSize="@dimen/_20sdp" />
+                android:textSize="26sp" />
 
             <TextView
                 android:id="@+id/call_address"
@@ -132,6 +134,13 @@
                 android:gravity="center"
                 android:text="00:00"
                 android:textColor="#0B0B0A" />
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Call On Hold"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -185,11 +194,11 @@
                         android:id="@+id/switch_source"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
+                        android:layout_marginLeft="30sp"
                         android:layout_toStartOf="@id/two"
-                        android:paddingTop="34dp"
-                        android:paddingRight="32dp"
-                        android:paddingBottom="32dp"
+                        android:paddingTop="34sp"
+                        android:paddingRight="32sp"
+                        android:paddingBottom="32sp"
                         android:visibility="gone"
                         app:srcCompat="@drawable/ic_camerarotate" />
 
@@ -197,10 +206,10 @@
                         android:id="@+id/one"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:paddingTop="36dp"
-                        android:paddingRight="32dp"
-                        android:paddingBottom="32dp"
+                        android:layout_marginLeft="30sp"
+                        android:paddingTop="36sp"
+                        android:paddingRight="32sp"
+                        android:paddingBottom="32sp"
                         app:srcCompat="@drawable/ic_speakerhigh" />
 
                     <ImageView
@@ -208,10 +217,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toEndOf="@id/one"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="32dp"
-                        android:paddingRight="32dp"
-                        android:paddingBottom="32dp"
+                        android:paddingLeft="10sp"
+                        android:paddingTop="32sp"
+                        android:paddingRight="32sp"
+                        android:paddingBottom="32sp"
                         app:srcCompat="@drawable/ic_video_off" />
 
                     <ImageView
@@ -219,10 +228,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toEndOf="@id/two"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="32dp"
-                        android:paddingRight="32dp"
-                        android:paddingBottom="32dp"
+                        android:paddingLeft="10sp"
+                        android:paddingTop="32sp"
+                        android:paddingRight="32sp"
+                        android:paddingBottom="32sp"
                         app:srcCompat="@drawable/ic_frame_512245" />
 
                     <ImageView
@@ -230,9 +239,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toEndOf="@id/three"
-                        android:paddingTop="34dp"
-                        android:paddingRight="32dp"
-                        android:paddingBottom="32dp"
+                        android:paddingTop="34sp"
+                        android:paddingRight="32sp"
+                        android:paddingBottom="32sp"
                         app:srcCompat="@drawable/microphone_off__2_" />
 
                     <ImageView
@@ -240,9 +249,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toEndOf="@id/four"
-                        android:paddingTop="32dp"
-                        android:paddingRight="32dp"
-                        android:paddingBottom="32dp"
+                        android:paddingTop="32sp"
+                        android:paddingRight="32sp"
+                        android:paddingBottom="32sp"
                         app:srcCompat="@drawable/ic_more_option_verical" />
                 </RelativeLayout>
 

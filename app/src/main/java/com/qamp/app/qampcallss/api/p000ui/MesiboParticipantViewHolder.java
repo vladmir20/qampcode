@@ -67,7 +67,7 @@ public class MesiboParticipantViewHolder implements View.OnClickListener {
     public MesiboParticipantViewHolder(Context context, Listener listener, MesiboCall.MesiboGroupCall mesiboGroupCall) {
         this.mGroupcall = mesiboGroupCall;
         this.mListener = listener;
-        this.mView = ((LayoutInflater) context.getSystemService("layout_inflater")).inflate(R.layout.view_mesiboparticipant, (ViewGroup) null);
+        this.mView = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.view_mesiboparticipant, (ViewGroup) null);
         this.nameView = (TextView) this.mView.findViewById(R.id.participant_name);
         this.mVideoView = (MesiboVideoView) this.mView.findViewById(R.id.participant_stream_view);
         this.mControls = (RelativeLayout) this.mView.findViewById(R.id.stream_controls);

@@ -9,6 +9,7 @@
 package com.qamp.app.qampcallss.api.p000ui;
 
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -149,10 +150,11 @@ public class MesiboDefaultCallFragment extends Fragment implements OnClickListen
 
         //var5.setText(var7);
         this.ui.backgroundRelative = var4 .findViewById(R.id.background);
+        this.ui.callHold = var4.findViewById(R.id.textView23);
         this.ui.controlLayout = var4.findViewById(R.id.control_container);
         this.ui.contactOngoinName = var4.findViewById(R.id.textView4);
-        this.ui.backArrow = var4.findViewById(R.id.imageView4);
-        this.ui.chatOngoing = var4.findViewById(R.id.imageView5);
+        this.ui.backArrow = (ImageView) var4.findViewById(R.id.imageView4);
+        this.ui.chatOngoing = (ImageView) var4.findViewById(R.id.imageView5);
         this.ui.speaker = (ImageView) var4.findViewById(R.id.one);
         this.ui.mute = (ImageView) var4.findViewById(R.id.four);
         this.ui.switchS = (ImageView) var4.findViewById(R.id.two);
@@ -196,6 +198,8 @@ public class MesiboDefaultCallFragment extends Fragment implements OnClickListen
         this.ui.acceptButton.setOnClickListener(this);
         this.ui.acceptAudioButton.setOnClickListener(this);
         this.ui.declineButton.setOnClickListener(this);
+        Log.e("dc Vs rcb", String.valueOf(this.mCall.isAnswered()));
+        this.ui.incomingView.setVisibility(View.INVISIBLE);
         if (null != this.ui.pipVideo) {
 
             this.ui.pipVideo.setOnClickListener(this);
@@ -228,9 +232,11 @@ public class MesiboDefaultCallFragment extends Fragment implements OnClickListen
         this.ui.pipVideo.setVisibility(this.mCall.isAnswered() ? View.VISIBLE : View.GONE);
         this.mCall.start((QampCallsActivity) this.getActivity(), this);
         if(this.mCall.isVideoCall()){
+
             this.ui.star.setVisibility(View.VISIBLE);
             this.ui.speaker.setVisibility(View.GONE);
         }
+
         return var4;
     }
 
@@ -387,6 +393,7 @@ public class MesiboDefaultCallFragment extends Fragment implements OnClickListen
 
     public void setStatusView(int var1, String var2) {
         if (this.mCall.isAnswered() && this.mCall.isCallInProgress() && this.mCall.isCallConnected()) {
+
             this.ui.status.setFormat((String)null);
             this.ui.status.setText("");
             this.ui.status.setBase(this.mCall.getAnswerTime());
@@ -451,6 +458,9 @@ public class MesiboDefaultCallFragment extends Fragment implements OnClickListen
                 this.ui.speaker.setVisibility(View.GONE);
                 this.ui.background.setVisibility(View.GONE);
                 this.ui.contactOngoinName.setVisibility(View.GONE);
+                this.ui.backArrow.setImageResource(drawable.arrow_left);
+                this.ui.chatOngoing.setImageResource(drawable.vector__2_);
+                this.ui.status.setTextColor(Color.WHITE);
                 this.setSwappedFeeds(false);
             }
 
@@ -492,46 +502,59 @@ public class MesiboDefaultCallFragment extends Fragment implements OnClickListen
             this.ui.thumbnailLayout.setVisibility(var7);
             this.ui.incomingVideoAcceptLayout.setVisibility(var6);
         }*/
+
         if (var2 == 3) {
             if (var4 || this.mCp.f2ui.autoHideControls) {
                 this.setCallControlsVisibility(var4, false);
             }
         } else {
-            Log.e("Video Prop",var1.video.toString());
+
+
+            Log.e("hold", String.valueOf(this.mCp.holdOnCellularIncoming));
+            if (this.mCp.holdOnCellularIncoming) {
+                //this.ui.callHold.setVisibility(View.VISIBLE);
+
+            }
+            Log.e("Video Prop", var1.video.toString());
             boolean var5 = var2 == 1;
-            this.ui.incomingView.setVisibility(var5 ? View.VISIBLE : View.GONE);
-            this.ui.inprogressView.setVisibility(var5 ? View.GONE : View.VISIBLE);
-            var2 = var3 ? View.GONE : View.VISIBLE;
-            int var7 = var3 ? View.VISIBLE : View.GONE;
-            int var6 = var5 && var3 ? View.VISIBLE : View.GONE;
-            this.ui.background.setVisibility(View.GONE);
-            //this.ui.speaker.setVisibility(View.GONE);
-            this.ui.speaker.setVisibility(View.VISIBLE);
-            if(var1.video != null){
-                this.ui.speaker.setVisibility(View.GONE);
-                this.ui.star.setVisibility(View.VISIBLE);
-                //this.ui.thumbnailLayout.setVisibility(View.GONE);
+
+                this.ui.thumbnailLayout.setVisibility(View.VISIBLE);
+                this.ui.incomingView.setVisibility(var5 ? View.VISIBLE : View.GONE);
+
+                this.ui.inprogressView.setVisibility(var5 ? View.GONE : View.VISIBLE);
+                var2 = var3 ? View.GONE : View.VISIBLE;
+                int var7 = var3 ? View.VISIBLE : View.GONE;
+                int var6 = var5 && var3 ? View.VISIBLE : View.GONE;
+                this.ui.background.setVisibility(View.GONE);
+                //this.ui.speaker.setVisibility(View.GONE);
+                this.ui.speaker.setVisibility(View.VISIBLE);
+                if (var1.video != null) {
+                    this.ui.speaker.setVisibility(View.GONE);
+                    this.ui.star.setVisibility(View.VISIBLE);
+                    //this.ui.thumbnailLayout.setVisibility(View.GONE);
+
+                }
+                this.ui.star.setVisibility(View.GONE);
+                this.ui.speaker.setVisibility(View.VISIBLE);
+
+                if (!var3) {
+                    this.ui.background.setImageBitmap(this.mCp.f2ui.userImage);
+                }
+
+                this.ui.pipVideo.setVisibility(var7);
+                this.ui.fullscreenVideo.setVisibility(var7);
+                this.ui.cameraToggleLayout.setVisibility(var7);
+                this.ui.cameraSwitchLayout.setVisibility(var7);
+                if (this.mCp.f2ui.showScreenSharing) {
+                    this.ui.sourceSwitchLayout.setVisibility(var7);
+                }
+
+                //this.ui.thumbnailLayout.setVisibility(View.VISIBLE);
+                //this.ui.thumbnailLayout.setVisibility(var7);
+                this.ui.incomingVideoAcceptLayout.setVisibility(var6);
 
             }
-            this.ui.star.setVisibility(View.GONE);
-            this.ui.speaker.setVisibility(View.VISIBLE);
 
-            if (!var3) {
-                this.ui.background.setImageBitmap(this.mCp.f2ui.userImage);
-            }
-
-            this.ui.pipVideo.setVisibility(var7);
-            this.ui.fullscreenVideo.setVisibility(var7);
-            this.ui.cameraToggleLayout.setVisibility(var7);
-            this.ui.cameraSwitchLayout.setVisibility(var7);
-            if (this.mCp.f2ui.showScreenSharing) {
-                this.ui.sourceSwitchLayout.setVisibility(var7);
-            }
-
-            this.ui.thumbnailLayout.setVisibility(View.VISIBLE);
-            //this.ui.thumbnailLayout.setVisibility(var7);
-            this.ui.incomingVideoAcceptLayout.setVisibility(var6);
-        }
 
 
     }
@@ -804,6 +827,7 @@ public class MesiboDefaultCallFragment extends Fragment implements OnClickListen
         public ImageView disconnectButton;
         public ImageView buttonDisconnect;
         public ImageView background;
+        public TextView callHold;
         public ImageView star;
         public ImageView switchS;
         public View incomingView;
