@@ -1,14 +1,15 @@
 /*
  * *
- *  * Created by Shivam Tiwari on 21/04/23, 3:40 AM
+ *  * Created by Shivam Tiwari on 05/05/23, 3:15 PM
  *  * Copyright (c) 2023 . All rights reserved.
- *  * Last modified 21/04/23, 3:19 AM
+ *  * Last modified 04/05/23, 1:44 AM
  *
  */
 
 package com.qamp.app;
 
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -32,28 +33,24 @@ public class PushNotificationService extends FirebaseMessagingService {
         CharSequence name;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
-                    CHANNEL_ID,
-                    "Message Notification",
-                    NotificationManager.IMPORTANCE_HIGH);
+                    CHANNEL_ID, "Message Notification", NotificationManager.IMPORTANCE_HIGH);
             getSystemService(NotificationManager.class).createNotificationChannel(channel);
             Context context;
             Notification.Builder notification = new Notification.Builder(this, CHANNEL_ID)
-//                    .setContentTitle(title)
-//                    .setContentText(text)
-//                    .setSmallIcon(R.drawable.ic_logo_gradient)
-//                    .setAutoCancel(true)
-                    .setSmallIcon(R.drawable.ic_logo_gradient)
+                    .setSmallIcon(R.mipmap.qamp_mini_logo)
                     .setContentTitle(title)
                     .setContentText(text)
-//                    .setLargeIcon(R.drawable.ic_logo_gradient)
                     .setColor(ContextCompat.getColor(PushNotificationService.this, R.color.colorPrimary))
-//                    .setStyle(new NotificationCompat.BigTextStyle().bigText(title))
-//                    .setStyle(new NotificationCompat.BigTextStyle().bigText(text).setSummaryText("#hashtag"))
                     .setShowWhen(true)
+                    .setPriority(NotificationCompat.PRIORITY_HIGH)
+                    .setDefaults(Notification.DEFAULT_ALL)
                     .setAutoCancel(true);
+
+
             NotificationManagerCompat.from(this).notify(1, notification.build());
 
         }
+
         super.onMessageReceived(remoteMessage);
     }
 }

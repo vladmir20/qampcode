@@ -1,8 +1,8 @@
 <!--
   ~ /**
-  ~  * Created by Shivam Tiwari on 21/04/23, 3:40 AM
+  ~  * Created by Shivam Tiwari on 05/05/23, 3:15 PM
   ~  * Copyright (c) 2023 . All rights reserved.
-  ~  * Last modified 20/04/23, 8:31 PM
+  ~  * Last modified 03/05/23, 4:48 PM
   ~  */
   -->
 
@@ -25,6 +25,7 @@
         <item name="android:textAlignment">gravity</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:itemBackground">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
     </style>

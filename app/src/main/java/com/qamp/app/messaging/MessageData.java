@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Shivam Tiwari on 21/04/23, 3:40 AM
+ *  * Created by Shivam Tiwari on 05/05/23, 3:15 PM
  *  * Copyright (c) 2023 . All rights reserved.
- *  * Last modified 20/04/23, 8:31 PM
+ *  * Last modified 04/05/23, 1:47 AM
  *
  */
 
@@ -38,8 +38,8 @@ public class MessageData {
         this.mContext = context;
         if (msg2.isDate()) {
             MesiboUI.Config opts = MesiboUI.getConfig();
-            msg2.message = msg2.getDate(true, mContext.getResources().getString(R.string.today_text),
-                    mContext.getResources().getString(R.string.yesterday));
+            msg2.message = msg2.getDate(true, context.getResources().getString(R.string.today_text),
+                    context.getResources().getString(R.string.yesterday));
         }
     }
 

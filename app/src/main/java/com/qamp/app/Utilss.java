@@ -1,14 +1,15 @@
 /*
  * *
- *  * Created by Shivam Tiwari on 21/04/23, 3:40 AM
+ *  * Created by Shivam Tiwari on 05/05/23, 3:15 PM
  *  * Copyright (c) 2023 . All rights reserved.
- *  * Last modified 20/04/23, 8:32 PM
+ *  * Last modified 04/05/23, 7:14 PM
  *
  */
 
 package com.qamp.app;
 
 import static android.content.Context.MODE_PRIVATE;
+import static com.qamp.app.messaging.LetterTitleProvider.SAN_SERIF_LIGHT;
 import static com.qamp.app.messaging.MesiboConfiguration.GOOGLE_PLAYSERVICE_STRING;
 import static com.qamp.app.messaging.MesiboConfiguration.TOOLBAR_COLOR;
 import static com.qamp.app.messaging.MesiboConfiguration.TOOLBAR_STATUSBAR_COLOR;
@@ -23,6 +24,11 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -32,6 +38,8 @@ import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.TextPaint;
+import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.TypedValue;
 import android.view.View;
@@ -502,5 +510,49 @@ public final class Utilss {
 
         public PowerAndWifiLock() {
         }
+    }
+
+    public static Bitmap getLetterTile(String displayName) {
+        int width = 30;
+        int height = 30;
+        final char[] mFirstChar = new char[1];
+        Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        final TextPaint mPaint = new TextPaint();
+        final Rect mBounds = new Rect();
+
+        mPaint.setTypeface(Typeface.create(SAN_SERIF_LIGHT, Typeface.NORMAL));
+        mPaint.setColor(Color.WHITE);
+        mPaint.setTextAlign(Paint.Align.CENTER);
+        mPaint.setAntiAlias(true);
+        char firstChar = '*';
+        final Canvas c = new Canvas();
+
+        c.setBitmap(bmp);
+        if (!TextUtils.isEmpty(displayName))
+            firstChar = displayName.charAt(0);
+
+        int color = pickColor(displayName);
+        c.drawColor(color);
+
+        mFirstChar[0] = firstChar;
+        mPaint.setTextSize(16);
+        mPaint.getTextBounds(mFirstChar, 0, 1, mBounds);
+        c.drawText(mFirstChar, 0, 1, 0 + width / 2, 0 + height / 2
+                + (mBounds.bottom - mBounds.top) / 2, mPaint);
+
+        return bmp;
+    }
+
+    public static int pickColor(String key) {
+        int[] mColors = {
+                0xfff16364, 0xfff58559, 0xfff9a43e, 0xffe4c62e,
+                0xff67bf74, 0xff59a2be, 0xff2093cd, 0xffad62a7
+        };
+        if (TextUtils.isEmpty(key))
+            return 0;
+        // String.hashCode() is not supposed to change across java versions, so
+        // this should guarantee the same key always maps to the same color
+        int color = Math.abs(key.hashCode()) % mColors.length;
+        return mColors[color];
     }
 }

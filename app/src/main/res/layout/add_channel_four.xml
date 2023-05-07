@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?><!--
   ~ /**
-  ~  * Created by Shivam Tiwari on 30/04/23, 4:12 PM
+  ~  * Created by Shivam Tiwari on 05/05/23, 3:15 PM
   ~  * Copyright (c) 2023 . All rights reserved.
-  ~  * Last modified 30/04/23, 4:12 PM
+  ~  * Last modified 04/05/23, 7:37 PM
   ~  */
   -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/linearLayout9"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:weightSum="12"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,12 +83,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="16dp"
                 android:background="#F4B63F" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/textView12"
@@ -100,62 +98,101 @@
             android:textColor="#171717"
             android:textSize="24dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="453dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="22dp"
-            android:layout_marginRight="16dp"
-            android:layout_weight="7"
-            android:orientation="horizontal">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+    </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:paddingTop="10dp">
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="4dp"
-                android:layout_weight="1"
-                android:background="@drawable/corner_radius_button_orange"
-                android:text="Share Invite " />
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:layout_weight="1"
-                android:background="@drawable/orange_border"
-                android:text="Invite All"
-                android:textColor="#F4B63F" />
-        </LinearLayout>
+    <LinearLayout
+        android:background="@color/white"
+        android:id="@+id/linearLayout10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/skipLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
-            android:id="@+id/skip"
+            android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="167dp"
-            android:layout_marginRight="167dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="4dp"
             android:layout_weight="1"
-            android:background="@color/transparent_color"
+            android:background="@drawable/corner_radius_button_orange"
+            android:text="@string/share_invite_text"
+            android:textAllCaps="false"
+            android:textColor="@color/text_color17" />
+
+        <LinearLayout
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:background="@drawable/orange_border"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Invite All"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout9">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/contactRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"  />
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/skipLayout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="8dp"
+        android:background="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <Button
+            android:id="@+id/skip"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:paddingTop="10dp"
+            android:background="@color/transparent"
             android:text="Skip"
             android:textAllCaps="false"
             android:textColor="#171717"
-            android:textSize="12dp" />
+            android:textSize="12dp"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

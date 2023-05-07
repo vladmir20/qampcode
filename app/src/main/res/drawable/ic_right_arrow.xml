@@ -1,0 +1,17 @@
+<!--
+  ~ /**
+  ~  * Created by Shivam Tiwari on 05/05/23, 3:15 PM
+  ~  * Copyright (c) 2023 . All rights reserved.
+  ~  * Last modified 05/05/23, 6:13 AM
+  ~  */
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="8dp"
+    android:height="12dp"
+    android:viewportWidth="8"
+    android:viewportHeight="12">
+  <path
+      android:pathData="M1.593,11.658L7.25,6.001L1.593,0.344L0.886,1.051L5.836,6.001L0.886,10.951L1.593,11.658Z"
+      android:fillColor="#272A3D"/>
+</vector>

@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Shivam Tiwari on 28/04/23, 8:10 PM
+ *  * Created by Shivam Tiwari on 05/05/23, 3:15 PM
  *  * Copyright (c) 2023 . All rights reserved.
- *  * Last modified 28/04/23, 8:10 PM
+ *  * Last modified 04/05/23, 2:35 AM
  *
  */
 
@@ -10,6 +10,7 @@ package com.qamp.app;
 
 import static com.qamp.app.qampcallss.api.CallStateReceiver.context;
 
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -34,11 +35,12 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.textfield.TextInputLayout;
+import com.qamp.app.messaging.MesiboUserListActivityNew;
 
 import java.io.IOException;
 import java.util.List;
 
-public class CommunityLocationFragment extends Fragment implements OnMapReadyCallback {
+public class CommunityLocationFragment extends Fragment implements OnMapReadyCallback, Backpressedlistener {
 
     Button next;
     ImageView cancel;
@@ -51,6 +53,9 @@ public class CommunityLocationFragment extends Fragment implements OnMapReadyCal
     Button skip;
     TextInputLayout locationLayout;
     public static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
+
+    public static Backpressedlistener backpressedlistener;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -150,6 +155,7 @@ public class CommunityLocationFragment extends Fragment implements OnMapReadyCal
     public void onResume() {
         super.onResume();
         mapView.onResume();
+        backpressedlistener=this;
     }
 
     @Override
@@ -171,6 +177,7 @@ public class CommunityLocationFragment extends Fragment implements OnMapReadyCal
 
     @Override
     public void onPause() {
+        backpressedlistener=null;
         mapView.onPause();
         super.onPause();
     }
@@ -186,6 +193,12 @@ public class CommunityLocationFragment extends Fragment implements OnMapReadyCal
         super.onLowMemory();
         mapView.onLowMemory();
     }
+
+    @Override
+    public void onBackPressed() {
+
+     }
+
 
 }
 

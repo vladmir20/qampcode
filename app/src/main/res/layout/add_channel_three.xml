@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ /**
-  ~  * Created by Shivam Tiwari on 30/04/23, 12:52 PM
+  ~  * Created by Shivam Tiwari on 05/05/23, 3:15 PM
   ~  * Copyright (c) 2023 . All rights reserved.
-  ~  * Last modified 30/04/23, 12:52 PM
+  ~  * Last modified 04/05/23, 4:19 AM
   ~  */
   -->
 
@@ -115,89 +115,189 @@
                 android:layout_marginRight="16dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Who can be a part of you community?"
+                android:text="@string/part_of_community_text"
                 android:textColor="#171717"
-                android:textSize="24dp" />
+                android:textSize="24sp" />
 
-            <LinearLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/openToAllLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingTop="20dp">
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#f2f2f2"
+                app:cardCornerRadius="6dp"
+                android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/textView15"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="32dp"
-                    android:text="Open to All"
-                    android:textColor="#272A3D"
-                    android:textSize="14dp"
-                    tools:ignore="TextSizeCheck" />
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/textView14"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="32dp"
-                    android:text="Open community where anyone can join"
-                    android:textSize="12dp"
-                    tools:ignore="TextSizeCheck" />
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Open to All"
+                        android:textColor="#272A3D"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="TextSizeCheck" />
 
-            <LinearLayout
+                    <TextView
+                        android:id="@+id/openToAllDes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="Open community where anyone can join"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView15"
+                        tools:ignore="TextSizeCheck" />
+
+
+                    <CheckBox
+                        android:id="@+id/openToAllLayoutCheck"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="16dp"
+                        android:checked="true"
+                        android:buttonTint="@color/colorPrimary"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/textView15"/>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/byInviteLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingTop="15dp">
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#ffffff"
+                app:cardCornerRadius="6dp"
+                android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/textView17"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="32dp"
-                    android:text="By Invite Only"
-                    android:textColor="#272A3D"
-                    android:textSize="14dp"
-                    tools:ignore="TextSizeCheck" />
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/textView16"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="32dp"
-                    android:text="Closed community where people with invitation can join"
-                    android:textSize="12dp"
-                    tools:ignore="TextSizeCheck" />
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="By Invite"
+                        android:textColor="#272A3D"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="TextSizeCheck" />
 
-            <LinearLayout
+                    <TextView
+                        android:id="@+id/byInviteDes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="Closed community where people with invitation
+                        can join"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView17"
+                        tools:ignore="TextSizeCheck" />
+
+
+                    <CheckBox
+                        android:id="@+id/byInviteCheck"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="16dp"
+                        android:checked="true"
+                        android:buttonTint="@color/colorPrimary"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/textView17"/>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/byRequestLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="15dp">
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#ffffff"
+                app:cardCornerRadius="6dp"
+                android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/textView19"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="32dp"
-                    android:text="By Request"
-                    android:textColor="#272A3D"
-                    android:textSize="14dp"
-                    tools:ignore="TextSizeCheck" />
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/textView18"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="32dp"
-                    android:text="Join request needs to be approved by community manger"
-                    android:textSize="12dp"
-                    tools:ignore="TextSizeCheck" />
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/textView19"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="By Request"
+                        android:textColor="#272A3D"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="TextSizeCheck" />
+
+                    <TextView
+                        android:id="@+id/byRequestDes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="Join request needs to be approved by community
+                        manger"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView19"
+                        tools:ignore="TextSizeCheck" />
+
+
+                    <CheckBox
+                        android:id="@+id/byRequestCheck"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="16dp"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:checked="true"
+                        android:buttonTint="@color/colorPrimary"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/textView19" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
 
             <Button
                 android:id="@+id/buttonNext"
