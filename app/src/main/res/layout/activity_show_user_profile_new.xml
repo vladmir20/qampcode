@@ -286,6 +286,7 @@
                         android:layout_height="wrap_content"
                         android:clipToPadding="false"
                         android:orientation="horizontal" />
+
                 </HorizontalScrollView>
 
                 <View

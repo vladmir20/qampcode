@@ -1,44 +1,36 @@
 /*
  * *
- *  * Created by Shivam Tiwari on 05/05/23, 3:15 PM
+ *  * Created by Shivam Tiwari on 15/05/23, 4:10 AM
  *  * Copyright (c) 2023 . All rights reserved.
- *  * Last modified 05/05/23, 2:08 AM
+ *  * Last modified 15/05/23, 4:10 AM
  *
  */
 
-package com.qamp.app;
+package com.qamp.app.ChannelSettingsAdmin.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.qamp.app.Backpressedlistener;
 import com.qamp.app.ChannelSettingsAdmin.ChannelAdminSettingsActivity;
+import com.qamp.app.R;
 
-public class AboutLayoutFragment extends Fragment implements Backpressedlistener {
+public class CommunitiesAdminSettingsFragment extends Fragment implements Backpressedlistener {
     public static Backpressedlistener backpressedlistener;
-    CardView channelLayoutEdit;
-    public AboutLayoutFragment() {
+    public CommunitiesAdminSettingsFragment() {
         // Required empty public constructor
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.aboutlayoutfragment, container, false);
-        channelLayoutEdit = view.findViewById(R.id.channelLayoutEdit);
-        channelLayoutEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ChannelAdminSettingsActivity.class);
-                startActivity(intent);
-            }
-        });
+        View view = inflater.inflate(R.layout.fragment_admin_setting_communities, container, false);
         return view;
     }
 

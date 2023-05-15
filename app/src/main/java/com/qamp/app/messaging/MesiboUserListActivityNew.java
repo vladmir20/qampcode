@@ -53,6 +53,7 @@ import com.qamp.app.AppConfig;
 import com.qamp.app.Fragments.DiscoverFragment;
 import com.qamp.app.Fragments.FeedFragment;
 import com.qamp.app.LoginQampActivity;
+import com.qamp.app.NotificationCenterActivity;
 import com.qamp.app.QampUiHelper;
 import com.qamp.app.R;
 import com.qamp.app.SampleAPI;
@@ -88,6 +89,8 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
     private ImageView search_image;
     private long pressedTime;
     private long mGroupId = 0;
+
+    private LinearLayout notification_center;
     private BottomNavigationView.OnNavigationItemSelectedListener selectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
@@ -292,6 +295,7 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
         search_view = findViewById(R.id.search_view);
         search_image = findViewById(R.id.search_image);
         search_func = findViewById(R.id.search_func);
+        notification_center = findViewById(R.id.notification_center);
 
 //        if (AppConfig.getConfig().profileId != "") {
 //            setUserPicture();
@@ -306,7 +310,17 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
             }
         });
 
+        notification_center.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MesiboUserListActivityNew.this, NotificationCenterActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
+
+
 
     public MesiboProfile getProfile() {
         if (mGroupId > 0) return Mesibo.getProfile(mGroupId);

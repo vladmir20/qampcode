@@ -131,7 +131,7 @@ public class MesiboListeners implements Mesibo.ConnectionListener, ILoginInterfa
             SampleAPI.forceLogout();
         } else if (Mesibo.STATUS_AUTHFAIL == status) {
             UIManager.showAlert(mUserListContext, "Signed Out", "Login Expired. Login again to continue.");
-            SampleAPI.forceLogout();
+         //   SampleAPI.forceLogout();
         }
 
         if(Mesibo.STATUS_ONLINE == status) {

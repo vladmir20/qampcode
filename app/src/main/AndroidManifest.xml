@@ -221,6 +221,15 @@
             android:name=".AddPostActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".NotificationCenterActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name=".ChannelSettingsAdmin.ChannelAdminSettingsActivity"
+            android:screenOrientation="portrait" />
+
         <!--        <service-->
         <!--            android:name=".java.MyFirebaseMessagingService"-->
         <!--            android:exported="false">-->

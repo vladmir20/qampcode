@@ -448,5 +448,9 @@
     <string name="pickedLocationText">We have picked your current location by default. You can also search for another locaiton</string>
     <string name="part_of_community_text">Who can be a part of you community?</string>
     <string name="share_invite_text">Share Invite</string>
+    <string name="notification_center">Notification Center</string>
+    <string name="edit_details">Edit Details</string>
+    <string name="channel_type">Channel Type</string>
+    <string name="community_location">Community Location</string>
 
 </resources>

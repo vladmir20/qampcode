@@ -76,6 +76,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.gson.Gson;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
@@ -1034,8 +1035,10 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                 }
 
             }
-
-
+//            Toast.makeText(getActivity(), ""+Mesibo.getUserProfiles().size(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getActivity(), ""+Mesibo.getSortedUserProfiles().size(), Toast.LENGTH_LONG).show();
+              Log.e("Latest /contacts",new Gson().toJson(Mesibo.getUserProfiles()));
+            //Log.e("Latest /contacts/toString",new Gson().toJson(Mesibo.getUserProfiles().toString()));
         }
 
         @Override

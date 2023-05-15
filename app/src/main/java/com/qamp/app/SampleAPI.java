@@ -301,7 +301,7 @@ public class SampleAPI {
         SampleAPI.saveSyncedTimestamp(0);
         Mesibo.stop(true);
         AppConfig.getConfig().reset();
-        mNotifyUser.clearNotification();
+//        mNotifyUser.clearNotification();
         Mesibo.reset();
         ContactUtils.syncReset();
 

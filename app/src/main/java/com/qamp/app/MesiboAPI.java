@@ -26,6 +26,7 @@ import com.mesibo.api.MesiboProfile;
 import com.mesibo.contactutils.ContactUtils;
 import com.mesibo.mediapicker.MediaPicker;
 import com.qamp.app.qampcallss.api.MesiboCall;
+import com.qamp.app.uihelper.Utils.Log;
 
 import org.json.JSONObject;
 
@@ -187,9 +188,11 @@ public class MesiboAPI extends Observable {
 //        Mesibo.setPath(Environment.getExternalStorageDirectory().getAbsolutePath());
 
 //        MesiboRegistrationIntentService.startRegistration(mContext, "978866948854", MesiboListeners.getInstance());
+        Log.e("line1",String.valueOf(resetContacts));
 
         String path = Mesibo.getBasePath();
         MediaPicker.setPath(path);
+        Log.e("line2",String.valueOf(path));
 
         // add lister
         Mesibo.addListener(MesiboListeners.getInstance());
@@ -198,15 +201,21 @@ public class MesiboAPI extends Observable {
         // add file transfer handler
         MesiboFileTransferHelper fileTransferHelper = new MesiboFileTransferHelper();
         Mesibo.addListener(fileTransferHelper);
+        Log.e("line3",String.valueOf(path));
 
         //this will also register listener from the constructor
         mNotifyUser = new NotifyUser(MainApplication.getAppContext());
-
+        Log.e("line4",String.valueOf(path));
         // set access token
-        if (0 != Mesibo.setAccessToken(AppConfig.getConfig().token)) {
+        int i = Mesibo.setAccessToken(AppConfig.getConfig().token);
+        //Toast.makeText(mContext, "true"+String.valueOf(i), Toast.LENGTH_LONG).show();
+        Log.e("TestToken",String.valueOf(i));
+        if (0 != i) {
 //            AppConfig.getConfig().token = "";
             AppConfig.save();
             Mesibo.setMessageRetractionInterval(172800);
+            Log.e("TestToken2",String.valueOf(i));
+            //  Toast.makeText(mContext, "true"+String.valueOf(i), Toast.LENGTH_LONG).show();
             return false;
         }
 
@@ -222,7 +231,8 @@ public class MesiboAPI extends Observable {
         initAutoDownload();
 
         // Now start mesibo
-        if (0 != Mesibo.start()) {
+        int test = Mesibo.start();
+        if (0 != test) {
             return false;
         }
         Mesibo.setMessageRetractionInterval(172800);

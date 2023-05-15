@@ -242,6 +242,7 @@
 
 
                     <LinearLayout
+                        android:id="@+id/notification_center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackground"

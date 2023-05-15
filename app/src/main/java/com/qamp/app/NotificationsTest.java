@@ -28,7 +28,9 @@ public class NotificationsTest extends AppCompatActivity {
                         if (!task.isSuccessful()) {
 
                         }
-                        String token = task.getResult();
+                        String token = null;
+                        if (task.getResult()!=null)
+                             token = task.getResult();
                         tokenFinal = token;
                         AppConfig.getConfig().deviceToken = task.getResult();
                         System.out.println("My Device Token New rea- " + token);

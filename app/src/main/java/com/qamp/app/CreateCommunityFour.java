@@ -344,8 +344,10 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
         }
 
 
+
+
        mUserProfiles.addAll(Mesibo.getSortedUserProfiles());
-        //mUserProfiles.addAll(otherContactsList);
+       //mUserProfiles.addAll(otherContactsList);
 
 
         if (mUserProfiles.size() == 0) {
