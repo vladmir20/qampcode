@@ -1035,9 +1035,9 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                 }
 
             }
-//            Toast.makeText(getActivity(), ""+Mesibo.getUserProfiles().size(), Toast.LENGTH_SHORT).show();
-//            Toast.makeText(getActivity(), ""+Mesibo.getSortedUserProfiles().size(), Toast.LENGTH_LONG).show();
-              Log.e("Latest /contacts",new Gson().toJson(Mesibo.getUserProfiles()));
+// Toast.makeText(getActivity(), ""+Mesibo.getUserProfiles().size(), Toast.LENGTH_SHORT).show();
+// Toast.makeText(getActivity(), ""+Mesibo.getSortedUserProfiles().size(), Toast.LENGTH_LONG).show();
+     //         Log.e("Latest /contacts",new Gson().toJson(Mesibo.getUserProfiles()));
             //Log.e("Latest /contacts/toString",new Gson().toJson(Mesibo.getUserProfiles().toString()));
         }
 

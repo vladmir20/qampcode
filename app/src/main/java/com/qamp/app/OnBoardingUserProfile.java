@@ -319,6 +319,7 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
             jsonBody.put("firstName", "");
             jsonBody.put("lastName", "");
             jsonBody.put("profilePicId", AppConfig.getConfig().profileId);
+            Toast.makeText(this, ""+AppConfig.getConfig().token, Toast.LENGTH_SHORT).show();
             if (AppConfig.getConfig().deviceToken != "") {
                 jsonBody.put("androidToken", AppConfig.getConfig().deviceToken);
             }
