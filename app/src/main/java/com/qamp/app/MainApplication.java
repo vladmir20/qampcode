@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Shivam Tiwari on 05/05/23, 3:15 PM
+ *  * Created by Shivam Tiwari on 20/05/23, 3:30 AM
  *  * Copyright (c) 2023 . All rights reserved.
- *  * Last modified 21/04/23, 3:40 AM
+ *  * Last modified 20/05/23, 2:39 AM
  *
  */
 
@@ -15,11 +15,14 @@ import android.util.Log;
 import androidx.lifecycle.LifecycleObserver;
 
 import com.mesibo.api.Mesibo;
+import com.qamp.app.Activity.StartUpActivity;
+import com.qamp.app.MesiboApiClasses.SampleAPI;
+import com.qamp.app.Utils.AppConfig;
 import com.qamp.app.qampcallss.api.MesiboCall;
 //import com.mesibo.calls.ui.MesiboCallUi;
 import com.mesibo.mediapicker.ImagePicker;
 import com.mesibo.mediapicker.MediaPicker;
-import com.qamp.app.messaging.MesiboUI;
+import com.qamp.app.MessagingModule.MesiboUI;
 
 public class MainApplication extends Application implements Mesibo.RestartListener, LifecycleObserver {
     public static final String TAG = "MesiboDemoApplication";
@@ -40,7 +43,7 @@ public class MainApplication extends Application implements Mesibo.RestartListen
 
         MesiboUI.Config opt = MesiboUI.getConfig();
         opt.mToolbarColor = 0xff00868b;
-        opt.emptyUserListMessage = "No messages! Click on the message icon above to start messaging!";
+        opt.emptyUserListMessage = "No messages! Click on the message icon above to start MessagingModule!";
         MediaPicker.setToolbarColor(opt.mToolbarColor);
         ImagePicker.getInstance().setApp(this);
 

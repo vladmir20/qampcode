@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ /**
-  ~  * Created by Shivam Tiwari on 05/05/23, 3:15 PM
+  ~  * Created by Shivam Tiwari on 20/05/23, 3:30 AM
   ~  * Copyright (c) 2023 . All rights reserved.
-  ~  * Last modified 21/04/23, 3:40 AM
+  ~  * Last modified 20/05/23, 2:35 AM
   ~  */
   -->
 
@@ -13,7 +13,7 @@
     android:animateLayoutChanges="true"
     >
 
-    <com.qamp.app.messaging.ThumbnailProgressView
+    <com.qamp.app.MessagingModule.ThumbnailProgressView
         android:id="@+id/m_picture"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"

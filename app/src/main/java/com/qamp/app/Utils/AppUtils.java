@@ -1,16 +1,15 @@
 /*
  * *
- *  * Created by Shivam Tiwari on 05/05/23, 3:15 PM
+ *  * Created by Shivam Tiwari on 20/05/23, 3:30 AM
  *  * Copyright (c) 2023 . All rights reserved.
- *  * Last modified 30/04/23, 11:45 PM
+ *  * Last modified 20/05/23, 2:39 AM
  *
  */
 package com.qamp.app.Utils;
 
 import static android.content.Context.MODE_PRIVATE;
-import static android.os.ParcelFileDescriptor.MODE_APPEND;
-import static com.qamp.app.messaging.MesiboConfiguration.TOOLBAR_COLOR;
-import static com.qamp.app.messaging.MesiboConfiguration.TOOLBAR_STATUSBAR_COLOR;
+import static com.qamp.app.MessagingModule.MesiboConfiguration.TOOLBAR_COLOR;
+import static com.qamp.app.MessagingModule.MesiboConfiguration.TOOLBAR_STATUSBAR_COLOR;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -37,14 +36,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentActivity;
 
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
-import com.qamp.app.QampUiHelper;
 import com.qamp.app.R;
-import com.qamp.app.SelectLanguage;
+import com.qamp.app.Activity.SelectLanguage;
 
 import java.io.File;
 import java.io.FileOutputStream;

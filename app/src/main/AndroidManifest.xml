@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?><!--
   ~ /**
-  ~  * Created by Shivam Tiwari on 05/05/23, 3:15 PM
+  ~  * Created by Shivam Tiwari on 20/05/23, 3:30 AM
   ~  * Copyright (c) 2023 . All rights reserved.
-  ~  * Last modified 05/05/23, 2:12 PM
+  ~  * Last modified 20/05/23, 3:25 AM
   ~  */
   -->
 
@@ -47,20 +47,20 @@
 
 
         <activity
-            android:name="com.qamp.app.EditProfileActivity"
+            android:name="com.qamp.app.Activity.EditProfileActivity"
             android:screenOrientation="portrait"
             android:supportsRtl="false"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name=".OnBoardingScreens"
+            android:name=".Activity.OnBoardingScreens"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".OnBoardingUserProfile"
+            android:name=".Activity.OnBoardingUserProfile"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -84,14 +84,14 @@
 
 
         <activity
-            android:name="com.qamp.app.ShowProfileActivity"
+            android:name="com.qamp.app.Activity.ShowProfileActivity"
             android:screenOrientation="portrait"
             android:supportsRtl="false"
             android:theme="@style/AppTheme.NoActionBar" />
 
 
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".Activity.SplashScreenActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
@@ -104,13 +104,13 @@
         </activity>
 
         <activity
-            android:name=".WelcomeOnboarding"
+            android:name=".Activity.WelcomeOnboarding"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".LoginQampActivity"
+            android:name=".Activity.LoginQampActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -125,13 +125,13 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name="com.qamp.app.AppSettings.SettingsActivity"
+            android:name="com.qamp.app.Activity.SettingsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
 
         <receiver
-            android:name="com.qamp.app.AutoStart"
+            android:name="com.qamp.app.Receiver.AutoStart"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"></action>
@@ -141,7 +141,7 @@
 
         <!-- Firebase Notifications-->
         <!--        <service-->
-        <!--            android:name="com.qamp.app.fcm.MesiboGcmListenerService"-->
+        <!--            android:name="com.qamp.app.Services.MesiboGcmListenerService"-->
         <!--            android:exported="false">-->
         <!--            <intent-filter>-->
         <!--                <action android:name="com.google.firebase.MESSAGING_EVENT" />-->
@@ -149,7 +149,7 @@
         <!--        </service>-->
 
         <!--        <service-->
-        <!--            android:name="com.qamp.app.fcm.MesiboInstanceIDListenerService"-->
+        <!--            android:name="com.qamp.app.Services.MesiboInstanceIDListenerService"-->
         <!--            android:exported="false">-->
 
         <!--            <intent-filter>-->
@@ -157,77 +157,77 @@
         <!--            </intent-filter>-->
         <!--        </service>-->
         <!--        <service-->
-        <!--            android:name="com.qamp.app.fcm.MesiboRegistrationIntentService"-->
+        <!--            android:name="com.qamp.app.Services.MesiboRegistrationIntentService"-->
         <!--            android:exported="false"-->
         <!--            android:permission="android.permission.BIND_JOB_SERVICE" />-->
         <!--        <service-->
-        <!--            android:name="com.qamp.app.fcm.MesiboJobIntentService"-->
+        <!--            android:name="com.qamp.app.Services.MesiboJobIntentService"-->
         <!--            android:exported="false"-->
         <!--            android:permission="android.permission.BIND_JOB_SERVICE" />-->
 
         <activity
-            android:name="com.qamp.app.uihelper.ProductTourActivity"
+            android:name="com.qamp.app.Activity.ProductTourActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.qamp.app.uihelper.LoginActivity"
+            android:name="com.qamp.app.Activity.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.qamp.app.uihelper.LoginActivityNew"
+            android:name="com.qamp.app.Activity.LoginActivityNew"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.qamp.app.messaging.MesiboUserListActivity"
+            android:name="com.qamp.app.MessagingModule.MesiboUserListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.qamp.app.messaging.MesiboEndToEndEncryptionActivity"
+            android:name="com.qamp.app.MessagingModule.MesiboEndToEndEncryptionActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.qamp.app.messaging.MesiboMessagingActivity"
+            android:name="com.qamp.app.MessagingModule.MesiboMessagingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.qamp.app.messaging.MesiboMapActivity"
+            android:name="com.qamp.app.MessagingModule.MesiboMapActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.qamp.app.messaging.CreateNewGroupActivity"
+            android:name="com.qamp.app.MessagingModule.CreateNewGroupActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.qamp.app.messaging.MesiboUserListActivityNew"
+            android:name="com.qamp.app.MessagingModule.MesiboUserListActivityNew"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ShowProfileActivityNew"
+            android:name=".Activity.ShowProfileActivityNew"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".EditProfileActivityNew"
+            android:name=".Activity.EditProfileActivityNew"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SelectLanguage"
+            android:name=".Activity.SelectLanguage"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ZoomPictureActivity"
+            android:name=".Activity.ZoomPictureActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".NotificationsTest"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".AddChannelActivity"
+            android:name=".Activity.NotificationsTest"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".CommunityDashboard"
-            android:screenOrientation="portrait" />
-
-
-        <activity
-            android:name=".AddPostActivity"
+            android:name=".Activity.AddChannelActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".NotificationCenterActivity"
+            android:name=".Activity.CommunityDashboard"
             android:screenOrientation="portrait" />
 
 
         <activity
-            android:name=".ChannelSettingsAdmin.ChannelAdminSettingsActivity"
+            android:name=".Activity.AddPostActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".Activity.NotificationCenterActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name=".Activity.ChannelAdminSettingsActivity"
             android:screenOrientation="portrait" />
 
         <!--        <service-->
@@ -239,17 +239,17 @@
         <!--        </service>-->
 
         <!--        <meta-data-->
-        <!--            android:name="com.google.firebase.messaging.default_notification_icon"-->
+        <!--            android:name="com.google.firebase.MessagingModule.default_notification_icon"-->
         <!--            android:resource="@drawable/ic_logo_gradient" />-->
         <!--        <meta-data-->
-        <!--            android:name="com.google.firebase.messaging.default_notification_color"-->
+        <!--            android:name="com.google.firebase.MessagingModule.default_notification_color"-->
         <!--            android:resource="@color/colorPrimary" />-->
         <!--        <meta-data-->
-        <!--            android:name="com.google.firebase.messaging.default_notification_channel_id"-->
+        <!--            android:name="com.google.firebase.MessagingModule.default_notification_channel_id"-->
         <!--            android:value="@string/default_notification_channel_id" />-->
 
         <service
-            android:name=".PushNotificationService"
+            android:name=".Services.PushNotificationService"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Shivam Tiwari on 05/05/23, 3:15 PM
+ *  * Created by Shivam Tiwari on 20/05/23, 3:30 AM
  *  * Copyright (c) 2023 . All rights reserved.
- *  * Last modified 21/04/23, 3:40 AM
+ *  * Last modified 20/05/23, 2:39 AM
  *
  */
 
@@ -17,7 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.qamp.app.R;
-import com.qamp.app.Utilss;
+import com.qamp.app.Utils.Utilss;
 
 public class DiscoverFragment extends Fragment {
     public DiscoverFragment(){

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ /**
-  ~  * Created by Shivam Tiwari on 05/05/23, 3:15 PM
+  ~  * Created by Shivam Tiwari on 20/05/23, 3:30 AM
   ~  * Copyright (c) 2023 . All rights reserved.
-  ~  * Last modified 21/04/23, 3:40 AM
+  ~  * Last modified 20/05/23, 2:39 AM
   ~  */
   -->
 
@@ -30,7 +30,7 @@
             app:expandedTitleMarginStart="10dp"
             app:expandedTitleMarginEnd="0dp">
 
-            <com.qamp.app.SquareImageView
+            <com.qamp.app.Utils.SquareImageView
                 android:id="@+id/up_image_profile"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

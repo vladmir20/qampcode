@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ /**
-  ~  * Created by Shivam Tiwari on 05/05/23, 3:15 PM
+  ~  * Created by Shivam Tiwari on 20/05/23, 3:30 AM
   ~  * Copyright (c) 2023 . All rights reserved.
-  ~  * Last modified 21/04/23, 3:40 AM
+  ~  * Last modified 20/05/23, 3:25 AM
   ~  */
   -->
 
@@ -34,7 +34,7 @@
 
     </FrameLayout>
 
-    <com.qamp.app.uihelper.AutoResizeTextView
+    <com.qamp.app.Utils.AutoResizeTextView
         android:id="@+id/heading"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
@@ -43,7 +43,7 @@
         android:paddingRight="24dp"
         android:gravity="bottom|center_horizontal" />
 
-    <com.qamp.app.uihelper.AutoResizeTextView
+    <com.qamp.app.Utils.AutoResizeTextView
         android:id="@+id/content"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
