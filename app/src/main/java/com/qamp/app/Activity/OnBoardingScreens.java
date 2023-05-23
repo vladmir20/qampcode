@@ -39,7 +39,7 @@ import java.util.List;
 
 public class OnBoardingScreens extends AppCompatActivity {
     private static int[] array_image_place = {
-            R.drawable.illustration,
+            R.drawable.chatchats,
             R.drawable.illustration_3,
             R.drawable.illustration_2,
     };

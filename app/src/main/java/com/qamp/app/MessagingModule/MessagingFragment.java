@@ -745,12 +745,14 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
                     status = profile.getName() + " is ";
                 }
 
-                status = status + getContext().getResources().getString(R.string.typing_text);
+                //status = status + getContext().getResources().getString(R.string.typing_text);
+                status = "Typing";
             } else if (profile.isChatting() && 0L == groupid) {
                 status = this.mMesiboUIOptions.joinedIndicationTitle;
             } else if (profile.isOnline() && 0L == groupid) {
 //                if (getContext().getResources().getString(R.string.online_text)!=null)
-//                status = getContext().getResources().getString(R.string.online_text);
+               // status = getContext().getResources().getString(R.string.online_text);
+                status = "Online";
             }
 
             return this.updateUserStatus(status, 0L);
@@ -1225,7 +1227,8 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
             profile.addListener(this);
             profile = getProfile();
             NotificationSendClass.pushNotifications(getContext(), mUser.getAddress()
-                    , ""+profile.getName(), ""+newText);
+                    , ""+profile.getName(), ""+msg.message.toString());
+            Toast.makeText(mActivity, ""+msg.message.toString(), Toast.LENGTH_SHORT).show();
              this.mEmojiEditText.getText().clear();
         }
     }
