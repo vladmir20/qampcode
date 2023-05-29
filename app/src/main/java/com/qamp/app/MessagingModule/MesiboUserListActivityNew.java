@@ -219,11 +219,12 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AppConfig.reset();
+                Toast.makeText(getApplicationContext(),"Logout is under Developement",Toast.LENGTH_LONG).show();
+                /**AppConfig.reset();
                 SampleAPI.startLogout();
                 Intent intent1 = new Intent(MesiboUserListActivityNew.this, LoginQampActivity.class);
                 startActivity(intent1);
-                finish();
+                finish();*/
             }
         });
 

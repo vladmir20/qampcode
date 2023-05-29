@@ -8,6 +8,8 @@
 
 package com.qamp.app.MessagingModule;
 
+import static java.security.AccessController.getContext;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -31,6 +33,7 @@ import com.mesibo.api.MesiboMessage;
 import com.mesibo.api.MesiboProfile;
 import com.qamp.app.R;
 import com.qamp.app.Utils.AppUtils;
+import com.qamp.app.Utils.NotificationSendClass;
 import com.qamp.app.qampcallss.api.MesiboCall;
 import com.qamp.app.qampcallss.api.p000ui.MesiboDefaultCallActivity;
 
@@ -160,6 +163,7 @@ public class MesiboMessagingActivity extends AppCompatActivity implements Mesibo
         this.videoCallButton = findViewById(R.id.action_videocall);
         String destination = "destination";
         this.callButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SuspiciousIndentation")
             @Override
             public void onClick(View view) {
 /**
@@ -179,11 +183,12 @@ public class MesiboMessagingActivity extends AppCompatActivity implements Mesibo
  intent.putExtra("incoming", false);
  startActivity(intent);*/
                 Log.e("Aditya", "reached");
-                if (!MesiboCall.getInstance().callUi(getApplicationContext(), mUser, false)) {
+                if (!MesiboCall.getInstance().callUi(getApplicationContext(), mUser, false))
 
-                    Log.e("Arr", String.valueOf(MesiboCall.getInstance().callUi(getApplicationContext(), mUser, false)));
                     MesiboCall.getInstance().callUiForExistingCall(getApplicationContext());
-                }
+                    NotificationSendClass.pushNotifications(getApplicationContext(), mUser.getAddress()
+                        , ""+mUser.getName(), "Incoming Audio Call");
+
                 //launchCustomCallActivity(destination, true, false);
 
             }
@@ -195,20 +200,12 @@ public class MesiboMessagingActivity extends AppCompatActivity implements Mesibo
             @SuppressLint("SuspiciousIndentation")
             @Override
             public void onClick(View view) {
-                Log.e("Aditya", "reached1");
-                /**if (view.getId() == R.id.imageView4) {
-                 //if(0 == mParameter.groupid) {
-                 if(!MesiboCall.getInstance().callUi(MesiboMessagingActivity.this, mParameter.profile.address, true))
-                 //launchCustomCallActivity(destination, true, false);
-                 MesiboCall.getInstance().callUiForExistingCall(MesiboMessagingActivity.this);
-                 //} else {
-                 //  MesiboCall.getInstance().groupCallUi(MesiboMessagingActivity.this, Mesibo.getProfile(mParameter.groupid), true, true);
-
-                 }*/
 
                 if (!MesiboCall.getInstance().callUi(getApplicationContext(), mUser, true))
                     //MesiboCall.getInstance().callUiForExistingCall(getApplicationContext());
                     launchCustomCallActivity(destination, true, false);
+                    NotificationSendClass.pushNotifications(getApplicationContext(), mUser.getAddress()
+                        , ""+mUser.getName(), "Incoming Video Call");
             }
         });
     }

@@ -59,9 +59,9 @@ import com.google.i18n.phonenumbers.Phonenumber;
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboProfile;
 import com.qamp.app.Activity.CommunityDashboard;
+import com.qamp.app.MesiboApiClasses.SampleAPI;
 import com.qamp.app.Utils.AppConfig;
 import com.qamp.app.Listener.Backpressedlistener;
-import com.qamp.app.MesiboApiClasses.MesiboAPI;
 import com.qamp.app.Utils.QAMPAPIConstants;
 import com.qamp.app.Utils.QampConstants;
 import com.qamp.app.R;
@@ -256,7 +256,7 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
-                    MesiboAPI.startContactsSync();
+                    SampleAPI.startContactsSync();
                     getContactList();
                 } else {
                     // permission denied, boo! Disable the

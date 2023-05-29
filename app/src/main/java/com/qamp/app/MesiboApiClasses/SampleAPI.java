@@ -427,6 +427,13 @@ public class SampleAPI {
         sendGCMToken();
     }
 
+    public static void setSyncFlags() {
+        mResetSyncedContacts = true;
+        mSyncPending = true;
+    }
+
+
+
     private static void sendGCMToken() {
         if (null == mGCMToken || mGCMTokenSent) {
             return;
@@ -619,7 +626,7 @@ public class SampleAPI {
         public String cc;
 
         public Urls urls;
-        public MesiboAPI.Invite share;
+        public SampleAPI.Invite share;
 
         public long gid;
         public int type;

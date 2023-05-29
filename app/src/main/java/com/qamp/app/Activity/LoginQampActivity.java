@@ -58,8 +58,8 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 import com.hbb20.CountryCodePicker;
 import com.mesibo.api.Mesibo;
+import com.qamp.app.MesiboApiClasses.SampleAPI;
 import com.qamp.app.Utils.AppConfig;
-import com.qamp.app.MesiboApiClasses.MesiboAPI;
 import com.qamp.app.MesiboApiClasses.MesiboListeners;
 import com.qamp.app.Utils.QAMPAPIConstants;
 import com.qamp.app.Utils.QampConstants;
@@ -640,10 +640,10 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
                                 AppUtils.saveUserApiVersion(LoginQampActivity.this, String.valueOf(responseVersion));
                                // Toast.makeText(LoginQampActivity.this, "Response Version is-" + String.valueOf(responseVersion), Toast.LENGTH_SHORT).show();
                                /// Toast.makeText(LoginQampActivity.this, "Saved Version is-" + AppUtils.getUserApiVersion(LoginQampActivity.this), Toast.LENGTH_SHORT).show();
-                                MesiboAPI.setSyncFlags();
+                                SampleAPI.setSyncFlags();
                                 Mesibo.reset();
-                                if (MesiboAPI.startMesibo(true)) {
-                                    MesiboAPI.startSync();
+                                if (SampleAPI.startMesibo(true)) {
+                                    SampleAPI.startSync();
                                 }
                                 AppConfig.save();
                                 closeKeyboard();

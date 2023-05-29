@@ -13,7 +13,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.qamp.app.MesiboApiClasses.MesiboAPI;
+import com.qamp.app.MesiboApiClasses.SampleAPI;
 
 public class AppConfig {
     public static final String sharedPrefKey = "com.qampmessenger.app";
@@ -211,7 +211,7 @@ public class AppConfig {
         public long ts = 0;
         public int version = 0;
         public String profileId = "";
-        public MesiboAPI.Invite invite = null;
+        public SampleAPI.Invite invite = null;
         public String uploadurl = null;
         public String downloadurl = null;
 

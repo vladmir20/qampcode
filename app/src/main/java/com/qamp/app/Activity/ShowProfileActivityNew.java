@@ -47,6 +47,7 @@ import com.mesibo.mediapicker.AlbumPhotosData;
 import com.qamp.app.R;
 import com.qamp.app.MesiboApiClasses.SampleAPI;
 import com.qamp.app.Fragments.ShowProfileFragment;
+import com.qamp.app.Utils.NotificationSendClass;
 import com.qamp.app.Utils.UIManager;
 import com.qamp.app.Utils.AppUtils;
 import com.qamp.app.MessagingModule.MesiboUI;
@@ -80,7 +81,7 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
     TextView mStatusTime;
     TextView mMobileNumber;
     TextView mPhoneType;
-    ImageView audioCall, videoCall, isOnlineDt;
+    ImageView audioCall, videoCall, isOnlineDt, backButton;
     private ShowProfileFragment.OnFragmentInteractionListener mListener;
     private ArrayList<String> mThumbnailMediaFiles;
     private LinearLayout mGallery;
@@ -116,6 +117,8 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
 
         audioCall = findViewById(R.id.imageView8);
         videoCall = findViewById(R.id.imageView9);
+        backButton = findViewById(R.id.back_btn);
+
 
 
         mPeer = args.getString("peer");
@@ -191,16 +194,30 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
             @Override
             public void onClick(View view) {
                 if (!MesiboCall.getInstance().callUi(getApplicationContext(), mUserProfile, false))
+                    //MesiboCall.getInstance().callUiForExistingCall(getApplicationContext());
                     MesiboCall.getInstance().callUiForExistingCall(getApplicationContext());
+                    NotificationSendClass.pushNotifications(getApplicationContext(), mUserProfile.getAddress()
+                        , ""+mUserProfile.getName(), "Incoming Audio Call");
             }
         });
+        //android:theme="@style/AppTheme.NoActionBar"   android:configChanges="keyboardHidden|orientation|screenSize
 
         videoCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!MesiboCall.getInstance().callUi(getApplicationContext(), mUserProfile, true))
                     //MesiboCall.getInstance().callUiForExistingCall(getApplicationContext());
-                    launchCustomCallActivity(destination, true, false);//
+                    //launchCustomCallActivity(destination, true, false);//
+                    launchCustomCallActivity(destination, true, false);
+                    NotificationSendClass.pushNotifications(getApplicationContext(), mUserProfile.getAddress()
+                        , ""+mUserProfile.getName(), "Incoming Video Call");
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

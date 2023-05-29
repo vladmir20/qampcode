@@ -15,6 +15,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
@@ -23,13 +24,23 @@ import androidx.core.content.ContextCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.google.gson.Gson;
 import com.qamp.app.R;
 
 public class PushNotificationService extends FirebaseMessagingService{
   @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         String title = remoteMessage.getNotification().getTitle();
-        String text = remoteMessage.getNotification().getBody();
+      //String title = remoteMessage.getData().get("title");
+      //String text = remoteMessage.getData().get("body");
+      //String notificationTye = remoteMessage.getData().get("notificationType");
+      String text = remoteMessage.getNotification().getBody();
+      Log.e("title",new Gson().toJson(remoteMessage));
+      Log.e("text",text);
+      //Log.e("notificationType", notificationTye);
+
+
+
         String CHANNEL_ID = "MESSAGE";
         CharSequence name;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -40,12 +51,13 @@ public class PushNotificationService extends FirebaseMessagingService{
             Notification.Builder notification = new Notification.Builder(this, CHANNEL_ID)
                     .setSmallIcon(R.mipmap.qamp_mini_logo)
                     .setContentTitle(title)
-                    .setContentText(remoteMessage.getData().toString())
+                    .setContentText(text)//remoteMessage.getData().toString()
                     .setColor(ContextCompat.getColor(PushNotificationService.this, R.color.colorPrimary))
                     .setShowWhen(true)
                     .setPriority(Notification.PRIORITY_HIGH)
                     .setDefaults(Notification.DEFAULT_ALL)
                     .setAutoCancel(true);
+            //notification.setSound(DEF)
             NotificationManagerCompat.from(this).notify(1, notification.build());
         }
         super.onMessageReceived(remoteMessage);

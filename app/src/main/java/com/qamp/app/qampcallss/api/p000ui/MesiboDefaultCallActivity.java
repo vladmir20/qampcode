@@ -8,12 +8,18 @@
 
 package com.qamp.app.qampcallss.api.p000ui;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 
 import androidx.fragment.app.FragmentTransaction;
 
+import com.qamp.app.Activity.ShowProfileActivityNew;
 import com.qamp.app.R;
+import com.qamp.app.Utils.AppUtils;
 import com.qamp.app.qampcallss.api.CallManager;
 import com.qamp.app.qampcallss.api.MesiboCall;
 
@@ -32,6 +38,12 @@ public class MesiboDefaultCallActivity extends QampCallsActivity {
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.activity_mesibocalll);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.WHITE);
+        }
+        //AppUtils.setStatusBarColor(MesiboDefaultCallActivity.this, R.color.colorAccent);
         Log.e("Aditya","reached22");
         int var1 = this.checkPermissions(this.mCp.video.enabled);
         if (var1 < 0) {

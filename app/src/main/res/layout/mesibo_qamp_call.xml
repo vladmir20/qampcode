@@ -13,6 +13,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/chat_bg"
+    android:paddingRight="5sp"
     tools:ignore="MergeRootFrame">
 
     <FrameLayout
@@ -25,16 +26,16 @@
             android:id="@+id/fullscreen_video_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleX="-1"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:scaleX="-1" />
 
         <com.qamp.app.qampcallss.api.MesiboVideoView
             android:id="@+id/pip_video_view"
             android:layout_width="wrap_content"
             android:layout_height="120dp"
-            android:scaleX="-1"
             android:layout_gravity="bottom"
-            android:layout_margin="16dp" />
+            android:layout_margin="16dp"
+            android:scaleX="-1" />
 
     </FrameLayout>
 
@@ -206,7 +207,7 @@
                         android:id="@+id/one"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="30sp"
+                        android:layout_marginLeft="28sp"
                         android:paddingTop="36sp"
                         android:paddingRight="32sp"
                         android:paddingBottom="32sp"
@@ -219,7 +220,7 @@
                         android:layout_toEndOf="@id/one"
                         android:paddingLeft="10sp"
                         android:paddingTop="32sp"
-                        android:paddingRight="32sp"
+                        android:paddingRight="30sp"
                         android:paddingBottom="32sp"
                         app:srcCompat="@drawable/ic_video_off" />
 
@@ -230,7 +231,7 @@
                         android:layout_toEndOf="@id/two"
                         android:paddingLeft="10sp"
                         android:paddingTop="32sp"
-                        android:paddingRight="32sp"
+                        android:paddingRight="30sp"
                         android:paddingBottom="32sp"
                         app:srcCompat="@drawable/ic_frame_512245" />
 
@@ -240,7 +241,7 @@
                         android:layout_height="wrap_content"
                         android:layout_toEndOf="@id/three"
                         android:paddingTop="34sp"
-                        android:paddingRight="32sp"
+                        android:paddingRight="30sp"
                         android:paddingBottom="32sp"
                         app:srcCompat="@drawable/microphone_off__2_" />
 

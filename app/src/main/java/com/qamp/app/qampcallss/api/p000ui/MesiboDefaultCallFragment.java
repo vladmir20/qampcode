@@ -22,16 +22,20 @@ import android.view.ViewGroup;
 import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.load.ImageHeaderParser;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboUtils;
 import com.mesibo.calls.api.R.raw;
 import com.mesibo.calls.api.ui.ViewTouchListener;
+import com.qamp.app.Activity.ShowProfileActivityNew;
 import com.qamp.app.R;
 import com.qamp.app.R.drawable;
+import com.qamp.app.Utils.AppUtils;
 import com.qamp.app.qampcallss.api.MesiboCall;
 import com.qamp.app.qampcallss.api.MesiboCall.AudioDevice;
 import com.qamp.app.qampcallss.api.MesiboCall.Call;
@@ -147,10 +151,11 @@ public class MesiboDefaultCallFragment extends Fragment implements OnClickListen
         if (TextUtils.isEmpty(var7 = this.mCp.f2ui.title)) {
             var7 = Mesibo.getAppName();
         }
-
+        AppUtils.setStatusBarColor(getActivity(), R.color.colorAccent);
         //var5.setText(var7);
         this.ui.backgroundRelative = var4 .findViewById(R.id.background);
         this.ui.callHold = var4.findViewById(R.id.textView23);
+        this.ui.more = var4.findViewById(R.id.more);
         this.ui.controlLayout = var4.findViewById(R.id.control_container);
         this.ui.contactOngoinName = var4.findViewById(R.id.textView4);
         this.ui.backArrow = (ImageView) var4.findViewById(R.id.imageView4);
@@ -194,6 +199,7 @@ public class MesiboDefaultCallFragment extends Fragment implements OnClickListen
         this.ui.speaker.setOnClickListener(this);
         this.ui.switchS.setOnClickListener(this);
         this.ui.mute.setOnClickListener(this);
+        this.ui.more.setOnClickListener(this);
         this.ui.toggleMuteButton.setOnClickListener(this);
         this.ui.acceptButton.setOnClickListener(this);
         this.ui.acceptAudioButton.setOnClickListener(this);
@@ -298,7 +304,31 @@ public class MesiboDefaultCallFragment extends Fragment implements OnClickListen
                 this.answer(true);
             } else if (var2 == R.id.incoming_audio_call_connect) {
                 this.answer(false);
-            } else if (var2 == R.id.one) {
+            }
+            else if(var2 == R.id.more){
+                Call thisCall = this.mCall;
+                BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getContext());
+                bottomSheetDialog.setContentView(R.layout.p2pcall_screen_sharing);
+                ImageView dismis = bottomSheetDialog.findViewById(R.id.dismiss);
+                TextView shareScreen = bottomSheetDialog.findViewById(R.id.share_screen);
+
+                dismis.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        bottomSheetDialog.dismiss();
+                    }
+                });
+
+                shareScreen.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(getContext(),"This Feature is Under Development",Toast.LENGTH_LONG).show();
+                        //thisCall.switchSource();
+                    }
+                });
+                bottomSheetDialog.show();
+            }
+            else if (var2 == R.id.one) {
                 this.mCall.toggleAudioDevice(AudioDevice.SPEAKER);
                 if(speakerFirst == true){
                     this.ui.speaker.setImageResource(drawable.speakerlow);
@@ -829,6 +859,7 @@ public class MesiboDefaultCallFragment extends Fragment implements OnClickListen
         public ImageView background;
         public TextView callHold;
         public ImageView star;
+        public ImageView more;
         public ImageView switchS;
         public View incomingView;
         public View backgroundRelative;

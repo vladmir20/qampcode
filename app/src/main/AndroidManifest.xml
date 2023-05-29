@@ -69,18 +69,14 @@
         <!--            android:configChanges="keyboardHidden|orientation|screenSize"-->
         <!--            android:theme="@style/AppTheme.NoActionBar" />-->
 
-        <activity
-            android:name=".qampcallss.api.p000ui.MesiboDefaultCallActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@style/AppTheme.NoActionBar" />
+
         <!--        <activity-->
         <!--            android:name=".qampCalls.QampCallActivity"-->
         <!--            android:configChanges="keyboardHidden|orientation|screenSize"-->
         <!--            android:theme="@style/AppTheme.NoActionBar" />-->
         <activity
             android:name=".qampcallss.api.p000ui.QampCallsActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@style/AppTheme.NoActionBar" />
+            />
 
 
         <activity
@@ -139,6 +135,11 @@
             </intent-filter>
         </receiver>
 
+        <receiver
+
+            android:name=".qampcallss.api.MesiboCallsReceiver">
+        </receiver>
+
         <!-- Firebase Notifications-->
         <!--        <service-->
         <!--            android:name="com.qamp.app.Services.MesiboGcmListenerService"-->
@@ -168,6 +169,10 @@
         <activity
             android:name="com.qamp.app.Activity.ProductTourActivity"
             android:screenOrientation="portrait" />
+
+        <activity android:name=".qampcallss.api.p000ui.MesiboDefaultCallActivity"
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name="com.qamp.app.Activity.LoginActivity"
             android:screenOrientation="portrait" />
