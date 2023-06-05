@@ -248,7 +248,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         this.fabadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!isSheetOpen)
+               if (!isSheetOpen)
                     showConatcts();
             }
         });
@@ -366,19 +366,15 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
     }
 
     private void showConatcts() {
-
         ContactsBottomSheetFragment contactsBottomSheetFragment = new ContactsBottomSheetFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(MesiboUserListFragment.MESSAGE_LIST_MODE, MesiboUserListFragment.MODE_SELECTCONTACT);
         bundle.putLong(MesiboUI.MESSAGE_ID, mForwardIdForContactList);
-
         if (!TextUtils.isEmpty(""))
             bundle.putString(MesiboUI.MESSAGE_CONTENT, forwardMessage);
-
         bundle.putLongArray(MesiboUI.MESSAGE_IDS, mForwardIds);
         if (mMode == MesiboUserListFragment.MODE_EDITGROUP)
             bundle.putBundle(MesiboUI.BUNDLE, mEditGroupBundle);
-
         bundle.putBoolean(MesiboUI.FORWARD_AND_CLOSE, false);
         contactsBottomSheetFragment.setArguments(bundle);
         contactsBottomSheetFragment.show(getChildFragmentManager(), contactsBottomSheetFragment.getTag());
@@ -541,7 +537,13 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                     }
                 }
                 if (params.isDbSummaryMessage() || params.isDbMessage()) {
+                    ArrayList<MesiboProfile> users = Mesibo.getSortedUserProfiles();
                     this.mAdhocUserList.add(user);
+//                    for (int i=0; i<users.size(); i++){
+//                        if (users.get(i).isGroup()){
+//                            this.mAdhocUserList.add(users.get(i));
+//                        }
+//                    }
                 } else {
                     this.mAdhocUserList.add(0, user);
                 }

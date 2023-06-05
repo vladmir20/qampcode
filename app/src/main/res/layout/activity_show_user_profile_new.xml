@@ -39,8 +39,8 @@
 
                 <ImageView
                     android:id="@+id/back_btn"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="25dp"
@@ -62,8 +62,8 @@
 
                 <ImageView
                     android:id="@+id/imageView3"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginTop="25dp"
                     android:layout_marginEnd="16dp"
                     android:rotation="90"

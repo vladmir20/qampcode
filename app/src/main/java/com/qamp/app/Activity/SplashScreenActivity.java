@@ -8,12 +8,17 @@
 
 package com.qamp.app.Activity;
 
+import static com.qamp.app.MessagingModule.MesiboConfiguration.MESIBO_INTITIAL_READ_USERLIST;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -21,6 +26,7 @@ import com.qamp.app.Utils.AppConfig;
 import com.qamp.app.R;
 import com.qamp.app.Utils.AppUtils;
 import com.qamp.app.MessagingModule.MesiboUserListActivityNew;
+import com.qamp.app.Utils.ContantContantUtil;
 
 import java.util.Locale;
 
@@ -51,6 +57,45 @@ public class SplashScreenActivity extends AppCompatActivity {
             AppUtils.loadLocale(SplashScreenActivity.this);
         }
         navigateToNextActivity();
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                ContantContantUtil.showUserList(MESIBO_INTITIAL_READ_USERLIST,SplashScreenActivity.this, SplashScreenActivity.this);
+            }
+
+        });
+
+
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                ContantContantUtil.showUserList(MESIBO_INTITIAL_READ_USERLIST,SplashScreenActivity.this, SplashScreenActivity.this);
+            }
+        };
+        new Thread(runnable).start();
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            switch (requestCode) {
+            case 225: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+                    // startContactsSync();
+                    ContantContantUtil.showUserList(MESIBO_INTITIAL_READ_USERLIST,SplashScreenActivity.this, SplashScreenActivity.this);
+                } else {
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+
+                return;
+            }
+        }
+
     }
 
     private void navigateToNextActivity() {
@@ -68,7 +113,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                             startActivity(mainActivity);
                         } else {
                             Intent mainActivity = new Intent(SplashScreenActivity.this,
-                                    OnBoardingUserProfile.class);
+                                    OnBoardingScreens.class);
                             startActivity(mainActivity);
                         }
                         SplashScreenActivity.this.finish();

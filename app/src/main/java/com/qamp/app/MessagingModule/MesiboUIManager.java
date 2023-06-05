@@ -145,10 +145,11 @@ public class MesiboUIManager {
     }
 
     protected static boolean enableSecureScreen(AppCompatActivity activity) {
-        if (!Mesibo.isSetSecureScreen()) {
-            return false;
-        }
-        activity.getWindow().setFlags(8192, 8192);
+//        if (!Mesibo.isSetSecureScreen()) {
+//            return false;
+//        }
+//        activity.getWindow().setFlags(8192, 8192);
+//        return true;
         return true;
     }
 }

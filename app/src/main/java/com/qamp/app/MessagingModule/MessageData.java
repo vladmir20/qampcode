@@ -38,8 +38,8 @@ public class MessageData {
         this.mContext = context;
         if (msg2.isDate()) {
             MesiboUI.Config opts = MesiboUI.getConfig();
-            msg2.message = msg2.getDate(true, context.getResources().getString(R.string.today_text),
-                    context.getResources().getString(R.string.yesterday));
+            msg2.message = msg2.getDate(true, "Today",
+                    "Yesterday");
         }
     }
 

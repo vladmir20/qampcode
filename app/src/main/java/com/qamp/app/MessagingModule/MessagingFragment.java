@@ -1226,9 +1226,10 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
             MesiboProfile profile = getProfile();
             profile.addListener(this);
             profile = getProfile();
-            NotificationSendClass.pushNotifications(getContext(), mUser.getAddress()
-                    , ""+profile.getName(), ""+msg.message.toString());
-            Toast.makeText(mActivity, ""+msg.message.toString(), Toast.LENGTH_SHORT).show();
+            if (profile.isGroup()==false){
+                NotificationSendClass.pushNotifications(getContext(), mUser.getAddress()
+                        , ""+profile.getName(), ""+msg.message.toString());
+            }
              this.mEmojiEditText.getText().clear();
         }
     }

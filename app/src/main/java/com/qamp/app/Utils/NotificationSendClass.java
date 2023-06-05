@@ -36,7 +36,7 @@ public class NotificationSendClass {
     public static void pushNotifications(Context context, String destination_id,
                                          String notification_title, String notification_body) {
 
-        if (destination_id.length()==12){
+        if (destination_id.length()==12&&destination_id!=null){
             destination_id = destination_id.substring(2,12);
         }
 //        Toast.makeText(context, ""+destination_id, Toast.LENGTH_SHORT).show();

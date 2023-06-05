@@ -96,7 +96,7 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
     private TextView mExitGroupText;
     private MesiboReadSession mReadSession = null;
     private TextView number_text, up_status_text;
-
+    private ImageView back_btn;
 //    public static ShowProfileActivityNew newInstance(MesiboProfile userdata) {
 //        ShowProfileActivityNew fragment = new ShowProfileActivityNew();
 //        mUser = userdata;
@@ -138,6 +138,7 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
         isOnlineDt = (ImageView) findViewById(R.id.isOnlineDot);
         number_text = (TextView) findViewById(R.id.number_text);
         up_status_text = (TextView) findViewById(R.id.up_status_text);
+        back_btn = (ImageView) findViewById(R.id.back_btn);
 
         Mesibo.addListener(this);
 
@@ -151,6 +152,13 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
 
         TextView userName = (TextView) findViewById(R.id.up_user_name);
         TextView userstatus = (TextView) findViewById(R.id.up_current_status);
+
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         userName.setText(mUserProfile.getName());
         if (mUserProfile.isOnline()) {

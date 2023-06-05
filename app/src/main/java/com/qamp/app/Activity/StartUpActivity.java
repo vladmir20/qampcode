@@ -39,7 +39,7 @@ public class StartUpActivity extends AppCompatActivity {
         //i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         i.putExtra(StartUpActivity.STARTINBACKGROUND, startInBackground);
 
-        context.startActivity(i);
+       // context.startActivity(i);
     }
 
     @Override

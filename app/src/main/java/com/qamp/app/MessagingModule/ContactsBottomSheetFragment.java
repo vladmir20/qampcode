@@ -10,34 +10,19 @@ package com.qamp.app.MessagingModule;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 import static android.os.Looper.getMainLooper;
-import static com.qamp.app.MesiboApiClasses.SampleAPI.startContactsSync;
-import static com.qamp.app.MessagingModule.MesiboConfiguration.ATTACHMENT_ICON;
-import static com.qamp.app.MessagingModule.MesiboConfiguration.ATTACHMENT_STRING;
-import static com.qamp.app.MessagingModule.MesiboConfiguration.DELETED_DRAWABLE;
-import static com.qamp.app.MessagingModule.MesiboConfiguration.IMAGE_ICON;
-import static com.qamp.app.MessagingModule.MesiboConfiguration.IMAGE_STRING;
 import static com.qamp.app.MessagingModule.MesiboConfiguration.JOIN_HUDDLE_MESSAGE;
-import static com.qamp.app.MessagingModule.MesiboConfiguration.LOCATION_ICON;
-import static com.qamp.app.MessagingModule.MesiboConfiguration.LOCATION_STRING;
 import static com.qamp.app.MessagingModule.MesiboConfiguration.MESIBO_INTITIAL_READ_USERLIST;
-import static com.qamp.app.MessagingModule.MesiboConfiguration.MISSED_VIDEOCALL_DRAWABLE;
-import static com.qamp.app.MessagingModule.MesiboConfiguration.MISSED_VOICECALL_DRAWABLE;
 import static com.qamp.app.MessagingModule.MesiboConfiguration.USERS_STRING_USERLIST_SEARCH;
-import static com.qamp.app.MessagingModule.MesiboConfiguration.VIDEO_ICON;
-import static com.qamp.app.MessagingModule.MesiboConfiguration.VIDEO_STRING;
-import static com.qamp.app.MessagingModule.MesiboImages.getMissedCallDrawable;
 import static org.webrtc.ContextUtils.getApplicationContext;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -76,16 +61,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import com.google.i18n.phonenumbers.NumberParseException;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import com.google.i18n.phonenumbers.Phonenumber;
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboGroupProfile;
 import com.mesibo.api.MesiboMessage;
 import com.mesibo.api.MesiboProfile;
-import com.qamp.app.Utils.QampConstants;
 import com.qamp.app.R;
 import com.qamp.app.Utils.AppUtils;
+import com.qamp.app.Utils.ContantContantUtil;
+import com.qamp.app.Utils.QampConstants;
 import com.qamp.app.qampcallss.api.MesiboCall;
 import com.qamp.app.qampcallss.api.p000ui.MesiboDefaultCallActivity;
 
@@ -95,7 +78,6 @@ import java.io.UnsupportedEncodingException;
 import java.lang.ref.WeakReference;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
@@ -131,7 +113,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
     EditText editTextTextPersonName5;
     ImageView imageView3;
     Context context;
-    private ArrayList<MesiboProfile> mUserProfiles = null;
+   // private ArrayList<MesiboProfile> mUserProfiles = null;
     private ArrayList<MesiboProfile> mSearchResultList = null;
     private Boolean mIsMessageSearching = false;
     private String mSearchQuery = null;
@@ -184,26 +166,26 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
         return dialog;
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case 225: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
-                    startContactsSync();
-                    getContactList();
-                } else {
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-                    Toast.makeText(getContext(), PERMISSION_DENIED_CONTACTS, Toast.LENGTH_SHORT).show();
-                }
-
-                return;
-            }
-        }
-    }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        switch (requestCode) {
+//            case 225: {
+//                // If request is cancelled, the result arrays are empty.
+//                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                    // permission was granted, yay! Do the
+//                    // contacts-related task you need to do.
+//                    // startContactsSync();
+//                    getContactList();
+//                } else {
+//                    // permission denied, boo! Disable the
+//                    // functionality that depends on this permission.
+//                    Toast.makeText(getContext(), PERMISSION_DENIED_CONTACTS, Toast.LENGTH_SHORT).show();
+//                }
+//
+//                return;
+//            }
+//        }
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -245,15 +227,15 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                 editTextTextPersonName5.setText("");
             }
         });
-        checkPermissionAndFetchContacts();
+        //checkPermissionAndFetchContacts();
         Bundle b = this.getArguments();//getIntent().getBundleExtra(BUNDLE_CONTACT_DETAILS);
         if (null != b) {
             mSelectionMode = b.getInt(MesiboUserListFragment.MESSAGE_LIST_MODE, MesiboUserListFragment.MODE_MESSAGELIST);
             //mReadQuery = b.getString("query", null);
         }
 
-        mUserProfiles = new ArrayList<>();
-        mUserProfiles = new ArrayList<MesiboProfile>();
+//        mUserProfiles = new ArrayList<>();
+//        mUserProfiles = new ArrayList<MesiboProfile>();
         mSearchResultList = new ArrayList<MesiboProfile>();
         OpenContactRecycler(false);
 
@@ -351,138 +333,41 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
 
     private void OpenContactRecycler(boolean isCreatingGroup) {
         contactsRecycle.setLayoutManager(new LinearLayoutManager(contactsRecycle.getContext()));
-        mAdapter = new MessageContactAdapter(getContext(), this, mUserProfiles, mSearchResultList, isCreatingGroup);
+        mAdapter = new MessageContactAdapter(getContext(), this, ContantContantUtil.mUserProfiles, mSearchResultList, isCreatingGroup);
         mAdapter.notifyChangeInData();
         contactsRecycle.setAdapter(mAdapter);
     }
 
-    private void checkPermissionAndFetchContacts() {
-        if (PermissionChecker.checkSelfPermission(getContext(), Manifest.permission.READ_CONTACTS) == PermissionChecker.PERMISSION_GRANTED) {
-            this.getContactList();
-        }
+//    private void checkPermissionAndFetchContacts() {
+//        if (PermissionChecker.checkSelfPermission(getContext(), Manifest.permission.READ_CONTACTS) == PermissionChecker.PERMISSION_GRANTED) {
+//            this.getContactList();
+//        }
+//
+//        if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.READ_CONTACTS)) {
+//            new AlertDialog.Builder(getContext())
+//                    .setTitle("Permission Needed")
+//                    .setMessage("This permission is needed to sync existing Huddle Contacts and to show all contact list. If denied you can change permission from Settings.")
+//                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_CONTACTS}, 225);
+//                        }
+//                    })
+//                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            dialog.dismiss();
+//                        }
+//                    })
+//                    .create()
+//                    .show();
+//        } else {
+//            if (PermissionChecker.checkSelfPermission(getContext(), Manifest.permission.READ_CONTACTS) != PermissionChecker.PERMISSION_GRANTED) {
+//                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_CONTACTS}, 225);
+//            }
+//        }
+//    }
 
-        if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.READ_CONTACTS)) {
-            new AlertDialog.Builder(getContext())
-                    .setTitle("Permission Needed")
-                    .setMessage("This permission is needed to sync existing Huddle Contacts and to show all contact list. If denied you can change permission from Settings.")
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_CONTACTS}, 225);
-                        }
-                    })
-                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    })
-                    .create()
-                    .show();
-        } else {
-            if (PermissionChecker.checkSelfPermission(getContext(), Manifest.permission.READ_CONTACTS) != PermissionChecker.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_CONTACTS}, 225);
-            }
-        }
-    }
-
-    public void getContactList() {
-        ContentResolver cr = getContext().getContentResolver();
-        contactList.removeAll(contactList);
-
-        Cursor cursor = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, PROJECTION, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
-        if (cursor != null) {
-            HashSet<String> mobileNoSet = new HashSet<String>();
-            try {
-                final int nameIndex = cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
-                final int numberIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
-
-                String name, number;
-                while (cursor.moveToNext()) {
-                    name = cursor.getString(nameIndex);
-                    number = cursor.getString(numberIndex);
-                    number = number.replace(" ", "");
-                    number = number.replace("(", "");
-                    number = number.replace(")", "");
-                    number = number.replace("-", "");
-                    if (!mobileNoSet.contains(number)) {
-                        contactList.add(new Contact(name, number));
-                        mobileNoSet.add(number);
-                        Log.d("hvy", "onCreateView  Phone Number: name = " + name
-                                + " No = " + number);
-                    }
-                }
-            } finally {
-                cursor.close();
-            }
-        }
-    }
-
-    public void showUserList(int readCount) {
-        Log.d("showUserList", "showUserList");
-
-        setEmptyViewText();
-        if (readCount == 0) {
-        } else {
-            mUserProfiles.clear();
-
-            ArrayList<MesiboProfile> otherContactsList = new ArrayList<>();
-            for (int j = 0; j < contactList.size(); j++) {
-                PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
-                Boolean state = true;
-                try {
-                    // phone must begin with '+'
-                    Phonenumber.PhoneNumber numberProto = phoneUtil.parse(contactList.get(j).phoneNumber, "");
-                } catch (NumberParseException e) {
-                    System.err.println("NumberParseException was thrown: " + e.toString());
-                    state = false;
-                }
-
-                MesiboProfile userProfile = new MesiboProfile();
-                userProfile.address = state == false ? "91" + contactList.get(j).phoneNumber : contactList.get(j).phoneNumber.substring(1);
-                userProfile.setName(contactList.get(j).name);
-                userProfile.setStatus("0");
-                userProfile.draft = null;
-                // userProfile.unread = 0;
-                userProfile.groupid = 0;
-                //userProfile.lastActiveTime = 0;
-                userProfile.lookedup = false;
-                userProfile.other = null;
-                otherContactsList.add(userProfile);
-            }
-
-            for (int j = 0; j < Mesibo.getSortedUserProfiles().size(); j++) {
-                for (int i = 0; i < otherContactsList.size(); i++) {
-                    if (null != otherContactsList.get(i).address && otherContactsList.get(i).
-                            address.equals(Mesibo.getSortedUserProfiles().get(j).address)) {
-                        Mesibo.getSortedUserProfiles().get(j).setName(otherContactsList.get(i).getName());
-                        otherContactsList.remove(i);
-                        break;
-                    }
-                }
-            }
-
-            mUserProfiles.addAll(Mesibo.getSortedUserProfiles());
-            mUserProfiles.addAll(otherContactsList);
-
-            MesiboProfile selfProfile = Mesibo.getSelfProfile();
-            for (int i = mUserProfiles.size() - 1; i >= 0; i--) {
-                MesiboProfile user = mUserProfiles.get(i);
-                if (selfProfile.address.equals(mUserProfiles.get(i).address)) {
-                    mUserProfiles.remove(i);
-                }
-            }
-        }
-        if (mUserProfiles.size() == 0) {
-            //subtitle.setText("");
-        } else if (mUserProfiles.size() == 1) {
-            //subtitle.setText(String.valueOf(mUserProfiles.size() + " Contact"));
-        } else {
-            //subtitle.setText(String.valueOf(mUserProfiles.size() + " Contacts"));
-        }
-
-        mAdapter.notifyChangeInData();
-    }
 
     @Override
     public void onClick(View view) {
@@ -567,7 +452,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
             new Handler(getMainLooper()).post(new Runnable() {
                 @Override
                 public void run() {
-                    showUserList(MESIBO_INTITIAL_READ_USERLIST);
+                    ContantContantUtil.showUserList(MESIBO_INTITIAL_READ_USERLIST,getContext(),getActivity());
                 }
             });
 
@@ -603,14 +488,14 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
     @Override
     public void onResume() {
         super.onResume();
-        showUserList(MESIBO_INTITIAL_READ_USERLIST);
+        ContantContantUtil.showUserList(MESIBO_INTITIAL_READ_USERLIST,getContext(),getActivity());
         Mesibo_onConnectionStatus(Mesibo.getConnectionStatus());
         Utils.showServicesSuspendedAlert(getContext());
     }
 
     private void updateContacts(MesiboProfile userProfile) {
         if (null == userProfile) {
-            showUserList(MESIBO_INTITIAL_READ_USERLIST);
+            ContantContantUtil.showUserList(MESIBO_INTITIAL_READ_USERLIST,getContext(),getActivity());
             return;
         }
 
@@ -758,7 +643,6 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
             if (vh.getItemViewType() == SECTION_HEADER) {
                 ((SectionHeaderViewHolder) vh).mSectionTitle.setText(mDataList.get(position).getName());
             } else {
-
                 final int pos = position;
                 final MesiboProfile user = mDataList.get(position);
 
@@ -775,36 +659,36 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                 String number = data.getPeer();
                 holder.mContactsPhone.setText(AppUtils.getFormatedNumber(number));//(PhoneNumberUtils.formatNumber(number));
 
-                int imageDrawableId = 0;
-                Drawable imageDrawable = null;
-                int padding = 5;
-                if (data.getLastMessage().equals(MESSAGE_DELETED_STRING)) {
-                    imageDrawableId = DELETED_DRAWABLE;
-                    imageDrawable = MesiboImages.getDeletedMessageDrawable();
-                } else if (data.getLastMessage().equals(ATTACHMENT_STRING)) {
-                    imageDrawableId = ATTACHMENT_ICON;
-                } else if (data.getLastMessage().equals(LOCATION_STRING)) {
-                    imageDrawableId = LOCATION_ICON;
-                } else if (data.getLastMessage().equals(VIDEO_STRING)) {
-                    imageDrawableId = VIDEO_ICON;
-                } else if (data.getLastMessage().equals(IMAGE_STRING)) {
-                    imageDrawableId = IMAGE_ICON;
-                } else if (data.getLastMessage().equals(MISSED_VIDEO_CALL)) {
-                    imageDrawableId = MISSED_VIDEOCALL_DRAWABLE;
-                    imageDrawable = getMissedCallDrawable(true);
-                } else if (data.getLastMessage().equals(MISSED_VOICE_CALL)) {
-                    imageDrawableId = MISSED_VOICECALL_DRAWABLE;
-                    imageDrawable = getMissedCallDrawable(false);
-                } else {
-                    imageDrawableId = 0;
-                    padding = 0;
-                }
+//                int imageDrawableId = 0;
+//                Drawable imageDrawable = null;
+//                int padding = 5;
+//                if (data.getLastMessage().equals(MESSAGE_DELETED_STRING)) {
+//                    imageDrawableId = DELETED_DRAWABLE;
+//                    imageDrawable = MesiboImages.getDeletedMessageDrawable();
+//                } else if (data.getLastMessage().equals(ATTACHMENT_STRING)) {
+//                    imageDrawableId = ATTACHMENT_ICON;
+//                } else if (data.getLastMessage().equals(LOCATION_STRING)) {
+//                    imageDrawableId = LOCATION_ICON;
+//                } else if (data.getLastMessage().equals(VIDEO_STRING)) {
+//                    imageDrawableId = VIDEO_ICON;
+//                } else if (data.getLastMessage().equals(IMAGE_STRING)) {
+//                    imageDrawableId = IMAGE_ICON;
+//                } else if (data.getLastMessage().equals(MISSED_VIDEO_CALL)) {
+//                    imageDrawableId = MISSED_VIDEOCALL_DRAWABLE;
+//                    imageDrawable = getMissedCallDrawable(true);
+//                } else if (data.getLastMessage().equals(MISSED_VOICE_CALL)) {
+//                    imageDrawableId = MISSED_VOICECALL_DRAWABLE;
+//                    imageDrawable = getMissedCallDrawable(false);
+//                } else {
+//                    imageDrawableId = 0;
+//                    padding = 0;
+//                }
 
-                boolean typing = data.isTyping();
-                if (typing) {
-                    imageDrawableId = 0;
-                    padding = 0;
-                }
+//                boolean typing = data.isTyping();
+//                if (typing) {
+//                    imageDrawableId = 0;
+//                    padding = 0;
+//                }
 
                 if (null != user.getStatus() && user.getStatus().equals("0")) {
                     //holder.invite.setVisibility(View.VISIBLE);
@@ -813,16 +697,16 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                     holder.audioCallIcon.setVisibility(View.GONE);
                     holder.videoCallIcon.setVisibility(View.GONE);
                     holder.isChecked.setVisibility(View.GONE);
-
-                } else if (user.getAddress() != "" && isGroup == true) {
-                   // holder.invite.setVisibility(View.GONE);
-                    holder.link.setVisibility(View.GONE);
-                    holder.messageIcon.setVisibility(View.VISIBLE);
-                    holder.audioCallIcon.setVisibility(View.VISIBLE);
-                    holder.videoCallIcon.setVisibility(View.VISIBLE);
-                    holder.isChecked.setVisibility(View.VISIBLE);
-                } else {
-                  //  holder.invite.setVisibility(View.GONE);
+                }
+//                } else if (user.getAddress() != "" && isGroup == true) {
+//                    // holder.invite.setVisibility(View.GONE);
+//                    holder.link.setVisibility(View.GONE);
+//                    holder.messageIcon.setVisibility(View.VISIBLE);
+//                    holder.audioCallIcon.setVisibility(View.VISIBLE);
+//                    holder.videoCallIcon.setVisibility(View.VISIBLE);
+//                    holder.isChecked.setVisibility(View.VISIBLE);}
+                 else {
+                    //  holder.invite.setVisibility(View.GONE);
                     holder.link.setVisibility(View.GONE);
                     holder.messageIcon.setVisibility(View.VISIBLE);
                     holder.audioCallIcon.setVisibility(View.VISIBLE);
@@ -874,6 +758,64 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                         public void onClick(View view) {
                             if (null != user.getStatus() && user.getStatus().equals("0")) {
                                 sendMessage(JOIN_HUDDLE_MESSAGE, user.address);
+                                Toast.makeText(mContext, "this", Toast.LENGTH_SHORT).show();
+                            } else {
+                                if (mSelectionMode == MesiboUserListFragment.MODE_SELECTCONTACT_FORWARD || mSelectionMode == MesiboUserListFragment.MODE_SELECTGROUP || mSelectionMode == MesiboUserListFragment.MODE_EDITGROUP) {
+                                    if ((user.uiFlags & MesiboProfile.FLAG_MARKED) == MesiboProfile.FLAG_MARKED) {
+                                        user.uiFlags = user.uiFlags & ~MesiboProfile.FLAG_MARKED;
+                                    } else {
+                                        user.uiFlags = user.uiFlags | MesiboProfile.FLAG_MARKED;
+                                    }
+                                    notifyDataSetChanged();
+
+                                    if (isForwardContactsSelected()) {
+                                        //mHost.showForwardLayout();
+                                    } else {
+                                        //mHost.hideForwardLayout();
+                                    }
+                                    Toast.makeText(mContext, "this if", Toast.LENGTH_SHORT).show();
+                                } else {
+
+                                    //TBD, it's checking user name, instead we should set flag
+                                    if (null != user.getName() && null != getString(R.string.create_new_group) && user.getName().equals(getString(R.string.create_new_group)) && mSelectionMode == MesiboUserListFragment.MODE_SELECTCONTACT) {
+                                        MesiboUIManager.launchContactActivity(getContext(), 0, MesiboUserListFragment.MODE_SELECTGROUP, 0, false, false, null, "");
+                                        Toast.makeText(mContext, "this if 1", Toast.LENGTH_SHORT).show();
+                                        getActivity().finish();
+                                        return;
+                                    }
+
+                                    // data.clearUnreadCount();
+                                    Context context = view.getContext();
+
+                                    boolean handledByApp = onClickUser(user.address, user.groupid, mHost.mForwardId);
+
+                                    if (!handledByApp) {
+                                        Intent intent = new Intent(getActivity(), MesiboMessagingActivity.class);
+                                        intent.putExtra(MesiboUI.MESSAGE_ID, mHost.mForwardId);
+                                        intent.putExtra(MesiboUI.PEER, user.address);
+                                        intent.putExtra(MesiboUI.GROUP_ID, user.groupid);
+                                        startActivity(intent);
+                                        Toast.makeText(context, "if", Toast.LENGTH_SHORT).show();
+                                        mHost.mForwardId = 0;
+                                        if (mSelectionMode != MesiboUserListFragment.MODE_MESSAGELIST) {
+                                            getActivity().finish();
+                                        }
+                                    } else {
+                                        mHost.mForwardId = 0;
+                                        Toast.makeText(context, "else", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    Toast.makeText(mContext, "this else", Toast.LENGTH_SHORT).show();
+
+                                }
+                            }
+                        }
+                    });
+                    holder.mContactsProfile.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (null != user.getStatus() && user.getStatus().equals("0")) {
+                                sendMessage(JOIN_HUDDLE_MESSAGE, user.address);
                             } else {
                                 if (mSelectionMode == MesiboUserListFragment.MODE_SELECTCONTACT_FORWARD || mSelectionMode == MesiboUserListFragment.MODE_SELECTGROUP || mSelectionMode == MesiboUserListFragment.MODE_EDITGROUP) {
                                     if ((user.uiFlags & MesiboProfile.FLAG_MARKED) == MesiboProfile.FLAG_MARKED) {
@@ -899,7 +841,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                                     }
 
                                     // data.clearUnreadCount();
-                                    Context context = view.getContext();
+                                    Context context = v.getContext();
 
                                     boolean handledByApp = onClickUser(user.address, user.groupid, mHost.mForwardId);
 
@@ -920,7 +862,6 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                             }
                         }
                     });
-
 
                     holder.messageIcon.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -973,7 +914,57 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                             }
                         }
                     });
+                    holder.mContactsPhone.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (null != user.getStatus() && user.getStatus().equals("0")) {
+                                sendMessage(JOIN_HUDDLE_MESSAGE, user.address);
+                            } else {
+                                if (mSelectionMode == MesiboUserListFragment.MODE_SELECTCONTACT_FORWARD || mSelectionMode == MesiboUserListFragment.MODE_SELECTGROUP || mSelectionMode == MesiboUserListFragment.MODE_EDITGROUP) {
+                                    if ((user.uiFlags & MesiboProfile.FLAG_MARKED) == MesiboProfile.FLAG_MARKED) {
+                                        user.uiFlags = user.uiFlags & ~MesiboProfile.FLAG_MARKED;
+                                    } else {
+                                        user.uiFlags = user.uiFlags | MesiboProfile.FLAG_MARKED;
+                                    }
+                                    notifyDataSetChanged();
 
+                                    if (isForwardContactsSelected()) {
+                                        //mHost.showForwardLayout();
+                                    } else {
+                                        //mHost.hideForwardLayout();
+                                    }
+
+                                } else {
+
+                                    //TBD, it's checking user name, instead we should set flag
+                                    if (null != user.getName() && null != getString(R.string.create_new_group) && user.getName().equals(getString(R.string.create_new_group)) && mSelectionMode == MesiboUserListFragment.MODE_SELECTCONTACT) {
+                                        MesiboUIManager.launchContactActivity(getContext(), 0, MesiboUserListFragment.MODE_SELECTGROUP, 0, false, false, null, "");
+                                        getActivity().finish();
+                                        return;
+                                    }
+
+                                    // data.clearUnreadCount();
+                                    Context context = v.getContext();
+
+                                    boolean handledByApp = onClickUser(user.address, user.groupid, mHost.mForwardId);
+
+                                    if (!handledByApp) {
+                                        Intent intent = new Intent(getActivity(), MesiboMessagingActivity.class);
+                                        intent.putExtra(MesiboUI.MESSAGE_ID, mHost.mForwardId);
+                                        intent.putExtra(MesiboUI.PEER, user.address);
+                                        intent.putExtra(MesiboUI.GROUP_ID, user.groupid);
+                                        startActivity(intent);
+                                        mHost.mForwardId = 0;
+                                        if (mSelectionMode != MesiboUserListFragment.MODE_MESSAGELIST) {
+                                            getActivity().finish();
+                                        }
+                                    } else {
+                                        mHost.mForwardId = 0;
+                                    }
+                                }
+                            }
+                        }
+                    });
                     holder.mView.setOnLongClickListener(new View.OnLongClickListener() {
                         @Override
                         public boolean onLongClick(View v) {
@@ -1034,9 +1025,9 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                 }
 
             }
-// Toast.makeText(getActivity(), ""+Mesibo.getUserProfiles().size(), Toast.LENGTH_SHORT).show();
-// Toast.makeText(getActivity(), ""+Mesibo.getSortedUserProfiles().size(), Toast.LENGTH_LONG).show();
-     //         Log.e("Latest /contacts",new Gson().toJson(Mesibo.getUserProfiles()));
+            // Toast.makeText(getActivity(), ""+Mesibo.getUserProfiles().size(), Toast.LENGTH_SHORT).show();
+            // Toast.makeText(getActivity(), ""+Mesibo.getSortedUserProfiles().size(), Toast.LENGTH_LONG).show();
+            //Log.e("Latest /contacts",new Gson().toJson(Mesibo.getUserProfiles()));
             //Log.e("Latest /contacts/toString",new Gson().toJson(Mesibo.getUserProfiles().toString()));
         }
 

@@ -73,10 +73,10 @@ public class Utils {
     }
 
     protected static boolean enableSecureScreen(AppCompatActivity appCompatActivity) {
-        if (!Mesibo.isSetSecureScreen()) {
-            return false;
-        }
-        appCompatActivity.getWindow().setFlags(8192, 8192);
+//        if (!Mesibo.isSetSecureScreen()) {
+//            return false;
+//        }
+//        appCompatActivity.getWindow().setFlags(8192, 8192);
         return true;
     }
 

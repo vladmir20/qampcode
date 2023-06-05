@@ -230,6 +230,10 @@
             android:name=".Activity.NotificationCenterActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".Activity.StartUpActivity"
+            android:screenOrientation="portrait" />
+
 
         <activity
             android:name=".Activity.ChannelAdminSettingsActivity"

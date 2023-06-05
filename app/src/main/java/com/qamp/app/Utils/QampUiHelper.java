@@ -108,9 +108,9 @@ public class QampUiHelper {
      */
 
     public static boolean enableSecureScreen(AppCompatActivity activity) {
-        if (!Mesibo.isSetSecureScreen()) return false;
-
-        activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+//        if (!Mesibo.isSetSecureScreen()) return false;
+//
+//        activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
         return true;
     }
