@@ -257,6 +257,8 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
         MesiboUserListActivityNewActivity = MesiboUserListActivityNew.this;
     }
 
+
+
     private void initFragment() {
         UserListFragment fragment = new UserListFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -372,6 +374,7 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
         super.onStart();
         Utilss.setLanguage(MesiboUserListActivityNew.this);
     }
+
 
     @Override
     protected void onRestart() {

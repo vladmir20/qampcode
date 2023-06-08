@@ -333,9 +333,12 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
 
     private void OpenContactRecycler(boolean isCreatingGroup) {
         contactsRecycle.setLayoutManager(new LinearLayoutManager(contactsRecycle.getContext()));
-        mAdapter = new MessageContactAdapter(getContext(), this, ContantContantUtil.mUserProfiles, mSearchResultList, isCreatingGroup);
+        mAdapter = new MessageContactAdapter(getContext(), this,
+                ContantContantUtil.mUserProfiles,
+                mSearchResultList, isCreatingGroup);
         mAdapter.notifyChangeInData();
         contactsRecycle.setAdapter(mAdapter);
+        ContantContantUtil.mUserProfiles.clear();
     }
 
 //    private void checkPermissionAndFetchContacts() {
@@ -452,7 +455,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
             new Handler(getMainLooper()).post(new Runnable() {
                 @Override
                 public void run() {
-                    ContantContantUtil.showUserList(MESIBO_INTITIAL_READ_USERLIST,getContext(),getActivity());
+                   // ContantContantUtil.showUserList(MESIBO_INTITIAL_READ_USERLIST,getContext(),getActivity());
                 }
             });
 
@@ -495,7 +498,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
 
     private void updateContacts(MesiboProfile userProfile) {
         if (null == userProfile) {
-            ContantContantUtil.showUserList(MESIBO_INTITIAL_READ_USERLIST,getContext(),getActivity());
+            //ContantContantUtil.showUserList(MESIBO_INTITIAL_READ_USERLIST,getContext(),getActivity());
             return;
         }
 

@@ -50,7 +50,8 @@ public class MesiboUIManager {
         } else if (task.equals("")) {
             Intent intent = new Intent(context, MesiboUserListActivityNew.class);
             intent.putExtra(MesiboUserListFragment.MESSAGE_LIST_MODE, selectionMode)
-                    .putExtra("mid", forwardid).putExtra(MesiboUI.START_IN_BACKGROUND, startInBackground)
+                    .putExtra("mid", forwardid)
+                    .putExtra(MesiboUI.START_IN_BACKGROUND, startInBackground)
                     .putExtra(MesiboUI.KEEP_RUNNING, keepRunning);
             intent.putExtra("isTask", "false");
             if (!TextUtils.isEmpty(forwardMessage)) {
@@ -92,6 +93,7 @@ public class MesiboUIManager {
         intent.putExtra(MesiboUserListFragment.MESSAGE_LIST_MODE, selectionMode).putExtra(MesiboUI.MESSAGE_IDS, mids);
         context.startActivity(intent);
     }
+
 
     public static void launchForwardActivity(Context context, String forwardMessage, boolean forwardAndClose) {
         Intent intent = new Intent(context, MesiboUserListActivityNew.class);

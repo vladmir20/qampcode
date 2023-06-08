@@ -22,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.mesibo.api.Mesibo;
 import com.qamp.app.Utils.AppConfig;
 import com.qamp.app.R;
 import com.qamp.app.Utils.AppUtils;
@@ -62,19 +63,18 @@ public class SplashScreenActivity extends AppCompatActivity {
             public void run() {
                 ContantContantUtil.showUserList(MESIBO_INTITIAL_READ_USERLIST,SplashScreenActivity.this, SplashScreenActivity.this);
             }
-
         });
 
+       // System.out.println(Mesibo.getSortedUserProfiles());
 
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                ContantContantUtil.showUserList(MESIBO_INTITIAL_READ_USERLIST,SplashScreenActivity.this, SplashScreenActivity.this);
-            }
-        };
-        new Thread(runnable).start();
+//        Runnable runnable = new Runnable() {
+//            @Override
+//            public void run() {
+//                ContantContantUtil.showUserList(MESIBO_INTITIAL_READ_USERLIST,SplashScreenActivity.this, SplashScreenActivity.this);
+//            }
+//        };
+//        new Thread(runnable).start();
     }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -86,7 +86,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
                     // startContactsSync();
-                    ContantContantUtil.showUserList(MESIBO_INTITIAL_READ_USERLIST,SplashScreenActivity.this, SplashScreenActivity.this);
+                    //ContantContantUtil.showUserList(MESIBO_INTITIAL_READ_USERLIST,SplashScreenActivity.this, SplashScreenActivity.this);
                 } else {
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
