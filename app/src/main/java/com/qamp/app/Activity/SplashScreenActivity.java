@@ -58,12 +58,12 @@ public class SplashScreenActivity extends AppCompatActivity {
             AppUtils.loadLocale(SplashScreenActivity.this);
         }
         navigateToNextActivity();
-        AsyncTask.execute(new Runnable() {
+        /**AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
                 ContantContantUtil.showUserList(MESIBO_INTITIAL_READ_USERLIST,SplashScreenActivity.this, SplashScreenActivity.this);
             }
-        });
+        });**/
 
        // System.out.println(Mesibo.getSortedUserProfiles());
 

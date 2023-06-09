@@ -230,7 +230,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                 if (UserListFragment.this.mSelectionMode == MesiboUserListFragment.MODE_SELECTGROUP) {
                     UserListFragment.this.mAdapter.createNewGroup();
                 } else if (UserListFragment.this.mSelectionMode == MesiboUserListFragment.MODE_EDITGROUP) {
-                     UserListFragment.this.mAdapter.modifyGroupDetail();
+                    UserListFragment.this.mAdapter.modifyGroupDetail();
                 } else if (UserListFragment.this.mSelectionMode == MesiboUserListFragment.MODE_SELECTCONTACT_FORWARD) {
                     UserListFragment.this.mAdapter.forwardMessageToContacts();
                 }
@@ -248,7 +248,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         this.fabadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               if (!isSheetOpen)
+                if (!isSheetOpen)
                     showConatcts();
             }
         });
@@ -866,7 +866,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         }
 
         Set<MesiboProfile> s = new HashSet<MesiboProfile>(tempmemberProfiles);
-     memberProfiles = new ArrayList<>(s);
+        memberProfiles = new ArrayList<>(s);
         if (this.memberProfiles.size() > 0) {
             showUserList(100);
         }
@@ -1014,7 +1014,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                 holder.mNewMesAlert.setVisibility(View.INVISIBLE);
                 holder.mes_alertbg.setVisibility(View.INVISIBLE);
             } else {
-                 holder.mNewMesAlert.setVisibility(View.VISIBLE);
+                holder.mNewMesAlert.setVisibility(View.VISIBLE);
                 holder.mes_alertbg.setVisibility(View.VISIBLE);
                 holder.mNewMesAlert.setText(String.valueOf(data.getUnreadCount()));
             }
