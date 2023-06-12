@@ -10,6 +10,7 @@ package com.qamp.app.Activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -22,15 +23,15 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.qamp.app.Fragments.ChannelNotificationCenter;
 import com.qamp.app.Fragments.GroupNotificationCenter;
-import com.qamp.app.R;
 import com.qamp.app.Fragments.SettingNotificationCenter;
+import com.qamp.app.MessagingModule.MesiboUserListActivityNew;
+import com.qamp.app.R;
 import com.qamp.app.Utils.AppUtils;
 import com.qamp.app.Utils.Utilss;
-import com.qamp.app.MessagingModule.MesiboUserListActivityNew;
 
 public class NotificationCenterActivity extends AppCompatActivity {
 
-    TextView layout_title;
+    TextView layout_title, channels_text, settings_text;
     LinearLayout groupLayout, channelLayout, settingsLayout;
 
     FrameLayout frameLayout;
@@ -42,7 +43,7 @@ public class NotificationCenterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_notification_center);
         AppUtils.setStatusBarColor(NotificationCenterActivity.this, R.color.colorAccent);
         initViews();
-        setFrames("GroupLayout");
+        setFrames("ChannelLayout");
         groupLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +71,8 @@ public class NotificationCenterActivity extends AppCompatActivity {
         channelLayout = findViewById(R.id.channelLayout);
         settingsLayout = findViewById(R.id.settingsLayout);
         frameLayout = findViewById(R.id.frameLayout);
+        channels_text = findViewById(R.id.channels_text);
+        settings_text = findViewById(R.id.channels_text);
     }
 
     private void setFrames(String selectedLayout) {
@@ -80,27 +83,31 @@ public class NotificationCenterActivity extends AppCompatActivity {
             GroupNotificationCenter groupNotificationCenter = new GroupNotificationCenter();
             final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.setCustomAnimations(R.anim.fade_in, R.anim.no_animation);
-            transaction.replace(R.id.frameLayout, groupNotificationCenter,selectedLayout);
+            transaction.replace(R.id.frameLayout, groupNotificationCenter, selectedLayout);
             transaction.addToBackStack(null);
             transaction.commit();
         } else if (selectedLayout.equals("ChannelLayout")) {
             channelLayout.setBackground(getResources().getDrawable(R.drawable.corner_radius_button));
             groupLayout.setBackgroundColor(Color.parseColor("#ffffff"));
             settingsLayout.setBackgroundColor(Color.parseColor("#ffffff"));
+            channels_text.setTypeface(null, Typeface.BOLD);
+            settings_text.setTypeface(null,Typeface.NORMAL);
             ChannelNotificationCenter channelNotificationCenter = new ChannelNotificationCenter();
             final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.setCustomAnimations(R.anim.fade_in, R.anim.no_animation);
-            transaction.replace(R.id.frameLayout, channelNotificationCenter,selectedLayout);
+            transaction.replace(R.id.frameLayout, channelNotificationCenter, selectedLayout);
             transaction.addToBackStack(null);
             transaction.commit();
         } else if (selectedLayout.equals("SettingLayout")) {
             settingsLayout.setBackground(getResources().getDrawable(R.drawable.corner_radius_button));
             groupLayout.setBackgroundColor(Color.parseColor("#ffffff"));
             channelLayout.setBackgroundColor(Color.parseColor("#ffffff"));
+            settings_text.setTypeface(null, Typeface.BOLD);
+            channels_text.setTypeface(null,Typeface.NORMAL);
             SettingNotificationCenter settingNotificationCenter = new SettingNotificationCenter();
             final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.setCustomAnimations(R.anim.fade_in, R.anim.no_animation);
-            transaction.replace(R.id.frameLayout, settingNotificationCenter,selectedLayout);
+            transaction.replace(R.id.frameLayout, settingNotificationCenter, selectedLayout);
             transaction.addToBackStack(null);
             transaction.commit();
         }

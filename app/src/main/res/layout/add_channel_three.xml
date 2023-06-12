@@ -34,20 +34,27 @@
 
                 <ImageView
                     android:id="@+id/cancel_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="30dp"
                     android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="10dp"
                     app:srcCompat="@drawable/ic_close" />
 
                 <TextView
                     android:id="@+id/channelName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginLeft="8dp"
-                    android:hint="Channel Name"
+                    android:gravity="center"
                     android:textColor="#171717"
-                    android:textSize="14dp"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
                     tools:ignore="TextSizeCheck" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -61,7 +68,7 @@
                     android:layout_width="78dp"
                     android:layout_height="4dp"
                     android:layout_marginTop="16dp"
-                    android:background="#F4B63F" />
+                    android:background="@drawable/corner_radius_button" />
 
                 <View
                     android:id="@+id/view6"
@@ -69,7 +76,7 @@
                     android:layout_height="4dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="16dp"
-                    android:background="#F4B63F" />
+                    android:background="@drawable/corner_radius_button" />
 
                 <View
                     android:id="@+id/view7"
@@ -77,7 +84,7 @@
                     android:layout_height="4dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="16dp"
-                    android:background="#F4B63F" />
+                    android:background="@drawable/corner_radius_button" />
 
                 <View
                     android:id="@+id/view8"
@@ -85,7 +92,9 @@
                     android:layout_height="4dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="16dp"
-                    android:background="#F2F2F2" />
+                    android:backgroundTint="#F2F2F2"
+                    android:background="@drawable/corner_radius_button"/>
+
             </LinearLayout>
 
             <LinearLayout
@@ -115,6 +124,8 @@
                 android:layout_marginRight="16dp"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:layout_marginTop="35dp"
+                android:layout_marginBottom="35dp"
                 android:text="@string/part_of_community_text"
                 android:textColor="#171717"
                 android:textSize="24sp" />
@@ -142,8 +153,9 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
                         android:text="Open to All"
+                        android:textStyle="bold"
                         android:textColor="#272A3D"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="TextSizeCheck" />
@@ -201,8 +213,9 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
                         android:text="By Invite"
+                        android:textStyle="bold"
                         android:textColor="#272A3D"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="TextSizeCheck" />
@@ -261,8 +274,9 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
                         android:text="By Request"
+                        android:textStyle="bold"
                         android:textColor="#272A3D"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="TextSizeCheck" />

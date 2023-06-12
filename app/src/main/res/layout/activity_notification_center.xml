@@ -35,7 +35,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="20dp"
                 android:src="@drawable/ic_back_black" />
 
             <TextView
@@ -45,6 +45,8 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="15dp"
                 android:gravity="center|start"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"
                 android:text="@string/notification_center"
                 android:textColor="@color/text_color17"
                 android:textSize="16sp" />
@@ -62,6 +64,7 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout13">
 
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/groupLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
@@ -98,6 +101,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView29">
 
                 <TextView
+                    android:id="@+id/channels_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -123,6 +127,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView29">
 
                 <TextView
+                    android:id="@+id/settings_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"

@@ -27,7 +27,7 @@ import com.qamp.app.R;
 public class CreateCommunityFragment extends Fragment implements Backpressedlistener {
 
 
-    Button next;
+    Button next,skip;
     ImageView cancel;
     TextInputEditText channelName;
     TextInputEditText channelDescr;
@@ -45,13 +45,15 @@ public class CreateCommunityFragment extends Fragment implements Backpressedlist
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.create_community, container, false);
+        initViews(view);
 
-        next = view.findViewById(R.id.buttonNext);
-        cancel = view.findViewById(R.id.cancel_1);
-        channelName = view.findViewById(R.id.editTextTextPersonName);
-        channelDescr = view.findViewById(R.id.editTextTextPersonName2);
-        channelTypeBusiness = view.findViewById(R.id.businessType);
         cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().finish();
+            }
+        });
+        skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getActivity().finish();
@@ -67,21 +69,13 @@ public class CreateCommunityFragment extends Fragment implements Backpressedlist
                     Bundle bundle = new Bundle();
                     bundle.putString("ChannelName", channelName.getText().toString());
                     bundle.putString("ChannelDescription", channelDescr.getText().toString());
+                    bundle.putString("ChannelBusinessType", channelTypeBusiness.getText().toString());
                     final FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                     communityLocationFragment.setArguments(bundle);
                     transaction.replace(R.id.frameLayout, communityLocationFragment,"CommunityLocationFragment");
                     transaction.addToBackStack(null);
                     transaction.commit();
                 } else {
-                    Fragment communityLocationFragment = new CommunityLocationFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("ChannelName", channelName.getText().toString());
-                    bundle.putString("ChannelDescription", channelDescr.getText().toString());
-                    final FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    communityLocationFragment.setArguments(bundle);
-                    transaction.replace(R.id.frameLayout, communityLocationFragment,"CommunityLocationFragment");
-                    transaction.addToBackStack(null);
-                    transaction.commit();
                     Toast.makeText(getActivity(), "" + getActivity().getResources().getString(R.string.EmptychannelNameandDescription), Toast.LENGTH_SHORT).show();
                 }
 
@@ -89,6 +83,15 @@ public class CreateCommunityFragment extends Fragment implements Backpressedlist
         });
 
         return view;
+    }
+
+    private void initViews(View view) {
+        next = view.findViewById(R.id.buttonNext);
+        cancel = view.findViewById(R.id.cancel_1);
+        skip = view.findViewById(R.id.skip);
+        channelName = view.findViewById(R.id.editTextTextPersonName);
+        channelDescr = view.findViewById(R.id.editTextTextPersonName2);
+        channelTypeBusiness = view.findViewById(R.id.businessType);
     }
 
     @Override

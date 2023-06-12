@@ -348,6 +348,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             public void onClick(View view) {
                 Intent intent1 = new Intent(getContext(), AddChannelActivity.class);
                 startActivity(intent1);
+                dialog.dismiss();
                 //AppUtils.under_development_message(getActivity());
             }
         });

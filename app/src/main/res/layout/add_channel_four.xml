@@ -32,19 +32,27 @@
 
             <ImageView
                 android:id="@+id/cancel_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="30dp"
                 android:layout_marginLeft="25dp"
+                android:layout_marginBottom="10dp"
                 app:srcCompat="@drawable/ic_close" />
 
             <TextView
                 android:id="@+id/channelName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginLeft="8dp"
-                android:hint="Channel Name"
+                android:gravity="center"
                 android:textColor="#171717"
-                android:textSize="14dp" />
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                tools:ignore="TextSizeCheck" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -93,6 +101,8 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
             android:paddingTop="10dp"
             android:text="Invite people to join your community."
             android:textColor="#171717"
