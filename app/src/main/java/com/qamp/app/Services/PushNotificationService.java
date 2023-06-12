@@ -39,9 +39,9 @@ public class PushNotificationService extends FirebaseMessagingService{
       //String text = remoteMessage.getNotification().getBody();
       Log.e("title",new Gson().toJson(remoteMessage));
       Log.e("text",new Gson().toJson(text));
-      Map <String, Object> map = new Gson().fromJson(text, Map.class);
-      Log.e("Message",new Gson().toJson(map.get("message")));
-      Log.e("notificationType", new Gson().toJson(map.get("notificationType")));
+      //Map <String, Object> map = new Gson().fromJson(text, Map.class);
+      //Log.e("Message",new Gson().toJson(map.get("message")));
+      //Log.e("notificationType", new Gson().toJson(map.get("notificationType")));
 
 
 
@@ -55,7 +55,7 @@ public class PushNotificationService extends FirebaseMessagingService{
             Notification.Builder notification = new Notification.Builder(this, CHANNEL_ID)
                     .setSmallIcon(R.mipmap.qamp_mini_logo)
                     .setContentTitle(title)
-                    .setContentText((CharSequence) map.get("message"))//remoteMessage.getData().toString()
+                    .setContentText(text)//remoteMessage.getData().toString()
                     .setColor(ContextCompat.getColor(PushNotificationService.this, R.color.colorPrimary))
                     .setShowWhen(true)
                     .setPriority(Notification.PRIORITY_HIGH)
