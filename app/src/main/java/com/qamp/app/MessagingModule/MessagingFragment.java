@@ -1228,7 +1228,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
             profile = getProfile();
             if (profile.isGroup()==false){
                 NotificationSendClass.pushNotifications(getContext(), mUser.getAddress()
-                        , ""+profile.getName(), ""+msg.message.toString());
+                        , ""+profile.getName(), ""+msg.message.toString(),"MESSAGE");
             }
              this.mEmojiEditText.getText().clear();
         }
@@ -1520,7 +1520,9 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
                     MesiboMessage m;
                     do {
                         if (!var19.hasNext()) {
-                            MesiboUIManager.launchContactActivity(this.myActivity(), MesiboUserListFragment.MODE_SELECTCONTACT_FORWARD, mids);
+                            Log.e("here","here");
+                            Toast.makeText(getContext(),"Forwarding Message is under developement",Toast.LENGTH_LONG).show();
+                            //MesiboUIManager.launchContactActivity(this.myActivity(), MesiboUserListFragment.MODE_SELECTCONTACT_FORWARD, mids);
                             return true;
                         }
 

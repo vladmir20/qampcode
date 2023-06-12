@@ -205,7 +205,7 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
                     //MesiboCall.getInstance().callUiForExistingCall(getApplicationContext());
                     MesiboCall.getInstance().callUiForExistingCall(getApplicationContext());
                     NotificationSendClass.pushNotifications(getApplicationContext(), mUserProfile.getAddress()
-                        , ""+mUserProfile.getName(), "Incoming Audio Call");
+                        , ""+mUserProfile.getName(), "Incoming Audio Call","AUDIO_CALL");
             }
         });
         //android:theme="@style/AppTheme.NoActionBar"   android:configChanges="keyboardHidden|orientation|screenSize
@@ -218,7 +218,7 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
                     //launchCustomCallActivity(destination, true, false);//
                     launchCustomCallActivity(destination, true, false);
                     NotificationSendClass.pushNotifications(getApplicationContext(), mUserProfile.getAddress()
-                        , ""+mUserProfile.getName(), "Incoming Video Call");
+                        , ""+mUserProfile.getName(), "Incoming Video Call","VIDEO_CALL");
             }
         });
 

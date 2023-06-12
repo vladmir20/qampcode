@@ -27,17 +27,21 @@ import com.google.firebase.messaging.RemoteMessage;
 import com.google.gson.Gson;
 import com.qamp.app.R;
 
+import java.util.Map;
+
 public class PushNotificationService extends FirebaseMessagingService{
   @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
-        String title = remoteMessage.getNotification().getTitle();
-      //String title = remoteMessage.getData().get("title");
-      //String text = remoteMessage.getData().get("body");
+        //String title = remoteMessage.getNotification().getTitle();
+      String title = remoteMessage.getData().get("title");
+      String text = remoteMessage.getData().get("body");
       //String notificationTye = remoteMessage.getData().get("notificationType");
-      String text = remoteMessage.getNotification().getBody();
+      //String text = remoteMessage.getNotification().getBody();
       Log.e("title",new Gson().toJson(remoteMessage));
-      Log.e("text",text);
-      //Log.e("notificationType", notificationTye);
+      Log.e("text",new Gson().toJson(text));
+      Map <String, Object> map = new Gson().fromJson(text, Map.class);
+      Log.e("Message",new Gson().toJson(map.get("message")));
+      Log.e("notificationType", new Gson().toJson(map.get("notificationType")));
 
 
 
@@ -51,7 +55,7 @@ public class PushNotificationService extends FirebaseMessagingService{
             Notification.Builder notification = new Notification.Builder(this, CHANNEL_ID)
                     .setSmallIcon(R.mipmap.qamp_mini_logo)
                     .setContentTitle(title)
-                    .setContentText(text)//remoteMessage.getData().toString()
+                    .setContentText((CharSequence) map.get("message"))//remoteMessage.getData().toString()
                     .setColor(ContextCompat.getColor(PushNotificationService.this, R.color.colorPrimary))
                     .setShowWhen(true)
                     .setPriority(Notification.PRIORITY_HIGH)

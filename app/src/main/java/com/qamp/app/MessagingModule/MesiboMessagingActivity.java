@@ -8,8 +8,6 @@
 
 package com.qamp.app.MessagingModule;
 
-import static java.security.AccessController.getContext;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -187,7 +185,7 @@ public class MesiboMessagingActivity extends AppCompatActivity implements Mesibo
 
                     MesiboCall.getInstance().callUiForExistingCall(getApplicationContext());
                     NotificationSendClass.pushNotifications(getApplicationContext(), mUser.getAddress()
-                        , ""+mUser.getName(), "Incoming Audio Call");
+                        , ""+mUser.getName(), "Incoming Audio Call","AUDIO_CALL");
 
                 //launchCustomCallActivity(destination, true, false);
 
@@ -205,7 +203,7 @@ public class MesiboMessagingActivity extends AppCompatActivity implements Mesibo
                     //MesiboCall.getInstance().callUiForExistingCall(getApplicationContext());
                     launchCustomCallActivity(destination, true, false);
                     NotificationSendClass.pushNotifications(getApplicationContext(), mUser.getAddress()
-                        , ""+mUser.getName(), "Incoming Video Call");
+                        , ""+mUser.getName(), "Incoming Video Call","VIDEO_CALL");
             }
         });
     }

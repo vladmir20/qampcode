@@ -18,7 +18,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.qamp.app.Utils.AppConfig;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,7 +33,7 @@ public class NotificationSendClass {
     private static String server_key = "";
 
     public static void pushNotifications(Context context, String destination_id,
-                                         String notification_title, String notification_body) {
+                                         String notification_title, String notification_body, String notification_type) {
 
         if (destination_id.length()==12&&destination_id!=null){
             destination_id = destination_id.substring(2,12);
@@ -55,6 +54,7 @@ public class NotificationSendClass {
             json.put("title", notification_title);
             json.put("body", notification_body);
             json.put("region", "TEST");
+            json.put("notificationType", notification_type);
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, BASE_URL
                     , json, new Response.Listener<JSONObject>() {
                 @Override

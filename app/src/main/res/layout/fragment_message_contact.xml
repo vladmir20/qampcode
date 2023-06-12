@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ /**
-  ~  * Created by Shivam Tiwari on 20/05/23, 3:30 AM
+  ~  *  on 20/05/23, 3:30 AM
   ~  * Copyright (c) 2023 . All rights reserved.
   ~  * Last modified 05/05/23, 3:15 PM
   ~  */
@@ -531,7 +531,8 @@
                         android:id="@+id/message_contact_frag_rv"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/md_white_1000" />
+                        android:background="@color/md_white_1000"
+                        />
 
                 </LinearLayout>
 

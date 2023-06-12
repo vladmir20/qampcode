@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ /**
-  ~  * Created by Shivam Tiwari on 20/05/23, 3:30 AM
+  ~  *  on 20/05/23, 3:30 AM
   ~  * Copyright (c) 2023 . All rights reserved.
   ~  * Last modified 05/05/23, 3:15 PM
   ~  */
@@ -23,11 +23,11 @@
 
     <item
         android:id="@+id/menu_star"
-        android:icon="@drawable/ic_star_white_24dp"
-        android:orderInCategory="0"
-        app:showAsAction="always"
+        android:icon="@drawable/ic_star_black_18dp"
         android:iconTint="@color/text_color17"
-        android:title="Star" />
+        android:orderInCategory="0"
+        android:title="Star"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/menu_resend"
@@ -39,27 +39,26 @@
 
     <item
         android:id="@+id/menu_remove"
-        android:icon="@drawable/ic_delete_white_24dp"
-        app:showAsAction="always"
-        android:orderInCategory="0"
+        android:icon="@drawable/ic_delete_black_24dp"
         android:iconTint="@color/text_color17"
-        android:title="Delete" />
+        android:orderInCategory="0"
+        android:title="Delete"
+        app:showAsAction="always" />
     <item
         android:id="@+id/menu_copy"
-        android:icon="@drawable/ic_content_copy_white_24dp"
-        android:orderInCategory="0"
-        app:showAsAction="always"
+        android:icon="@drawable/copy"
         android:iconTint="@color/text_color17"
-        android:title="Copy" />
+        android:orderInCategory="0"
+        android:title="Copy"
+        app:showAsAction="always" />
 
 
     <item
         android:id="@+id/menu_forward"
-        android:icon="@drawable/ic_forward_white_24dp"
-        android:orderInCategory="0"
+        android:icon="@drawable/forward"
         android:iconTint="@color/text_color17"
-        app:showAsAction="always"
-         />
+        android:orderInCategory="0"
+        app:showAsAction="always" />
 
 
 
