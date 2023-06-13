@@ -37,7 +37,7 @@
                     android:layout_width="30dp"
                     android:layout_marginTop="10dp"
                     android:layout_height="30dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginLeft="24dp"
                     android:layout_marginBottom="10dp"
                     app:srcCompat="@drawable/ic_close" />
 
@@ -59,43 +59,49 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
+                android:layout_height="10dp"
+                android:layout_weight="4"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:weightSum="4"
                 android:orientation="horizontal">
 
                 <View
                     android:id="@+id/view"
-                    android:layout_width="78dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="4dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/corner_radius_button" />
+                    android:background="@drawable/corner_radius_button"/>
 
                 <View
                     android:id="@+id/view6"
-                    android:layout_width="78dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="4dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="8dp"
                     android:background="@drawable/corner_radius_button" />
 
                 <View
                     android:id="@+id/view7"
-                    android:layout_width="78dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="4dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="8dp"
                     android:background="@drawable/corner_radius_button" />
 
                 <View
                     android:id="@+id/view8"
-                    android:layout_width="78dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="8dp"
+
                     android:layout_height="4dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="16dp"
                     android:backgroundTint="#F2F2F2"
-                    android:background="@drawable/corner_radius_button"/>
+                    android:background="@drawable/corner_radius_button" />
 
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -111,7 +117,7 @@
                     android:layout_marginTop="50dp"
                     android:layout_marginRight="55dp"
                     android:layout_weight="1"
-                    android:src="@drawable/members"/>
+                    android:src="@drawable/invite_type_2"/>
 
             </LinearLayout>
 
@@ -126,6 +132,7 @@
                 android:gravity="center"
                 android:layout_marginTop="35dp"
                 android:layout_marginBottom="35dp"
+                android:fontFamily="@font/inter_medium"
                 android:text="@string/part_of_community_text"
                 android:textColor="#171717"
                 android:textSize="24sp" />
@@ -133,8 +140,8 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/openToAllLayout"
                 android:layout_width="match_parent"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
                 app:cardElevation="0dp"
@@ -153,8 +160,8 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
                         android:text="Open to All"
-                        android:textStyle="bold"
-                        android:textColor="#272A3D"
+                        android:fontFamily="@font/inter_medium"
+                        android:textColor="#171717"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -193,8 +200,8 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/byInviteLayout"
                 android:layout_width="match_parent"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
                 app:cardElevation="0dp"
@@ -212,9 +219,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
-                        android:text="By Invite"
-                        android:textStyle="bold"
-                        android:textColor="#272A3D"
+                        android:text="By Invite Only"
+                        android:fontFamily="@font/inter_medium"
+                        android:textColor="#171717"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -254,8 +261,8 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/byRequestLayout"
                 android:layout_width="match_parent"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
                 app:cardElevation="0dp"
@@ -274,8 +281,8 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
                         android:text="By Request"
-                        android:textStyle="bold"
-                        android:textColor="#272A3D"
+                        android:fontFamily="@font/inter_medium"
+                        android:textColor="#171717"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -288,7 +295,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginBottom="8dp"
                         android:text="Join request needs to be approved by community
-                        manger"
+                        manager"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -317,15 +324,17 @@
                 android:id="@+id/buttonNext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginRight="16dp"
-                android:layout_weight="1"
+                 android:layout_weight="1"
                 android:background="@drawable/corner_radius_button"
                 android:hint="Channel Discription"
                 android:text="Next"
                 android:textAllCaps="false"
-                android:textColor="#272A3D"
+                android:textColor="#171717"
+                style="?android:attr/borderlessButtonStyle"
+                android:fontFamily="@font/inter_medium"
                 android:textSize="14dp"
                 tools:ignore="TextSizeCheck" />
 
@@ -341,6 +350,7 @@
                 android:text="Skip"
                 android:textAllCaps="false"
                 android:textColor="#171717"
+                style="?android:attr/borderlessButtonStyle"
                 android:textSize="12dp"
                 tools:ignore="TextSizeCheck" />
         </LinearLayout>

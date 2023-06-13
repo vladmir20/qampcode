@@ -98,6 +98,7 @@ public class CommunityLocationFragmentPlaces extends Fragment implements OnMapRe
                 bundle.putString("CompleteAddress", autoCompleteTextView.getText().toString());
                 bundle.putString("Latitutude", String.valueOf(latLng.latitude));
                 bundle.putString("Longitude", String.valueOf(latLng.longitude));
+                bundle.putString("ButtonState", "true");
                 System.out.println(channelTitle+channelDescription+channelTypeBusiness+autoCompleteTextView.getText().toString()
                 +String.valueOf(latLng.latitude)+String.valueOf(latLng.longitude));
                 final FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();

@@ -53,7 +53,7 @@
             android:layout_marginLeft="24dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="24dp"
-            android:fontFamily="@font/montserrat_regular"
+            android:fontFamily="@font/inter_regular"
             android:lineHeight="49sp"
             android:text="@string/onboarding_completion_text"
             android:layout_gravity="center_horizontal|center"

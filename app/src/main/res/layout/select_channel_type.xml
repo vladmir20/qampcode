@@ -42,9 +42,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:text="Select Channel Type"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/inter_medium"
                     android:textColor="@color/text_color_black"
-                    android:textSize="16dp" />
+                    android:textSize="16sp" />
 
                 <ImageView
                     android:id="@+id/cancel"
@@ -55,6 +55,7 @@
                     android:baselineAlignBottom="false"
                     android:foregroundGravity="right"
                     app:srcCompat="@drawable/ic_close" />
+
             </RelativeLayout>
 
         </LinearLayout>
@@ -63,7 +64,7 @@
             android:id="@+id/view4"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#C3B8B8" />
+            android:background="#E0E0E0" />
 
         <LinearLayout
             android:id="@+id/peopleProfile"
@@ -97,14 +98,15 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="People Profile"
-                        android:textStyle="bold"
-                        android:textColor="#272A3D"
+                        android:fontFamily="@font/inter_medium"
+                        android:textColor="#171717"
                         android:textSize="14dp" />
 
                     <TextView
                         android:id="@+id/textView6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_regular"
                         android:text="Create your public profile and let people follow you"
                         android:textColor="#B7B7B7"
                         android:textSize="12dp" />
@@ -117,7 +119,7 @@
             android:id="@+id/view3"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#C3B8B8" />
+            android:background="#E0E0E0" />
 
         <LinearLayout
             android:id="@+id/community"
@@ -151,8 +153,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="Community"
-                        android:textStyle="bold"
-                        android:textColor="#272A3D"
+                        android:fontFamily="@font/inter_medium"
+                        android:textColor="#171717"
                         android:textSize="14dp" />
 
                     <TextView
@@ -161,6 +163,7 @@
                         android:layout_height="wrap_content"
                         android:text="Create a community of people. Example - Music Community, Youga community etc. "
                         android:textColor="#B7B7B7"
+                        android:fontFamily="@font/inter_regular"
                         android:textSize="12dp" />
                 </LinearLayout>
             </LinearLayout>
@@ -171,7 +174,7 @@
             android:id="@+id/view2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#C3B8B8" />
+            android:background="#E0E0E0" />
 
         <LinearLayout
             android:id="@+id/business"
@@ -205,8 +208,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="Business"
-                        android:textStyle="bold"
-                        android:textColor="#272A3D"
+                        android:fontFamily="@font/inter_medium"
+                        android:textColor="#171717"
                         android:textSize="14dp" />
 
                     <TextView
@@ -215,6 +218,7 @@
                         android:layout_height="wrap_content"
                         android:text="Create and promote your business/shop/organisation profile"
                         android:textColor="#B7B7B7"
+                        android:fontFamily="@font/inter_regular"
                         android:textSize="12dp" />
                 </LinearLayout>
             </LinearLayout>
@@ -224,7 +228,7 @@
             android:id="@+id/view5"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#C3B8B8" />
+            android:background="#E0E0E0" />
 
     </LinearLayout>
 

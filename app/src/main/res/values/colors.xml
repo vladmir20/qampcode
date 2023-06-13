@@ -11,7 +11,7 @@
     <color name="colorPrimary">#F4B63F</color>
     <color name="colorPrimaryDark">#F4B63F</color>
     <color name="colorPrimaryLight">#F4B63F</color>
-    <color name="colorControlActivated">#272A3D</color>
+    <color name="colorControlActivated">#171717</color>
     <color name="colorAccent">#E0E0E0</color>
     <color name="colorAccentDark">#F50057</color>
     <color name="colorAccentLight">#FF80AB</color>
@@ -413,24 +413,27 @@
     <color name="orange_black_color">#F4B63F</color>
     <color name="background_tintTaskBar">#F2F2F2</color>
     <color name="sheet_back_color">#666666</color>
-
     <color name="text_color13">#333333</color>
     <color name="text_color14">#99333333</color>
     <color name="text_color15">#B7B7B7</color>
     <color name="text_color16">#000000</color>
-    <color name="text_color17">#272A3D</color>
+    <color name="text_color17">#171717</color>
     <color name="text_color_orange">#F4B63F</color>
-    <color name="text_color_black_orange">#272A3D</color>
+    <color name="text_color_black_orange">#171717</color>
     <color name="text_color_black_white">#171717</color>
-    <color name="text_color_black_white2">#272A3D</color>
+    <color name="text_color_black_white2">#171717</color>
     <color name="text_color_subtitle">#828282</color>
     <color name="text_color_button">#B7B7B7</color>
-    <color name="text_color_black">#272A3D</color>
+    <color name="text_color_black">#171717</color>
     <color name="text_color_chat_date">#828282</color>
     <color name="text_color_success">#76CA66</color>
     <color name="send_message_background">#FFF8EB</color>
     <color name="read_message_color">#76CA66</color>
     <color name="error">#FE5858</color>
+    <color name="buttonActive">#F4B63F</color>
+    <color name="buttonActiveText">#272A3D</color>
+    <color name="buttonDisable">#E0E0E0</color>
+    <color name="buttonDisableText">#B7B7B7</color>
 
 
 </resources>

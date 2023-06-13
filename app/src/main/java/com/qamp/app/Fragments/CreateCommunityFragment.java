@@ -9,6 +9,8 @@
 package com.qamp.app.Fragments;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +21,11 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.bumptech.glide.util.Util;
 import com.google.android.material.textfield.TextInputEditText;
 import com.qamp.app.Listener.Backpressedlistener;
 import com.qamp.app.R;
+import com.qamp.app.Utils.Utils;
 
 
 public class CreateCommunityFragment extends Fragment implements Backpressedlistener {
@@ -59,17 +63,20 @@ public class CreateCommunityFragment extends Fragment implements Backpressedlist
                 getActivity().finish();
             }
         });
+
+
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if ((!channelName.getText().toString().isEmpty()) ||
-                        (!channelDescr.getText().toString().isEmpty())||
+                if ((!channelName.getText().toString().isEmpty()) &&
+                        (!channelDescr.getText().toString().isEmpty())&&
                         (!channelTypeBusiness.getText().toString().isEmpty())) {
                     Fragment communityLocationFragment = new CommunityLocationFragment();
                     Bundle bundle = new Bundle();
                     bundle.putString("ChannelName", channelName.getText().toString());
                     bundle.putString("ChannelDescription", channelDescr.getText().toString());
                     bundle.putString("ChannelBusinessType", channelTypeBusiness.getText().toString());
+                    bundle.putString("ButtonState", "false");
                     final FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                     communityLocationFragment.setArguments(bundle);
                     transaction.replace(R.id.frameLayout, communityLocationFragment,"CommunityLocationFragment");
@@ -78,6 +85,45 @@ public class CreateCommunityFragment extends Fragment implements Backpressedlist
                 } else {
                     Toast.makeText(getActivity(), "" + getActivity().getResources().getString(R.string.EmptychannelNameandDescription), Toast.LENGTH_SHORT).show();
                 }
+
+            }
+        });
+
+        channelName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (channelName.getText().toString().isEmpty()||channelTypeBusiness.getText().toString().isEmpty())
+                    Utils.setButtonState(next,false);
+                else
+                    Utils.setButtonState(next,true);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        channelTypeBusiness.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (channelName.getText().toString().isEmpty()||channelTypeBusiness.getText().toString().isEmpty())
+                    Utils.setButtonState(next,false);
+                else
+                    Utils.setButtonState(next,true);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
 
             }
         });
@@ -92,6 +138,7 @@ public class CreateCommunityFragment extends Fragment implements Backpressedlist
         channelName = view.findViewById(R.id.editTextTextPersonName);
         channelDescr = view.findViewById(R.id.editTextTextPersonName2);
         channelTypeBusiness = view.findViewById(R.id.businessType);
+        Utils.setButtonState(next,false);
     }
 
     @Override

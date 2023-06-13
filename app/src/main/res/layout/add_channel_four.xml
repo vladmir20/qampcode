@@ -57,42 +57,48 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
+            android:layout_height="10dp"
+            android:layout_weight="4"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:weightSum="4"
             android:orientation="horizontal">
 
             <View
                 android:id="@+id/view"
-                android:layout_width="78dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="4dp"
-                android:layout_marginTop="16dp"
-                android:background="#F4B63F" />
+                android:background="@drawable/corner_radius_button"/>
 
             <View
                 android:id="@+id/view6"
-                android:layout_width="78dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="4dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="16dp"
-                android:background="#F4B63F" />
+                android:layout_marginLeft="8dp"
+                android:background="@drawable/corner_radius_button" />
 
             <View
                 android:id="@+id/view7"
-                android:layout_width="78dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="4dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="16dp"
-                android:background="#F4B63F" />
+                android:layout_marginLeft="8dp"
+                android:background="@drawable/corner_radius_button" />
 
             <View
                 android:id="@+id/view8"
-                android:layout_width="78dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="8dp"
                 android:layout_height="4dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="16dp"
-                android:background="#F4B63F" />
+                android:backgroundTint="#F2F2F2"
+                android:background="@drawable/corner_radius_button" />
 
         </LinearLayout>
+
 
         <TextView
             android:id="@+id/textView12"
@@ -101,12 +107,13 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:gravity="center"
+            android:fontFamily="@font/inter_medium"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:paddingTop="10dp"
             android:text="Invite people to join your community."
             android:textColor="#171717"
-            android:textSize="24dp" />
+            android:textSize="24sp" />
 
 
     </LinearLayout>
@@ -132,6 +139,8 @@
             android:layout_weight="1"
             android:background="@drawable/corner_radius_button_orange"
             android:text="@string/share_invite_text"
+            android:fontFamily="@font/inter_medium"
+            style="?android:attr/borderlessButtonStyle"
             android:textAllCaps="false"
             android:textColor="@color/text_color17" />
 
@@ -149,6 +158,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:fontFamily="@font/inter_medium"
                 android:text="Invite All"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp" />
@@ -201,7 +211,9 @@
             android:background="@color/transparent"
             android:text="Skip"
             android:textAllCaps="false"
+            android:fontFamily="@font/inter_medium"
             android:textColor="#171717"
+            style="?android:attr/borderlessButtonStyle"
             android:textSize="12dp"/>
     </LinearLayout>
 

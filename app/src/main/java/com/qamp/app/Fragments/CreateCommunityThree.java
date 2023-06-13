@@ -333,24 +333,24 @@ public class CreateCommunityThree extends Fragment implements Backpressedlistene
             byInviteDes.setText("Closed community where people with invitation can join");
             byRequestLayout.setCardBackgroundColor(getActivity().getResources().getColor(R.color.white));
             byRequestCheck.setVisibility(View.GONE);
-            byRequestDes.setText("Join request needs to be approved by community manger");
+            byRequestDes.setText("Join request needs to be approved by community manager");
             invitationType = "OPEN_TO_ALL";
         } else if (string.equals("byInviteLayout")) {
             byInviteLayout.setCardBackgroundColor(getActivity().getResources().getColor(R.color.background_tintTaskBar));
             byInviteCheck.setChecked(true);
             byInviteCheck.setVisibility(View.VISIBLE);
-            byInviteDes.setText("Closed community where people with invitation \ncan join");
+            byInviteDes.setText("Closed community where people with \ninvitation can join");
             openToAllLayout.setCardBackgroundColor(getActivity().getResources().getColor(R.color.white));
             openToAllLayoutCheck.setVisibility(View.GONE);
             byRequestLayout.setCardBackgroundColor(getActivity().getResources().getColor(R.color.white));
             byRequestCheck.setVisibility(View.GONE);
-            byRequestDes.setText("Join request needs to be approved by community manger");
+            byRequestDes.setText("Join request needs to be approved by community manager");
             invitationType = "BY_INVITE";
         } else if (string.equals("byRequestLayout")) {
             byRequestLayout.setCardBackgroundColor(getActivity().getResources().getColor(R.color.background_tintTaskBar));
             byRequestCheck.setChecked(true);
             byRequestCheck.setVisibility(View.VISIBLE);
-            byRequestDes.setText("Join request needs to be approved by community \nmanger");
+            byRequestDes.setText("Join request needs to be approved by \ncommunity manager");
             byInviteDes.setText("Closed community where people with invitation can join");
             openToAllLayout.setCardBackgroundColor(getActivity().getResources().getColor(R.color.white));
             openToAllLayoutCheck.setVisibility(View.GONE);

@@ -39,7 +39,7 @@
         <item name="android:textStyle">normal</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:includeFontPadding">false</item>
-        <item name="tabTextColor">#272A3D</item>
+        <item name="tabTextColor">#171717</item>
     </style>
 
     <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">

@@ -37,7 +37,7 @@
                     android:layout_width="30dp"
                     android:layout_marginTop="10dp"
                     android:layout_height="30dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginLeft="24dp"
                     android:layout_marginBottom="10dp"
                     app:srcCompat="@drawable/ic_close" />
 
@@ -50,51 +50,58 @@
                     android:gravity="center"
                     android:text="@string/create_community"
                     android:textColor="#171717"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/inter_medium"
                     android:textSize="16sp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
                     tools:ignore="TextSizeCheck" />
+
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
+                android:layout_height="10dp"
+                android:layout_weight="4"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:weightSum="4"
                 android:orientation="horizontal">
 
                 <View
                     android:id="@+id/view"
-                    android:layout_width="78dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="4dp"
-                    android:layout_marginTop="16dp"
                     android:background="@drawable/corner_radius_button"/>
 
                 <View
                     android:id="@+id/view6"
-                    android:layout_width="78dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="4dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="8dp"
+
                     android:backgroundTint="#F2F2F2"
                     android:background="@drawable/corner_radius_button" />
 
                 <View
                     android:id="@+id/view7"
-                    android:layout_width="78dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="4dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="8dp"
+
                     android:backgroundTint="#F2F2F2"
                     android:background="@drawable/corner_radius_button" />
 
-
                 <View
                     android:id="@+id/view8"
-                    android:layout_width="78dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="8dp"
                     android:layout_height="4dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="16dp"
                     android:backgroundTint="#F2F2F2"
                     android:background="@drawable/corner_radius_button" />
 
@@ -114,7 +121,8 @@
                     android:layout_marginTop="50dp"
                     android:layout_marginRight="55dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_community" />
+                    app:srcCompat="@drawable/ic_community"/>
+
             </LinearLayout>
 
             <TextView
@@ -126,30 +134,28 @@
                 android:layout_marginRight="16dp"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:fontFamily="@font/inter_medium"
                 android:text="@string/community_name_text_description"
                 android:textColor="#171717"
-                android:textSize="24dp" />
-
-
+                android:textSize="24sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="24dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginRight="24dp"
                 android:layout_weight="1"
                 android:hint="@string/Channel_title"
-                app:boxStrokeColor="#B7B7B7"
-                app:hintTextColor="#B7B7B7">
+                app:boxStrokeColor="#e0e0e0"
+                app:hintTextColor="#e0e0e0">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextTextPersonName"
                     android:layout_width="match_parent"
-                    android:hint="@string/Channel_title"
-                    android:textColorHint="#B7B7B7"
+                    android:textColorHint="#e0e0e0"
                     android:layout_height="wrap_content"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -159,20 +165,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="24dp"
                 android:layout_weight="1"
                 android:hint="@string/business_type"
-                app:boxStrokeColor="#B7B7B7"
-                app:hintTextColor="#B7B7B7">
+                app:boxStrokeColor="#e0e0e0"
+                app:hintTextColor="#e0e0e0">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/businessType"
-                    android:textColorHint="#B7B7B7"
+                    android:textColorHint="#e0e0e0"
                     android:layout_width="match_parent"
+                    android:maxLines="1"
                     android:drawableTint="@color/text_color_subtitle"
-                    android:drawableRight="@drawable/ic_search"
                     android:layout_height="wrap_content"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -182,19 +188,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="24dp"
                 android:layout_weight="1"
                 android:hint="@string/Channel_Description"
-                app:boxStrokeColor="#B7B7B7"
-                app:hintTextColor="#B7B7B7">
+                app:boxStrokeColor="#e0e0e0"
+                app:hintTextColor="#e0e0e0">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextTextPersonName2"
                     android:layout_width="match_parent"
-                    android:hint="@string/Channel_Description"
-                    android:textColorHint="#B7B7B7"
+                    android:textColorHint="#e0e0e0"
                     android:layout_height="wrap_content" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -205,16 +210,18 @@
                 android:id="@+id/buttonNext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="24dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginRight="24dp"
                 android:layout_weight="1"
                 android:background="@drawable/corner_radius_button"
-                android:minHeight="48dp"
+                android:minHeight="50dp"
                 android:text="Next"
+                style="?android:attr/borderlessButtonStyle"
+                android:fontFamily="@font/inter_medium"
                 android:textAllCaps="false"
-                android:textColor="#272A3D"
-                android:textSize="14dp"
+                android:textColor="#171717"
+                android:textSize="16dp"
                 tools:ignore="TextSizeCheck" />
 
             <LinearLayout
@@ -234,8 +241,10 @@
                     android:text="Cancel"
                     android:textAllCaps="false"
                     android:textColor="#171717"
+                    style="?android:attr/borderlessButtonStyle"
                     android:textSize="12dp"
                     tools:ignore="TextSizeCheck" />
+
             </LinearLayout>
 
         </LinearLayout>

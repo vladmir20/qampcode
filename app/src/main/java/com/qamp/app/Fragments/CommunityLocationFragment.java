@@ -9,6 +9,8 @@
 package com.qamp.app.Fragments;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,12 +22,14 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.bumptech.glide.util.Util;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.material.textfield.TextInputLayout;
 import com.qamp.app.Listener.Backpressedlistener;
 import com.qamp.app.R;
+import com.qamp.app.Utils.Utils;
 
 public class CommunityLocationFragment extends Fragment implements OnMapReadyCallback, Backpressedlistener {
 
@@ -43,7 +47,7 @@ public class CommunityLocationFragment extends Fragment implements OnMapReadyCal
     public static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
 
     public static Backpressedlistener backpressedlistener;
-
+    private String buttonState = "false";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,6 +71,7 @@ public class CommunityLocationFragment extends Fragment implements OnMapReadyCal
             channelTypeBusiness = bundle.getString("ChannelBusinessType");
             completeAddress = bundle.getString("CompleteAddress");
             latitutude = bundle.getString("Latitutude");
+            buttonState = bundle.getString("ButtonState");
             longitude = bundle.getString("Longitude");
             location.setText(completeAddress);
         }
@@ -103,6 +108,35 @@ public class CommunityLocationFragment extends Fragment implements OnMapReadyCal
             }
         });
 
+        if (buttonState.equals("false")){
+            Utils.setButtonState(next,false);
+        }else{
+            Utils.setButtonState(next,true);
+        }
+        location.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (location.getText().toString().isEmpty()){
+                    Utils.setButtonState(next,false);
+                }else{
+                    Utils.setButtonState(next,true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (location.getText().toString().isEmpty()){
+                    Utils.setButtonState(next,false);
+                }else{
+                    Utils.setButtonState(next,true);
+                }
+            }
+        });
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
