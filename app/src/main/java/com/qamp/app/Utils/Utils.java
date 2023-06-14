@@ -15,10 +15,13 @@ package com.qamp.app.Utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.widget.Button;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import com.qamp.app.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +43,20 @@ public class Utils
         }
         catch (Exception ex) {}
     }
-    
+
+
+    public  static  void setButtonState(Button buttonState, boolean state){
+        if (!state){
+            buttonState.setEnabled(state);
+            buttonState.setBackgroundColor(buttonState.getContext().getResources().getColor(R.color.buttonDisable));
+            buttonState.setTextColor(buttonState.getContext().getResources().getColor(R.color.buttonDisableText));
+        }else{
+            buttonState.setEnabled(state);
+            buttonState.setBackgroundColor(buttonState.getContext().getResources().getColor(R.color.buttonActive));
+            buttonState.setTextColor(buttonState.getContext().getResources().getColor(R.color.buttonActiveText));
+        }
+    }
+
     public static boolean aquireUserPermissions(final Context context, final List<String> permissions, final int REQUEST_CODE) {
         final List<String> permissionsNeeded = new ArrayList<String>();
         for (final String permission : permissions) {

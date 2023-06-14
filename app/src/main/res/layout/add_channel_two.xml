@@ -17,6 +17,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -35,9 +36,11 @@
 
                 <ImageView
                     android:id="@+id/cancel_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
+                    android:layout_width="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginBottom="10dp"
                     app:srcCompat="@drawable/ic_close" />
 
                 <TextView
@@ -45,49 +48,63 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:gravity="center"
                     android:layout_marginLeft="8dp"
+                    android:gravity="center"
                     android:text=""
                     android:textColor="#171717"
-                    android:textSize="14dp" />
+                    android:fontFamily="@font/inter_medium"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    tools:ignore="TextSizeCheck" />
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
+                android:layout_height="10dp"
+                android:layout_weight="4"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:weightSum="4"
                 android:orientation="horizontal">
 
                 <View
                     android:id="@+id/view"
-                    android:layout_width="78dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="4dp"
-                    android:layout_marginTop="16dp"
-                    android:background="#F4B63F" />
+                    android:background="@drawable/corner_radius_button"/>
 
                 <View
                     android:id="@+id/view6"
-                    android:layout_width="78dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="4dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="16dp"
-                    android:background="#F4B63F" />
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/corner_radius_button" />
 
                 <View
                     android:id="@+id/view7"
-                    android:layout_width="78dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="4dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="16dp"
-                    android:background="#F2F2F2" />
+                    android:layout_marginLeft="8dp"
+
+                    android:backgroundTint="#F2F2F2"
+                    android:background="@drawable/corner_radius_button" />
 
                 <View
                     android:id="@+id/view8"
-                    android:layout_width="78dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="8dp"
+
                     android:layout_height="4dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="16dp"
-                    android:background="#F2F2F2" />
+                    android:backgroundTint="#F2F2F2"
+                    android:background="@drawable/corner_radius_button" />
+
             </LinearLayout>
 
 
@@ -115,6 +132,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:gravity="center"
+                android:fontFamily="@font/inter_medium"
                 android:text="@string/whereLocatedText"
                 android:textColor="#171717"
                 android:textSize="24sp" />
@@ -123,13 +141,13 @@
                 android:id="@+id/textView50"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="24dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginRight="24dp"
                 android:gravity="center"
                 android:text="@string/pickedLocationText"
                 android:textColor="#828282"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:visibility="gone"
@@ -149,10 +167,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:layout_weight="1"
-                android:background="@drawable/rounded_corner_border"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:layout_marginTop="100dp" >
@@ -161,22 +176,24 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:id="@+id/locationLayout"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:hint="@string/business_type"
+                    android:hint="@string/search_location"
                     app:boxStrokeColor="@color/field_color"
                     app:hintTextColor="@color/field_color">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <AutoCompleteTextView
                         android:id="@+id/location_1"
-                        android:text=" "
+                        android:padding="10dp"
                         android:focusable="false"
+                        android:drawableTint="#828282"
                         android:drawableRight="@drawable/ic_crosshair"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:minHeight="50dp"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -185,17 +202,18 @@
             <Button
                 android:id="@+id/buttonNext"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="16dp"
+                android:layout_height="52dp"
+                android:layout_marginLeft="24dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginRight="24dp"
                 android:layout_weight="1"
                 android:background="@drawable/corner_radius_button"
                 android:hint="Channel Discription"
-                android:minHeight="48dp"
+                style="?android:attr/borderlessButtonStyle"
+                android:minHeight="50dp"
                 android:text="Next"
                 android:textAllCaps="false"
-                android:textColor="#272A3D"
+                android:textColor="#171717"
                 android:textSize="14dp" />
 
             <Button
@@ -209,6 +227,7 @@
                 android:background="@color/transparent_color"
                 android:minHeight="32dp"
                 android:text="Skip"
+                style="?android:attr/borderlessButtonStyle"
                 android:textAllCaps="false"
                 android:textColor="#171717"
                 android:textSize="12dp" />

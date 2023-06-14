@@ -59,7 +59,6 @@ import com.google.i18n.phonenumbers.Phonenumber;
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboProfile;
 import com.qamp.app.Activity.CommunityDashboard;
-import com.qamp.app.MesiboApiClasses.SampleAPI;
 import com.qamp.app.Utils.AppConfig;
 import com.qamp.app.Listener.Backpressedlistener;
 import com.qamp.app.Utils.QAMPAPIConstants;
@@ -143,80 +142,7 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
-                String URL = QAMPAPIConstants.channel_base_url + String.format(QAMPAPIConstants.addChannel);
-                JSONObject jsonBody = new JSONObject();
-                try {
-                    jsonBody.put("title", channelTitle);
-                    jsonBody.put("description", channelDescription);
-                    jsonBody.put("type", "BUSINESS");
-                    jsonBody.put("haveGeoLocation", "true");
-                    jsonBody.put("latitude", latitude);
-                    jsonBody.put("longitude", longitude);
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.i("VOLLEY======Channel", response);
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            String status = jsonObject.getString("status");
-                            if (status.contains(QampConstants.success)) {
-                                Toast.makeText(getActivity(), "SUCCESS CREATED", Toast.LENGTH_SHORT).show();
-                                //Toast.makeText(getActivity(), ""+respons, Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getActivity(), CommunityDashboard.class);
-                                intent.putExtra("Name", channelTitle.toString());
-                                startActivity(intent);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(getActivity(), "UNSUCCESS CREATED" + e.getMessage().toString(), Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-
-                }) {
-
-                    @Override
-                    public Map<String, String> getHeaders() throws AuthFailureError {
-                        HashMap headers = new HashMap();
-                        System.out.println(AppConfig.getConfig().token.toString());
-                        headers.put("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-                        headers.put("user-session-token", AppConfig.getConfig().token);
-                        return headers;
-                    }
-
-                    @Override
-                    public byte[] getBody() throws AuthFailureError {
-                        Map<String, Object> params = new HashMap<>();
-                        try {
-                            params.put("title", jsonBody.getString("title"));
-                            params.put("description", jsonBody.getString("description"));
-                            params.put("type", jsonBody.getString("type"));
-                            params.put("haveGeoLocation", jsonBody.getString("haveGeoLocation"));
-                            params.put("latitude", jsonBody.getString("latitude"));
-                            params.put("longitude", jsonBody.getString("longitude"));
-                            for (Map.Entry<String, Object> entry : params.entrySet()) {
-                                System.out.println(entry.getKey() + ":" + entry.getValue().toString());
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        if (params != null && params.size() > 0) {
-                            return AppUtils.encodeParameter(params, getParamsEncoding());
-                        }
-                        return null;
-                    }
-                };
-                requestQueue.add(stringRequest);
             }
         });
 
@@ -256,7 +182,7 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
-                    SampleAPI.startContactsSync();
+                   // MesiboAPI.startContactsSync();
                     getContactList();
                 } else {
                     // permission denied, boo! Disable the
@@ -353,8 +279,8 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
 
 
 
-       mUserProfiles.addAll(Mesibo.getSortedUserProfiles());
-       //mUserProfiles.addAll(otherContactsList);
+        mUserProfiles.addAll(Mesibo.getSortedUserProfiles());
+        //mUserProfiles.addAll(otherContactsList);
 
 
         if (mUserProfiles.size() == 0) {
@@ -464,7 +390,7 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
                     if (!isChecked){
                         mesiboProfileArrayList.remove(contact.getNumber());
                     }else if ((!isSelectedAll)&&isChecked){
-                            mesiboProfileArrayList.add(contact.getNumber());
+                        mesiboProfileArrayList.add(contact.getNumber());
                     }
                     setShareNumber();
                 }

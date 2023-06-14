@@ -65,7 +65,8 @@
                         android:id="@+id/horizontal_channel_recycler"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"
+                        android:visibility="visible"
+                        android:background="@color/white"
                         android:orientation="horizontal">
 
                         <androidx.cardview.widget.CardView
@@ -91,7 +92,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp"
-                                    app:srcCompat="@drawable/ic_plus" />
+                                    app:srcCompat="@drawable/ic_plus"/>
 
                                 <TextView
                                     android:id="@+id/textView43"

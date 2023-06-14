@@ -76,7 +76,7 @@ public class MesiboConfiguration {
     public static final String TOPIC_COLOR = "#354052";
 
     public static final String HUDDLE_STATUS_COLOR_WITHOUT_PICTURE = "#ffffff";
-    public static final String HUDDLE_OUTGOING_CHAT_COLOR = "#272A3D";
+    public static final String HUDDLE_OUTGOING_CHAT_COLOR = "#171717";
     public static final String HUDDLE_STATUS_COLOR_OVER_PICTURE = "#354052";
 
     public static final int PROGRESSVIEW_DOWNLOAD_SYMBOL = R.drawable.ic_file_download_white_24dp;

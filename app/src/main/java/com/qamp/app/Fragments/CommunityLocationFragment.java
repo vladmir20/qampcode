@@ -9,6 +9,8 @@
 package com.qamp.app.Fragments;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,14 +22,14 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.anirudh.locationfetch.EasyLocationFetch;
-import com.anirudh.locationfetch.GeoLocationModel;
+import com.bumptech.glide.util.Util;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.material.textfield.TextInputLayout;
 import com.qamp.app.Listener.Backpressedlistener;
 import com.qamp.app.R;
+import com.qamp.app.Utils.Utils;
 
 public class CommunityLocationFragment extends Fragment implements OnMapReadyCallback, Backpressedlistener {
 
@@ -38,13 +40,14 @@ public class CommunityLocationFragment extends Fragment implements OnMapReadyCal
     EditText location;
     ImageView navigate;
     TextView channelName;
-    String lat, lng,channelTitle , channelDescription;
+    String lat, lng,channelTitle , channelDescription,channelTypeBusiness;
+    String completeAddress,latitutude,longitude;
     Button skip;
     TextInputLayout locationLayout;
     public static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
 
     public static Backpressedlistener backpressedlistener;
-
+    private String buttonState = "false";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,7 +59,7 @@ public class CommunityLocationFragment extends Fragment implements OnMapReadyCal
         mapView = view.findViewById(R.id.mapView);
         location = view.findViewById(R.id.location_1);
         locationLayout = view.findViewById(R.id.locationLayout);
-       // navigate = view.findViewById(R.id.navigate);
+        // navigate = view.findViewById(R.id.navigate);
         channelName =  view.findViewById(R.id.channelName);
         skip = view.findViewById(R.id.skip);
 
@@ -65,7 +68,15 @@ public class CommunityLocationFragment extends Fragment implements OnMapReadyCal
             channelTitle = bundle.getString("ChannelName");
             channelName.setText(channelTitle);
             channelDescription = bundle.getString("ChannelDescription");
+            channelTypeBusiness = bundle.getString("ChannelBusinessType");
+            completeAddress = bundle.getString("CompleteAddress");
+            latitutude = bundle.getString("Latitutude");
+            buttonState = bundle.getString("ButtonState");
+            longitude = bundle.getString("Longitude");
+            location.setText(completeAddress);
         }
+
+
 
         Bundle mapViewBundle = null;
         if(savedInstanceState!= null)
@@ -76,44 +87,19 @@ public class CommunityLocationFragment extends Fragment implements OnMapReadyCal
         location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                GeoLocationModel geoLocationModel = new EasyLocationFetch(getContext(),GoogleApiKey).
-//                        getLocationData();
-                GeoLocationModel geoLocationModel = new EasyLocationFetch(getContext()).getLocationData();
-//                geoLocationModel.getLattitude();
-//                geoLocationModel.getLongitude();
-                lat = String.valueOf(geoLocationModel.getLattitude());
-                lng = String.valueOf(geoLocationModel.getLongitude());
-                location.setText(geoLocationModel.getLattitude()+","+geoLocationModel.getLongitude());
+                Fragment locationPlacesFragment = new CommunityLocationFragmentPlaces();
+                Bundle bundle = new Bundle();
+                bundle.putString("ChannelName", channelTitle);
+                bundle.putString("ChannelDescription", channelDescription);
+                bundle.putString("ChannelBusinessType", channelTypeBusiness);
+                System.out.println(channelTitle+channelDescription+channelTypeBusiness);
+                final FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                locationPlacesFragment.setArguments(bundle);
+                transaction.replace(R.id.frameLayout, locationPlacesFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
-
-//        navigate.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String loc = location.getText().toString();
-//                List<Address> addressList = null;
-//                Geocoder geocoder = new Geocoder(getActivity());
-//
-//                if(loc!=null || !loc.equals("")){
-//                    try {
-//                        addressList = geocoder.getFromLocationName(loc,1);
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                    Address address = addressList.get(0);
-//                    LatLng latLng = new LatLng(address.getLatitude(),address.getLongitude());
-//                    lat = String.valueOf(address.getLatitude());
-//                    lng = String.valueOf(address.getLongitude());
-//                    map.addMarker(new MarkerOptions().position(latLng).title(loc));
-//                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,18));
-//                }
-//            }
-//        });
-
-
-
-
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,18 +107,65 @@ public class CommunityLocationFragment extends Fragment implements OnMapReadyCal
                 getActivity().finish();
             }
         });
+
+        if (buttonState.equals("false")){
+            Utils.setButtonState(next,false);
+        }else{
+            Utils.setButtonState(next,true);
+        }
+        location.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (location.getText().toString().isEmpty()){
+                    Utils.setButtonState(next,false);
+                }else{
+                    Utils.setButtonState(next,true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (location.getText().toString().isEmpty()){
+                    Utils.setButtonState(next,false);
+                }else{
+                    Utils.setButtonState(next,true);
+                }
+            }
+        });
+
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment createCommunityThree = new CreateCommunityThree();
                 Bundle bundle1 = new Bundle();
-                bundle1.putString("Latitude",lat);
-                bundle1.putString("Longitude",lng);
+                bundle1.putString("Latitude",latitutude);
+                bundle1.putString("Longitude",longitude);
                 bundle1.putString("ChannlName",channelTitle);
                 bundle1.putString("ChannelDescription",channelDescription);
                 final FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 createCommunityThree.setArguments(bundle1);
                 transaction.replace(R.id.frameLayout, createCommunityThree);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment createCommunityThree = new CreateCommunityThree();
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("Latitude","0.0");
+                bundle1.putString("Longitude","0.0");
+                bundle1.putString("ChannlName",channelTitle);
+                bundle1.putString("ChannelDescription",channelDescription);
+                final FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                createCommunityThree.setArguments(bundle1);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
@@ -186,7 +219,7 @@ public class CommunityLocationFragment extends Fragment implements OnMapReadyCal
     @Override
     public void onBackPressed() {
 
-     }
+    }
 
 
 }

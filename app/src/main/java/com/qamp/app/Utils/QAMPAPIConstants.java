@@ -12,7 +12,7 @@ package com.qamp.app.Utils;
 public class QAMPAPIConstants {
     // public static String base_url = "http://65.0.220.147:8000/";
     public static String base_url = "http://dcore.qampservices.in/v2/user-service/";
-    public static String channel_base_url = "http://dcore.qampservices.in/v1/channel-service/";
+    public static String channel_base_url = "https://dcore.qampservices.in/v1/channel-service/";
     // public static String base_url = "https://35.154.192.182/v1/user-service/";
 
     public static String accountId = "AC16fb61863a9a03485366c626cc65963a";
