@@ -125,7 +125,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:paddingTop="10dp"
         app:layout_constraintBottom_toTopOf="@+id/skipLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -133,7 +132,7 @@
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="4dp"
             android:layout_weight="1"

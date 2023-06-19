@@ -126,7 +126,8 @@
             android:padding="5dp"
             android:visibility="visible"
             tools:layout_editor_absoluteX="374dp"
-            tools:layout_editor_absoluteY="16dp">
+            tools:layout_editor_absoluteY="16dp"
+            tools:ignore="MissingConstraints">
 
             <TextView
                 android:id="@+id/mes_alert"
@@ -145,6 +146,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_alignParentBottom="true"

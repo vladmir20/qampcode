@@ -8,25 +8,28 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mes_rv_card_view"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="04dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginBottom="04dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/top_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-
         android:background="?android:selectableItemBackground"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:src="@drawable/default_user_image"
             android:id="@+id/mes_rv_profile"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
@@ -53,10 +56,10 @@
             android:layout_marginTop="8dp"
             android:layout_toLeftOf="@+id/mes_rv_date"
             android:layout_toRightOf="@+id/mes_rv_profile"
+            android:fontFamily="@font/inter_medium"
             android:text="Mesibo Username"
-            android:textColor="#505050"
+            android:textColor="#171717"
             android:textSize="16sp"
-            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/isOnlineDot"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -73,6 +76,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#868686"
             android:textSize="12dp"
+            android:fontFamily="@font/inter_regular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -108,14 +112,12 @@
                 android:layout_centerVertical="true"
                 android:layout_weight="3"
                 android:maxLines="1"
+                android:fontFamily="@font/inter_regular"
                 android:text="This is a  This is a  This is a This is a This is a This is a This is a This is a This is a This is a This is a This is a This is a "
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#868686"
                 android:textSize="14sp"
-                android:textStyle="normal"
                 android:visibility="visible" />
-
-
 
 
         </LinearLayout>
@@ -156,7 +158,8 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_alignParentBottom="true"
-        android:background="#e3e3e3" />
+        android:background="#e3e3e3"
+        android:visibility="gone" />
 
     <RelativeLayout
         android:id="@+id/highlighted_view"

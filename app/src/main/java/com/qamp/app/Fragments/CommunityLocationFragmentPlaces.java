@@ -76,7 +76,23 @@ public class CommunityLocationFragmentPlaces extends Fragment implements OnMapRe
                         Log.d("Pin Code : ", "" + address.getPostalCode());
                         Log.d("Feature : ", "" + address.getFeatureName());
                         Log.d("More : ", "" + address.getLocality());
-                        okay_button.setEnabled(true);
+                        Fragment communityLocationFragment = new CommunityLocationFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("ChannelName", channelTitle);
+                        bundle.putString("ChannelDescription", channelDescription);
+                        bundle.putString("ChannelBusinessType", channelTypeBusiness);
+                        bundle.putString("CompleteAddress", autoCompleteTextView.getText().toString());
+                        bundle.putString("Latitutude", String.valueOf(latLng.latitude));
+                        bundle.putString("Longitude", String.valueOf(latLng.longitude));
+                        bundle.putString("ButtonState", "true");
+                        System.out.println(channelTitle+channelDescription+channelTypeBusiness+autoCompleteTextView.getText().toString()
+                                +String.valueOf(latLng.latitude)+String.valueOf(latLng.longitude));
+                        final FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        communityLocationFragment.setArguments(bundle);
+                        transaction.replace(R.id.frameLayout, communityLocationFragment, "CommunityLocationFragment");
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+                        //okay_button.setEnabled(true);
                     } else {
                         Log.d("Adddress", "Address Not Found");
                     }

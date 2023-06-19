@@ -9,6 +9,85 @@
 package com.qamp.app.Fragments;
 
 
+import static com.qamp.app.MesiboApiClasses.SampleAPI.startContactsSync;
+import static com.qamp.app.Utils.Utilss.getLetterTile;
+import static com.qamp.app.MessagingModule.MesiboConfiguration.CONTACT_PERMISSION_MESSAGE;
+import static com.qamp.app.MessagingModule.MesiboConfiguration.PERMISSION_DENIED_CONTACTS;
+import static com.qamp.app.MessagingModule.MesiboConfiguration.PERMISSION_NEEDED;
+
+import android.Manifest;
+import android.content.ContentResolver;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.provider.ContactsContract;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.PermissionChecker;
+import androidx.core.view.ViewCompat;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
+import com.mesibo.api.Mesibo;
+import com.mesibo.api.MesiboProfile;
+import com.qamp.app.Activity.CommunityDashboard;
+import com.qamp.app.Utils.AppConfig;
+import com.qamp.app.Listener.Backpressedlistener;
+import com.qamp.app.Utils.QAMPAPIConstants;
+import com.qamp.app.Utils.QampConstants;
+import com.qamp.app.R;
+import com.qamp.app.Utils.AppUtils;
+import com.qamp.app.MessagingModule.Contact;
+import com.qamp.app.MessagingModule.RoundImageDrawable;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+
+/*
+ * *
+ *  * Created by Shivam Tiwari on 20/05/23, 3:30 AM
+ *  * Copyright (c) 2023 . All rights reserved.
+ *  * Last modified 20/05/23, 2:39 AM
+ *
+ */
+
+
+
 import static com.qamp.app.Utils.Utilss.getLetterTile;
 import static com.qamp.app.MessagingModule.MesiboConfiguration.CONTACT_PERMISSION_MESSAGE;
 import static com.qamp.app.MessagingModule.MesiboConfiguration.PERMISSION_DENIED_CONTACTS;
@@ -182,7 +261,7 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
-                   // MesiboAPI.startContactsSync();
+                    startContactsSync();
                     getContactList();
                 } else {
                     // permission denied, boo! Disable the
@@ -441,3 +520,57 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
 
     }
 }
+//public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener, Backpressedlistener {
+//    public static Backpressedlistener backpressedlistener;
+//    Button next;
+//    ImageView cancel;
+//    TextView channelName;
+//    String channelTitle, channelDescription, channelBusinessType, channel_ID;
+//
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//        // Inflate the layout for this fragment
+//        View view = inflater.inflate(R.layout.add_channel_four, container, false);
+//
+//        cancel = view.findViewById(R.id.cancel_1);
+//        channelName = view.findViewById(R.id.channelName);
+//        Bundle bundle = getArguments();
+//        if (bundle != null) {
+//            channelTitle = bundle.getString("Channel_Title");
+//            channelDescription = bundle.getString("Channel_Description");
+//            channelBusinessType = bundle.getString("Channel_Type");
+//            channel_ID = bundle.getString("Channel_ID");
+//            channelName.setText(channelTitle);
+//        }
+//        cancel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                getActivity().finish();
+//            }
+//        });
+//
+//        return view;
+//    }
+//
+//    @Override
+//    public void Mesibo_onSync(int i) {
+//
+//    }
+//
+//    @Override
+//    public void onBackPressed() {
+//
+//    }
+//
+//    @Override
+//    public void onPause() {
+//        backpressedlistener = null;
+//        super.onPause();
+//    }
+//
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        backpressedlistener = this;
+//    }
+//}
