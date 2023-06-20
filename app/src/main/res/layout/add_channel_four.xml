@@ -35,7 +35,7 @@
                 android:layout_width="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_height="30dp"
-                android:layout_marginLeft="25dp"
+                android:layout_marginLeft="24dp"
                 android:layout_marginBottom="10dp"
                 app:srcCompat="@drawable/ic_close" />
 
@@ -46,8 +46,9 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="8dp"
                 android:gravity="center"
+                android:text=""
                 android:textColor="#171717"
-                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"
                 android:textSize="16sp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
