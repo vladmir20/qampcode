@@ -1028,6 +1028,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                     holder.mContactsMessage.setText(typingText);
                     holder.mContactsMessage.setTextColor(UserListFragment.this.mMesiboUIOptions.mUserListTypingIndicationColor);
                 }
+
             } else {
                 holder.mContactsMessage.setText(user.getStatus() != null ? user.getStatus() : "");
             }

@@ -69,8 +69,7 @@ public class CreateCommunityFragment extends Fragment implements Backpressedlist
             @Override
             public void onClick(View view) {
                 if ((!channelName.getText().toString().isEmpty()) &&
-                        (!channelDescr.getText().toString().isEmpty())&&
-                        (!channelTypeBusiness.getText().toString().isEmpty())) {
+                        (!channelDescr.getText().toString().isEmpty())) {
                     Fragment communityLocationFragment = new CommunityLocationFragment();
                     Bundle bundle = new Bundle();
                     bundle.putString("ChannelName", channelName.getText().toString());
@@ -97,7 +96,7 @@ public class CreateCommunityFragment extends Fragment implements Backpressedlist
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (channelName.getText().toString().isEmpty()||channelTypeBusiness.getText().toString().isEmpty())
+                if (channelName.getText().toString().isEmpty()||channelDescr.getText().toString().isEmpty())
                     Utils.setButtonState(next,false);
                 else
                     Utils.setButtonState(next,true);
@@ -108,7 +107,7 @@ public class CreateCommunityFragment extends Fragment implements Backpressedlist
 
             }
         });
-        channelTypeBusiness.addTextChangedListener(new TextWatcher() {
+        channelDescr.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -116,7 +115,7 @@ public class CreateCommunityFragment extends Fragment implements Backpressedlist
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (channelName.getText().toString().isEmpty()||channelTypeBusiness.getText().toString().isEmpty())
+                if (channelName.getText().toString().isEmpty()||channelDescr.getText().toString().isEmpty())
                     Utils.setButtonState(next,false);
                 else
                     Utils.setButtonState(next,true);

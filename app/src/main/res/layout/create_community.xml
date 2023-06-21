@@ -214,7 +214,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="24dp"
                 android:layout_weight="1"
-                android:background="@drawable/corner_radius_button"
+                android:background="@drawable/corner_radius_button_6dp"
                 android:minHeight="50dp"
                 android:text="Next"
                 style="?android:attr/borderlessButtonStyle"

@@ -15,6 +15,7 @@ package com.qamp.app.Utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.widget.Button;
 
 import androidx.appcompat.app.AlertDialog;
@@ -48,11 +49,17 @@ public class Utils
     public  static  void setButtonState(Button buttonState, boolean state){
         if (!state){
             buttonState.setEnabled(state);
-            buttonState.setBackgroundColor(buttonState.getContext().getResources().getColor(R.color.buttonDisable));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                buttonState.setBackground(buttonState.getContext().getDrawable(R.drawable.corner_radius_button_6dp));
+                buttonState.setBackgroundTintList(ContextCompat.getColorStateList(buttonState.getContext(), R.color.buttonDisable));
+            }
             buttonState.setTextColor(buttonState.getContext().getResources().getColor(R.color.buttonDisableText));
         }else{
             buttonState.setEnabled(state);
-            buttonState.setBackgroundColor(buttonState.getContext().getResources().getColor(R.color.buttonActive));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                buttonState.setBackground(buttonState.getContext().getDrawable(R.drawable.corner_radius_button_6dp));
+                buttonState.setBackgroundTintList(ContextCompat.getColorStateList(buttonState.getContext(), R.color.buttonActive));
+            }
             buttonState.setTextColor(buttonState.getContext().getResources().getColor(R.color.buttonActiveText));
         }
     }

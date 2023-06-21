@@ -35,4 +35,5 @@ public class QAMPAPIConstants {
 
 
     public static String addChannel = "channel";
+    public static String sendbulkinvites = "sendbulkinvites";
 }

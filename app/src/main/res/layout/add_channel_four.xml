@@ -35,7 +35,7 @@
                 android:layout_width="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_height="30dp"
-                android:layout_marginLeft="25dp"
+                android:layout_marginLeft="24dp"
                 android:layout_marginBottom="10dp"
                 app:srcCompat="@drawable/ic_close" />
 
@@ -46,8 +46,9 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="8dp"
                 android:gravity="center"
+                android:text=""
                 android:textColor="#171717"
-                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"
                 android:textSize="16sp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
@@ -125,7 +126,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:paddingTop="10dp"
         app:layout_constraintBottom_toTopOf="@+id/skipLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -133,7 +133,7 @@
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="4dp"
             android:layout_weight="1"

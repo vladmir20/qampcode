@@ -9,10 +9,11 @@
 package com.qamp.app.Fragments;
 
 
-import static com.qamp.app.Utils.Utilss.getLetterTile;
+import static com.qamp.app.MesiboApiClasses.SampleAPI.startContactsSync;
 import static com.qamp.app.MessagingModule.MesiboConfiguration.CONTACT_PERMISSION_MESSAGE;
 import static com.qamp.app.MessagingModule.MesiboConfiguration.PERMISSION_DENIED_CONTACTS;
 import static com.qamp.app.MessagingModule.MesiboConfiguration.PERMISSION_NEEDED;
+import static com.qamp.app.Utils.Utilss.getLetterTile;
 
 import android.Manifest;
 import android.content.ContentResolver;
@@ -48,10 +49,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
@@ -59,15 +59,16 @@ import com.google.i18n.phonenumbers.Phonenumber;
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboProfile;
 import com.qamp.app.Activity.CommunityDashboard;
-import com.qamp.app.Utils.AppConfig;
 import com.qamp.app.Listener.Backpressedlistener;
-import com.qamp.app.Utils.QAMPAPIConstants;
-import com.qamp.app.Utils.QampConstants;
-import com.qamp.app.R;
-import com.qamp.app.Utils.AppUtils;
 import com.qamp.app.MessagingModule.Contact;
 import com.qamp.app.MessagingModule.RoundImageDrawable;
+import com.qamp.app.R;
+import com.qamp.app.Utils.AppConfig;
+import com.qamp.app.Utils.AppUtils;
+import com.qamp.app.Utils.QAMPAPIConstants;
+import com.qamp.app.Utils.QampConstants;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -84,9 +85,8 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
     Button skip, shareInvite;
     ImageView cancel;
     ArrayList<Contact> contactList = new ArrayList<>();
-    String lat, lng, channelTitle, channelDescription;
+    String channelTitle, channelDescription, channelId, channelType;
     TextView channelName;
-    String latitude, longitude;
     RecyclerView contactsRecycle;
     MesiboProfile profile;
     ArrayList<String> mesiboProfileArrayList = new ArrayList<>();
@@ -97,6 +97,19 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
     //ContactAdapter mAdapter = null;
     private CommunityContactAdapter listAdapter;
     private ArrayList<ContactCommunityData> contactsList = new ArrayList<>();
+
+    private static String formatPhoneNumber(String phoneNumber) {
+        if (phoneNumber != null && phoneNumber.length() >= 10) {
+            // Extract the country code and remaining digits
+            String countryCode = phoneNumber.substring(0, phoneNumber.length() - 10);
+            String remainingDigits = phoneNumber.substring(phoneNumber.length() - 10);
+
+            // Format the number with parentheses and country code
+            return "(+" + countryCode + ") " + remainingDigits;
+        } else {
+            return phoneNumber; // Return the input as-is if it doesn't meet the format requirements
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -112,15 +125,14 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
         button3 = view.findViewById(R.id.button3);
         //OpenContactRecycler();
 
+
         Bundle bundle = getArguments();
         if (bundle != null) {
-            lat = bundle.getString("Latitude");
-            lng = bundle.getString("Longitude");
-            channelTitle = bundle.getString("ChannelName");
-            channelDescription = bundle.getString("ChannelDescription");
+            channelTitle = bundle.getString("Channel_Title");
+            channelDescription = bundle.getString("Channel_Description");
+            channelId = bundle.getString("Channel_ID");
+            channelType = bundle.getString("Channel_Type");
             channelName.setText(channelTitle);
-            latitude = String.valueOf(lat);
-            longitude = String.valueOf(lng);
         }
 
         mUserProfiles = new ArrayList<>();
@@ -128,8 +140,17 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
         shareInvite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), CommunityDashboard.class);
-                startActivity(intent);
+                for (int i=0; i<mesiboProfileArrayList.size(); i++){
+                    System.out.println("Printed "+String.valueOf(i)+" "+mesiboProfileArrayList.get(i)+"\n");
+                }
+                if (AppUtils.isNetWorkAvailable(getActivity())) {
+                    AppUtils.openProgressDialog(getActivity());
+                    shareInviteToDb(mesiboProfileArrayList);
+                } else {
+                    Toast.makeText(getContext(), getString(R.string.internet_error), Toast.LENGTH_LONG).show();
+                }
+//                Intent intent = new Intent(getActivity(), CommunityDashboard.class);
+//                startActivity(intent);
             }
         });
 
@@ -173,6 +194,66 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
         return view;
     }
 
+    private void shareInviteToDb(ArrayList<String> mesiboProfileArrayList) {
+        final String URL = QAMPAPIConstants.channel_base_url + String.format(QAMPAPIConstants.sendbulkinvites); // Replace with your server URL
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("channelId", channelId);
+            JSONArray invitedMobileNumbers = new JSONArray();
+            for (int i = 0; i < mesiboProfileArrayList.size(); i++) {
+                invitedMobileNumbers.put(mesiboProfileArrayList.get(i));
+            }
+            jsonObject.put("invitedMobileNumbers", invitedMobileNumbers);
+            jsonObject.put("countryCode", "91");
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URL, jsonObject,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        AppUtils.closeProgresDialog();
+                        // Handle the server response
+                        try {
+                            // Save the response to SharedPreferences
+                            //saveResponseToSharedPreferences(response.toString());
+                            // Process the response JSON if needed
+                            String status = response.getString("status");
+                            if (status.contains(QampConstants.success)) {
+                                JSONObject data = response.getJSONObject("data");
+                                String channelId = data.getString("channelId");
+                                String countryCode = data.getString("countryCode");
+                                JSONArray invitedMobileNumbers = data.getJSONArray("invitedMobileNumbers");
+                                Intent intent = new Intent(getActivity(), CommunityDashboard.class);
+                                startActivity(intent);
+                            } else {
+                                JSONArray errors = response.getJSONArray("error");
+                                JSONObject error = (JSONObject) errors.get(0);
+                                String errMsg = error.getString("errMsg");
+                                String errorCode = error.getString("errCode");
+                                Toast.makeText(getActivity(), "" + errMsg, Toast.LENGTH_SHORT).show();
+                            }
+                            Toast.makeText(getActivity(), status, Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("user-session-token", AppConfig.getConfig().token);
+                params.put("content-type", "application/json");
+                return params;
+            }
+        };
+            Volley.newRequestQueue(getContext()).add(request);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -182,7 +263,7 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
-                   // MesiboAPI.startContactsSync();
+                    startContactsSync();
                     getContactList();
                 } else {
                     // permission denied, boo! Disable the
@@ -265,11 +346,12 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
             userProfile.other = null;
             otherContactsList.add(userProfile);
         }
+        ArrayList<MesiboProfile> mesiboProfiles = Mesibo.getSortedUserProfiles();
 
-        for (int j = 0; j < Mesibo.getSortedUserProfiles().size(); j++) {
+        for (int j = 0; j < mesiboProfiles.size(); j++) {
             for (int i = 0; i < otherContactsList.size(); i++) {
-                if (null != otherContactsList.get(i).address && otherContactsList.get(i).address.equals(Mesibo.getSortedUserProfiles().get(j).address)) {
-                    Mesibo.getSortedUserProfiles().get(j).setName(otherContactsList.get(i).getName());
+                if (null != otherContactsList.get(i).address && otherContactsList.get(i).address.equals(mesiboProfiles.get(j).address)) {
+                    mesiboProfiles.get(j).setName(otherContactsList.get(i).getName());
                     otherContactsList.remove(i);
                     break;
                 }
@@ -277,9 +359,7 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
         }
 
 
-
-
-        mUserProfiles.addAll(Mesibo.getSortedUserProfiles());
+        mUserProfiles.addAll(mesiboProfiles);
         //mUserProfiles.addAll(otherContactsList);
 
 
@@ -387,9 +467,9 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
             holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (!isChecked){
+                    if (!isChecked) {
                         mesiboProfileArrayList.remove(contact.getNumber());
-                    }else if ((!isSelectedAll)&&isChecked){
+                    } else if ((!isSelectedAll) && isChecked) {
                         mesiboProfileArrayList.add(contact.getNumber());
                     }
                     setShareNumber();
@@ -417,9 +497,7 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
 
             private TextView txtName;
             private TextView txtNumber;
-
             private ImageView mContactsProfile;
-
             private CheckBox checkBox;
 
             public ViewHolder(View itemView) {
@@ -435,7 +513,12 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
             }
 
             public void setContactNumber(String number) {
-                txtNumber.setText(number);
+                String formattedNumber = formatPhoneNumber(number);
+                if (formattedNumber != null) {
+                    txtNumber.setText(formattedNumber);
+                } else {
+                    Log.d("MainActivity", "Invalid phone number");
+                }
             }
         }
 
