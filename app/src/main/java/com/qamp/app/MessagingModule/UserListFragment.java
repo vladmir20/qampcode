@@ -971,7 +971,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                     e.printStackTrace();
                 }
 
-                Log.e("Time",data.getTime());
+                //Log.e("Time",data.getTime());
             } else {
                 holder.mContactsTime.setVisibility(View.GONE);
             }
@@ -1337,6 +1337,8 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy",Locale.getDefault());
         SimpleDateFormat format1 = new SimpleDateFormat("dd MMM yyyy",Locale.getDefault());
         SimpleDateFormat toBeSent = new SimpleDateFormat("d/M/yy",Locale.getDefault());
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm",Locale.getDefault());
+        SimpleDateFormat timeFormat1 = new SimpleDateFormat("hh:mm aa",Locale.getDefault());
 
         Date currentDate =  Calendar.getInstance().getTime();
 
@@ -1350,12 +1352,14 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         Date ccDAte = sdf.parse(cDate);
         Date llDate = format1.parse(date);
         Date yyyDate = sdf.parse(yyDate);
+        Date timeS = timeFormat.parse(time);
+        String timeSent = timeFormat1.format(timeS);
 
         String toBeDate = toBeSent.format(llDate);
 
         if(llDate.before(ccDAte) && llDate.after(yyyDate))
             return "yesterday";
-        else if(llDate.equals(ccDAte))return time;
+        else if(llDate.equals(ccDAte))return timeSent;
         else if(llDate.before(yyyDate))return toBeDate;
         else return toBeDate;
     }
