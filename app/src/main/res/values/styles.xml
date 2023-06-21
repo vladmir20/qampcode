@@ -136,6 +136,10 @@
         <item name="colorAccent">#E0E0E0</item>
 
     </style>
+    <style name="Widget.BottomNavigationView"
+        parent="Widget.Design.BottomNavigationView">
+        <item name="fontFamily">@font/inter_regular</item>
+    </style>
 
     <style name="DialogTheme1" parent="@android:style/Theme.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>

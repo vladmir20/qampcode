@@ -98,12 +98,12 @@
 
                     <androidx.appcompat.widget.SearchView
                         android:id="@+id/search_func"
-                        android:layout_gravity="left"
-                        android:gravity="left"
-                        android:layoutDirection="ltr"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_gravity="left"
+                        android:gravity="left"
                         android:hapticFeedbackEnabled="true"
+                        android:layoutDirection="ltr"
                         app:defaultQueryHint="@string/search_text"
                         app:theme="@style/AppSearchView" />
 
@@ -114,12 +114,11 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:theme="@style/Widget.BottomNavigationView"
             android:id="@+id/nav_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginEnd="0dp"
-            android:background="@color/white"
+            android:background="@color/background_tint10"
             app:itemTextColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

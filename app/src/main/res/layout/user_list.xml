@@ -19,18 +19,21 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
 
+        android:layout_marginTop="8sp"
+        android:layout_marginBottom="8sp"
         android:background="?android:selectableItemBackground"
+        android:paddingLeft="24sp"
+        android:paddingRight="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/mes_rv_profile"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8sp"
+            android:layout_marginBottom="8sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -53,6 +56,7 @@
             android:layout_marginTop="8dp"
             android:layout_toLeftOf="@+id/mes_rv_date"
             android:layout_toRightOf="@+id/mes_rv_profile"
+            android:fontFamily="@font/inter_medium"
             android:text="Mesibo Username"
             android:textColor="#505050"
             android:textSize="16sp"
@@ -68,8 +72,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
-            android:text="22 minutes"
+            android:fontFamily="@font/inter_regular"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#868686"
             android:textSize="12dp"
@@ -107,6 +110,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_weight="3"
+                android:fontFamily="@font/inter_regular"
                 android:maxLines="1"
                 android:text="This is a  This is a  This is a This is a This is a This is a This is a This is a This is a This is a This is a This is a This is a "
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -114,8 +118,6 @@
                 android:textSize="14sp"
                 android:textStyle="normal"
                 android:visibility="visible" />
-
-
 
 
         </LinearLayout>
@@ -156,7 +158,8 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_alignParentBottom="true"
-        android:background="#e3e3e3" />
+        android:background="#e3e3e3"
+        android:visibility="gone" />
 
     <RelativeLayout
         android:id="@+id/highlighted_view"

@@ -215,6 +215,12 @@ public class UserData {
         }
         return "";
     }
+    public String getDate() {
+        if (this.msg != null) {
+            return this.msg.getDate(false);
+        }
+        return "";
+    }
 
     public String getUserName() {
         String name = mUser.getName();

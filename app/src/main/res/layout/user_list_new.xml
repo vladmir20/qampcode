@@ -65,7 +65,6 @@
             android:layout_alignTop="@id/mes_rv_name"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:text="22 minutes"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#868686"
             android:textSize="12dp"

@@ -46,6 +46,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.gson.Gson;
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboGroupProfile;
 import com.mesibo.api.MesiboMessage;
@@ -55,13 +56,17 @@ import com.mesibo.api.MesiboReadSession;
 import com.mesibo.emojiview.EmojiconTextView;
 import com.qamp.app.Activity.AddChannelActivity;
 import com.qamp.app.Activity.CommunityDashboard;
+import com.qamp.app.Activity.QampContactScreen;
 import com.qamp.app.R;
 import com.qamp.app.Utils.AppUtils;
 import com.qamp.app.MessagingModule.AllUtils.LetterTileProvider;
 
 import java.lang.ref.WeakReference;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Locale;
@@ -367,7 +372,9 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
     }
 
     private void showConatcts() {
-        ContactsBottomSheetFragment contactsBottomSheetFragment = new ContactsBottomSheetFragment();
+
+        Intent intent = new Intent(getActivity(), QampContactScreen.class);
+        //ContactsBottomSheetFragment contactsBottomSheetFragment = new ContactsBottomSheetFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(MesiboUserListFragment.MESSAGE_LIST_MODE, MesiboUserListFragment.MODE_SELECTCONTACT);
         bundle.putLong(MesiboUI.MESSAGE_ID, mForwardIdForContactList);
@@ -377,8 +384,10 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         if (mMode == MesiboUserListFragment.MODE_EDITGROUP)
             bundle.putBundle(MesiboUI.BUNDLE, mEditGroupBundle);
         bundle.putBoolean(MesiboUI.FORWARD_AND_CLOSE, false);
-        contactsBottomSheetFragment.setArguments(bundle);
-        contactsBottomSheetFragment.show(getChildFragmentManager(), contactsBottomSheetFragment.getTag());
+        intent.putExtras(bundle);
+        startActivity(intent);
+        //contactsBottomSheetFragment.setArguments(bundle);
+        //contactsBottomSheetFragment.show(getChildFragmentManager(), contactsBottomSheetFragment.getTag());
     }
 
     public MesiboUserListFragment.FragmentListener getListener() {
@@ -539,12 +548,18 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                 }
                 if (params.isDbSummaryMessage() || params.isDbMessage()) {
                     ArrayList<MesiboProfile> users = Mesibo.getSortedUserProfiles();
+
+                    //this.mAdhocUserList.clear();
                     this.mAdhocUserList.add(user);
-//                    for (int i=0; i<users.size(); i++){
-//                        if (users.get(i).isGroup()){
-//                            this.mAdhocUserList.add(users.get(i));
-//                        }
-//                    }
+
+                    //Log.e("group before" , String.valueOf(mAdhocUserList));
+                    for (int i=0; i<users.size(); i++){
+                        if (users.get(i).isGroup()){
+                            if(!mAdhocUserList.contains(users.get(i)))
+                            this.mAdhocUserList.add(users.get(i));
+                        }
+                    }
+                    //Log.e("groups", String.valueOf(mAdhocUserList));
                 } else {
                     this.mAdhocUserList.add(0, user);
                 }
@@ -948,7 +963,15 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             holder.mContactsName.setText(data.getUserName());
             if (this.mHost.mSelectionMode == MesiboUserListFragment.MODE_MESSAGELIST) {
                 holder.mContactsTime.setVisibility(View.VISIBLE);
-                holder.mContactsTime.setText(data.getTime());
+                try {
+                    String text = evaluateDate(data.getDate(),data.getTime());
+                    holder.mContactsTime.setText(text);
+                } catch (ParseException e) {
+                    //holder.mContactsTime.setText("");
+                    e.printStackTrace();
+                }
+
+                Log.e("Time",data.getTime());
             } else {
                 holder.mContactsTime.setVisibility(View.GONE);
             }
@@ -1306,5 +1329,33 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                 this.mHighlightView = (RelativeLayout) view.findViewById(R.id.highlighted_view);
             }
         }
+    }
+
+    private String evaluateDate(String date, String time) throws ParseException {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy",Locale.getDefault());
+        SimpleDateFormat format1 = new SimpleDateFormat("dd MMM yyyy",Locale.getDefault());
+        SimpleDateFormat toBeSent = new SimpleDateFormat("d/M/yy",Locale.getDefault());
+
+        Date currentDate =  Calendar.getInstance().getTime();
+
+        String cDate = sdf.format(currentDate);
+
+
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -2);
+        Date yDAte = cal.getTime();
+        String yyDate = sdf.format(yDAte);
+        Date ccDAte = sdf.parse(cDate);
+        Date llDate = format1.parse(date);
+        Date yyyDate = sdf.parse(yyDate);
+
+        String toBeDate = toBeSent.format(llDate);
+
+        if(llDate.before(ccDAte) && llDate.after(yyyDate))
+            return "yesterday";
+        else if(llDate.equals(ccDAte))return time;
+        else if(llDate.before(yyyDate))return toBeDate;
+        else return toBeDate;
     }
 }

@@ -293,6 +293,7 @@
     <string name="searching">Searching...</string>
     <string name="not_have_qamp_contact">You do not have contacts to show instead add contacts from new contacts list</string>
     <string name="my_contacts">MY CONTACTS</string>
+    <string name="my_contacts_on_qamp">Contacts on Qamp</string>
     <string name="save">Save</string>
     <string name="examlpe_number">+91-9999999999</string>
     <string name="username">TestName</string>
@@ -375,9 +376,10 @@
     <string name="start_your_conversation">Start Your Conversation</string>
     <string name="search_by_name_contact_number">Search by name, contact number</string>
     <string name="create_new_group">Create New Group</string>
+    <string name="create_a_group">Create a Group</string>
     <string name="add_member_text">Add group members from the next screen.</string>
     <string name="current_language">Current Language -</string>
-    <string name="search_text">Search chats and messages</string>
+    <string name="search_text">Search by name, contact, channel etc.</string>
     <string name="no_result_found">No Result Found</string>
     <string name="no_contacts_found">You do not have any contacts</string>
     <string name="shareAppText">Now create your own community with Qamp App</string>
@@ -411,7 +413,7 @@
     <string name="shared_files">Shared Files</string>
     <string name="add_channel">Add Channel</string>
     <string name="create_qamp_room">Create a Qamp Room</string>
-    <string name="new_group" >New Group</string>
+    <string name="new_group">New Group</string>
     <string name="start_conversation">Start Conversation</string>
     <string name="enter_group_name">Enter Group Name</string>
     <string name="enter_group_desc">Enter Group Description</string>

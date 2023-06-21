@@ -57,7 +57,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             public void run() {
                 ContantContantUtil.showUserList(MESIBO_INTITIAL_READ_USERLIST,SplashScreenActivity.this, SplashScreenActivity.this);
             }
-        });**/
+        });*/
 
        // System.out.println(Mesibo.getSortedUserProfiles());
 

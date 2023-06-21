@@ -16,25 +16,24 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:paddingTop="5dp"
-        android:padding="5dp"
         android:id="@+id/top_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="5dp"
         android:background="@color/white"
         android:gravity="left"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:paddingTop="5dp">
 
         <CheckBox
             android:id="@+id/isChecked"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:theme="@style/checkBoxStyle"
-            android:visibility="gone"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:layout_gravity="center"/>
+            android:theme="@style/checkBoxStyle"
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/mes_rv_profile"
@@ -60,6 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
+                android:fontFamily="@font/inter_regular"
                 android:lineHeight="24px"
                 android:text="@string/qamp_username"
                 android:textColor="@color/text_color13"
@@ -71,6 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
+                android:fontFamily="@font/inter_regular"
                 android:lineHeight="16px"
                 android:text="@string/phone_number"
                 android:textColor="@color/text_color_subtitle"
@@ -87,40 +88,40 @@
             android:gravity="right"
             android:orientation="horizontal">
 
-<!--            <LinearLayout-->
-<!--                android:orientation="vertical"-->
-<!--                android:id="@+id/link"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="24dp"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_marginRight="15dp"-->
-<!--                android:scaleType="centerCrop"-->
-<!--                android:background="@drawable/corner_radius_button"-->
-<!--                android:visibility="visible">-->
-                <TextView
-                    android:visibility="gone"
-                    android:id="@+id/link"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_margin="10dp"
-                    android:textSize="10sp"
-                    android:textColor="@color/text_color17"
-                    android:padding="10dp"
-                    android:background="@drawable/corner_radius_button"
-                    android:layout_width="50dp"
-                    android:text="@string/invite_only"
-                    android:layout_height="30dp"/>
-<!--            </LinearLayout>-->
+            <!--            <LinearLayout-->
+            <!--                android:orientation="vertical"-->
+            <!--                android:id="@+id/link"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="24dp"-->
+            <!--                android:layout_gravity="center"-->
+            <!--                android:layout_marginRight="15dp"-->
+            <!--                android:scaleType="centerCrop"-->
+            <!--                android:background="@drawable/corner_radius_button"-->
+            <!--                android:visibility="visible">-->
+            <TextView
+                android:id="@+id/link"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/corner_radius_button"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/invite_only"
+                android:textColor="@color/text_color17"
+                android:textSize="10sp"
+                android:visibility="gone" />
+            <!--            </LinearLayout>-->
 
-<!--            <ImageView-->
-<!--                android:id="@+id/invite"-->
-<!--                android:layout_width="24dp"-->
-<!--                android:layout_height="24dp"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_marginRight="15dp"-->
-<!--                android:scaleType="centerCrop"-->
-<!--                android:src="@drawable/whatsapp_icon"-->
-<!--                android:visibility="visible"/>-->
+            <!--            <ImageView-->
+            <!--                android:id="@+id/invite"-->
+            <!--                android:layout_width="24dp"-->
+            <!--                android:layout_height="24dp"-->
+            <!--                android:layout_gravity="center"-->
+            <!--                android:layout_marginRight="15dp"-->
+            <!--                android:scaleType="centerCrop"-->
+            <!--                android:src="@drawable/whatsapp_icon"-->
+            <!--                android:visibility="visible"/>-->
 
 
             <ImageView
@@ -128,12 +129,12 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_message"
                 android:tint="@color/black"
                 android:visibility="gone"
-                android:layout_marginLeft="5dp"
                 card_view:srcCompat="@drawable/ic_message"
                 tools:srcCompat="@drawable/ic_message" />
 
@@ -142,9 +143,9 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
                 android:layout_marginRight="10dp"
                 android:scaleType="centerCrop"
-                android:layout_marginLeft="5dp"
                 android:src="@drawable/ic_video_camera"
                 android:visibility="gone"
                 card_view:srcCompat="@drawable/ic_video_camera"
@@ -152,10 +153,10 @@
 
             <ImageView
                 android:id="@+id/audio_call"
-                android:layout_marginLeft="5dp"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
                 android:layout_marginRight="10dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_phone"
@@ -191,7 +192,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
             android:src="@drawable/ic_check_circle_black_24dp"
-            android:tint="@color/md_teal_700"/>
+            android:tint="@color/md_teal_700" />
 
 
     </RelativeLayout>
