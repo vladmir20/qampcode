@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -30,31 +30,36 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp">
 
-            <ImageView
-                android:id="@+id/cancel_1"
-                android:layout_width="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginBottom="10dp"
-                app:srcCompat="@drawable/ic_close" />
-
             <TextView
                 android:id="@+id/channelName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="8dp"
-                android:gravity="center"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_medium"
+                android:gravity="start"
                 android:text=""
                 android:textColor="#171717"
-                android:fontFamily="@font/inter_medium"
                 android:textSize="16sp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="TextSizeCheck" />
 
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/cancel_1"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_close" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -119,33 +124,126 @@
 
     </LinearLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/corner_radius_button"
+        android:backgroundTint="#f2f2f2"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout9">
+
+        <ImageView
+            android:id="@+id/imageView53"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center|start"
+            android:src="@drawable/ic_search"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#828282" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="Search by name, contact no. etc."
+            android:textColorHint="#828282"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView54"
+            app:layout_constraintStart_toEndOf="@+id/imageView53"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView54"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right"
+            android:src="@drawable/ic_microphone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#828282" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout17"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout16">
+
+        <ImageView
+            android:id="@+id/imageView55"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/negative_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/shareInvite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/inter_regular"
+            android:text="1 Contact Selected"
+            android:textAlignment="center"
+            android:textColor="#828282"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="Select Contacts"
+            android:textAlignment="center"
+            android:textColor="#171717"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/imageView55"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#f2f2f2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <LinearLayout
         android:background="@color/white"
         android:id="@+id/linearLayout10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:layout_marginRight="24dp"
+        android:layout_marginLeft="24dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/skipLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="4dp"
-            android:layout_weight="1"
-            android:background="@drawable/corner_radius_button_orange"
-            android:text="@string/share_invite_text"
-            android:fontFamily="@font/inter_medium"
-            style="?android:attr/borderlessButtonStyle"
-            android:textAllCaps="false"
-            android:textColor="@color/text_color17" />
-
         <LinearLayout
-            android:id="@+id/button3"
+            android:id="@+id/buttonBack"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginRight="16dp"
@@ -159,13 +257,32 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:fontFamily="@font/inter_medium"
-                android:text="Invite All"
+                android:text="Back"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp" />
+
         </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonNext"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:background="@drawable/corner_radius_button"
+            android:hint="Channel Discription"
+            style="?android:attr/borderlessButtonStyle"
+            android:minHeight="50dp"
+            android:text="Invite &amp; Create Now"
+            android:fontFamily="@font/inter_medium"
+            android:textAllCaps="false"
+            android:textColor="#171717"
+            android:textSize="14dp" />
+
     </LinearLayout>
 
+
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -173,21 +290,21 @@
         app:layout_constraintBottom_toTopOf="@+id/linearLayout10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout9">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout17">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/contactRecycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/white"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="8dp"  />
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:background="@color/white" />
 
         </LinearLayout>
 
@@ -209,12 +326,13 @@
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:background="@color/transparent"
-            android:text="Skip"
+            android:text="Skip Invite &amp; Create Channel"
             android:textAllCaps="false"
             android:fontFamily="@font/inter_medium"
             android:textColor="#171717"
             style="?android:attr/borderlessButtonStyle"
             android:textSize="12dp"/>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

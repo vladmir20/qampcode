@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -47,7 +48,9 @@ public class CommunityLocationFragment extends Fragment implements OnMapReadyCal
     public static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
 
     public static Backpressedlistener backpressedlistener;
-    private String buttonState = "false";
+    private String buttonState = "false",ButtonState;
+
+    LinearLayout buttonBack;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,6 +64,7 @@ public class CommunityLocationFragment extends Fragment implements OnMapReadyCal
         locationLayout = view.findViewById(R.id.locationLayout);
         // navigate = view.findViewById(R.id.navigate);
         channelName =  view.findViewById(R.id.channelName);
+        buttonBack =  view.findViewById(R.id.buttonBack);
         skip = view.findViewById(R.id.skip);
 
         Bundle bundle = getArguments();
@@ -74,9 +78,29 @@ public class CommunityLocationFragment extends Fragment implements OnMapReadyCal
             buttonState = bundle.getString("ButtonState");
             longitude = bundle.getString("Longitude");
             location.setText(completeAddress);
+            ButtonState = bundle.getString("ButtonState");
+            if (ButtonState.equals("true")){
+                Utils.setButtonState(next, true);
+            }
         }
 
-
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment createCommunity = new CreateCommunityFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("ChannelName", channelName.getText().toString());
+                bundle.putString("ChannelDescription", channelDescription);
+                bundle.putString("ChannelBusinessType", channelTypeBusiness);
+                bundle.putString("ButtonState", "true");
+                bundle.putString("Location",completeAddress);
+                final FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                createCommunity.setArguments(bundle);
+                transaction.replace(R.id.frameLayout, createCommunity);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
 
         Bundle mapViewBundle = null;
         if(savedInstanceState!= null)
@@ -147,6 +171,7 @@ public class CommunityLocationFragment extends Fragment implements OnMapReadyCal
                 bundle1.putString("Longitude",longitude);
                 bundle1.putString("ChannlName",channelTitle);
                 bundle1.putString("ChannelDescription",channelDescription);
+                bundle1.putString("Location",completeAddress);
                 final FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 createCommunityThree.setArguments(bundle1);
                 transaction.replace(R.id.frameLayout, createCommunityThree);
@@ -170,6 +195,7 @@ public class CommunityLocationFragment extends Fragment implements OnMapReadyCal
                 transaction.commit();
             }
         });
+
         return view;
     }
 

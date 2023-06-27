@@ -26,6 +26,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.StrictMode;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -35,7 +36,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +49,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -82,16 +83,16 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
 
     private static final String[] PROJECTION = new String[]{ContactsContract.CommonDataKinds.Phone.CONTACT_ID, ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER};
     public static Backpressedlistener backpressedlistener;
-    Button skip, shareInvite;
+    Button skip;
     ImageView cancel;
     ArrayList<Contact> contactList = new ArrayList<>();
-    String channelTitle, channelDescription, channelId, channelType;
-    TextView channelName;
+    TextView channelName, shareInvite;
     RecyclerView contactsRecycle;
     MesiboProfile profile;
     ArrayList<String> mesiboProfileArrayList = new ArrayList<>();
-    LinearLayout button3;
-    boolean isSelectedAll = false;
+
+    Button buttonNext;
+
     private ArrayList<MesiboProfile> mUserProfiles = null;
     private ArrayList<MesiboProfile> mSearchResultList = null;
     //ContactAdapter mAdapter = null;
@@ -111,6 +112,15 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
         }
     }
 
+    private static String removeCountryCode(String phoneNumber) {
+        if (phoneNumber != null && phoneNumber.length() > 2) {
+            return phoneNumber.substring(2); // Extract the portion of the number after the country code
+        } else {
+            return phoneNumber; // Return the input as-is if it doesn't have a valid country code
+        }
+    }
+    String channelTitle,channelDescription,channelId,channelType,lat,lng,email,number,domain,invitationType;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -120,39 +130,52 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
         skip = view.findViewById(R.id.skip);
         cancel = view.findViewById(R.id.cancel_1);
         channelName = view.findViewById(R.id.channelName);
-        shareInvite = view.findViewById(R.id.button);
+        shareInvite = view.findViewById(R.id.shareInvite);
         contactsRecycle = view.findViewById(R.id.contactRecycler);
-        button3 = view.findViewById(R.id.button3);
-        //OpenContactRecycler();
-
+        buttonNext = view.findViewById(R.id.buttonNext);
 
         Bundle bundle = getArguments();
         if (bundle != null) {
-            channelTitle = bundle.getString("Channel_Title");
-            channelDescription = bundle.getString("Channel_Description");
-            channelId = bundle.getString("Channel_ID");
-            channelType = bundle.getString("Channel_Type");
+            channelTitle = bundle.getString("ChannelName");
+            channelDescription = bundle.getString("ChannelDescription");
             channelName.setText(channelTitle);
+            channelType = bundle.getString("ChannelBusinessType");
+            lat = bundle.getString("lat");
+            lng = bundle.getString("lng");
+            email = bundle.getString("email");
+            number = bundle.getString("number");
+            domain = bundle.getString("domain");
+            invitationType = bundle.getString("invitationType");
         }
 
         mUserProfiles = new ArrayList<>();
 
-        shareInvite.setOnClickListener(new View.OnClickListener() {
+        buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                for (int i=0; i<mesiboProfileArrayList.size(); i++){
-                    System.out.println("Printed "+String.valueOf(i)+" "+mesiboProfileArrayList.get(i)+"\n");
-                }
+            public void onClick(View v) {
                 if (AppUtils.isNetWorkAvailable(getActivity())) {
                     AppUtils.openProgressDialog(getActivity());
-                    shareInviteToDb(mesiboProfileArrayList);
+                    createChannel();
                 } else {
                     Toast.makeText(getContext(), getString(R.string.internet_error), Toast.LENGTH_LONG).show();
                 }
-//                Intent intent = new Intent(getActivity(), CommunityDashboard.class);
-//                startActivity(intent);
             }
         });
+
+//        shareInvite.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                for (int i=0; i<mesiboProfileArrayList.size(); i++){
+//                    System.out.println("Printed "+String.valueOf(i)+" "+mesiboProfileArrayList.get(i)+"\n");
+//                }
+//                if (AppUtils.isNetWorkAvailable(getActivity())) {
+//                    AppUtils.openProgressDialog(getActivity());
+//                    shareInviteToDb(mesiboProfileArrayList);
+//                } else {
+//                    Toast.makeText(getContext(), getString(R.string.internet_error), Toast.LENGTH_LONG).show();
+//                }
+//            }
+//        });
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,22 +200,97 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
         ViewCompat.setNestedScrollingEnabled(contactsRecycle, false);
         adapter.notifyDataSetChanged();
 
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isSelectedAll) {
-                    adapter.selectAll();
-                    isSelectedAll = true;
-                    mesiboProfileArrayList.clear();
-                } else {
-                    isSelectedAll = false;
-                    adapter.selectAll();
-                    mesiboProfileArrayList.clear();
-                }
-            }
-        });
+//        button3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (isSelectedAll) {
+//                    adapter.selectAll();
+//                    isSelectedAll = true;
+//                    mesiboProfileArrayList.clear();
+//                } else {
+//                    isSelectedAll = false;
+//                    adapter.selectAll();
+//                    mesiboProfileArrayList.clear();
+//                }
+//            }
+//        });
         return view;
     }
+
+    private void createChannel() {
+        String URL = QAMPAPIConstants.channel_base_url + String.format(QAMPAPIConstants.addChannel);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+        try {
+            JSONObject jsonBody = new JSONObject();
+            jsonBody.put("title", channelTitle);
+            jsonBody.put("description", channelDescription);
+            jsonBody.put("type", "BUSINESS");
+            if (lat.equals("0.0") && lng.equals("0.0")) {
+                jsonBody.put("haveGeoLocation", "false");
+            } else {
+                jsonBody.put("haveGeoLocation", "true");
+            }
+            jsonBody.put("latitude", lat);
+            jsonBody.put("longitude", lng);
+            jsonBody.put("emailid", email);
+            jsonBody.put("mobileNumber", number);
+            jsonBody.put("domain", domain);
+            jsonBody.put("businessType", "BUSINESS");
+            jsonBody.put("invitationType", invitationType);
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URL, jsonBody, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    AppUtils.closeProgresDialog();
+                    try {
+                        String status = response.getString("status");
+                        Log.e("VOLLEY Status======", status);
+                        if (status.contains(QampConstants.success)) {
+                            JSONObject data = response.getJSONObject("data");
+                            for (int i=0; i<mesiboProfileArrayList.size(); i++){
+                                System.out.println("Printed "+String.valueOf(i)+" "+mesiboProfileArrayList.get(i)+"\n");
+                            }
+                            if (AppUtils.isNetWorkAvailable(getActivity())) {
+//                                AppUtils.openProgressDialog(getActivity());
+                                channelId = data.getString("uid");
+                                shareInviteToDb(mesiboProfileArrayList);
+                                System.out.println("Shivam done");
+                            } else {
+                                Toast.makeText(getContext(), getString(R.string.internet_error), Toast.LENGTH_LONG).show();
+                            }
+                        } else {
+                            JSONArray errors = response.getJSONArray("error");
+                            JSONObject error = (JSONObject) errors.get(0);
+                            String errMsg = error.getString("errMsg");
+                            String errorCode = error.getString("errCode");
+                            Toast.makeText(getActivity(), "" + errMsg, Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception e) {
+                        AppUtils.closeProgresDialog();
+                        e.printStackTrace();
+                        Toast.makeText(getActivity(), getString(R.string.general_error), Toast.LENGTH_LONG).show();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                }
+            }) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("user-session-token", AppConfig.getConfig().token);
+                    params.put("content-type", "application/json");
+                    return params;
+                }
+            };
+            queue.add(jsonObjectRequest);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     private void shareInviteToDb(ArrayList<String> mesiboProfileArrayList) {
         final String URL = QAMPAPIConstants.channel_base_url + String.format(QAMPAPIConstants.sendbulkinvites); // Replace with your server URL
@@ -201,54 +299,63 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
             jsonObject.put("channelId", channelId);
             JSONArray invitedMobileNumbers = new JSONArray();
             for (int i = 0; i < mesiboProfileArrayList.size(); i++) {
-                invitedMobileNumbers.put(mesiboProfileArrayList.get(i));
+                invitedMobileNumbers.put(removeCountryCode(mesiboProfileArrayList.get(i)));
             }
             jsonObject.put("invitedMobileNumbers", invitedMobileNumbers);
             jsonObject.put("countryCode", "91");
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URL, jsonObject,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        AppUtils.closeProgresDialog();
-                        // Handle the server response
-                        try {
-                            // Save the response to SharedPreferences
-                            //saveResponseToSharedPreferences(response.toString());
-                            // Process the response JSON if needed
-                            String status = response.getString("status");
-                            if (status.contains(QampConstants.success)) {
-                                JSONObject data = response.getJSONObject("data");
-                                String channelId = data.getString("channelId");
-                                String countryCode = data.getString("countryCode");
-                                JSONArray invitedMobileNumbers = data.getJSONArray("invitedMobileNumbers");
-                                Intent intent = new Intent(getActivity(), CommunityDashboard.class);
-                                startActivity(intent);
-                            } else {
-                                JSONArray errors = response.getJSONArray("error");
-                                JSONObject error = (JSONObject) errors.get(0);
-                                String errMsg = error.getString("errMsg");
-                                String errorCode = error.getString("errCode");
-                                Toast.makeText(getActivity(), "" + errMsg, Toast.LENGTH_SHORT).show();
+
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URL, jsonObject,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            AppUtils.closeProgresDialog();
+                            // Handle the server response
+                            try {
+                                // Save the response to SharedPreferences
+                                //saveResponseToSharedPreferences(response.toString());
+                                // Process the response JSON if needed
+                                String status = response.getString("status");
+                                if (status.contains(QampConstants.success)) {
+                                    AppUtils.closeProgresDialog();
+                                    JSONObject data = response.getJSONObject("data");
+                                    String channelId = data.getString("channelId");
+                                    String countryCode = data.getString("countryCode");
+                                    JSONArray invitedMobileNumbers = data.getJSONArray("invitedMobileNumbers");
+                                    Intent intent = new Intent(getActivity(), CommunityDashboard.class);
+                                    startActivity(intent);
+                                } else {
+
+                                    System.out.println("channelID" + channelId);
+                                    System.out.println("invitedMobileNumbers" + invitedMobileNumbers);
+                                    System.out.println("user-session-token" + AppConfig.getConfig().token);
+                                    AppUtils.closeProgresDialog();
+
+                                    JSONArray errors = response.getJSONArray("error");
+                                    JSONObject error = (JSONObject) errors.get(0);
+                                    String errMsg = error.getString("errMsg");
+                                    String errorCode = error.getString("errCode");
+                                    Toast.makeText(getActivity(), "" + errMsg, Toast.LENGTH_SHORT).show();
+                                }
+                                Toast.makeText(getActivity(), status, Toast.LENGTH_SHORT).show();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                            Toast.makeText(getActivity(), status, Toast.LENGTH_SHORT).show();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("user-session-token", AppConfig.getConfig().token);
-                params.put("content-type", "application/json");
-                return params;
-            }
-        };
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                }
+            }) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("user-session-token", AppConfig.getConfig().token);
+                    params.put("content-type", "application/json");
+                    System.out.println("user-session-token" + AppConfig.getConfig().token);
+                    return params;
+                }
+            };
             Volley.newRequestQueue(getContext()).add(request);
         } catch (JSONException e) {
             throw new RuntimeException(e);
@@ -449,14 +556,6 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
             else
                 holder.mContactsProfile.setImageDrawable(new RoundImageDrawable(getLetterTile(contact.getName())));
 
-            if (!isSelectedAll) {
-                holder.checkBox.setChecked(false);
-                isSelectedAll = false;
-            } else {
-                holder.checkBox.setChecked(true);
-                isSelectedAll = true;
-            }
-
             if (holder.checkBox.isChecked())
                 mesiboProfileArrayList.add(contact.getNumber());
             else
@@ -469,7 +568,7 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (!isChecked) {
                         mesiboProfileArrayList.remove(contact.getNumber());
-                    } else if ((!isSelectedAll) && isChecked) {
+                    } else if (isChecked) {
                         mesiboProfileArrayList.add(contact.getNumber());
                     }
                     setShareNumber();
@@ -479,7 +578,8 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
         }
 
         private void setShareNumber() {
-            shareInvite.setText("" + getActivity().getResources().getString(R.string.share_invite_text) + " (" + mesiboProfileArrayList.size() + ")");
+            //   shareInvite.setText("" + getActivity().getResources().getString(R.string.share_invite_text) + " (" + mesiboProfileArrayList.size() + ")");
+            shareInvite.setText(mesiboProfileArrayList.size() + " " + "Contacts Selected");
         }
 
         @Override
@@ -487,11 +587,6 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
             return contactCommunityData.size();
         }
 
-        public void selectAll() {
-            Log.e("onClickSelectAll", "yes");
-            isSelectedAll = true;
-            notifyDataSetChanged();
-        }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -521,6 +616,7 @@ public class CreateCommunityFour extends Fragment implements Mesibo.SyncListener
                 }
             }
         }
-
     }
+
+
 }

@@ -23,7 +23,7 @@
             android:weightSum="12"
             app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -32,31 +32,35 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp">
 
-                <ImageView
-                    android:id="@+id/cancel_1"
-                    android:layout_width="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginBottom="10dp"
-                    app:srcCompat="@drawable/ic_close" />
-
                 <TextView
                     android:id="@+id/channelName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="8dp"
-                    android:gravity="center"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/inter_medium"
+                    android:gravity="start"
                     android:text="@string/create_community"
                     android:textColor="#171717"
-                    android:fontFamily="@font/inter_medium"
                     android:textSize="16sp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="TextSizeCheck" />
 
-            </LinearLayout>
+                <ImageView
+                    android:id="@+id/cancel_1"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_close" />
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             <LinearLayout
@@ -155,7 +159,6 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextTextPersonName"
                     android:layout_width="match_parent"
-                    android:textColorHint="#e0e0e0"
                     android:layout_height="wrap_content"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -175,10 +178,8 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/businessType"
-                    android:textColorHint="#e0e0e0"
                     android:layout_width="match_parent"
                     android:maxLines="1"
-                    android:drawableTint="@color/text_color_subtitle"
                     android:layout_height="wrap_content"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -199,7 +200,6 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextTextPersonName2"
                     android:layout_width="match_parent"
-                    android:textColorHint="#e0e0e0"
                     android:layout_height="wrap_content" />
 
             </com.google.android.material.textfield.TextInputLayout>

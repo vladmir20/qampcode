@@ -21,7 +21,6 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.bumptech.glide.util.Util;
 import com.google.android.material.textfield.TextInputEditText;
 import com.qamp.app.Listener.Backpressedlistener;
 import com.qamp.app.R;
@@ -31,14 +30,14 @@ import com.qamp.app.Utils.Utils;
 public class CreateCommunityFragment extends Fragment implements Backpressedlistener {
 
 
-    Button next,skip;
+    public static Backpressedlistener backpressedlistener;
+    Button next, skip;
     ImageView cancel;
     TextInputEditText channelName;
     TextInputEditText channelDescr;
     TextInputEditText channelTypeBusiness;
-
-    public static Backpressedlistener backpressedlistener;
-
+    String channelNameText, channelDescriptionText, channelBusinessTypeText , ButtonState;
+    String locaiton = "";
 
     public CreateCommunityFragment() {
         // Required empty public constructor
@@ -50,7 +49,20 @@ public class CreateCommunityFragment extends Fragment implements Backpressedlist
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.create_community, container, false);
         initViews(view);
-
+        Bundle bundle = getArguments();
+        if(bundle!= null){
+            channelNameText = bundle.getString("ChannelName");
+            channelName.setText(channelNameText);
+            channelDescriptionText = bundle.getString("ChannelDescription");
+            channelDescr.setText(channelDescriptionText);
+            channelBusinessTypeText = bundle.getString("ChannelBusinessType");
+            channelTypeBusiness.setText(channelBusinessTypeText);
+            ButtonState = bundle.getString("ButtonState");
+            if (ButtonState.equals("true")){
+                Utils.setButtonState(next, true);
+            }
+            locaiton = bundle.getString("Location");
+        }
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,9 +88,13 @@ public class CreateCommunityFragment extends Fragment implements Backpressedlist
                     bundle.putString("ChannelDescription", channelDescr.getText().toString());
                     bundle.putString("ChannelBusinessType", channelTypeBusiness.getText().toString());
                     bundle.putString("ButtonState", "false");
+                    bundle.putString("CompleteAddress", locaiton);
+                    if (!locaiton.equals("")){
+                        bundle.putString("ButtonState", "true");
+                    }
                     final FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                     communityLocationFragment.setArguments(bundle);
-                    transaction.replace(R.id.frameLayout, communityLocationFragment,"CommunityLocationFragment");
+                    transaction.replace(R.id.frameLayout, communityLocationFragment, "CommunityLocationFragment");
                     transaction.addToBackStack(null);
                     transaction.commit();
                 } else {
@@ -91,39 +107,51 @@ public class CreateCommunityFragment extends Fragment implements Backpressedlist
         channelName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                if (channelName.getText().toString().isEmpty() || channelDescr.getText().toString().isEmpty())
+                    Utils.setButtonState(next, false);
+                else
+                    Utils.setButtonState(next, true);
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (channelName.getText().toString().isEmpty()||channelDescr.getText().toString().isEmpty())
-                    Utils.setButtonState(next,false);
+                if (channelName.getText().toString().isEmpty() || channelDescr.getText().toString().isEmpty())
+                    Utils.setButtonState(next, false);
                 else
-                    Utils.setButtonState(next,true);
+                    Utils.setButtonState(next, true);
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                if (channelName.getText().toString().isEmpty() || channelDescr.getText().toString().isEmpty())
+                    Utils.setButtonState(next, false);
+                else
+                    Utils.setButtonState(next, true);
             }
         });
         channelDescr.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                if (channelName.getText().toString().isEmpty() || channelDescr.getText().toString().isEmpty())
+                    Utils.setButtonState(next, false);
+                else
+                    Utils.setButtonState(next, true);
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (channelName.getText().toString().isEmpty()||channelDescr.getText().toString().isEmpty())
-                    Utils.setButtonState(next,false);
+                if (channelName.getText().toString().isEmpty() || channelDescr.getText().toString().isEmpty())
+                    Utils.setButtonState(next, false);
                 else
-                    Utils.setButtonState(next,true);
+                    Utils.setButtonState(next, true);
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                if (channelName.getText().toString().isEmpty() || channelDescr.getText().toString().isEmpty())
+                    Utils.setButtonState(next, false);
+                else
+                    Utils.setButtonState(next, true);
             }
         });
 
@@ -137,21 +165,23 @@ public class CreateCommunityFragment extends Fragment implements Backpressedlist
         channelName = view.findViewById(R.id.editTextTextPersonName);
         channelDescr = view.findViewById(R.id.editTextTextPersonName2);
         channelTypeBusiness = view.findViewById(R.id.businessType);
-        Utils.setButtonState(next,false);
+        Utils.setButtonState(next, false);
     }
 
     @Override
     public void onBackPressed() {
 
     }
+
     @Override
     public void onPause() {
-        backpressedlistener=null;
+        backpressedlistener = null;
         super.onPause();
     }
+
     @Override
     public void onResume() {
         super.onResume();
-        backpressedlistener=this;
+        backpressedlistener = this;
     }
 }

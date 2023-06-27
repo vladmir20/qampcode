@@ -28,11 +28,11 @@
 
     <ImageView
         android:id="@+id/mes_rv_profile"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_gravity="center_vertical"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:src="@drawable/photo_male"
         app:layout_constraintStart_toEndOf="@+id/checkBox"
         app:layout_constraintTop_toTopOf="parent" />

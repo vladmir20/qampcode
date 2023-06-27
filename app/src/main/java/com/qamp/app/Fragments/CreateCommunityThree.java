@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,12 +52,14 @@ public class CreateCommunityThree extends Fragment implements Backpressedlistene
 
     public static Backpressedlistener backpressedlistener;
     Button next;
+    LinearLayout buttonBack;
     ImageView cancel;
     TextView channelName;
-    String channelTitle, lat, lng, channelDescription, channelBusinessType, invitationType;
+
+    String channelTitle, lat, lng, channelDescription, channelBusinessType, invitationType , location;
     CardView openToAllLayout, byInviteLayout, byRequestLayout;
     TextView openToAllDes, byInviteDes, byRequestDes;
-    CheckBox openToAllLayoutCheck, byInviteCheck, byRequestCheck;
+    ImageView openToAllLayoutCheck, byInviteCheck, byRequestCheck;
     String URL = QAMPAPIConstants.channel_base_url + String.format(QAMPAPIConstants.addChannel);
 
 
@@ -68,6 +71,7 @@ public class CreateCommunityThree extends Fragment implements Backpressedlistene
         next = view.findViewById(R.id.buttonNext);
         cancel = view.findViewById(R.id.cancel_1);
         channelName = view.findViewById(R.id.channelName);
+        buttonBack = view.findViewById(R.id.buttonBack);
 
         openToAllLayout = view.findViewById(R.id.openToAllLayout);
         byInviteLayout = view.findViewById(R.id.byInviteLayout);
@@ -113,8 +117,26 @@ public class CreateCommunityThree extends Fragment implements Backpressedlistene
             channelDescription = bundle.getString("ChannelDescription");
             channelBusinessType = bundle.getString("ChannelBusinessType");
             channelName.setText(channelTitle);
+            location = bundle.getString("Location");
         }
 
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment createCommunity = new CommunityLocationFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("ChannelName", channelName.getText().toString());
+                bundle.putString("ChannelDescription", channelDescription);
+                bundle.putString("ChannelBusinessType", channelBusinessType);
+                bundle.putString("ButtonState", "true");
+                bundle.putString("CompleteAddress",location);
+                final FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                createCommunity.setArguments(bundle);
+                transaction.replace(R.id.frameLayout, createCommunity);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,12 +149,29 @@ public class CreateCommunityThree extends Fragment implements Backpressedlistene
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (AppUtils.isNetWorkAvailable(getActivity())) {
-                    AppUtils.openProgressDialog(getActivity());
-                    createCommunities();
-                } else {
-                    Toast.makeText(getContext(), getString(R.string.internet_error), Toast.LENGTH_LONG).show();
-                }
+//                if (AppUtils.isNetWorkAvailable(getActivity())) {
+//                    AppUtils.openProgressDialog(getActivity());
+  //                   createCommunities();
+//                } else {
+//                    Toast.makeText(getContext(), getString(R.string.internet_error), Toast.LENGTH_LONG).show();
+//                }
+                Fragment createCommunity = new CreateCommunityFour();
+                Bundle bundle = new Bundle();
+                bundle.putString("ChannelName", channelName.getText().toString());
+                bundle.putString("ChannelDescription", channelDescription);
+                bundle.putString("ChannelBusinessType", channelBusinessType);
+                bundle.putString("CompleteAddress",location);
+                bundle.putString("lat",lat);
+                bundle.putString("lng",lng);
+                bundle.putString("email","");
+                bundle.putString("number",Mesibo.getSelfProfile().address.substring(2, 12));
+                bundle.putString("domain","www.test.com");
+                bundle.putString("invitationType","BY_INVITE_ONLY");
+                final FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                createCommunity.setArguments(bundle);
+                transaction.replace(R.id.frameLayout, createCommunity);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 
@@ -222,36 +261,32 @@ public class CreateCommunityThree extends Fragment implements Backpressedlistene
     private void setCommunityPermissionLayout(String string, View view) {
         if (string.equals("openToAllLayout")) {
             openToAllLayout.setCardBackgroundColor(getActivity().getResources().getColor(R.color.background_tintTaskBar));
-            openToAllLayoutCheck.setChecked(true);
-            openToAllLayoutCheck.setVisibility(View.VISIBLE);
+            openToAllLayoutCheck.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.radio_active));
+            byInviteCheck.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.radio_normal));
+            byRequestCheck.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.radio_normal));
             byInviteLayout.setCardBackgroundColor(getActivity().getResources().getColor(R.color.white));
-            byInviteCheck.setVisibility(View.GONE);
-            byInviteDes.setText("Closed community where people with invitation can join");
+            byInviteDes.setText("Closed community where people with \ninvitation can join");
             byRequestLayout.setCardBackgroundColor(getActivity().getResources().getColor(R.color.white));
-            byRequestCheck.setVisibility(View.GONE);
-            byRequestDes.setText("Join request needs to be approved by community manager");
+            byRequestDes.setText("Join request needs to be approved by \ncommunity manager");
             invitationType = "OPEN_TO_ALL";
         } else if (string.equals("byInviteLayout")) {
             byInviteLayout.setCardBackgroundColor(getActivity().getResources().getColor(R.color.background_tintTaskBar));
-            byInviteCheck.setChecked(true);
-            byInviteCheck.setVisibility(View.VISIBLE);
-            byInviteDes.setText("Closed community where people with \ninvitation can join");
+            openToAllLayoutCheck.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.radio_normal));
+            byInviteCheck.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.radio_active));
+            byRequestCheck.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.radio_normal));            byInviteDes.setText("Closed community where people with \ninvitation can join");
             openToAllLayout.setCardBackgroundColor(getActivity().getResources().getColor(R.color.white));
-            openToAllLayoutCheck.setVisibility(View.GONE);
             byRequestLayout.setCardBackgroundColor(getActivity().getResources().getColor(R.color.white));
-            byRequestCheck.setVisibility(View.GONE);
-            byRequestDes.setText("Join request needs to be approved by community manager");
+            byRequestDes.setText("Join request needs to be approved by \ncommunity manager");
             invitationType = "BY_INVITE";
         } else if (string.equals("byRequestLayout")) {
             byRequestLayout.setCardBackgroundColor(getActivity().getResources().getColor(R.color.background_tintTaskBar));
-            byRequestCheck.setChecked(true);
-            byRequestCheck.setVisibility(View.VISIBLE);
+            openToAllLayoutCheck.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.radio_normal));
+            byInviteCheck.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.radio_normal));
+            byRequestCheck.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.radio_active));
             byRequestDes.setText("Join request needs to be approved by \ncommunity manager");
-            byInviteDes.setText("Closed community where people with invitation can join");
+            byInviteDes.setText("Closed community where people with \ninvitation can join");
             openToAllLayout.setCardBackgroundColor(getActivity().getResources().getColor(R.color.white));
-            openToAllLayoutCheck.setVisibility(View.GONE);
             byInviteLayout.setCardBackgroundColor(getActivity().getResources().getColor(R.color.white));
-            byInviteCheck.setVisibility(View.GONE);
             invitationType = "BY_REQUEST";
         }
     }

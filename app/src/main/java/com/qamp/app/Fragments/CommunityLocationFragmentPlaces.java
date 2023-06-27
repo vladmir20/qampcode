@@ -33,6 +33,7 @@ import com.qamp.app.R;
 
 import java.util.List;
 
+
 public class CommunityLocationFragmentPlaces extends Fragment implements OnMapReadyCallback, Backpressedlistener {
 
     public static Backpressedlistener backpressedlistener;
@@ -85,8 +86,8 @@ public class CommunityLocationFragmentPlaces extends Fragment implements OnMapRe
                         bundle.putString("Latitutude", String.valueOf(latLng.latitude));
                         bundle.putString("Longitude", String.valueOf(latLng.longitude));
                         bundle.putString("ButtonState", "true");
-                        System.out.println(channelTitle+channelDescription+channelTypeBusiness+autoCompleteTextView.getText().toString()
-                                +String.valueOf(latLng.latitude)+String.valueOf(latLng.longitude));
+                        System.out.println(channelTitle + channelDescription + channelTypeBusiness + autoCompleteTextView.getText().toString()
+                                + String.valueOf(latLng.latitude) + String.valueOf(latLng.longitude));
                         final FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                         communityLocationFragment.setArguments(bundle);
                         transaction.replace(R.id.frameLayout, communityLocationFragment, "CommunityLocationFragment");
@@ -115,8 +116,8 @@ public class CommunityLocationFragmentPlaces extends Fragment implements OnMapRe
                 bundle.putString("Latitutude", String.valueOf(latLng.latitude));
                 bundle.putString("Longitude", String.valueOf(latLng.longitude));
                 bundle.putString("ButtonState", "true");
-                System.out.println(channelTitle+channelDescription+channelTypeBusiness+autoCompleteTextView.getText().toString()
-                +String.valueOf(latLng.latitude)+String.valueOf(latLng.longitude));
+                System.out.println(channelTitle + channelDescription + channelTypeBusiness + autoCompleteTextView.getText().toString()
+                        + String.valueOf(latLng.latitude) + String.valueOf(latLng.longitude));
                 final FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 communityLocationFragment.setArguments(bundle);
                 transaction.replace(R.id.frameLayout, communityLocationFragment, "CommunityLocationFragment");
@@ -212,6 +213,4 @@ public class CommunityLocationFragmentPlaces extends Fragment implements OnMapRe
         }
 
     }
-
 }
-
