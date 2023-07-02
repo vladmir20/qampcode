@@ -33,7 +33,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.menu.MenuBuilder;
@@ -45,6 +47,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboGroupProfile;
@@ -53,23 +63,34 @@ import com.mesibo.api.MesiboPresence;
 import com.mesibo.api.MesiboProfile;
 import com.mesibo.api.MesiboReadSession;
 import com.mesibo.emojiview.EmojiconTextView;
-import com.qamp.app.Activity.AddChannelActivity;
+import com.qamp.app.Activity.ChannelActivities.AddChannelActivities;
 import com.qamp.app.Activity.CommunityDashboard;
-import com.qamp.app.R;
-import com.qamp.app.Utils.AppUtils;
+import com.qamp.app.Interfaces.OnChannelItemClickListener;
 import com.qamp.app.MessagingModule.AllUtils.LetterTileProvider;
+import com.qamp.app.Modal.MyChannelModal;
+import com.qamp.app.R;
+import com.qamp.app.Utils.AppConfig;
+import com.qamp.app.Utils.AppUtils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class UserListFragment extends Fragment implements Mesibo.MessageListener,
+import de.hdodenhof.circleimageview.CircleImageView;
+
+public class UserListFragment extends Fragment implements Mesibo.MessageListener, OnChannelItemClickListener,
         Mesibo.PresenceListener, Mesibo.ConnectionListener, Mesibo.ProfileListener, Mesibo.SyncListener, Mesibo.GroupListener {
     public static MesiboGroupProfile.Member[] mExistingMembers = null;
     public static ArrayList<MesiboProfile> mMemberProfiles = new ArrayList<>();
@@ -141,6 +162,10 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
     private LinearLayout add_channel;
 
     private CardView ChannelCardLayout;
+
+    private RecyclerView myChannelRecycler;
+    private MyChannelAdapter adapter;
+    private ArrayList<MyChannelModal> dataModelList;
 
     public void updateTitle(String title) {
         MesiboUserListFragment.FragmentListener l = getListener();
@@ -215,15 +240,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         View view = inflater.inflate(layout, container, false);
         setHasOptionsMenu(true);
         this.mforwardLayout = (LinearLayout) view.findViewById(R.id.bottom_forward_btn);
-        this.ChannelCardLayout = (CardView) view.findViewById(R.id.ChannelCardLayout);
 
-        this.ChannelCardLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), CommunityDashboard.class);
-                startActivity(intent);
-            }
-        });
 
         this.mforwardLayout.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -253,6 +270,26 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             }
         });
         this.isOnlineDot = (ImageView) view.findViewById(R.id.isOnlineDot);
+        this.myChannelRecycler = view.findViewById(R.id.myChannelRecycler);
+        myChannelRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        //myChannelRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        dataModelList = new ArrayList<>();
+        adapter = new MyChannelAdapter(dataModelList);
+        adapter.setOnItemClickListener(this);
+        myChannelRecycler.setAdapter(adapter);
+        adapter.setShowShimmer(true);
+
+        // Simulate loading delay (Replace this with your actual data loading process)
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Hide shimmer loading and show actual data
+                adapter.setShowShimmer(false);
+                // Update the data list with your actual data
+
+            }
+        }, 2000);
+        //fetchDataFromApi(1);
 
         searchChats = view.findViewById(R.id.searchChats);
         searchChats.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -314,7 +351,98 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                 addChannelDialog();
             }
         });
+        fetchDataFromApi(1);
         return view;
+    }
+
+
+    private void fetchDataFromApi(int pageNumber) {
+        String url = "https://dcore.qampservices.in/v1/channel-service/ownchannel";
+        int pageSize = 10;
+        String userSessionToken = AppConfig.getConfig().token;
+        int desiredItemCount = Integer.MAX_VALUE; // Maximum number of items available
+
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String status = response.getString("status");
+                            if (status.equals("SUCCESS")) {
+                                JSONArray dataArray = response.getJSONArray("data");
+                                for (int i = 0; i < dataArray.length(); i++) {
+                                    JSONObject itemObject = dataArray.getJSONObject(i);
+                                    String uid = itemObject.getString("uid");
+                                    String type = itemObject.getString("type");
+                                    String title = itemObject.getString("title");
+                                    String description = itemObject.getString("description");
+                                    String creationDate = itemObject.getString("creationDate");
+                                    String active = itemObject.getString("active");
+                                    String deleted = itemObject.getString("deleted");
+                                    String haveGeoLocation = itemObject.getString("haveGeoLocation");
+                                    String latitude = itemObject.getString("latitude");
+                                    String longitude = itemObject.getString("longitude");
+                                    String updatedDate = itemObject.getString("updatedDate");
+                                    String emailid = itemObject.getString("emailid");
+                                    String domain = itemObject.getString("domain");
+                                    String mobileNumber = itemObject.getString("mobileNumber");
+                                    String logoImageUrl = itemObject.getString("logoImageUrl");
+                                    // Parse other fields from the JSON object
+                                    MyChannelModal dataModel = new MyChannelModal(uid, type, title, description,
+                                            creationDate, active, deleted ,haveGeoLocation, latitude, longitude,
+                                            updatedDate, emailid, domain, mobileNumber, logoImageUrl);
+                                    dataModelList.add(dataModel);
+                                }
+
+                                adapter.notifyDataSetChanged();
+
+                                // Check if desired item count is reached
+                                if (dataModelList.size() < desiredItemCount && dataArray.length() > 0) {
+                                    // Fetch next page
+                                    fetchDataFromApi(pageNumber + 1);
+                                }
+                            } else {
+                                Toast.makeText(getContext(), "API response not successful", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getContext(), "Error parsing JSON response", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        Toast.makeText(getActivity(), "API request failed", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("page-number", String.valueOf(pageNumber));
+                headers.put("page-size", String.valueOf(pageSize));
+                headers.put("user-session-token", userSessionToken);
+                return headers;
+            }
+        };
+
+        queue.add(jsonObjectRequest);
+    }
+
+    @Override
+    public void onItemClick(MyChannelModal item) {
+        Intent intent = new Intent(getContext(), CommunityDashboard.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("uid", item.getUid());
+        bundle.putString("title", item.getTitle());
+        bundle.putString("description", item.getDescription());
+        // Add more data to the bundle if needed
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     private void addChannelDialog() {
@@ -346,8 +474,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         community.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(getContext(), AddChannelActivity.class);
-                startActivity(intent1);
+                AppUtils.under_development_message(getActivity());
                 dialog.dismiss();
                 //AppUtils.under_development_message(getActivity());
             }
@@ -356,12 +483,12 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         business.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent2 = new Intent(getContext(), AddChannelActivity.class);
-//                startActivity(intent2);
-                AppUtils.under_development_message(getActivity());
+                Intent intent1 = new Intent(getContext(), AddChannelActivities.class);
+                startActivity(intent1);
                 dialog.dismiss();
             }
         });
+
         dialog.show();
 
     }
@@ -399,7 +526,6 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             this.mEmptyView.setText(MesiboUI.getConfig().emptyUserListMessage);
         }
     }
-
 
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         UserListFragment.super.onCreateOptionsMenu(menu, inflater);
@@ -574,7 +700,6 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             }
         }
     }
-
 
     public void Mesibo_onPresence(MesiboPresence msg) {
         if (3L == msg.presence || 4L == msg.presence || 11L == msg.presence) {
@@ -859,6 +984,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
 
     public void Mesibo_onGroupLeft(MesiboProfile mesiboProfile) {
     }
+
     public void Mesibo_onGroupMembers(MesiboProfile mesiboProfile, MesiboGroupProfile.Member[] members) {
         mExistingMembers = members;
 
@@ -884,6 +1010,90 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
     }
 
     public void Mesibo_onGroupError(MesiboProfile mesiboProfile, long error) {
+    }
+
+    private class MyChannelAdapter extends RecyclerView.Adapter<MyChannelAdapter.ViewHolder> {
+        private static final int SHIMMER_ITEM_COUNT = 15;
+        private OnChannelItemClickListener listener;
+        private ArrayList<MyChannelModal> dataList;
+        private boolean showShimmer = true;
+        public void setDataList(ArrayList<MyChannelModal> dataList) {
+            this.dataList = dataList;
+            notifyDataSetChanged();
+        }
+        public MyChannelAdapter(ArrayList<MyChannelModal> dataList) {
+            this.dataList = dataList;
+        }
+
+        public void setOnItemClickListener(OnChannelItemClickListener listener) {
+            this.listener = listener;
+        }
+
+        @NonNull
+        @Override
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.mychannel_list_item, parent, false);
+
+            return new ViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
+            if (showShimmer) {
+                holder.shimmerFrameLayout.startShimmer(); // Start shimmer animation
+            } else {
+                holder.shimmerFrameLayout.stopShimmer(); // Stop shimmer animation
+                holder.shimmerFrameLayout.setShimmer(null); // Clear shimmer effect
+                MyChannelModal dataModel = dataList.get(position);
+                holder.bindData(dataModel);
+             }
+        }
+
+        @Override
+        public int getItemCount() {
+            return showShimmer ? SHIMMER_ITEM_COUNT : dataList.size();
+        }
+
+        public void setShowShimmer(boolean showShimmer) {
+            this.showShimmer = showShimmer;
+            notifyDataSetChanged();
+        }
+
+        public class ViewHolder extends RecyclerView.ViewHolder {
+
+            private TextView textViewTitle;
+            private CircleImageView channelImage;
+            private ShimmerFrameLayout shimmerFrameLayout;
+
+            public ViewHolder(@NonNull View itemView) {
+                super(itemView);
+                textViewTitle = itemView.findViewById(R.id.channel_title);
+                channelImage = itemView.findViewById(R.id.channelImage);
+                shimmerFrameLayout = itemView.findViewById(R.id.shimmerLayout);
+
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION && listener != null) {
+                            MyChannelModal item = dataList.get(position);
+                            listener.onItemClick(item);
+                        }
+                    }
+                });
+            }
+
+            public void bindData(MyChannelModal dataModel) {
+                textViewTitle.setText(dataModel.getTitle());
+                Glide.with(getContext())
+                        .load(dataModel.getLogoImageUrl())
+                        .placeholder(R.drawable.qamp_logo_outlined) // Placeholder image
+                        .error(R.drawable.demoqamp) // Error image (if loading fails)
+                        .into(channelImage);
+//                textViewDescription.setText(dataModel.getDescription());
+            }
+        }
     }
 
     public class MessageContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

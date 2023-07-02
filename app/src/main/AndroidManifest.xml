@@ -214,10 +214,6 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".Activity.AddChannelActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
             android:name=".Activity.CommunityDashboard"
             android:screenOrientation="portrait" />
 
@@ -237,6 +233,10 @@
 
         <activity
             android:name=".Activity.ChannelAdminSettingsActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".Activity.ChannelActivities.AddChannelActivities"
             android:screenOrientation="portrait" />
 
         <!--        <service-->

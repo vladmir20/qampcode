@@ -45,10 +45,9 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="15dp"
                 android:gravity="center|start"
-                android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"
                 android:text="@string/notification_center"
-                android:textColor="@color/text_color17"
+                android:textColor="#171717"
                 android:textSize="16sp" />
 
         </LinearLayout>
@@ -72,8 +71,8 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/corner_radius_button"
                 android:orientation="vertical"
-                app:layout_constraintStart_toEndOf="@+id/circleImageView3"
-                app:layout_constraintTop_toBottomOf="@+id/textView29">
+                app:layout_constraintStart_toEndOf="@+id/requestingImage"
+                app:layout_constraintTop_toBottomOf="@+id/requestingDescription">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -97,8 +96,8 @@
                 android:layout_marginTop="8dp"
                 android:background="@color/white"
                 android:orientation="vertical"
-                app:layout_constraintStart_toEndOf="@+id/circleImageView3"
-                app:layout_constraintTop_toBottomOf="@+id/textView29">
+                app:layout_constraintStart_toEndOf="@+id/requestingImage"
+                app:layout_constraintTop_toBottomOf="@+id/requestingDescription">
 
                 <TextView
                     android:id="@+id/channels_text"
@@ -108,8 +107,9 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:gravity="center"
+                    android:fontFamily="@font/inter_regular"
                     android:text="Channels"
-                    android:textColor="@color/text_color17"
+                    android:textColor="#171717"
                     android:textSize="12sp" />
 
             </LinearLayout>
@@ -123,8 +123,8 @@
                 android:layout_marginTop="8dp"
                 android:background="@color/white"
                 android:orientation="vertical"
-                app:layout_constraintStart_toEndOf="@+id/circleImageView3"
-                app:layout_constraintTop_toBottomOf="@+id/textView29">
+                app:layout_constraintStart_toEndOf="@+id/requestingImage"
+                app:layout_constraintTop_toBottomOf="@+id/requestingDescription">
 
                 <TextView
                     android:id="@+id/settings_text"
@@ -134,8 +134,9 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:gravity="center"
+                    android:fontFamily="@font/inter_regular"
                     android:text="Settings"
-                    android:textColor="@color/text_color17"
+                    android:textColor="#171717"
                     android:textSize="12sp" />
 
             </LinearLayout>

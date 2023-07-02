@@ -57,51 +57,50 @@
                 app:srcCompat="@drawable/ic_close" />
 
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:layout_weight="4"
-            android:layout_marginTop="16dp"
             android:layout_marginLeft="24dp"
+            android:layout_marginTop="16dp"
             android:layout_marginRight="24dp"
-            android:weightSum="4"
-            android:orientation="horizontal">
+            android:layout_weight="4"
+            android:orientation="horizontal"
+            android:weightSum="4">
 
             <View
                 android:id="@+id/view"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="4dp"
-                android:background="@drawable/corner_radius_button"/>
+                android:layout_weight="1"
+                android:background="@drawable/corner_radius_button" />
 
             <View
                 android:id="@+id/view6"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="4dp"
                 android:layout_marginLeft="8dp"
+                android:layout_weight="1"
                 android:background="@drawable/corner_radius_button" />
 
             <View
                 android:id="@+id/view7"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="4dp"
                 android:layout_marginLeft="8dp"
+                android:layout_weight="1"
                 android:background="@drawable/corner_radius_button" />
 
             <View
                 android:id="@+id/view8"
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_marginLeft="8dp"
                 android:layout_height="4dp"
-                android:backgroundTint="#F2F2F2"
-                android:background="@drawable/corner_radius_button" />
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/corner_radius_button"
+                android:backgroundTint="#F2F2F2" />
 
         </LinearLayout>
 
@@ -111,13 +110,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:gravity="center"
-            android:fontFamily="@font/inter_medium"
             android:layout_marginTop="15dp"
+            android:layout_marginRight="16dp"
             android:layout_marginBottom="15dp"
+            android:fontFamily="@font/inter_medium"
+            android:gravity="center"
             android:paddingTop="10dp"
-            android:text="Invite people to join your community."
+            android:text="Invite people to follow your Local Business"
             android:textColor="#171717"
             android:textSize="24sp" />
 
@@ -127,46 +126,49 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout16"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/corner_radius_button"
         android:backgroundTint="#f2f2f2"
-        android:padding="12dp"
+        android:padding="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout9">
 
         <ImageView
             android:id="@+id/imageView53"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_gravity="center|start"
+            android:layout_marginTop="6dp"
             android:src="@drawable/ic_search"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="#828282" />
 
         <EditText
-            android:id="@+id/editText"
-            android:layout_width="250dp"
+            android:id="@+id/searchContactText"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@null"
+            android:fontFamily="@font/inter_regular"
             android:hint="Search by name, contact no. etc."
             android:textColorHint="#b7b7b7"
             android:textSize="16sp"
-            android:fontFamily="@font/inter_regular"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView54"
+            app:layout_constraintEnd_toStartOf="@+id/micSpeak"
             app:layout_constraintStart_toEndOf="@+id/imageView53"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView54"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:id="@+id/micSpeak"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_gravity="right"
+            android:layout_marginTop="6dp"
             android:src="@drawable/ic_microphone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -185,17 +187,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout16">
 
-        <ImageView
-            android:id="@+id/imageView55"
+        <CheckBox
+            android:id="@+id/selectAllCheck"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:visibility="gone"
             android:layout_marginTop="8dp"
             android:src="@drawable/negative_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/shareInvite"
+            android:id="@+id/shareInviteText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -217,7 +220,7 @@
             android:textAlignment="center"
             android:textColor="#171717"
             android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView55"
+            app:layout_constraintStart_toEndOf="@+id/selectAllCheck"
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
@@ -231,13 +234,13 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
-        android:background="@color/white"
         android:id="@+id/linearLayout10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_marginRight="24dp"
         android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_weight="1"
+        android:background="@color/white"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/skipLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -256,8 +259,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
                 android:fontFamily="@font/inter_medium"
+                android:gravity="center"
                 android:text="Back"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp" />
@@ -266,15 +269,15 @@
 
         <Button
             android:id="@+id/nextFragment"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_weight="1"
             android:background="@drawable/corner_radius_button"
+            android:fontFamily="@font/inter_medium"
             android:hint="Channel Discription"
-            style="?android:attr/borderlessButtonStyle"
             android:minHeight="50dp"
             android:text="Invite &amp; Create Now"
-            android:fontFamily="@font/inter_medium"
             android:textAllCaps="false"
             android:textColor="#171717"
             android:textSize="14dp" />
@@ -314,25 +317,26 @@
 
     <LinearLayout
         android:id="@+id/skipLayout"
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginBottom="8dp"
         android:background="#ffffff"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent">
+
         <Button
-            android:id="@+id/cancelBtn"
-            android:layout_gravity="center"
+            android:id="@+id/skip_btn"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
+            android:layout_gravity="center"
             android:background="@color/transparent"
+            android:fontFamily="@font/inter_medium"
+            android:paddingTop="10dp"
             android:text="Skip Invite &amp; Create Channel"
             android:textAllCaps="false"
-            android:fontFamily="@font/inter_medium"
             android:textColor="#171717"
-            style="?android:attr/borderlessButtonStyle"
-            android:textSize="12dp"/>
+            android:textSize="12dp" />
 
     </LinearLayout>
 

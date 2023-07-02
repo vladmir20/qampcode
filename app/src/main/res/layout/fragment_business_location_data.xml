@@ -15,6 +15,7 @@
     android:layout_height="match_parent">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -37,7 +38,7 @@
                 <TextView
                     android:id="@+id/businessName"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="16dp"
@@ -61,54 +62,53 @@
                     app:srcCompat="@drawable/ic_close" />
 
 
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:layout_weight="4"
-                android:layout_marginTop="16dp"
                 android:layout_marginLeft="24dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginRight="24dp"
-                android:weightSum="4"
-                android:orientation="horizontal">
+                android:layout_weight="4"
+                android:orientation="horizontal"
+                android:weightSum="4">
 
                 <View
                     android:id="@+id/view"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="4dp"
-                    android:background="@drawable/corner_radius_button"/>
+                    android:layout_weight="1"
+                    android:background="@drawable/corner_radius_button" />
 
                 <View
                     android:id="@+id/view6"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="4dp"
                     android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
                     android:background="@drawable/corner_radius_button" />
 
                 <View
                     android:id="@+id/view7"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="4dp"
                     android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
 
-                    android:backgroundTint="#F2F2F2"
-                    android:background="@drawable/corner_radius_button" />
+                    android:background="@drawable/corner_radius_button"
+                    android:backgroundTint="#F2F2F2" />
 
                 <View
                     android:id="@+id/view8"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_height="4dp"
                     android:layout_marginLeft="8dp"
 
-                    android:layout_height="4dp"
-                    android:backgroundTint="#F2F2F2"
-                    android:background="@drawable/corner_radius_button" />
+                    android:layout_weight="1"
+                    android:background="@drawable/corner_radius_button"
+                    android:backgroundTint="#F2F2F2" />
 
             </LinearLayout>
 
@@ -128,6 +128,7 @@
                     android:layout_marginRight="55dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/ic_community_location" />
+
             </LinearLayout>
 
             <TextView
@@ -136,8 +137,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:gravity="center"
                 android:fontFamily="@font/inter_medium"
+                android:gravity="center"
                 android:text="@string/whereLocatedText"
                 android:textColor="#171717"
                 android:textSize="24sp" />
@@ -155,11 +156,11 @@
                 android:textSize="16sp" />
 
             <LinearLayout
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <com.google.android.gms.maps.MapView
                     android:id="@+id/mapView"
@@ -169,22 +170,23 @@
 
             </LinearLayout>
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:layout_marginTop="100dp" >
+                android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/locationLayout"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:id="@+id/locationLayout"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
                     android:layout_weight="1"
                     android:hint="@string/search_location"
                     app:boxStrokeColor="@color/field_color"
@@ -192,13 +194,13 @@
 
                     <AutoCompleteTextView
                         android:id="@+id/location_1"
-                        android:padding="10dp"
-                        android:focusable="false"
-                        android:drawableTint="#828282"
-                        android:drawableRight="@drawable/ic_crosshair"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:minHeight="50dp"/>
+                        android:drawableRight="@drawable/ic_crosshair"
+                        android:drawableTint="#828282"
+                        android:focusable="false"
+                        android:minHeight="50dp"
+                        android:padding="10dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -208,11 +210,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_weight="2"
                 android:layout_marginLeft="24dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginRight="24dp">
+                android:layout_marginRight="24dp"
+                android:layout_weight="2"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/buttonBack"
@@ -227,8 +229,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
                         android:fontFamily="@font/inter_medium"
+                        android:gravity="center"
                         android:text="Back"
                         android:textColor="@color/colorPrimary"
                         android:textSize="16sp" />
@@ -237,15 +239,15 @@
 
                 <Button
                     android:id="@+id/nextFragment"
+                    style="?android:attr/borderlessButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:layout_weight="1"
                     android:background="@drawable/corner_radius_button"
+                    android:fontFamily="@font/inter_medium"
                     android:hint="Channel Discription"
-                    style="?android:attr/borderlessButtonStyle"
                     android:minHeight="50dp"
                     android:text="Next"
-                    android:fontFamily="@font/inter_medium"
                     android:textAllCaps="false"
                     android:textColor="#171717"
                     android:textSize="14dp" />
@@ -253,9 +255,9 @@
             </LinearLayout>
 
 
-
             <Button
-                android:id="@+id/cancelBtn"
+                android:id="@+id/skipBtn"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="167dp"
@@ -265,7 +267,6 @@
                 android:background="@color/transparent_color"
                 android:minHeight="32dp"
                 android:text="Skip"
-                style="?android:attr/borderlessButtonStyle"
                 android:textAllCaps="false"
                 android:textColor="#171717"
                 android:textSize="12dp" />
@@ -274,5 +275,15 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="240dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
