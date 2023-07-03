@@ -115,4 +115,5 @@ dependencies {
 
 // this line needs to be at bottom else it gives error of version conflict
 apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 

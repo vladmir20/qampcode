@@ -19,6 +19,10 @@
 
         <!-- specify enter and exit transitions -->
     </style>
+    <style name="fab_square" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">0dp</item>
+    </style>
 
     <style name="Theme.Huddle.GreyTheme">
         <!-- Primary brand color. -->

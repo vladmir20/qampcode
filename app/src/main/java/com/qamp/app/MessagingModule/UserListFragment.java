@@ -57,6 +57,7 @@ import com.mesibo.emojiview.EmojiconTextView;
 import com.qamp.app.Activity.AddChannelActivity;
 import com.qamp.app.Activity.CommunityDashboard;
 import com.qamp.app.Activity.QampContactScreen;
+import com.qamp.app.Modal.MessageTimeDate;
 import com.qamp.app.R;
 import com.qamp.app.Utils.AppUtils;
 import com.qamp.app.MessagingModule.AllUtils.LetterTileProvider;
@@ -79,6 +80,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
     public static MesiboGroupProfile.Member[] mExistingMembers = null;
     public static ArrayList<MesiboProfile> mMemberProfiles = new ArrayList<>();
     public static ArrayList<MesiboProfile> mMemberGroup = new ArrayList<>();
+
     public static boolean isSheetOpen = false;
     /* access modifiers changed from: private */
     public boolean mCloseAfterForward = false;
@@ -139,6 +141,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
     private Timer mUiUpdateTimer = null;
     private TimerTask mUiUpdateTimerTask = null;
     private ArrayList<MesiboProfile> mUserProfiles = null;
+    private ArrayList<MessageTimeDate> mUserProfilesWithTime = null;
     private LinearLayout mforwardLayout;
     private LinearLayout fabadd;
     private ImageView isOnlineDot;
@@ -244,9 +247,12 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         this.mEmptyView = (TextView) view.findViewById(R.id.emptyview_text);
         setEmptyViewText();
         this.mUserProfiles = new ArrayList<>();
+        this.mUserProfilesWithTime = new ArrayList<>();
+
         this.mRecyclerView = view.findViewById(R.id.message_contact_frag_rv);
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(this.mRecyclerView.getContext()));
-        this.mAdapter = new MessageContactAdapter(getActivity(), this, this.mUserProfiles, this.mSearchResultList);
+        Log.e("testtest",String.valueOf(this.mUserProfiles.size()));
+        this.mAdapter = new MessageContactAdapter(getActivity(), this, this.mUserProfiles, this.mSearchResultList, this.mUserProfilesWithTime);
         this.mRecyclerView.setAdapter(this.mAdapter);
         this.horizontal_channel_recycler = view.findViewById(R.id.horizontal_channel_recycler);
         this.fabadd = view.findViewById(R.id.fab_add);
@@ -559,6 +565,27 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                             this.mAdhocUserList.add(users.get(i));
                         }
                     }
+                    /***if(users.size()>0){
+                        for(int k = 0 ; k< users.size() ;k++ ){
+                            MessageTimeDate messageTimeDate = new MessageTimeDate();
+                            messageTimeDate.setUserData(users.get(k));
+
+                            UserData userdata = new UserData(users.get(k));
+                                    userdata = UserData.getUserData(users.get(k));
+                            userdata.setUser(users.get(k));
+                            //userdata.setUserListPosition(position);
+                            UserData data = userdata;
+
+                            try {
+                                String time = evaluateDate(data.getDate(),data.getTime());
+                                messageTimeDate.setLastTime(time);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+
+                            mUserProfilesWithTime.add(messageTimeDate);
+                            //Log.e("userDarta",new Gson().toJson(mUserProfilesWithTime));
+                        }}*/
                     //Log.e("groups", String.valueOf(mAdhocUserList));
                 } else {
                     this.mAdhocUserList.add(0, user);
@@ -758,6 +785,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             this.mRefreshTs = Mesibo.getTimestamp();
             Mesibo.addListener(this);
             this.mAdhocUserList = this.mUserProfiles;
+            Log.e("tagtag1", String.valueOf(this.mUserProfiles.size()));
             this.mUserProfiles.clear();
             this.mAdapter.onResumeAdapter();
             MesiboReadSession.endAllSessions();
@@ -765,7 +793,10 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             this.mDbSession.setQuery(this.mReadQuery);
             this.mDbSession.enableSummary(true);
             this.mDbSession.read(readCount);
-        } else {
+            Log.e("tagtag", String.valueOf(this.mUserProfiles.size()));
+
+        }
+        else {
             this.mUserProfiles.clear();
             ArrayList profiles = Mesibo.getSortedUserProfiles();
             if (profiles != null && profiles.size() > 0 && !TextUtils.isEmpty(this.mMesiboUIOptions.createGroupTitle) && this.mSelectionMode == MesiboUserListFragment.MODE_SELECTCONTACT) {
@@ -826,8 +857,12 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                 } else if (!user2.getName().equalsIgnoreCase(getActivity().getResources().getString(R.string.all_users)) && !user2.getName().equalsIgnoreCase(this.mMesiboUIOptions.recentUsersTitle) && !user2.getName().equalsIgnoreCase(getActivity().getResources().getString(R.string.group_members))) {
                     this.mUserProfiles.remove(i);
                 }
+
             }
+
         }
+
+
         this.mAdapter.notifyChangeInData();
     }
 
@@ -836,6 +871,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         int position;
         if (userProfile == null) {
             showUserList(100);
+
         } else if (userProfile.other != null && (position = UserData.getUserData(userProfile).getUserListPosition()) >= 0) {
             if (userProfile.isDeleted()) {
                 this.mUserProfiles.remove(position);
@@ -913,15 +949,17 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         public UserListFragment mHost;
         private int mBackground = 0;
         private ArrayList<MesiboProfile> mSearchResults = null;
+        private ArrayList<MessageTimeDate> finalList = null;
         private SparseBooleanArray mSelectionItems;
         private ArrayList<MesiboProfile> mUsers = null;
 
-        public MessageContactAdapter(Context context, UserListFragment host, ArrayList<MesiboProfile> list, ArrayList<MesiboProfile> searchResults) {
+        public MessageContactAdapter(Context context, UserListFragment host, ArrayList<MesiboProfile> list, ArrayList<MesiboProfile> searchResults, ArrayList<MessageTimeDate> fList) {
             this.mContext = context;
             this.mHost = host;
             this.mUsers = list;
             this.mSearchResults = searchResults;
             this.mDataList = list;
+            this.finalList = fList;
             this.mSelectionItems = new SparseBooleanArray();
         }
 
@@ -966,9 +1004,11 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                 try {
                     String text = evaluateDate(data.getDate(),data.getTime());
                     holder.mContactsTime.setText(text);
+                //if(this.finalList.size()>0){holder.mContactsTime.setText(this.finalList.get(position).getLastTime());}
+
                 } catch (ParseException e) {
-                    //holder.mContactsTime.setText("");
-                    e.printStackTrace();
+                holder.mContactsTime.setText("");
+                      e.printStackTrace();
                 }
 
                 //Log.e("Time",data.getTime());
@@ -1080,6 +1120,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                         Context context = v.getContext();
                         if (!UserListFragment.this.onClickUser(mesiboProfile.address, mesiboProfile.groupid, MessageContactAdapter.this.mHost.mForwardId)) {
                             MesiboUIManager.launchMessagingActivity(UserListFragment.this.getActivity(), MessageContactAdapter.this.mHost.mForwardId, mesiboProfile.address, mesiboProfile.groupid);
+                            //Log.e("peer",mesiboProfile.address);
                             MessageContactAdapter.this.mHost.mForwardId = 0;
                             if (UserListFragment.this.mSelectionMode != MesiboUserListFragment.MODE_MESSAGELIST) {
                                 UserListFragment.this.getActivity().finish();

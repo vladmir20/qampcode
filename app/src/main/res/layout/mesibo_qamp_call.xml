@@ -98,7 +98,7 @@
                     android:layout_width="60sp"
                     android:layout_height="60sp"
                     android:layout_weight="1.4"
-                    android:src="@drawable/profile"
+                    android:src="@drawable/profile_one"
                     app:srcCompat="@drawable/default_user_image" />
 
             </LinearLayout>
@@ -154,7 +154,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="120dp"
-                    android:src="@drawable/profile"
+                    android:src="@drawable/profile_one"
                     android:visibility="gone"
                     app:srcCompat="@drawable/default_user_image" />
 

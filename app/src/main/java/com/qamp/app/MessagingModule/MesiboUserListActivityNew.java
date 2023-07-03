@@ -31,6 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -124,6 +125,7 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
                         search_view.setVisibility(View.GONE);
                         name_tite_layout.setVisibility(View.VISIBLE);
                     }
+                    //getSupportActionBar().hide();
                     DiscoverFragment fragment2 = new DiscoverFragment();
                     FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
                     fragmentTransaction2.replace(R.id.content, fragment2, "");

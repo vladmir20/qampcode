@@ -67,6 +67,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.libraries.places.api.Places;
+import com.google.gson.Gson;
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.Mesibo.ConnectionListener;
 import com.mesibo.api.Mesibo.MessageFilter;
@@ -87,6 +88,7 @@ import com.mesibo.emojiview.EmojiconsPopup;
 import com.mesibo.emojiview.emoji.Emojicon;
 import com.mesibo.mediapicker.MediaPicker;
 import com.mesibo.mediapicker.MediaPicker.ImageEditorListener;
+import com.qamp.app.Utils.AppConfig;
 import com.qamp.app.Utils.NotificationSendClass;
 import com.qamp.app.R;
 import com.qamp.app.MessagingModule.AllUtils.LetterTileProvider;
@@ -1228,7 +1230,15 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
             profile = getProfile();
             if (profile.isGroup()==false){
                 NotificationSendClass.pushNotifications(getContext(), mUser.getAddress()
-                        , ""+profile.getName(), ""+msg.message.toString(),"MESSAGE");
+                        , ""+profile.getName(), ""+msg.message.toString(),"MESSAGE",profile.getAddress());
+                Log.e("userToken",profile.getAddress() );
+                Log.e(("UserToken"),mUser.getAddress());
+                Log.e("name",profile.getName());
+            }
+            else{
+                NotificationSendClass.pushNotificationsGroup(getContext(),String.valueOf(profile.getGroupId()),""+profile.getName(),""+msg.message.toString());
+                    Log.e("groupId", new Gson().toJson(profile.getGroupId()));
+                    Log.e("userToken", AppConfig.getConfig().token);
             }
              this.mEmojiEditText.getText().clear();
         }
