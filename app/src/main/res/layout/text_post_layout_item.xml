@@ -14,7 +14,7 @@
     android:background="#ffffff">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/circleImageView3"
+        android:id="@+id/requestingImage"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView28"
+        android:id="@+id/requestingTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -32,13 +32,13 @@
         android:text="Sankalp Goel"
         android:textColor="@color/text_color17"
         android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/circleImageView3"
+        app:layout_constraintStart_toEndOf="@+id/requestingImage"
         app:layout_constraintTop_toTopOf="parent" />
 
 
 
     <TextView
-        android:id="@+id/textView29"
+        android:id="@+id/requestingDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -46,8 +46,8 @@
         android:text="Dehradun, Uttarakhand"
         android:textColor="#B7B7B7"
         android:textSize="10sp"
-        app:layout_constraintStart_toEndOf="@+id/circleImageView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView28" />
+        app:layout_constraintStart_toEndOf="@+id/requestingImage"
+        app:layout_constraintTop_toBottomOf="@+id/requestingTitle" />
 
     <TextView
         android:id="@+id/textView35"
@@ -58,7 +58,7 @@
         android:textColor="#B7B7B7"
         android:textSize="10sp"
         app:layout_constraintStart_toEndOf="@+id/imageView19"
-        app:layout_constraintTop_toBottomOf="@+id/textView28" />
+        app:layout_constraintTop_toBottomOf="@+id/requestingTitle" />
 
     <ImageView
         android:id="@+id/imageView19"
@@ -66,8 +66,8 @@
         android:layout_height="10dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="2dp"
-        app:layout_constraintStart_toEndOf="@+id/textView29"
-        app:layout_constraintTop_toBottomOf="@+id/textView28"
+        app:layout_constraintStart_toEndOf="@+id/requestingDescription"
+        app:layout_constraintTop_toBottomOf="@+id/requestingTitle"
         app:srcCompat="@drawable/circle_green"
         app:tint="#b7b7b7" />
 
@@ -198,6 +198,6 @@
         android:text="Hi, \n \n We'll develop world best app with best ai technology"
         android:textColor="@color/text_color17"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView29" />
+        app:layout_constraintTop_toBottomOf="@+id/requestingDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

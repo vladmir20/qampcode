@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ /**
   ~  *  on 20/05/23, 3:30 AM
   ~  * Copyright (c) 2023 . All rights reserved.
@@ -39,7 +38,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_margin="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp"
                     android:gravity="center"
                     android:text="You do not have contacts to show instead add contacts from new contacts list"
                     android:textColor="@color/md_grey_500"
@@ -65,9 +67,9 @@
                         android:id="@+id/horizontal_channel_recycler"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="visible"
                         android:background="@color/white"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="visible">
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="51dp"
@@ -76,10 +78,9 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"
                             android:elevation="2dp"
-                            android:translationZ="6dp"
                             app:cardBackgroundColor="@color/background_tint11"
                             app:cardCornerRadius="3dp"
-                            app:cardElevation="10dp">
+                            app:cardElevation="3dp">
 
                             <LinearLayout
                                 android:id="@+id/add_channel"
@@ -92,7 +93,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp"
-                                    app:srcCompat="@drawable/ic_plus"/>
+                                    app:srcCompat="@drawable/ic_plus" />
 
                                 <TextView
                                     android:id="@+id/textView43"
@@ -113,418 +114,14 @@
                             android:layout_width="10dp"
                             android:layout_height="match_parent" />
 
-                        <HorizontalScrollView
-                            android:scrollbars="none"
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/myChannelRecycler"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:background="@color/white"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal" />
 
-                            <LinearLayout
-                                android:id="@+id/hscrollview_container"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:orientation="horizontal">
-
-                                <androidx.cardview.widget.CardView
-                                    android:id="@+id/ChannelCardLayout"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:elevation="4dp"
-                                    android:translationZ="6dp"
-                                    app:cardBackgroundColor="@color/background_tint11"
-                                    app:cardCornerRadius="6dp">
-
-                                    <LinearLayout
-                                        android:layout_width="100dp"
-                                        android:layout_height="match_parent"
-                                        android:orientation="vertical">
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="40dp"
-                                            android:background="@color/grey_5"
-                                            android:orientation="horizontal">
-
-                                            <de.hdodenhof.circleimageview.CircleImageView
-                                                android:layout_width="40dp"
-                                                android:layout_height="40dp"
-                                                android:padding="5dp"
-                                                android:src="@drawable/photo_male" />
-
-                                            <View
-                                                android:layout_width="15dp"
-                                                android:layout_height="match_parent" />
-
-                                            <androidx.constraintlayout.widget.ConstraintLayout
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent">
-
-                                                <TextView
-                                                    android:id="@+id/textView20"
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginTop="4dp"
-                                                    android:layout_marginEnd="8dp"
-                                                    android:text="4M"
-                                                    android:textColor="@color/text_color_subtitle"
-                                                    android:textSize="10sp"
-                                                    app:layout_constraintEnd_toEndOf="parent"
-                                                    app:layout_constraintTop_toTopOf="parent" />
-
-                                                <LinearLayout
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="16dp"
-                                                    android:layout_marginTop="8dp"
-                                                    android:layout_marginEnd="8dp"
-                                                    android:layout_marginBottom="16dp"
-                                                    android:background="@drawable/attachment_button_background"
-                                                    android:gravity="center"
-                                                    android:orientation="vertical"
-                                                    app:layout_constraintBottom_toBottomOf="parent"
-                                                    app:layout_constraintEnd_toEndOf="parent"
-                                                    app:layout_constraintStart_toStartOf="@+id/textView20"
-                                                    app:layout_constraintTop_toBottomOf="@+id/textView20">
-
-                                                    <TextView
-                                                        android:layout_width="20dp"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_gravity="center"
-                                                        android:layout_marginBottom="2dp"
-                                                        android:gravity="center"
-                                                        android:text="8"
-                                                        android:textColor="@color/text_color17"
-                                                        android:textSize="10sp" />
-                                                </LinearLayout>
-                                            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="20dp"
-                                            android:layout_gravity="center"
-                                            android:background="@color/white"
-                                            android:orientation="vertical">
-
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="center_vertical"
-                                                android:layout_marginLeft="05dp"
-                                                android:text="Karan Walia"
-                                                android:textColor="@color/text_color_black_white"
-                                                android:textSize="12sp" />
-
-                                        </LinearLayout>
-
-                                    </LinearLayout>
-
-                                </androidx.cardview.widget.CardView>
-
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:elevation="4dp"
-                                    android:translationZ="6dp"
-                                    app:cardBackgroundColor="@color/background_tint11"
-                                    app:cardCornerRadius="6dp">
-
-                                    <LinearLayout
-                                        android:layout_width="100dp"
-                                        android:layout_height="match_parent"
-                                        android:orientation="vertical">
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="40dp"
-                                            android:background="@color/grey_5"
-                                            android:orientation="horizontal">
-
-                                            <de.hdodenhof.circleimageview.CircleImageView
-                                                android:layout_width="40dp"
-                                                android:layout_height="40dp"
-                                                android:padding="5dp"
-                                                android:src="@drawable/photo_male" />
-
-                                            <View
-                                                android:layout_width="15dp"
-                                                android:layout_height="match_parent" />
-
-                                            <androidx.constraintlayout.widget.ConstraintLayout
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent">
-
-                                                <TextView
-                                                    android:id="@+id/textView24"
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginTop="4dp"
-                                                    android:layout_marginEnd="8dp"
-                                                    android:text="4M"
-                                                    android:textColor="@color/text_color_subtitle"
-                                                    android:textSize="10sp"
-                                                    app:layout_constraintEnd_toEndOf="parent"
-                                                    app:layout_constraintTop_toTopOf="parent" />
-
-                                                <LinearLayout
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="16dp"
-                                                    android:layout_marginTop="8dp"
-                                                    android:layout_marginEnd="8dp"
-                                                    android:layout_marginBottom="16dp"
-                                                    android:background="@drawable/attachment_button_background"
-                                                    android:gravity="center"
-                                                    android:orientation="vertical"
-                                                    app:layout_constraintBottom_toBottomOf="parent"
-                                                    app:layout_constraintEnd_toEndOf="parent"
-                                                    app:layout_constraintStart_toStartOf="@+id/textView24"
-                                                    app:layout_constraintTop_toBottomOf="@+id/textView24">
-
-                                                    <TextView
-                                                        android:layout_width="20dp"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_gravity="center"
-                                                        android:layout_marginBottom="2dp"
-                                                        android:gravity="center"
-                                                        android:text="8"
-                                                        android:textColor="@color/text_color17"
-                                                        android:textSize="10sp" />
-                                                </LinearLayout>
-                                            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="20dp"
-                                            android:layout_gravity="center"
-                                            android:background="@color/white"
-                                            android:orientation="vertical">
-
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="center_vertical"
-                                                android:layout_marginLeft="05dp"
-                                                android:text="Art Design"
-                                                android:textColor="@color/text_color_black_white"
-                                                android:textSize="12sp" />
-
-                                        </LinearLayout>
-
-                                    </LinearLayout>
-
-                                </androidx.cardview.widget.CardView>
-
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:elevation="4dp"
-                                    android:translationZ="6dp"
-                                    app:cardBackgroundColor="@color/background_tint11"
-                                    app:cardCornerRadius="6dp">
-
-                                    <LinearLayout
-                                        android:layout_width="100dp"
-                                        android:layout_height="match_parent"
-                                        android:orientation="vertical">
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="40dp"
-                                            android:background="@color/grey_5"
-                                            android:orientation="horizontal">
-
-                                            <de.hdodenhof.circleimageview.CircleImageView
-                                                android:layout_width="40dp"
-                                                android:layout_height="40dp"
-                                                android:padding="5dp"
-                                                android:src="@drawable/photo_male" />
-
-                                            <View
-                                                android:layout_width="15dp"
-                                                android:layout_height="match_parent" />
-
-                                            <androidx.constraintlayout.widget.ConstraintLayout
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent">
-
-                                                <TextView
-                                                    android:id="@+id/textView26"
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginTop="4dp"
-                                                    android:layout_marginEnd="8dp"
-                                                    android:text="4M"
-                                                    android:textColor="@color/text_color_subtitle"
-                                                    android:textSize="10sp"
-                                                    app:layout_constraintEnd_toEndOf="parent"
-                                                    app:layout_constraintTop_toTopOf="parent" />
-
-                                                <LinearLayout
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="16dp"
-                                                    android:layout_marginTop="8dp"
-                                                    android:layout_marginEnd="8dp"
-                                                    android:layout_marginBottom="16dp"
-                                                    android:background="@drawable/attachment_button_background"
-                                                    android:gravity="center"
-                                                    android:orientation="vertical"
-                                                    app:layout_constraintBottom_toBottomOf="parent"
-                                                    app:layout_constraintEnd_toEndOf="parent"
-                                                    app:layout_constraintStart_toStartOf="@+id/textView26"
-                                                    app:layout_constraintTop_toBottomOf="@+id/textView26">
-
-                                                    <TextView
-                                                        android:layout_width="20dp"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_gravity="center"
-                                                        android:layout_marginBottom="2dp"
-                                                        android:gravity="center"
-                                                        android:text="8"
-                                                        android:textColor="@color/text_color17"
-                                                        android:textSize="10sp" />
-                                                </LinearLayout>
-                                            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="20dp"
-                                            android:layout_gravity="center"
-                                            android:background="@color/white"
-                                            android:orientation="vertical">
-
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="center_vertical"
-                                                android:layout_marginLeft="05dp"
-                                                android:text="Qamp Dev"
-                                                android:textColor="@color/text_color_black_white"
-                                                android:textSize="12sp" />
-
-                                        </LinearLayout>
-
-                                    </LinearLayout>
-
-                                </androidx.cardview.widget.CardView>
-
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:elevation="4dp"
-                                    android:translationZ="6dp"
-                                    app:cardBackgroundColor="@color/background_tint11"
-                                    app:cardCornerRadius="6dp">
-
-                                    <LinearLayout
-                                        android:layout_width="100dp"
-                                        android:layout_height="match_parent"
-                                        android:orientation="vertical">
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="40dp"
-                                            android:background="@color/grey_5"
-                                            android:orientation="horizontal">
-
-                                            <de.hdodenhof.circleimageview.CircleImageView
-                                                android:layout_width="40dp"
-                                                android:layout_height="40dp"
-                                                android:padding="5dp"
-                                                android:src="@drawable/photo_male" />
-
-                                            <View
-                                                android:layout_width="15dp"
-                                                android:layout_height="match_parent" />
-
-                                            <androidx.constraintlayout.widget.ConstraintLayout
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent">
-
-                                                <TextView
-                                                    android:id="@+id/textView22"
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginTop="4dp"
-                                                    android:layout_marginEnd="8dp"
-                                                    android:text="4M"
-                                                    android:textColor="@color/text_color_subtitle"
-                                                    android:textSize="10sp"
-                                                    app:layout_constraintEnd_toEndOf="parent"
-                                                    app:layout_constraintTop_toTopOf="parent" />
-
-                                                <LinearLayout
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="16dp"
-                                                    android:layout_marginTop="8dp"
-                                                    android:layout_marginEnd="8dp"
-                                                    android:layout_marginBottom="16dp"
-                                                    android:background="@drawable/attachment_button_background"
-                                                    android:gravity="center"
-                                                    android:orientation="vertical"
-                                                    app:layout_constraintBottom_toBottomOf="parent"
-                                                    app:layout_constraintEnd_toEndOf="parent"
-                                                    app:layout_constraintStart_toStartOf="@+id/textView22"
-                                                    app:layout_constraintTop_toBottomOf="@+id/textView22">
-
-                                                    <TextView
-                                                        android:layout_width="20dp"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_gravity="center"
-                                                        android:layout_marginBottom="2dp"
-                                                        android:gravity="center"
-                                                        android:text="8"
-                                                        android:textColor="@color/text_color17"
-                                                        android:textSize="10sp" />
-                                                </LinearLayout>
-                                            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="20dp"
-                                            android:layout_gravity="center"
-                                            android:background="@color/white"
-                                            android:orientation="vertical">
-
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="center_vertical"
-                                                android:layout_marginLeft="05dp"
-                                                android:text="Thotnr Dev"
-                                                android:textColor="@color/text_color_black_white"
-                                                android:textSize="12sp" />
-
-                                        </LinearLayout>
-
-                                    </LinearLayout>
-
-                                </androidx.cardview.widget.CardView>
-
-                            </LinearLayout>
-
-                        </HorizontalScrollView>
 
                     </LinearLayout>
 
@@ -532,8 +129,8 @@
                         android:id="@+id/message_contact_frag_rv"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/md_white_1000"
-                        />
+                        android:layout_marginTop="10dp"
+                        android:background="@color/white" />
 
                 </LinearLayout>
 
@@ -562,7 +159,6 @@
 
 
         <LinearLayout
-            android:visibility="gone"
             android:id="@+id/fab_add"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
@@ -573,7 +169,8 @@
             android:gravity="center"
             android:orientation="horizontal"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp">
+            android:paddingRight="10dp"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="20dp"

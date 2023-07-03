@@ -34,10 +34,10 @@ public class GroupNotificationCenter extends Fragment implements Backpressedlist
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.group_notification_center_layout, container, false);
-        circleImageView3 = view.findViewById(R.id.circleImageView3);
-        textView28 = view.findViewById(R.id.textView28);
-        textView29 = view.findViewById(R.id.textView29);
-        textView31 = view.findViewById(R.id.textView31);
+        circleImageView3 = view.findViewById(R.id.requestingImage);
+        textView28 = view.findViewById(R.id.requestingTitle);
+        textView29 = view.findViewById(R.id.requestingDescription);
+        textView31 = view.findViewById(R.id.viewDetails);
         circleImageView3.setImageDrawable(getResources().getDrawable(R.drawable.demoqamp));
         textView28.setText("Qamp Awesome");
         textView29.setText("Sankalp invited you to join the gorup");

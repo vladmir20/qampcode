@@ -77,7 +77,7 @@ public class ProductTourActivity extends AppCompatActivity {
         final Window window = this.getWindow();
         window.setFlags(67108864, 67108864);
         this.setContentView(R.layout.activity_tutorial);
-        (this.skip = Button.class.cast(this.findViewById(R.id.skip))).setOnClickListener((View.OnClickListener) new View.OnClickListener() {
+        (this.skip = Button.class.cast(this.findViewById(R.id.cancelBtn))).setOnClickListener((View.OnClickListener) new View.OnClickListener() {
             public void onClick(final View v) {
                 ProductTourActivity.this.endTutorial();
             }

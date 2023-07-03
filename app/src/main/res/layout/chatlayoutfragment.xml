@@ -97,7 +97,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/include3">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/circleImageView3"
+                    android:id="@+id/requestingImage"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="16dp"
@@ -111,7 +111,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView28"
+                    android:id="@+id/requestingTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -119,11 +119,11 @@
                     android:text="Abhik Rakshit"
                     android:textColor="@color/text_color17"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/circleImageView3"
+                    app:layout_constraintStart_toEndOf="@+id/requestingImage"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView29"
+                    android:id="@+id/requestingDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -131,11 +131,11 @@
                     android:text="Shiva let's plan a call for server setup"
                     android:textColor="#828282"
                     android:textSize="12sp"
-                    app:layout_constraintStart_toEndOf="@+id/circleImageView3"
-                    app:layout_constraintTop_toBottomOf="@+id/textView28" />
+                    app:layout_constraintStart_toEndOf="@+id/requestingImage"
+                    app:layout_constraintTop_toBottomOf="@+id/requestingTitle" />
 
                 <TextView
-                    android:id="@+id/textView30"
+                    android:id="@+id/timingText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -147,7 +147,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/imageView17"
+                    android:id="@+id/bellIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -157,7 +157,7 @@
                     app:cardBackgroundColor="@color/colorPrimary"
                     app:cardCornerRadius="3dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView30">
+                    app:layout_constraintTop_toBottomOf="@+id/timingText">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -183,9 +183,9 @@
                     android:layout_width="15dp"
                     android:layout_height="15dp"
                     android:layout_marginStart="32dp"
-                    app:layout_constraintEnd_toEndOf="@+id/circleImageView3"
-                    app:layout_constraintStart_toStartOf="@+id/circleImageView3"
-                    app:layout_constraintTop_toTopOf="@+id/circleImageView3"
+                    app:layout_constraintEnd_toEndOf="@+id/requestingImage"
+                    app:layout_constraintStart_toStartOf="@+id/requestingImage"
+                    app:layout_constraintTop_toTopOf="@+id/requestingImage"
                     app:srcCompat="@drawable/circle_green" />
 
                 <View
@@ -193,9 +193,9 @@
                     android:layout_height="1dp"
                     android:layout_marginTop="32dp"
                     android:background="#F2F2F2"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView17"
-                    app:layout_constraintStart_toStartOf="@+id/textView29"
-                    app:layout_constraintTop_toBottomOf="@+id/textView29" />
+                    app:layout_constraintEnd_toEndOf="@+id/bellIcon"
+                    app:layout_constraintStart_toStartOf="@+id/requestingDescription"
+                    app:layout_constraintTop_toBottomOf="@+id/requestingDescription" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
