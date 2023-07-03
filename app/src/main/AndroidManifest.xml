@@ -177,6 +177,9 @@
             android:name="com.qamp.app.Activity.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name="com.qamp.app.Activity.QampContactScreen"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="com.qamp.app.Activity.LoginActivityNew"
             android:screenOrientation="portrait" />
         <activity

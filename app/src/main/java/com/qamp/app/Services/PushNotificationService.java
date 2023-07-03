@@ -51,29 +51,32 @@ public class PushNotificationService extends FirebaseMessagingService{
                 final int nameIndex = cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
                 final int numberIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
 
-                String name, number;
-                while (cursor.moveToNext()) {
-                    name = cursor.getString(nameIndex);
-                    number = cursor.getString(numberIndex);
-                    //Log.e("num",number);
+                for(int i = 0; i<=12;i++) {
+                    String name, number;
+                    Log.e("num",cNumber);
+                    while (cursor.moveToNext()) {
+                        name = cursor.getString(nameIndex);
+                        number = cursor.getString(numberIndex);
 
-                    number = number.replace(" ", "");
-                    number = number.replace("(", "");
-                    number = number.replace(")", "");
-                    number = number.replace("-", "");
 
-                    if (number.equals(cNumber.substring(2))) {
-                        //contactList.add(new Contact(name, number));
-                        cName=name;
-                        //Log.e("notificatioon_name", "Phone Number: name = " + name
-                          //      + " No = " + number + cName + cNumber.substring(2));
-                        break;
+                        number = number.replace(" ", "");
+                        number = number.replace("(", "");
+                        number = number.replace(")", "");
+                        number = number.replace("-", "");
+
+                        if (number.equals(cNumber.substring(2))) {
+                            //contactList.add(new Contact(name, number));
+                            cName = name;
+                            //Log.e("notificatioon_name", "Phone Number: name = " + name
+                            //      + " No = " + number + cName + cNumber.substring(2));
+                            break;
+                        }
+
+
+                        //mobileNoSet.add(number);
+
+                        //if (!mobileNoSet.contains(number)) {}
                     }
-
-
-                    //mobileNoSet.add(number);
-
-                    //if (!mobileNoSet.contains(number)) {}
                 }
             } finally {
                 cursor.close();
