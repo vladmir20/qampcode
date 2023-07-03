@@ -51,9 +51,9 @@ public class PushNotificationService extends FirebaseMessagingService{
                 final int nameIndex = cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
                 final int numberIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
 
-                for(int i = 0; i<=12;i++) {
+
                     String name, number;
-                    Log.e("num",cNumber);
+                    //Log.e("num",cNumber);
                     while (cursor.moveToNext()) {
                         name = cursor.getString(nameIndex);
                         number = cursor.getString(numberIndex);
@@ -77,7 +77,7 @@ public class PushNotificationService extends FirebaseMessagingService{
 
                         //if (!mobileNoSet.contains(number)) {}
                     }
-                }
+
             } finally {
                 cursor.close();
             }
