@@ -9,6 +9,8 @@
 package com.qamp.app.MessagingModule;
 
 import android.annotation.SuppressLint;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -233,6 +235,8 @@ public class MesiboMessagingActivity extends AppCompatActivity implements Mesibo
     /* access modifiers changed from: protected */
     public void onStart() {
         MesiboMessagingActivity.super.onStart();
+        //NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        //nMgr.cancelAll();
     }
 
     /* JADX WARNING: type inference failed for: r4v0, types: [android.content.Context, com.qamp.app.MessagingModule.MesiboMessagingActivity] */
@@ -346,6 +350,8 @@ public class MesiboMessagingActivity extends AppCompatActivity implements Mesibo
         MesiboMessagingActivity.super.onResume();
         MesiboUIManager.setMessagingActivity(this);
         setProfilePicture();
+        NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        nMgr.cancelAll();
     }
 
     @Override

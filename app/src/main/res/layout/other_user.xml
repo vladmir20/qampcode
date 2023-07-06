@@ -8,6 +8,7 @@
   -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:emojicon="http://schemas.android.com/apk/res-auto"
@@ -27,77 +28,88 @@
         app:cardElevation="2dp"
         >
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/m_user_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Old Bond"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginBottom="-5dp"
-                android:layout_marginTop="2dp"
-                android:textColor="#dedede"
-                android:textStyle="bold"
-                android:textSize="15sp"
-                android:visibility="visible"
-
-                />
-            <com.qamp.app.MessagingModule.MessageView
-                android:id="@+id/mesibo_message_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="100dp"
-            android:paddingBottom="0dp"
-                android:layout_marginBottom="7dp"
-            android:layout_marginLeft="1dp"
-            android:layout_marginRight="1dp"
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="bottom|right"
-            android:paddingRight="4dp"
-            android:paddingLeft="5dp"
-            android:paddingBottom="0dp"
-            android:layout_marginBottom="2dp"
-            android:layout_marginRight="5dp"
-            >
-
-            <ImageView
-                android:id="@+id/m_star"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_gravity="bottom"
-                android:paddingBottom="0dp"
-                android:layout_marginRight="1dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_star_black_18dp"/>
-            <TextView
-                android:id="@+id/m_time"
+            <LinearLayout
+                android:id="@+id/top"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:orientation="vertical"
+                emojicon:layout_constraintEnd_toEndOf="parent"
+                emojicon:layout_constraintStart_toStartOf="parent"
+                emojicon:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/m_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="-5dp"
+                    android:text="Old Bond"
+                    android:textColor="#dedede"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:visibility="visible"
+
+                    />
+
+                <com.qamp.app.MessagingModule.MessageView
+                    android:id="@+id/mesibo_message_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginBottom="7dp"
+                    android:minWidth="100dp"
+                    android:paddingBottom="0dp" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_marginRight="4dp"
-                android:text="11:15"/>
-            <ImageView
-                android:id="@+id/m_status"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_gravity="bottom"
-                android:tint="#777777"
-                android:paddingBottom="1dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_lock_black_18dp"
-                android:visibility="gone"
-                />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp"
+                android:paddingRight="4dp"
+                android:paddingBottom="0dp"
+                emojicon:layout_constraintEnd_toEndOf="parent"
+                emojicon:layout_constraintTop_toBottomOf="@id/top">
+
+                <ImageView
+                    android:id="@+id/m_star"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginRight="1dp"
+                    android:paddingBottom="0dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_star_black_18dp" />
+
+                <TextView
+                    android:id="@+id/m_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="4dp"
+                    android:text="11:15"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/m_status"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="bottom"
+                    android:paddingBottom="1dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_lock_black_18dp"
+                    android:tint="#777777"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 

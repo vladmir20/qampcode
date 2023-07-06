@@ -203,6 +203,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         this.mMesiboUIOptions = MesiboUI.getConfig();
         this.mSelectionMode = MesiboUserListFragment.MODE_MESSAGELIST;
         this.mReadQuery = null;
+        Log.e("Message",new Gson().toJson(AppConfig.getConfig().token));
         Bundle b = getArguments();
         if (b != null) {
             this.mSelectionMode = b.getInt(MesiboUserListFragment.MESSAGE_LIST_MODE, MesiboUserListFragment.MODE_MESSAGELIST);

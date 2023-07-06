@@ -61,6 +61,7 @@ public class MainApplication extends Application implements Mesibo.RestartListen
     public void Mesibo_onRestart() {
         Log.d(TAG, "OnRestart");
         StartUpActivity.newInstance(this, true);
+
     }
 
 }

@@ -11,6 +11,7 @@ package com.qamp.app.MessagingModule;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -488,6 +489,7 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
                     Toast.makeText(getBaseContext(), R.string.exitWarning, Toast.LENGTH_SHORT).show();
                 }
                 pressedTime = System.currentTimeMillis();
+                //finish();
             }
         }else if(UserListFragment.isSheetOpen){
            //ContactsBottomSheetFragment.closeSearch();
@@ -499,6 +501,8 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
 
     /* JADX WARNING: type inference failed for: r2v0, types: [android.content.Context, com.qamp.app.MessagingModule.MesiboUserListActivity, androidx.appcompat.app.AppCompatActivity] */
     public void onResume() {
+        NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        nMgr.cancelAll();
         MesiboUserListActivityNew.super.onResume();
         Mesibo.setForegroundContext(this, 0, true);
         if (ActivityCompat.shouldShowRequestPermissionRationale(MesiboUserListActivityNew.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {

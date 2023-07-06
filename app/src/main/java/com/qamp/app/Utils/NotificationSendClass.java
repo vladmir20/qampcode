@@ -51,9 +51,9 @@ public class NotificationSendClass {
                     , json, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
-                    Toast.makeText(context, ""+response, Toast.LENGTH_LONG).show();
+//                    Toast.makeText(context, ""+response, Toast.LENGTH_LONG).show();
 //                    Toast.makeText(context, "Here Response", Toast.LENGTH_SHORT).show();
-                    Log.e("responseGroup",new Gson().toJson(response));
+//                    Log.e("responseGroup",new Gson().toJson(response));
 
                 }
             }, new Response.ErrorListener() {

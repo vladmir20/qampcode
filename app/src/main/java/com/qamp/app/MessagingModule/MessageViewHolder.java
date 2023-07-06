@@ -11,6 +11,7 @@ package com.qamp.app.MessagingModule;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -20,6 +21,11 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 
 import com.qamp.app.R;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class MessageViewHolder extends MesiboRecycleViewHolder implements View.OnClickListener, View.OnLongClickListener {
     protected FrameLayout mBubble;
@@ -63,9 +69,9 @@ public class MessageViewHolder extends MesiboRecycleViewHolder implements View.O
         this.mData.setViewHolder(this);
         if (1 == getType()) {
             if (m.getGroupId() == 0 || !m.isShowName()) {
-                this.otherUserName.setVisibility(8);
+                this.otherUserName.setVisibility(View.GONE);
             } else {
-                this.otherUserName.setVisibility(0);
+                this.otherUserName.setVisibility(View.VISIBLE);
                 this.otherUserName.setTextColor(m.getNameColor());
                 this.otherUserName.setText(m.getUsername());
             }
@@ -74,18 +80,26 @@ public class MessageViewHolder extends MesiboRecycleViewHolder implements View.O
             if (!MesiboUI.getConfig().e2eeIndicator || !this.mData.isEncrypted()) {
                 this.mStatus.setVisibility(View.GONE);
             } else {
-                this.mStatus.setVisibility(View.VISIBLE);
+                //this.mStatus.setVisibility(View.VISIBLE);
             }
         } else {
             setupBackgroundBubble(this.mBubble, -1, MesiboUI.getConfig().messageBackgroundColorForMe);
             this.m_titleLayout.setBackgroundColor(MesiboUI.getConfig().titleBackgroundColorForMe);
             setupMessageStatus(this.mStatus, m.getStatus());
         }
-        this.mTime.setText(m.getTimestamp());
+        Log.e("Message Time",m.getTimestamp());
+        try {
+            String mTimeFinal = evaluateTime(m.getTimestamp());
+            this.mTime.setText(mTimeFinal);
+        } catch (ParseException e) {
+            this.mTime.setText("");
+            e.printStackTrace();
+        }
+
         if (!TextUtils.isEmpty(m.getTitle()) || !TextUtils.isEmpty(m.getSubTitle())) {
-            this.m_titleLayout.setVisibility(0);
+            this.m_titleLayout.setVisibility(View.VISIBLE);
         } else {
-            this.m_titleLayout.setVisibility(8);
+            this.m_titleLayout.setVisibility(View.GONE);
         }
         ImageView imageView = this.mFavourite;
         if (m.getFavourite().booleanValue()) {
@@ -105,6 +119,16 @@ public class MessageViewHolder extends MesiboRecycleViewHolder implements View.O
             i2 = 4;
         }
         view.setVisibility(i2);
+    }
+
+    private String evaluateTime(String timestamp) throws ParseException {
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm", Locale.getDefault());
+        SimpleDateFormat timeFormat1 = new SimpleDateFormat("hh:mm aa",Locale.getDefault());
+
+        Date timeS = timeFormat.parse(timestamp);
+        String timeSent = timeFormat1.format(timeS);
+
+        return timeSent;
     }
 
     public void removeData() {

@@ -1238,6 +1238,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
             else{
                 NotificationSendClass.pushNotificationsGroup(getContext(),String.valueOf(profile.getGroupId()),""+profile.getName(),""+msg.message.toString());
                     Log.e("groupId", new Gson().toJson(profile.getGroupId()));
+                Log.e("senderName", new Gson().toJson(Mesibo.getSelfProfile().getName()));
                     Log.e("userToken", AppConfig.getConfig().token);
             }
              this.mEmojiEditText.getText().clear();

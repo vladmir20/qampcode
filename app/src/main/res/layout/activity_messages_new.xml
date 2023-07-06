@@ -176,10 +176,11 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
-                        android:padding="5dp">
+                        android:paddingTop="16sp"
+                        android:paddingBottom="16sp">
 
                         <View
-                            android:layout_width="15dp"
+                            android:layout_width="16sp"
                             android:layout_height="0dp" />
 
                         <de.hdodenhof.circleimageview.CircleImageView
@@ -201,6 +202,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="@dimen/spacing_large"
                                 android:layout_marginRight="@dimen/spacing_large"
+                                android:fontFamily="@font/inter_medium"
                                 android:maxLength="20"
                                 android:maxLines="1"
                                 android:text="@string/username"
@@ -213,6 +215,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="@dimen/spacing_large"
                                 android:layout_marginRight="@dimen/spacing_large"
+                                android:fontFamily="@font/inter_regular"
                                 android:text="@string/view_profile"
                                 android:textColor="@color/text_color_subtitle"
                                 android:textSize="12sp" />
@@ -226,14 +229,14 @@
 
                         <ImageButton
                             android:id="@+id/btn_close_filter"
-                            android:layout_width="?attr/actionBarSize"
-                            android:layout_height="?attr/actionBarSize"
+                            android:layout_width="24sp"
+                            android:layout_height="24sp"
+                            android:layout_marginRight="16sp"
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:tint="@color/text_color_black_orange"
                             app:srcCompat="@drawable/ic_close" />
 
                     </LinearLayout>
-
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -247,16 +250,16 @@
                         android:background="?attr/selectableItemBackground"
                         android:clickable="true"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <View
-                            android:layout_width="@dimen/spacing_middle"
-                            android:layout_height="0dp" />
+                        android:orientation="horizontal"
+                        android:paddingLeft="16sp"
+                        android:paddingTop="8sp"
+                        android:paddingRight="16sp"
+                        android:paddingBottom="8sp">
 
                         <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_margin="@dimen/spacing_middle"
+                            android:layout_width="24sp"
+                            android:layout_height="24sp"
+                            android:layout_marginRight="8sp"
                             app:srcCompat="@drawable/bell_notification_24" />
 
                         <LinearLayout
@@ -267,6 +270,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/inter_medium"
                                 android:text="@string/notifications"
                                 android:textColor="@color/text_color17"
                                 android:textSize="12sp" />
@@ -274,13 +278,14 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="start"
                                 android:layout_marginRight="10dp"
                                 android:drawableLeft="@drawable/notification_dot"
                                 android:drawablePadding="5dp"
-                                android:layout_gravity="start"
+                                android:fontFamily="@font/inter_regular"
                                 android:gravity="start"
-                                android:textAlignment="viewStart"
                                 android:text="@string/new_notifications_indicator"
+                                android:textAlignment="viewStart"
                                 android:textColor="@color/text_color_orange"
                                 android:textSize="10sp" />
 
@@ -302,16 +307,16 @@
                         android:background="?attr/selectableItemBackground"
                         android:clickable="true"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <View
-                            android:layout_width="@dimen/spacing_middle"
-                            android:layout_height="0dp" />
+                        android:orientation="horizontal"
+                        android:paddingLeft="16sp"
+                        android:paddingTop="8sp"
+                        android:paddingRight="16sp"
+                        android:paddingBottom="8sp">
 
                         <ImageView
-                            android:layout_width="22dp"
-                            android:layout_height="22dp"
-                            android:layout_margin="@dimen/spacing_middle"
+                            android:layout_width="24sp"
+                            android:layout_height="24sp"
+                            android:layout_marginRight="8sp"
                             app:srcCompat="@drawable/user" />
 
                         <LinearLayout
@@ -322,18 +327,20 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/inter_medium"
                                 android:text="@string/account_settings"
                                 android:textColor="@color/text_color17"
                                 android:textSize="12sp" />
 
                             <TextView
-                                android:layout_gravity="start"
-                                android:gravity="start"
-                                android:textAlignment="viewStart"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="start"
                                 android:layout_marginRight="10dp"
+                                android:fontFamily="@font/inter_regular"
+                                android:gravity="start"
                                 android:text="@string/Update_info_text"
+                                android:textAlignment="viewStart"
                                 android:textColor="@color/text_color15"
                                 android:textSize="10sp" />
 
@@ -376,22 +383,23 @@
                         android:background="?attr/selectableItemBackground"
                         android:clickable="true"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <View
-                            android:layout_width="@dimen/spacing_middle"
-                            android:layout_height="0dp" />
+                        android:orientation="horizontal"
+                        android:paddingLeft="16sp"
+                        android:paddingTop="8sp"
+                        android:paddingRight="16sp"
+                        android:paddingBottom="8sp">
 
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:layout_margin="@dimen/spacing_middle"
+                            android:layout_marginRight="8sp"
                             app:srcCompat="@drawable/share"
                             app:tint="@color/text_color17" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_medium"
                             android:text="@string/Invite_text"
                             android:textColor="@color/text_color17"
                             android:textSize="10sp" />
@@ -423,22 +431,23 @@
                             android:background="?attr/selectableItemBackground"
                             android:clickable="true"
                             android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <View
-                                android:layout_width="@dimen/spacing_middle"
-                                android:layout_height="0dp" />
+                            android:orientation="horizontal"
+                            android:paddingLeft="16sp"
+                            android:paddingTop="8sp"
+                            android:paddingRight="16sp"
+                            android:paddingBottom="8sp">
 
                             <ImageView
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
-                                android:layout_margin="@dimen/spacing_middle"
+                                android:layout_marginRight="8sp"
                                 app:srcCompat="@drawable/logput"
                                 app:tint="@color/text_color17" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/inter_medium"
                                 android:text="@string/logout_text"
                                 android:textColor="@color/text_color17"
                                 android:textSize="10sp" />

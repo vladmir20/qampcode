@@ -123,9 +123,9 @@
                     android:id="@+id/name_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="26sp"
                     card:cardCornerRadius="0dp"
-                    card:cardElevation="1dp">
+                    card:cardElevation="0sp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -136,26 +136,26 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_weight="1">
+                            android:layout_weight="1"
+                            android:paddingLeft="16sp"
+                            android:paddingRight="16sp">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="10dp"
                                 android:layout_weight="1"
                                 android:fontFamily="@font/inter_medium"
                                 android:maxLines="1"
                                 android:text="@string/name_text"
                                 android:textColor="@color/text_color_black_white"
-                                android:textSize="16sp" />
+                                android:textSize="14sp" />
 
                             <ImageView
                                 android:id="@+id/edit1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="24sp"
+                                android:layout_height="24sp"
                                 android:layout_alignParentRight="true"
-                                android:layout_marginRight="11dp"
                                 android:src="@drawable/ic_edit" />
                         </RelativeLayout>
 
@@ -163,29 +163,29 @@
                             android:id="@+id/self_user_card"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="11sp"
+                            android:layout_marginBottom="16sp"
                             android:gravity="center_vertical"
-                            android:minHeight="30dp">
+                            android:paddingLeft="16sp"
+                            android:paddingRight="16sp">
 
                             <com.mesibo.emojiview.EmojiconEditText
                                 android:id="@+id/name_emoji_edittext"
                                 android:layout_width="match_parent"
-                                android:layout_height="40dp"
+                                android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_weight="1"
                                 android:background="@color/black_white_2"
                                 android:editable="false"
                                 android:focusable="false"
+                                android:fontFamily="@font/inter_regular"
                                 android:hint="@string/enter_your_name"
                                 android:maxLines="1"
                                 android:singleLine="true"
                                 android:textColor="@color/text_color_subtitle"
                                 android:textColorHint="@color/text_color15"
                                 android:textCursorDrawable="@drawable/color_cursor"
-                                android:textSize="14sp"
+                                android:textSize="12sp"
                                 card:layout_constraintBottom_toBottomOf="parent"
                                 card:layout_constraintEnd_toEndOf="parent"
                                 card:layout_constraintStart_toStartOf="parent"
@@ -226,28 +226,36 @@
 
                 </androidx.cardview.widget.CardView>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="16sp"
+                    android:background="#F2F2F2">
+
+                </View>
+
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/status_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
                     card:cardCornerRadius="0dp"
-                    card:cardElevation="1dp">
+                    card:cardElevation="0sp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/black_white_2"
-                        android:orientation="vertical"
-                        android:padding="10dp"
-                        android:paddingBottom="10dp">
+                        android:orientation="vertical">
 
 
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_weight="1">
+                            android:layout_weight="1"
+                            android:paddingLeft="16sp"
+                            android:paddingRight="16sp">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -258,12 +266,12 @@
                                 android:maxLines="1"
                                 android:text="@string/about_text"
                                 android:textColor="@color/text_color_black_white"
-                                android:textSize="16sp" />
+                                android:textSize="14sp" />
 
                             <ImageView
                                 android:id="@+id/edit2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_width="24sp"
+                                android:layout_height="24sp"
                                 android:layout_alignParentRight="true"
                                 android:src="@drawable/ic_edit" />
                         </RelativeLayout>
@@ -272,11 +280,12 @@
                             android:id="@+id/self_user_status_card"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="0dp"
-                            android:layout_marginBottom="-5dp"
+                            android:layout_marginTop="11sp"
+                            android:layout_marginBottom="16sp"
                             android:background="@color/black_white_2"
                             android:gravity="center_vertical"
-                            android:minHeight="30dp">
+                            android:paddingLeft="16sp"
+                            android:paddingRight="16sp">
 
 
                             <com.mesibo.emojiview.EmojiconEditText
@@ -287,10 +296,8 @@
                                 android:background="@color/black_white_2"
                                 android:editable="false"
                                 android:focusable="false"
+                                android:fontFamily="@font/inter_regular"
                                 android:hint="@string/type_status_text"
-                                android:minHeight="40dp"
-                                android:paddingTop="7dp"
-                                android:paddingBottom="7dp"
                                 android:singleLine="true"
                                 android:supportsRtl="false"
                                 android:textAlignment="viewStart"
@@ -298,7 +305,7 @@
                                 android:textColorHint="@color/text_color15"
                                 android:textCursorDrawable="@drawable/color_cursor"
                                 android:textDirection="locale"
-                                android:textSize="14sp"
+                                android:textSize="12sp"
                                 card:layout_constraintBottom_toBottomOf="parent"
                                 card:layout_constraintEnd_toEndOf="parent"
                                 card:layout_constraintStart_toStartOf="parent"
@@ -310,18 +317,19 @@
 
                         <View
                             android:layout_width="match_parent"
-                            android:layout_height="0.5dp"
+                            android:layout_height="1sp"
                             android:layout_marginTop="0dp"
-                            android:layout_marginBottom="20dp"
-                            android:background="#d1d1d1">
+                            android:layout_marginBottom="16sp"
+                            android:background="#F2F2F2">
 
                         </View>
 
                         <RelativeLayout
-                            android:layout_marginTop="-05dp"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_weight="1">
+                            android:layout_weight="1"
+                            android:paddingLeft="16sp"
+                            android:paddingRight="16sp">
 
                             <TextView
                                 android:id="@+id/profile_phone_label"
@@ -333,7 +341,7 @@
                                 android:maxLines="1"
                                 android:text="@string/contact_number"
                                 android:textColor="@color/text_color_black_white"
-                                android:textSize="16sp"/>
+                                android:textSize="14sp" />
 
                             <ImageView
                                 android:id="@+id/edit3"
@@ -349,31 +357,33 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="11sp"
+                            android:layout_marginBottom="16sp"
                             android:layout_weight="1"
                             android:background="@color/transparent_color"
                             android:editable="false"
                             android:focusable="false"
                             android:fontFamily="@font/inter_regular"
                             android:maxLines="1"
+                            android:paddingLeft="16sp"
                             android:text="@string/examlpe_number"
                             android:textColor="@color/text_color_subtitle"
-                            android:textSize="14sp" />
+                            android:textSize="12sp" />
 
                         <View
                             android:id="@+id/view"
                             android:layout_width="match_parent"
-                            android:layout_height="0.5dp"
-                            android:layout_marginBottom="20dp"
+                            android:layout_height="1sp"
+                            android:layout_marginBottom="16sp"
                             android:layout_weight="1"
-                            android:background="#d1d1d1" />
+                            android:background="#F2F2F2" />
 
                         <RelativeLayout
-                            android:layout_marginTop="-5dp"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_weight="1">
+                            android:layout_weight="1"
+                            android:paddingLeft="16sp"
+                            android:paddingRight="16sp">
 
                             <TextView
                                 android:id="@+id/textView2"
@@ -385,12 +395,12 @@
                                 android:maxLines="1"
                                 android:text="@string/email_text"
                                 android:textColor="@color/text_color_black_white"
-                                android:textSize="16sp" />
+                                android:textSize="14sp" />
 
                             <ImageView
                                 android:id="@+id/edit4"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="24sp"
+                                android:layout_height="24sp"
                                 android:layout_alignParentRight="true"
                                 android:src="@drawable/ic_edit" />
                         </RelativeLayout>
@@ -400,32 +410,36 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left"
+                            android:layout_marginTop="11sp"
+                            android:layout_marginBottom="16sp"
                             android:background="@color/black_white_2"
                             android:editable="false"
                             android:focusable="false"
+                            android:fontFamily="@font/inter_regular"
                             android:gravity="left"
                             android:hint="@string/email_address"
-                            android:minHeight="40dp"
-                            android:paddingTop="7dp"
+                            android:paddingLeft="16sp"
+                            android:paddingRight="16sp"
                             android:textColor="@color/text_color_subtitle"
                             android:textColorHint="@color/text_color15"
                             android:textCursorDrawable="@drawable/color_cursor"
-                            android:textSize="14sp" />
+                            android:textSize="12sp" />
 
                         <View
                             android:layout_width="match_parent"
-                            android:layout_height="0.5dp"
+                            android:layout_height="1sp"
                             android:layout_marginTop="0dp"
-                            android:layout_marginBottom="20dp"
-                            android:background="#d1d1d1">
+                            android:layout_marginBottom="16sp"
+                            android:background="#F2F2F2">
 
                         </View>
 
                         <RelativeLayout
-                            android:layout_marginTop="-5dp"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_weight="1">
+                            android:layout_weight="1"
+                            android:paddingLeft="16sp"
+                            android:paddingRight="16sp">
 
                             <TextView
                                 android:id="@+id/current_Language"
@@ -437,12 +451,12 @@
                                 android:maxLines="1"
                                 android:text="@string/change_app_lang"
                                 android:textColor="@color/text_color_black_white"
-                                android:textSize="16sp" />
+                                android:textSize="14sp" />
 
                             <ImageView
                                 android:id="@+id/edit_lang"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="24sp"
+                                android:layout_height="24sp"
                                 android:layout_alignParentRight="true"
                                 android:src="@drawable/ic_edit" />
 
@@ -453,13 +467,23 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="11sp"
+                            android:layout_marginBottom="16sp"
                             android:layout_weight="1"
                             android:fontFamily="@font/inter_medium"
                             android:maxLines="1"
+                            android:paddingLeft="16sp"
                             android:text=""
                             android:textColor="@color/text_color15"
                             android:textSize="12sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1sp"
+                            android:layout_marginTop="0dp"
+                            android:background="#F2F2F2">
+
+                        </View>
 
                     </LinearLayout>
 
@@ -467,24 +491,23 @@
                 </androidx.cardview.widget.CardView>
 
 
-                <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                <androidx.cardview.widget.CardView
                     android:id="@+id/prev_profile_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="16sp"
                     android:layout_marginBottom="20dp"
-                    card_view:cardCornerRadius="0dp"
-                    card_view:cardElevation="1dp">
+                    card:cardCornerRadius="0dp"
+                    card:cardElevation="0sp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/black_white_2"
                         android:orientation="vertical"
-                        android:padding="10dp"
+                        android:paddingLeft="16sp"
+                        android:paddingRight="16sp"
                         android:paddingBottom="10dp">
-
 
 
                         <TextView
@@ -498,7 +521,7 @@
                             android:maxLines="1"
                             android:text="@string/profile_pictures"
                             android:textColor="@color/text_color_black_white"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
