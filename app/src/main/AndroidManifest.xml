@@ -85,7 +85,6 @@
             android:supportsRtl="false"
             android:theme="@style/AppTheme.NoActionBar" />
 
-
         <activity
             android:name=".Activity.SplashScreenActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

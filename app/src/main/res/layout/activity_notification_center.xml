@@ -8,9 +8,9 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/tools">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,104 +44,110 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginLeft="15dp"
-                android:gravity="center|start"
                 android:fontFamily="@font/inter_medium"
+                android:gravity="center|start"
                 android:text="@string/notification_center"
                 android:textColor="#171717"
                 android:textSize="16sp" />
 
         </LinearLayout>
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:id="@+id/linearLayout15"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:elevation="6dp"
-            android:orientation="horizontal"
+            card_view:cardElevation="6dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout13">
 
             <LinearLayout
-                android:visibility="gone"
-                android:id="@+id/groupLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="24dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/corner_radius_button"
-                android:orientation="vertical"
-                app:layout_constraintStart_toEndOf="@+id/requestingImage"
-                app:layout_constraintTop_toBottomOf="@+id/requestingDescription">
+                android:gravity="start|center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:text="Groups"
-                    android:textColor="@color/text_color17"
-                    android:textSize="12sp" />
+                <LinearLayout
+                    android:id="@+id/groupLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/corner_radius_button"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/requestingImage"
+                    app:layout_constraintTop_toBottomOf="@+id/requestingDescription">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="Groups"
+                        android:textColor="@color/text_color17"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/channelLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toEndOf="@+id/requestingImage"
+                    app:layout_constraintTop_toBottomOf="@+id/requestingDescription">
+
+                    <TextView
+                        android:id="@+id/channels_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/inter_regular"
+                        android:gravity="center"
+                        android:text="Channels"
+                        android:textColor="#171717"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/settingsLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toEndOf="@+id/requestingImage"
+                    app:layout_constraintTop_toBottomOf="@+id/requestingDescription">
+
+                    <TextView
+                        android:id="@+id/settings_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/inter_regular"
+                        android:gravity="center"
+                        android:text="Settings"
+                        android:textColor="#171717"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
 
-            <LinearLayout
-                android:id="@+id/channelLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="24dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/white"
-                android:orientation="vertical"
-                app:layout_constraintStart_toEndOf="@+id/requestingImage"
-                app:layout_constraintTop_toBottomOf="@+id/requestingDescription">
-
-                <TextView
-                    android:id="@+id/channels_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:fontFamily="@font/inter_regular"
-                    android:text="Channels"
-                    android:textColor="#171717"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/settingsLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="24dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/white"
-                android:orientation="vertical"
-                app:layout_constraintStart_toEndOf="@+id/requestingImage"
-                app:layout_constraintTop_toBottomOf="@+id/requestingDescription">
-
-                <TextView
-                    android:id="@+id/settings_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:fontFamily="@font/inter_regular"
-                    android:text="Settings"
-                    android:textColor="#171717"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-
-        </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <FrameLayout
             android:id="@+id/frameLayout"

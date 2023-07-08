@@ -182,13 +182,10 @@ public class MesiboMessagingActivity extends AppCompatActivity implements Mesibo
  startActivity(intent);*/
                 Log.e("Aditya", "reached");
                 if (!MesiboCall.getInstance().callUi(getApplicationContext(), mUser, false))
-
                     MesiboCall.getInstance().callUiForExistingCall(getApplicationContext());
                     NotificationSendClass.pushNotifications(getApplicationContext(), mUser.getAddress()
                         , ""+mUser.getName(), "Incoming Audio Call","AUDIO_CALL","");
-
-                //launchCustomCallActivity(destination, true, false);
-
+                    //launchCustomCallActivity(destination, true, false);
             }
 
 

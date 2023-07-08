@@ -21,9 +21,9 @@
             android:id="@+id/ChannelCardLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="4dp"
             android:layout_marginBottom="8dp"
             android:elevation="4dp"
             app:cardBackgroundColor="@color/white"
@@ -49,7 +49,7 @@
                         android:id="@+id/channelImage"
                         android:layout_height="40dp"
                         android:padding="5dp"
-                        android:src="@drawable/qamp_logo_outlined" />
+                        android:src="@drawable/circular_background" />
 
                     <View
                         android:layout_width="15dp"
@@ -65,19 +65,22 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:layout_marginEnd="8dp"
-                            android:text="4M"
+                            android:text="    "
+                            android:layout_marginBottom="4dp"
+                            android:background="#d9d9d9"
                             android:textColor="@color/text_color_subtitle"
                             android:textSize="10sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <LinearLayout
+                            android:id="@+id/linearLayout11"
                             android:layout_width="wrap_content"
                             android:layout_height="16dp"
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="8dp"
-                            android:layout_marginBottom="16dp"
-                            android:background="@drawable/attachment_button_background"
+                            android:layout_marginBottom="8dp"
+                            android:background="#d9d9d9"
                             android:gravity="center"
                             android:orientation="vertical"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -93,7 +96,8 @@
                                 android:gravity="center"
                                 android:text="8"
                                 android:textColor="@color/text_color17"
-                                android:textSize="10sp" />
+                                android:textSize="10sp"
+                                android:visibility="invisible" />
                         </LinearLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
