@@ -1612,7 +1612,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         String toBeDate = toBeSent.format(llDate);
 
         if(llDate.before(ccDAte) && llDate.after(yyyDate))
-            return "yesterday";
+            return "Yesterday";
         else if(llDate.equals(ccDAte))return timeSent;
         else if(llDate.before(yyyDate))return toBeDate;
         else return toBeDate;

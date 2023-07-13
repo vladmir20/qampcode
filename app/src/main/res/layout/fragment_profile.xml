@@ -36,26 +36,25 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/pictureViewContainer11"
-                    android:layout_width="250dp"
-                    android:layout_height="250dp"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="4sp">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/circleImageView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginBottom="8dp"
                         android:background="@drawable/rounded_profile_view"
                         app:civ_border_color="@color/colorPrimaryDark"
                         app:civ_border_width="1dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_editor_absoluteX="8dp"
+                        app:layout_editor_absoluteY="8dp" />
 
 
                     <ImageView
@@ -96,8 +95,7 @@
                         android:id="@+id/editPhoto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginBottom="12sp"
                         android:background="@drawable/rounded_camera_view"
                         android:gravity="center"
                         android:visibility="visible"
@@ -112,7 +110,7 @@
                             android:layout_height="40dp"
                             android:elevation="1dp"
                             android:scaleType="fitCenter"
-                            android:src="@mipmap/camera_light_filled" />
+                            android:src="@drawable/frame_7" />
 
                     </LinearLayout>
 
@@ -185,7 +183,7 @@
                                 android:textColor="@color/text_color_subtitle"
                                 android:textColorHint="@color/text_color15"
                                 android:textCursorDrawable="@drawable/color_cursor"
-                                android:textSize="12sp"
+                                android:textSize="14sp"
                                 card:layout_constraintBottom_toBottomOf="parent"
                                 card:layout_constraintEnd_toEndOf="parent"
                                 card:layout_constraintStart_toStartOf="parent"
@@ -266,7 +264,7 @@
                                 android:maxLines="1"
                                 android:text="@string/about_text"
                                 android:textColor="@color/text_color_black_white"
-                                android:textSize="14sp" />
+                                android:textSize="16sp" />
 
                             <ImageView
                                 android:id="@+id/edit2"
@@ -305,7 +303,7 @@
                                 android:textColorHint="@color/text_color15"
                                 android:textCursorDrawable="@drawable/color_cursor"
                                 android:textDirection="locale"
-                                android:textSize="12sp"
+                                android:textSize="14sp"
                                 card:layout_constraintBottom_toBottomOf="parent"
                                 card:layout_constraintEnd_toEndOf="parent"
                                 card:layout_constraintStart_toStartOf="parent"
@@ -341,7 +339,7 @@
                                 android:maxLines="1"
                                 android:text="@string/contact_number"
                                 android:textColor="@color/text_color_black_white"
-                                android:textSize="14sp" />
+                                android:textSize="16sp" />
 
                             <ImageView
                                 android:id="@+id/edit3"
@@ -368,7 +366,7 @@
                             android:paddingLeft="16sp"
                             android:text="@string/examlpe_number"
                             android:textColor="@color/text_color_subtitle"
-                            android:textSize="12sp" />
+                            android:textSize="14sp" />
 
                         <View
                             android:id="@+id/view"
@@ -395,7 +393,7 @@
                                 android:maxLines="1"
                                 android:text="@string/email_text"
                                 android:textColor="@color/text_color_black_white"
-                                android:textSize="14sp" />
+                                android:textSize="16sp" />
 
                             <ImageView
                                 android:id="@+id/edit4"
@@ -423,7 +421,7 @@
                             android:textColor="@color/text_color_subtitle"
                             android:textColorHint="@color/text_color15"
                             android:textCursorDrawable="@drawable/color_cursor"
-                            android:textSize="12sp" />
+                            android:textSize="14sp" />
 
                         <View
                             android:layout_width="match_parent"
@@ -451,7 +449,7 @@
                                 android:maxLines="1"
                                 android:text="@string/change_app_lang"
                                 android:textColor="@color/text_color_black_white"
-                                android:textSize="14sp" />
+                                android:textSize="16sp" />
 
                             <ImageView
                                 android:id="@+id/edit_lang"
@@ -521,7 +519,7 @@
                             android:maxLines="1"
                             android:text="@string/profile_pictures"
                             android:textColor="@color/text_color_black_white"
-                            android:textSize="14sp" />
+                            android:textSize="16sp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"

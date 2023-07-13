@@ -147,96 +147,100 @@
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view_hamburger"
-        android:layout_width="300dp"
+        android:layout_width="320sp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:layout_marginTop="@dimen/spacing_medium"
+        android:background="@color/transparent_color"
         android:fitsSystemWindows="false">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/hamburger_back"
             android:orientation="vertical">
 
-            <ScrollView
-                android:id="@+id/sw_layout"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_above="@+id/footer"
-                android:orientation="vertical"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            <LinearLayout
+                android:id="@+id/user_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="16sp"
+                android:paddingBottom="16sp">
+
+                <View
+                    android:layout_width="16sp"
+                    android:layout_height="0dp" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/image"
+                    android:layout_width="@dimen/spacing_xxxlarge"
+                    android:layout_height="@dimen/spacing_xxxlarge"
+                    android:layout_margin="2dp"
+                    android:orientation="horizontal" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="?attr/actionBarSize"
+                    android:gravity="center_vertical"
                     android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/name_text"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:paddingTop="16sp"
-                        android:paddingBottom="16sp">
+                        android:layout_marginLeft="@dimen/spacing_large"
+                        android:layout_marginRight="@dimen/spacing_large"
+                        android:fontFamily="@font/inter_medium"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:text="@string/username"
+                        android:textColor="@color/text_color_black_white"
+                        android:textSize="16sp" />
 
-                        <View
-                            android:layout_width="16sp"
-                            android:layout_height="0dp" />
+                    <TextView
+                        android:id="@+id/viewProfile_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_large"
+                        android:layout_marginRight="@dimen/spacing_large"
+                        android:fontFamily="@font/inter_regular"
+                        android:text="@string/view_profile"
+                        android:textColor="@color/text_color_subtitle"
+                        android:textSize="14sp" />
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/image"
-                            android:layout_width="@dimen/spacing_xxxlarge"
-                            android:layout_height="@dimen/spacing_xxxlarge"
-                            android:layout_margin="2dp"
-                            android:orientation="horizontal" />
+                </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="?attr/actionBarSize"
-                            android:gravity="center_vertical"
-                            android:orientation="vertical">
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
 
-                            <TextView
-                                android:id="@+id/name_text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/spacing_large"
-                                android:layout_marginRight="@dimen/spacing_large"
-                                android:fontFamily="@font/inter_medium"
-                                android:maxLength="20"
-                                android:maxLines="1"
-                                android:text="@string/username"
-                                android:textColor="@color/text_color_black_white"
-                                android:textSize="14sp" />
+                <ImageButton
+                    android:id="@+id/btn_close_filter"
+                    android:layout_width="24sp"
+                    android:layout_height="24sp"
+                    android:layout_marginRight="16sp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:tint="@color/text_color_black_orange"
+                    app:srcCompat="@drawable/ic_close" />
 
-                            <TextView
-                                android:id="@+id/viewProfile_text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/spacing_large"
-                                android:layout_marginRight="@dimen/spacing_large"
-                                android:fontFamily="@font/inter_regular"
-                                android:text="@string/view_profile"
-                                android:textColor="@color/text_color_subtitle"
-                                android:textSize="12sp" />
+            </LinearLayout>
 
-                        </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
 
-                        <ImageButton
-                            android:id="@+id/btn_close_filter"
-                            android:layout_width="24sp"
-                            android:layout_height="24sp"
-                            android:layout_marginRight="16sp"
-                            android:background="?attr/selectableItemBackgroundBorderless"
-                            android:tint="@color/text_color_black_orange"
-                            app:srcCompat="@drawable/ic_close" />
+                <LinearLayout
+                    android:id="@+id/linearLayout11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:flow_verticalAlign="top"
+                    tools:layout_editor_absoluteY="466dp">
 
-                    </LinearLayout>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -273,7 +277,7 @@
                                 android:fontFamily="@font/inter_medium"
                                 android:text="@string/notifications"
                                 android:textColor="@color/text_color17"
-                                android:textSize="12sp" />
+                                android:textSize="14sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -287,7 +291,7 @@
                                 android:text="@string/new_notifications_indicator"
                                 android:textAlignment="viewStart"
                                 android:textColor="@color/text_color_orange"
-                                android:textSize="10sp" />
+                                android:textSize="12sp" />
 
                         </LinearLayout>
 
@@ -330,19 +334,19 @@
                                 android:fontFamily="@font/inter_medium"
                                 android:text="@string/account_settings"
                                 android:textColor="@color/text_color17"
-                                android:textSize="12sp" />
+                                android:textSize="14sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="start"
-                                android:layout_marginRight="10dp"
+                                android:layout_marginRight="12sp"
                                 android:fontFamily="@font/inter_regular"
                                 android:gravity="start"
                                 android:text="@string/Update_info_text"
                                 android:textAlignment="viewStart"
                                 android:textColor="@color/text_color15"
-                                android:textSize="10sp" />
+                                android:textSize="12sp" />
 
                         </LinearLayout>
 
@@ -355,21 +359,13 @@
                         android:background="@color/grey_5" />
 
                 </LinearLayout>
-            </ScrollView>
-
-            <LinearLayout
-                android:id="@+id/footer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:background="@drawable/layout_bg"
-                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:orientation="vertical">
+                    android:layout_alignParentBottom="true"
+                    android:orientation="vertical"
+                    tools:layout_editor_absoluteY="566dp">
 
                     <View
                         android:layout_width="match_parent"
@@ -402,21 +398,28 @@
                             android:fontFamily="@font/inter_medium"
                             android:text="@string/Invite_text"
                             android:textColor="@color/text_color17"
-                            android:textSize="10sp" />
+                            android:textSize="12sp" />
 
 
                     </LinearLayout>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/grey_5" />
-
                 </LinearLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/footer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/layout_bg"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:flow_verticalAlign="bottom">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/transparent_color"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -428,7 +431,7 @@
                             android:id="@+id/logout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="?attr/selectableItemBackground"
+                            android:background="@color/transparent_color"
                             android:clickable="true"
                             android:gravity="center_vertical"
                             android:orientation="horizontal"
@@ -455,24 +458,16 @@
 
                         </LinearLayout>
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@color/grey_5" />
-
                     </LinearLayout>
 
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/grey_5" />
 
                 </LinearLayout>
 
 
             </LinearLayout>
-        </RelativeLayout>
+
+        </LinearLayout>
+
 
     </com.google.android.material.navigation.NavigationView>
 

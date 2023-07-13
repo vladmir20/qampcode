@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ /**
-  ~  *  on 20/05/23, 3:30 AM
-  ~  * Copyright (c) 2023 . All rights reserved.
-  ~  * Last modified 20/05/23, 2:35 AM
-  ~  */
-  -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:emojicon="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:emojicon="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_margin="5sp"
+    android:background="@color/transparent_color">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/incoming_layout_bubble"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
         android:layout_marginRight="60dp"
+        android:layout_marginBottom="2sp"
+        android:background="@color/transparent_color"
+        android:backgroundTint="@color/transparent_color"
         android:paddingLeft="11dp"
         android:paddingBottom="1dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="6dp"
-        android:layout_alignParentLeft="true"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="2dp"
-        >
+        app:cardBackgroundColor="@color/transparent"
+        app:cardElevation="0sp"
+        app:cardMaxElevation="0sp"
+        emojicon:cardCornerRadius="0sp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/other_chat_bubble"
+            android:padding="4sp">
 
             <LinearLayout
                 android:id="@+id/top"
@@ -61,7 +61,7 @@
                     android:id="@+id/mesibo_message_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
+                    android:layout_marginLeft="-4sp"
                     android:layout_marginRight="1dp"
                     android:layout_marginBottom="7dp"
                     android:minWidth="100dp"
@@ -71,11 +71,13 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right"
+                android:layout_marginStart="4sp"
                 android:orientation="horizontal"
                 android:paddingLeft="5dp"
                 android:paddingRight="4dp"
                 android:paddingBottom="0dp"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
                 emojicon:layout_constraintEnd_toEndOf="parent"
                 emojicon:layout_constraintTop_toBottomOf="@id/top">
 
@@ -116,12 +118,13 @@
 
     <View
         android:id="@+id/selected_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_width="37dp"
+        android:layout_height="14dp"
+        android:layout_alignBottom="@+id/incoming_layout_bubble"
         android:layout_alignParentTop="true"
+        android:layout_marginBottom="26dp"
+        android:layout_weight="1"
         android:background="@color/overlaySelection"
-        android:visibility="gone"
-        android:layout_alignBottom="@+id/incoming_layout_bubble" />
+        android:visibility="gone" />
 
 </RelativeLayout>

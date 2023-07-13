@@ -19,25 +19,29 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginLeft="60dp"
-        android:background="@drawable/chat_bubble_background"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="2dp"
+        android:background="@color/transparent_color"
+        android:backgroundTint="@color/transparent_color"
         android:paddingRight="11dp"
         android:paddingBottom="1dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="2dp">
+        app:cardBackgroundColor="@color/transparent_color"
+        app:cardCornerRadius="0sp"
+        app:cardElevation="0sp"
+        app:cardMaxElevation="0sp">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
-            android:background="@drawable/chat_bubble_background"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@drawable/me_chat_bubble"
+            android:padding="4sp">
 
             <LinearLayout
                 android:id="@+id/linearLayout4"
                 android:layout_width="match_parent"
-                android:background="@drawable/chat_bubble_background"
                 android:layout_height="match_parent"
+                android:background="@drawable/chat_bubble_background"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -82,12 +86,12 @@
                 <TextView
                     android:id="@+id/m_time"
                     style="@style/chat_timings"
-                    android:textSize="12sp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginRight="1dp"
                     android:paddingBottom="0dp"
-                    android:text="11:15" />
+                    android:text="11:15"
+                    android:textSize="12sp" />
 
                 <ImageView
                     android:id="@+id/m_status"

@@ -179,7 +179,7 @@
     <string name="minutes_ago">minutes ago</string>
     <string name="hour_ago">an hour ago</string>
     <string name="hours_ago">hours ago</string>
-    <string name="yesterday">yesterday</string>
+    <string name="yesterday">Yesterday</string>
     <string name="daysago">" days ago"</string>
     <string name="wrong_otp_kindly_re_enter_the_otp">Wrong OTP, Kindly re-enter the OTP</string>
     <string name="msgIsDeleted">This message was deleted</string>

@@ -15,11 +15,11 @@
 
     <item
         android:id="@+id/menu_reply"
-        android:icon="@drawable/ic_reply_white_24dp"
-        android:orderInCategory="0"
+        android:icon="@drawable/ic_arrow_left"
         android:iconTint="@color/text_color17"
-        app:showAsAction="always"
-        android:title="Reply" />
+        android:orderInCategory="0"
+        android:title="Reply"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/menu_star"

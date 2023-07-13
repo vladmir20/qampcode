@@ -13,7 +13,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,7 +28,7 @@ public class NotificationSendClass {
     private static String server_key = "";
 
 
-    public static void pushNotificationsGroup(Context context,String groupId,String notification_titl, String notification_bod){
+    public static void pushNotificationsGroup(Context context, String groupId, String notification_titl, String notification_bod, String senderId){
         //Log.e("reached","gere");
         Toast.makeText(context, ""+groupId, Toast.LENGTH_SHORT).show();
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -44,6 +43,7 @@ public class NotificationSendClass {
             json.put("groupid",groupId);
             json.put("title",notification_titl);
             json.put("body",notification_bod);
+            json.put("sendersId",senderId);
             json.put("onClick","MesiboMessagingActivity");
             json.put("notificationType","MESSAGE_GROUP");
 

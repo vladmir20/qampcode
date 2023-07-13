@@ -315,7 +315,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
                     this.ib_showattach = (ImageButton) view.findViewById(R.id.showAttachment);
                     this.ib_showattach.setOnClickListener(new OnClickListener() {
                         public void onClick(View view) {
-                            MessagingFragment.this.mEditLayout.setVisibility(View.GONE);
+                            //MessagingFragment.this.mEditLayout.setVisibility(View.GONE);
                             MessagingFragment.this.mAttachLayout.setVisibility(View.VISIBLE);
                             isSharingOptionsOpen = true;
                         }
@@ -1236,7 +1236,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
                 Log.e("name",profile.getName());
             }
             else{
-                NotificationSendClass.pushNotificationsGroup(getContext(),String.valueOf(profile.getGroupId()),""+profile.getName(),""+msg.message.toString());
+                NotificationSendClass.pushNotificationsGroup(getContext(),String.valueOf(profile.getGroupId()),""+profile.getName(),""+msg.message.toString(),Mesibo.getSelfProfile().getName());
                     Log.e("groupId", new Gson().toJson(profile.getGroupId()));
                 Log.e("senderName", new Gson().toJson(Mesibo.getSelfProfile().getName()));
                     Log.e("userToken", AppConfig.getConfig().token);

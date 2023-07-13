@@ -38,7 +38,7 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="5dp"
-                android:src="@drawable/ic_arrow_left" />
+                android:src="@drawable/arrow_one" />
 
 
             <androidx.constraintlayout.widget.ConstraintLayout

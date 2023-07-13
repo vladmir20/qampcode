@@ -100,6 +100,7 @@ public class PushNotificationService extends FirebaseMessagingService{
 
 
       String titleFinal = ""; //getContactList(title,destination);
+      String bodyFinal="";
       Log.e("titleFinal",titleFinal);
       int id = new Random(System.currentTimeMillis()).nextInt(1000);
       Intent intent = new Intent(getApplicationContext(), MesiboMessagingActivity.class);
@@ -107,10 +108,12 @@ public class PushNotificationService extends FirebaseMessagingService{
       if(Objects.equals(remoteMessage.getData().get("notificationType"), "MESSAGE_GROUP")){
           intent.putExtra("groupid",Long.valueOf(Objects.requireNonNull(remoteMessage.getData().get("destinationId"))));
             titleFinal = title;
+            bodyFinal = remoteMessage.getData().get("sendersId")+ " : "+ text;
       }
       else{
           intent.putExtra("peer",remoteMessage.getData().get("destinationId"));
           titleFinal = getContactList(title,destination);
+          bodyFinal = text;
             }
       //intent.putExtra("groupid",Long.valueOf(1007));
       PendingIntent pIntent = PendingIntent.getActivity(this,id , intent,
@@ -137,7 +140,7 @@ public class PushNotificationService extends FirebaseMessagingService{
             Notification.Builder notification = new Notification.Builder(this, CHANNEL_ID)
                     .setSmallIcon(R.mipmap.qamp_mini_logo)
                     .setContentTitle(titleFinal)
-                    .setContentText(text)//remoteMessage.getData().toString()
+                    .setContentText(bodyFinal)//remoteMessage.getData().toString()
                     .setColor(ContextCompat.getColor(PushNotificationService.this, R.color.colorPrimary))
                     .setShowWhen(true)
                     //.setVibrate(new long[]{0, 500, 1000})

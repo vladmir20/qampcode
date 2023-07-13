@@ -66,12 +66,12 @@ public class MesiboConfiguration {
     public static final int HUDDLE_TOPIC_TEXT_COLOR_WITH_PICTURE = 0x000000;
     public static final int HUDDLE_TOPIC_TEXT_COLOR_WITHOUT_PICTURE = 0x000000;
 
-    public static final int TOPIC_TEXT_COLOR_WITH_PICTURE = 0xffa6abad;
+    public static final int TOPIC_TEXT_COLOR_WITH_PICTURE = 0xff000000;//R.color.text_color_black;//0xffa6abad;
     public static final int TOPIC_TEXT_COLOR_WITHOUT_PICTURE = 0xff000000;
     public static final int DELETEDTOPIC_TEXT_COLOR_WITHOUT_PICTURE = 0x77000000;
 
     public static final String STATUS_COLOR_WITHOUT_PICTURE = "#a6abad";
-    public static final String STATUS_COLOR_OVER_PICTURE = "#ffffffff";
+    public static final String STATUS_COLOR_OVER_PICTURE = "#a6abad";//"#ffffffff";
 
     public static final String TOPIC_COLOR = "#354052";
 
