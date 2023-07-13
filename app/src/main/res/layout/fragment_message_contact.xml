@@ -105,13 +105,13 @@
                                     android:text="@string/add_channel"
                                     android:textAllCaps="true"
                                     android:textColor="@color/text_color17"
-                                    android:textSize="7dp"
+                                    android:textSize="7sp"
                                     android:textStyle="bold" />
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
 
                         <View
-                            android:layout_width="10dp"
+                            android:layout_width="4dp"
                             android:layout_height="match_parent" />
 
 

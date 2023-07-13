@@ -67,7 +67,7 @@ public class ChannelNotificationCenter extends Fragment implements Backpressedli
                 super.onScrolled(recyclerView, dx, dy);
 
                 if (!isLoading && !recyclerView.canScrollVertically(1)) {
-                    loadMoreInviteList();
+                    //loadMoreInviteList();
                 }
             }
         });
@@ -79,7 +79,7 @@ public class ChannelNotificationCenter extends Fragment implements Backpressedli
 
         String url = "https://dcore.qampservices.in/v1/channel-service/invite";
         int pageNumber = 1;
-        int pageSize = 10;
+        int pageSize = 100;
         String userSessionToken = AppConfig.getConfig().token;
 
         // Create the request parameters
@@ -148,7 +148,6 @@ public class ChannelNotificationCenter extends Fragment implements Backpressedli
 
     private void loadMoreInviteList() {
         isLoading = true;
-
         String url = "https://dcore.qampservices.in/v1/channel-service/invite";
         int pageNumber = 2; // Assuming we need to load the second page
         int pageSize = 10;

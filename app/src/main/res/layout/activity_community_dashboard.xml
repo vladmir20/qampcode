@@ -27,7 +27,7 @@
             android:id="@+id/imageView10"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:alpha="0.8"
+            android:foreground="@drawable/image_with_overlay"
             android:scaleType="centerCrop"
             android:src="@drawable/demobg"
             app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +40,6 @@
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            app:tint="@color/white"
             android:src="@drawable/ic_back_white_18dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

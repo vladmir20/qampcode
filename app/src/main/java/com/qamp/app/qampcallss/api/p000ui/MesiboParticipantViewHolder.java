@@ -26,43 +26,32 @@ import com.mesibo.calls.api.R;
 
 /* renamed from: com.mesibo.calls.api.ui.MesiboParticipantViewHolder */
 public class MesiboParticipantViewHolder implements View.OnClickListener {
-    ImageButton hangupButton;
-    /* access modifiers changed from: private */
-    public boolean mAdminMode = false;
-    private boolean mAudio = false;
     /* access modifiers changed from: private */
     public final RelativeLayout mControls;
-    boolean mFullScreen = false;
-    /* access modifiers changed from: private */
-    public MesiboCall.MesiboGroupCall mGroupcall = null;
-    private float mHeight;
-    private ImageView mIndicatorView;
-    private Listener mListener = null;
-    MesiboCall.MesiboParticipant mStream = null;
-    private boolean mVideo = false;
     private final MesiboVideoView mVideoView;
     private final View mView;
-    private float mWidth;
-
-    /* renamed from: mX */
-    private float f6mX;
-
-    /* renamed from: mY */
-    private float f7mY;
-    ImageButton messageButton;
     private final TextView nameView;
+    /* access modifiers changed from: private */
+    public boolean mAdminMode = false;
+    /* access modifiers changed from: private */
+    public MesiboCall.MesiboGroupCall mGroupcall = null;
+    ImageButton hangupButton;
+    boolean mFullScreen = false;
+    MesiboCall.MesiboParticipant mStream = null;
+    ImageButton messageButton;
     ImageButton toggleAudioMuteButton;
     ImageButton toggleFullScreenButton;
     ImageButton toggleVideoMuteButton;
-
-    /* renamed from: com.mesibo.calls.api.ui.MesiboParticipantViewHolder$Listener */
-    public interface Listener {
-        void ParticipantViewHolder_onFullScreen(MesiboCall.MesiboParticipant mesiboParticipant, boolean z);
-
-        void ParticipantViewHolder_onHangup(MesiboCall.MesiboParticipant mesiboParticipant);
-
-        int ParticipantViewHolder_onStreamCount();
-    }
+    private boolean mAudio = false;
+    private float mHeight;
+    private ImageView mIndicatorView;
+    private Listener mListener = null;
+    private boolean mVideo = false;
+    private float mWidth;
+    /* renamed from: mX */
+    private float f6mX;
+    /* renamed from: mY */
+    private float f7mY;
 
     public MesiboParticipantViewHolder(Context context, Listener listener, MesiboCall.MesiboGroupCall mesiboGroupCall) {
         this.mGroupcall = mesiboGroupCall;
@@ -87,6 +76,10 @@ public class MesiboParticipantViewHolder implements View.OnClickListener {
 
     public static boolean deleteParticipantProfile(MesiboCall.MesiboParticipant mesiboParticipant) {
         return Mesibo.getProfile(mesiboParticipant.getAddress()) != null;
+    }
+
+    public static void setParticipantProfile(MesiboCall.MesiboParticipant mesiboParticipant) {
+        Mesibo.getProfile(mesiboParticipant.getAddress());
     }
 
     private void onStreamHangup(View view) {
@@ -157,10 +150,6 @@ public class MesiboParticipantViewHolder implements View.OnClickListener {
         this.toggleFullScreenButton.clearColorFilter();
     }
 
-    public static void setParticipantProfile(MesiboCall.MesiboParticipant mesiboParticipant) {
-        Mesibo.getProfile(mesiboParticipant.getAddress());
-    }
-
     private void setStreamIndicators() {
         boolean muteStatus = this.mStream.getMuteStatus(false);
         boolean muteStatus2 = this.mStream.getMuteStatus(true);
@@ -201,6 +190,28 @@ public class MesiboParticipantViewHolder implements View.OnClickListener {
 
     public MesiboCall.MesiboParticipant getParticipant() {
         return this.mStream;
+    }
+
+    public void setParticipant(MesiboCall.MesiboParticipant mesiboParticipant) {
+        reset();
+        this.mStream = mesiboParticipant;
+        if (this.mStream != null) {
+            MesiboParticipantViewHolder mesiboParticipantViewHolder = (MesiboParticipantViewHolder) mesiboParticipant.getUserData();
+            if (!(mesiboParticipantViewHolder == null || mesiboParticipantViewHolder == this || mesiboParticipantViewHolder.getParticipant() != this.mStream)) {
+                mesiboParticipantViewHolder.setParticipant((MesiboCall.MesiboParticipant) null);
+            }
+            mesiboParticipant.setUserData(this);
+            String name = mesiboParticipant.getName();
+            if (mesiboParticipant.isMe()) {
+                name = "You";
+            }
+            if (!name.isEmpty()) {
+                this.nameView.setText(name);
+            }
+            setStreamIndicators();
+            setStreamView();
+            setParticipantProfile(getParticipant());
+        }
     }
 
     public void layout(FrameLayout frameLayout) {
@@ -258,28 +269,6 @@ public class MesiboParticipantViewHolder implements View.OnClickListener {
         }
     }
 
-    public void setParticipant(MesiboCall.MesiboParticipant mesiboParticipant) {
-        reset();
-        this.mStream = mesiboParticipant;
-        if (this.mStream != null) {
-            MesiboParticipantViewHolder mesiboParticipantViewHolder = (MesiboParticipantViewHolder) mesiboParticipant.getUserData();
-            if (!(mesiboParticipantViewHolder == null || mesiboParticipantViewHolder == this || mesiboParticipantViewHolder.getParticipant() != this.mStream)) {
-                mesiboParticipantViewHolder.setParticipant((MesiboCall.MesiboParticipant) null);
-            }
-            mesiboParticipant.setUserData(this);
-            String name = mesiboParticipant.getName();
-            if (mesiboParticipant.isMe()) {
-                name = "You";
-            }
-            if (!name.isEmpty()) {
-                this.nameView.setText(name);
-            }
-            setStreamIndicators();
-            setStreamView();
-            setParticipantProfile(getParticipant());
-        }
-    }
-
     public void setStreamControls() {
         if (!this.mFullScreen) {
             if (this.mStream.isMe()) {
@@ -327,5 +316,14 @@ public class MesiboParticipantViewHolder implements View.OnClickListener {
     /* access modifiers changed from: protected */
     public void stopVideoView() {
         this.mVideoView.stop();
+    }
+
+    /* renamed from: com.mesibo.calls.api.ui.MesiboParticipantViewHolder$Listener */
+    public interface Listener {
+        void ParticipantViewHolder_onFullScreen(MesiboCall.MesiboParticipant mesiboParticipant, boolean z);
+
+        void ParticipantViewHolder_onHangup(MesiboCall.MesiboParticipant mesiboParticipant);
+
+        int ParticipantViewHolder_onStreamCount();
     }
 }

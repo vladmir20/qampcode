@@ -86,7 +86,9 @@ dependencies {
     //implementation "com.mesibo.api:uihelper:${project.MesiboVersion_UiHelper}"
     implementation "com.mesibo.api:mesibo:${project.MesiboVersion_Api}"
     implementation "com.mesibo.api:ui:${project.MesiboVersion_Ui}"
+
     //implementation "com.mesibo.api:mediapicker:${project.MesiboVersion_Ui}"
+
     implementation 'com.github.dhaval2404:imagepicker:2.1'
 
     implementation "com.mesibo.api:callui:${project.MesiboVersion_CallUi}"

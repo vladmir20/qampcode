@@ -203,7 +203,6 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         this.mMesiboUIOptions = MesiboUI.getConfig();
         this.mSelectionMode = MesiboUserListFragment.MODE_MESSAGELIST;
         this.mReadQuery = null;
-        Log.e("Message",new Gson().toJson(AppConfig.getConfig().token));
         Bundle b = getArguments();
         if (b != null) {
             this.mSelectionMode = b.getInt(MesiboUserListFragment.MESSAGE_LIST_MODE, MesiboUserListFragment.MODE_MESSAGELIST);
@@ -370,7 +369,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
 
     private void fetchDataFromApi(int pageNumber) {
         String url = "https://dcore.qampservices.in/v1/channel-service/ownchannel";
-        int pageSize = 10;
+        int pageSize = 100;
         String userSessionToken = AppConfig.getConfig().token;
         int desiredItemCount = Integer.MAX_VALUE; // Maximum number of items available
 
@@ -403,7 +402,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                                     String logoImageUrl = itemObject.getString("logoImageUrl");
                                     // Parse other fields from the JSON object
                                     MyChannelModal dataModel = new MyChannelModal(uid, type, title, description,
-                                            creationDate, active, deleted ,haveGeoLocation, latitude, longitude,
+                                            creationDate, active, deleted, haveGeoLocation, latitude, longitude,
                                             updatedDate, emailid, domain, mobileNumber, logoImageUrl);
                                     dataModelList.add(dataModel);
                                 }
@@ -411,10 +410,10 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                                 adapter.notifyDataSetChanged();
 
                                 // Check if desired item count is reached
-                                if (dataModelList.size() < desiredItemCount && dataArray.length() > 0) {
-                                    // Fetch next page
-                                    fetchDataFromApi(pageNumber + 1);
-                                }
+//                                if (dataModelList.size() < desiredItemCount && dataArray.length() > 0) {
+//                                    // Fetch next page
+//                                    fetchDataFromApi(pageNumber + 1);
+//                                }
                             } else {
                                 Toast.makeText(getContext(), "API response not successful", Toast.LENGTH_SHORT).show();
                             }
@@ -1142,7 +1141,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                 textViewTitle.setText(dataModel.getTitle());
                 Glide.with(getContext())
                         .load(dataModel.getLogoImageUrl())
-                        .placeholder(R.drawable.qamp_logo_outlined) // Placeholder image
+                        .placeholder(R.drawable.circular_background) // Placeholder image
                         .error(R.drawable.demoqamp) // Error image (if loading fails)
                         .into(channelImage);
 //                textViewDescription.setText(dataModel.getDescription());
@@ -1612,7 +1611,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         String toBeDate = toBeSent.format(llDate);
 
         if(llDate.before(ccDAte) && llDate.after(yyyDate))
-            return "Yesterday";
+            return "yesterday";
         else if(llDate.equals(ccDAte))return timeSent;
         else if(llDate.before(yyyDate))return toBeDate;
         else return toBeDate;

@@ -999,7 +999,7 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                         @Override
                         public void onClick(View v) {
                             if (!MesiboCall.getInstance().callUi(getContext(), mUserr, false))
-                                MesiboCall.getInstance().callUiForExistingCall(getContext());
+                                 MesiboCall.getInstance().callUiForExistingCall(getContext());
 //                            Toast.makeText(mContext, "Call Function", Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -1007,8 +1007,8 @@ public class ContactsBottomSheetFragment extends BottomSheetDialogFragment
                     holder.videoCallIcon.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (!MesiboCall.getInstance().callUi(getApplicationContext(), mUserr, true))
-                                //MesiboCall.getInstance().callUiForExistingCall(getApplicationContext());
+                            if (!MesiboCall.getInstance().callUi(getContext(), mUserr, true))
+                                MesiboCall.getInstance().callUiForExistingCall(getApplicationContext());
                                 launchCustomCallActivity(destination, true, false);//                            Toast.makeText(mContext, "Video Call Function", Toast.LENGTH_SHORT).show();
 
                         }
