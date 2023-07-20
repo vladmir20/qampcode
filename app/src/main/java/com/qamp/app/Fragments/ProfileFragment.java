@@ -26,7 +26,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -225,6 +227,9 @@ public class ProfileFragment extends Fragment implements MesiboProfile.Listener,
         SharedPreferences preferences = getActivity().getSharedPreferences("Settings", MODE_PRIVATE);
         String language = preferences.getString("app_lang", "");
         current_Lang.setText(getResources().getString(R.string.current_language) + language);
+        MesiboProfile profile = getProfile();
+        profile.addListener(this);
+        profile = getProfile(); // in case profile was updated in between
         circleImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -242,25 +247,26 @@ public class ProfileFragment extends Fragment implements MesiboProfile.Listener,
         });
         editPhoto.setOnClickListener(this);
         cameraIcon.setOnClickListener(this);
+        MesiboProfile finalProfile = profile;
         edit1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String editOne = "editOne";
-                bottomFragment(editOne);
+                bottomFragment(editOne, finalProfile);
             }
         });
         edit2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String editTwo = "editTwo";
-                bottomFragment(editTwo);
+                bottomFragment(editTwo,finalProfile);
             }
         });
         edit4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String editFour = "editFour";
-                bottomFragment(editFour);
+                bottomFragment(editFour,finalProfile);
             }
         });
 
@@ -421,9 +427,7 @@ public class ProfileFragment extends Fragment implements MesiboProfile.Listener,
 //        } else {
 //            mEmojiStatusEditText.setText(AppConfig.getConfig().status);
 //        }
-        MesiboProfile profile = getProfile();
-        profile.addListener(this);
-        profile = getProfile(); // in case profile was updated in between
+
         setUserPicture();
         updateUI(profile);
         setUserPicture();
@@ -1100,7 +1104,7 @@ public class ProfileFragment extends Fragment implements MesiboProfile.Listener,
         return width;
     }
 
-    private void bottomFragment(String string) {
+    private void bottomFragment(String string,MesiboProfile profile) {
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getContext());
         switch (string) {
             case "editOne":
@@ -1108,6 +1112,34 @@ public class ProfileFragment extends Fragment implements MesiboProfile.Listener,
                 TextView cancel = bottomSheetDialog.findViewById(R.id.cancel);
                 TextView submit = bottomSheetDialog.findViewById(R.id.save);
                 EditText name = bottomSheetDialog.findViewById(R.id.name);
+                TextView count = bottomSheetDialog.findViewById(R.id.textView6);
+
+                name.setText(profile.getName());
+                int counter = name.getText().length();
+                count.setText(String.valueOf(50-counter));
+
+                name.addTextChangedListener(new TextWatcher() {
+
+
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        String currentText = charSequence.toString();
+                        int currentLength = currentText.length();
+                        count.setText(String.valueOf(50-currentLength));
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+
+                    }
+
+                });
+
 
                 submit.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -1142,6 +1174,29 @@ public class ProfileFragment extends Fragment implements MesiboProfile.Listener,
                 TextView cancel1 = bottomSheetDialog.findViewById(R.id.cancel1);
                 TextView submit1 = bottomSheetDialog.findViewById(R.id.submit1);
                 EditText about = bottomSheetDialog.findViewById(R.id.about);
+                TextView countOne = bottomSheetDialog.findViewById(R.id.textView10);
+                about.setText(profile.getStatus());
+                int counterAbout = about.getText().length();
+                countOne.setText(String.valueOf(100-counterAbout));
+
+                about.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        String currentText = charSequence.toString();
+                        int currentLength = currentText.length();
+                        countOne.setText(String.valueOf(100-currentLength));
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+
+                    }
+                });
 
                 submit1.setOnClickListener(new View.OnClickListener() {
                     @Override

@@ -102,8 +102,8 @@ public class MessageViewHolder extends MesiboRecycleViewHolder implements View.O
             this.m_titleLayout.setVisibility(View.GONE);
         }
         ImageView imageView = this.mFavourite;
-        if (m.getFavourite().booleanValue()) {
-            i = 0;
+        if (m.getFavourite()) {
+            i = View.VISIBLE;
         }
         imageView.setVisibility(i);
         if ((this.mData.getTitle() == null || this.mData.getTitle().isEmpty()) && (this.mData.getMessage() == null || this.mData.getMessage().isEmpty())) {

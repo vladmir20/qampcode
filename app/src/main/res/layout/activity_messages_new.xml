@@ -197,7 +197,7 @@
                         android:maxLines="1"
                         android:text="@string/username"
                         android:textColor="@color/text_color_black_white"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/viewProfile_text"
@@ -276,7 +276,7 @@
                                 android:fontFamily="@font/inter_medium"
                                 android:text="@string/notifications"
                                 android:textColor="@color/text_color17"
-                                android:textSize="14sp" />
+                                android:textSize="16sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -290,7 +290,7 @@
                                 android:text="@string/new_notifications_indicator"
                                 android:textAlignment="viewStart"
                                 android:textColor="@color/text_color_orange"
-                                android:textSize="12sp" />
+                                android:textSize="14sp" />
 
                         </LinearLayout>
 
@@ -312,6 +312,7 @@
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:paddingLeft="16sp"
+                        android:paddingTop="8sp"
                         android:paddingBottom="8sp">
 
                         <ImageView
@@ -331,7 +332,7 @@
                                 android:fontFamily="@font/inter_medium"
                                 android:text="@string/account_settings"
                                 android:textColor="@color/text_color17"
-                                android:textSize="14sp" />
+                                android:textSize="16sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -343,7 +344,7 @@
                                 android:text="@string/Update_info_text"
                                 android:textAlignment="viewStart"
                                 android:textColor="@color/text_color15"
-                                android:textSize="12sp" />
+                                android:textSize="14sp" />
 
                         </LinearLayout>
 
@@ -395,7 +396,7 @@
                             android:fontFamily="@font/inter_medium"
                             android:text="@string/Invite_text"
                             android:textColor="@color/text_color17"
-                            android:textSize="12sp" />
+                            android:textSize="14sp" />
 
 
                     </LinearLayout>

@@ -25,7 +25,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/grey_200"
+            android:background="@color/background_color_white"
+            android:elevation="10dp"
             android:orientation="horizontal"
             app:contentInsetEnd="0dp"
             app:contentInsetLeft="0dp"
@@ -39,13 +40,13 @@
                 android:weightSum="5">
 
                 <TextView
-                    android:gravity="left"
                     android:id="@+id/profile_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="5"
                     android:fontFamily="@font/inter_medium"
+                    android:gravity="left"
                     android:maxLines="1"
                     android:text="@string/profile"
                     android:textColor="@color/black"

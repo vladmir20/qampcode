@@ -24,12 +24,12 @@ public class NotificationSendClass {
 
 //    private static String BASE_URL = "https://dcore.qampservices.in/v1/notification-service/notification/send";
 //    private static String server_key = "";
-    private static String BASE_URL = "https://dcore.qampservices.in/v1/notification-service/notification/";//mobilenumber/send
+    private static String BASE_URL = "http://dcore.qampservices.in/v1/notification-service/notification/";//mobilenumber/send
     private static String server_key = "";
 
 
-    public static void pushNotificationsGroup(Context context, String groupId, String notification_titl, String notification_bod, String senderId){
-        //Log.e("reached","gere");
+    public static void pushNotificationsGroup(Context context, String groupId, String notification_titl, String notification_bod, String senderId, String senderAdd){
+
         Toast.makeText(context, ""+groupId, Toast.LENGTH_SHORT).show();
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -37,14 +37,13 @@ public class NotificationSendClass {
 
         try {
             JSONObject json = new JSONObject();
-            //shivam user id - da544db5-2ddb-4cbb-8c38-dae3dc79e0c4
-            //shivam2 user id - 2b09782a-1941-4bf9-a6e4-408516c304f5
-            //json.put("userId", "2b09782a-1941-4bf9-a6e4-408516c304f5");
+
 
             json.put("groupid",groupId);
             json.put("title",notification_titl);
             json.put("body",notification_bod);
             json.put("sendersId",senderId);
+            json.put("sendersAdd",senderAdd);
             json.put("onClick","MesiboMessagingActivity");
             json.put("notificationType","MESSAGE_GROUP");
 
@@ -52,9 +51,6 @@ public class NotificationSendClass {
                     , json, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
-//                    Toast.makeText(context, ""+response, Toast.LENGTH_LONG).show();
-//                    Toast.makeText(context, "Here Response", Toast.LENGTH_SHORT).show();
-//                    Log.e("responseGroup",new Gson().toJson(response));
 
                 }
             }, new Response.ErrorListener() {

@@ -66,6 +66,7 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
     Bitmap mGroupImage = null;
     int mGroupMode;
     ImageView mGroupPicture;
+    ImageView backButton;
     EditText mGroupSubjectEditor;
     MesiboProfile mProfile = null;
     RecyclerView mRecyclerView;
@@ -111,6 +112,7 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_create_new_group, container, false);
         this.mGroupSubjectEditor = v.findViewById(R.id.nugroup_editor);
+        this.backButton = v.findViewById(R.id.imageView2);
         this.mGroupId = 0;
         Mesibo.addListener(this);
         if (this.mGroupEditBundle != null) {
@@ -121,6 +123,13 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
                 this.mProfile.getGroupProfile().getMembers(256, true, this);
             }
         }
+
+        this.backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().finish();
+            }
+        });
         this.mCreateGroupBtn = v.findViewById(R.id.nugroup_create_btn);
         this.members_list = v.findViewById(R.id.members_list);
         this.mCreateGroupBtn.setOnClickListener(new View.OnClickListener() {
@@ -197,6 +206,8 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(this.mRecyclerView.getContext()));
         this.mAdapter = new GroupMemeberAdapter(getActivity(), UserListFragment.mMemberProfiles);
         this.mRecyclerView.setAdapter(this.mAdapter);
+        this.members_list.setText(UserListFragment.mMemberProfiles.size()+""+"members");
+
 //        this.mCharCounter = v.findViewById(R.id.nugroup_counter);
 //        this.mCharCounter.setText(String.valueOf(50));
         this.mGroupSubjectEditor.setFilters(new InputFilter[]{new InputFilter.LengthFilter(50)});
@@ -457,6 +468,7 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
             holder.mDeleteContact.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     GroupMemeberAdapter.this.removeItem(position);
+
                 }
             });
         }

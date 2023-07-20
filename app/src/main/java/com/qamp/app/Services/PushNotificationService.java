@@ -108,7 +108,8 @@ public class PushNotificationService extends FirebaseMessagingService{
       if(Objects.equals(remoteMessage.getData().get("notificationType"), "MESSAGE_GROUP")){
           intent.putExtra("groupid",Long.valueOf(Objects.requireNonNull(remoteMessage.getData().get("destinationId"))));
             titleFinal = title;
-            bodyFinal = remoteMessage.getData().get("sendersId")+ " : "+ text;
+            String senderName = getContactList(remoteMessage.getData().get("sendersId"),remoteMessage.getData().get("sendersAdd"));
+            bodyFinal = senderName+ " : "+ text;
       }
       else{
           intent.putExtra("peer",remoteMessage.getData().get("destinationId"));

@@ -147,7 +147,7 @@
                                 android:maxLines="1"
                                 android:text="@string/name_text"
                                 android:textColor="@color/text_color_black_white"
-                                android:textSize="14sp" />
+                                android:textSize="16sp" />
 
                             <ImageView
                                 android:id="@+id/edit1"

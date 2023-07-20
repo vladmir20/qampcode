@@ -755,6 +755,27 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
 //                if (getContext().getResources().getString(R.string.online_text)!=null)
                // status = getContext().getResources().getString(R.string.online_text);
                 status = "Online";
+            }else if (!profile.isOnline() && 0L == groupid && !profile.isGroup()){
+                long lastSeen = profile.getLastSeen();
+                //status = "Last seen ";
+                //else {
+                    String seenStatus = "";
+                    if (lastSeen >= 2 * 3600 * 24) {
+                        seenStatus = (int) (lastSeen / (3600 * 24)) + " days ago";
+                    } else if (lastSeen >= 24 * 3600) {
+                        seenStatus = "yesterday";
+                    } else if (lastSeen >= 2 * 3600) {
+                        seenStatus = (int) (lastSeen / (3600)) + " hours ago";
+                    } else if (lastSeen >= 3600) {
+                        seenStatus = "an hour ago";
+                    } else if (lastSeen >= 120) {
+                        seenStatus = (int) (lastSeen / 60) + " minutes ago";
+                    } else {
+                        seenStatus = "a few moments ago";
+                    }
+                status = "Last seen " + seenStatus;
+                   // userstatus.setText("Last seen " + seenStatus);
+                //}
             }
 
             return this.updateUserStatus(status, 0L);
@@ -1236,9 +1257,9 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
                 Log.e("name",profile.getName());
             }
             else{
-                NotificationSendClass.pushNotificationsGroup(getContext(),String.valueOf(profile.getGroupId()),""+profile.getName(),""+msg.message.toString(),Mesibo.getSelfProfile().getName());
+                NotificationSendClass.pushNotificationsGroup(getContext(),String.valueOf(profile.getGroupId()),""+profile.getName(),""+msg.message.toString(),Mesibo.getSelfProfile().getName(),Mesibo.getSelfProfile().getAddress());
                     Log.e("groupId", new Gson().toJson(profile.getGroupId()));
-                Log.e("senderName", new Gson().toJson(Mesibo.getSelfProfile().getName()));
+                Log.e("senderName", new Gson().toJson(Mesibo.getSelfProfile().getAddress()));
                     Log.e("userToken", AppConfig.getConfig().token);
             }
              this.mEmojiEditText.getText().clear();

@@ -49,10 +49,11 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
+                    android:fontFamily="@font/inter_medium"
                     android:gravity="center|start"
                     android:text="@string/new_group"
                     android:textColor="@color/text_color17"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/nugroup_create_btn"
@@ -62,10 +63,11 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
+                    android:fontFamily="@font/inter_medium"
                     android:gravity="end|center"
                     android:text="@string/start_conversation"
                     android:textColor="@color/text_color17"
-                    android:textSize="12sp" />
+                    android:textSize="10sp" />
 
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -108,6 +110,12 @@
                     app:layout_constraintStart_toStartOf="@+id/circleImageView"
                     app:layout_constraintTop_toTopOf="@+id/circleImageView" />
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </RelativeLayout>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -134,9 +142,8 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:backgroundTint="@color/background_tint14"
-                    android:drawableRight="@drawable/cross_edit"
                     android:fontFamily="@font/inter_semibold"
-                    android:hint="@string/enter_group_name"
+                    android:hint="Info: Represent Your Group Identity...."
                     android:inputType="textPersonName"
                     android:lineHeight="20sp"
                     android:lineSpacingExtra="7sp"
@@ -162,14 +169,13 @@
 
                 <EditText
                     android:id="@+id/nugroup_editor"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:backgroundTint="@color/background_tint14"
-                    android:drawableRight="@drawable/cross_edit"
                     android:fontFamily="@font/inter_semibold"
-                    android:hint="@string/enter_group_desc"
+                    android:hint="Info : Few words to explain what this group represents....."
                     android:inputType="textPersonName"
                     android:lineHeight="20sp"
                     android:lineSpacingExtra="7sp"
@@ -274,12 +280,14 @@
                 android:id="@+id/members_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
                 android:layout_marginTop="10dp"
+                android:fontFamily="@font/inter_medium"
+                android:paddingLeft="16sp"
                 android:text="7 Members"
                 android:textColor="@color/text_color17"
                 android:textSize="14sp"
-                app:layout_constraintTop_toBottomOf="@+id/view10" />
+                app:layout_constraintTop_toBottomOf="@+id/view10"
+                tools:layout_editor_absoluteX="16dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/nugroup_members"

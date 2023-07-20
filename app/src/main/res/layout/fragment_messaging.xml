@@ -72,7 +72,10 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
             android:animateLayoutChanges="true"
+            android:background="@drawable/qamp_outline"
             android:orientation="vertical"
             android:padding="2dp"
             android:visibility="gone">
@@ -86,32 +89,41 @@
                     android:id="@+id/linearLayout5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/qamp_outline"
                     android:orientation="vertical"
                     android:padding="5dp"
                     app:layout_constraintEnd_toStartOf="@+id/linearLayout6"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <ImageButton
-                        android:id="@+id/gallery"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:alpha="0.6"
-                        android:background="@android:color/transparent"
-                        android:clickable="true"
-                        android:src="@drawable/photo_msg"
-                        android:visibility="visible" />
+                    <LinearLayout
+                        android:layout_width="45sp"
+                        android:layout_height="45sp"
+                        android:background="@drawable/qamp_outline"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/gallery"
+                            android:layout_width="24sp"
+                            android:layout_height="24sp"
+                            android:layout_gravity="center"
+                            android:alpha="0.6"
+                            android:background="@android:color/transparent"
+                            android:clickable="true"
+                            android:src="@drawable/gallery_filled"
+                            android:visibility="visible" />
+                    </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/inter_regular"
                         android:gravity="center"
                         android:text="@string/gallery_text"
                         android:textColor="@color/text_color17"
-                        android:textSize="12sp" />
+                        android:textSize="10sp" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -119,31 +131,39 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:background="@drawable/qamp_outline"
                     android:orientation="vertical"
                     android:padding="5dp"
                     app:layout_constraintEnd_toStartOf="@+id/linearLayout7"
                     app:layout_constraintStart_toEndOf="@+id/linearLayout5"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <ImageButton
-                        android:id="@+id/video"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:alpha="0.6"
-                        android:background="@android:color/transparent"
-                        android:src="@drawable/video_msg"
-                        android:visibility="visible" />
+                    <LinearLayout
+                        android:layout_width="45sp"
+                        android:layout_height="45sp"
+                        android:background="@drawable/qamp_outline"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/video"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:alpha="0.6"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/camera_light_filled__1_"
+                            android:visibility="visible" />
+                    </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/inter_regular"
                         android:gravity="center"
                         android:text="@string/video_text"
                         android:textColor="@color/text_color17"
-                        android:textSize="12sp" />
+                        android:textSize="10sp" />
 
                 </LinearLayout>
 
@@ -152,31 +172,40 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:background="@drawable/qamp_outline"
                     android:orientation="vertical"
                     android:padding="5dp"
                     app:layout_constraintEnd_toStartOf="@+id/linearLayout8"
                     app:layout_constraintStart_toEndOf="@+id/linearLayout6"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <ImageButton
-                        android:id="@+id/location"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:alpha="0.6"
-                        android:background="@android:color/transparent"
-                        android:src="@drawable/location_msg"
-                        android:visibility="visible" />
+                    <LinearLayout
+                        android:layout_width="45sp"
+                        android:layout_height="45sp"
+                        android:background="@drawable/qamp_outline"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/location"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:alpha="0.6"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/group_512259"
+                            android:visibility="visible" />
+                    </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/inter_regular"
                         android:gravity="center"
                         android:text="@string/location_text"
                         android:textColor="@color/text_color17"
-                        android:textSize="12sp" />
+                        android:textSize="10sp" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -184,7 +213,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:background="@drawable/qamp_outline"
+                    android:gravity="center"
                     android:orientation="vertical"
                     android:padding="5dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -192,25 +221,33 @@
                     app:layout_constraintTop_toTopOf="parent">
 
 
-                    <ImageButton
-                        android:id="@+id/document_btn"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:alpha="0.6"
-                        android:background="@android:color/transparent"
-                        android:src="@drawable/doc_msg"
-                        android:visibility="visible" />
+                    <LinearLayout
+                        android:layout_width="45sp"
+                        android:layout_height="45sp"
+                        android:background="@drawable/qamp_outline"
+                        android:orientation="horizontal">
 
+                        <ImageButton
+                            android:id="@+id/document_btn"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:alpha="0.6"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/file"
+                            android:visibility="visible" />
+                    </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/inter_regular"
                         android:gravity="center"
                         android:text="@string/document_text"
                         android:textColor="@color/text_color17"
-                        android:textSize="12sp" />
+                        android:textSize="10sp" />
+
 
                 </LinearLayout>
 
