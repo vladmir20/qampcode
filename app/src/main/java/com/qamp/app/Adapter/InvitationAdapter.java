@@ -21,7 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-import com.qamp.app.Activity.CommunityDashboard;
+import com.qamp.app.Activity.ChannelActivities.CommunityDashboard;
 import com.qamp.app.Modal.InviteModal;
 import com.qamp.app.R;
 import com.qamp.app.Utils.AppConfig;

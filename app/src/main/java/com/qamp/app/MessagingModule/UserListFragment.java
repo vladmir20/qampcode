@@ -56,7 +56,6 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.gson.Gson;
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboGroupProfile;
 import com.mesibo.api.MesiboMessage;
@@ -65,11 +64,11 @@ import com.mesibo.api.MesiboProfile;
 import com.mesibo.api.MesiboReadSession;
 import com.mesibo.emojiview.EmojiconTextView;
 import com.qamp.app.Activity.ChannelActivities.AddChannelActivities;
-import com.qamp.app.Activity.CommunityDashboard;
+import com.qamp.app.Activity.ChannelActivities.CommunityDashboard;
 import com.qamp.app.Activity.QampContactScreen;
-import com.qamp.app.Modal.MessageTimeDate;
 import com.qamp.app.Interfaces.OnChannelItemClickListener;
 import com.qamp.app.MessagingModule.AllUtils.LetterTileProvider;
+import com.qamp.app.Modal.MessageTimeDate;
 import com.qamp.app.Modal.MyChannelModal;
 import com.qamp.app.R;
 import com.qamp.app.Utils.AppConfig;
@@ -84,8 +83,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Locale;
@@ -268,7 +267,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
 
         this.mRecyclerView = view.findViewById(R.id.message_contact_frag_rv);
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(this.mRecyclerView.getContext()));
-        Log.e("testtest",String.valueOf(this.mUserProfiles.size()));
+        Log.e("testtest", String.valueOf(this.mUserProfiles.size()));
         this.mAdapter = new MessageContactAdapter(getActivity(), this, this.mUserProfiles, this.mSearchResultList, this.mUserProfilesWithTime);
         this.mRecyclerView.setAdapter(this.mAdapter);
         this.horizontal_channel_recycler = view.findViewById(R.id.horizontal_channel_recycler);
@@ -368,7 +367,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
 
 
     private void fetchDataFromApi(int pageNumber) {
-        String url = "https://dcore.qampservices.in/v1/channel-service/ownchannel";
+        String url = "http://dcore.qampservices.in/v1/channel-service/ownchannel";
         int pageSize = 100;
         String userSessionToken = AppConfig.getConfig().token;
         int desiredItemCount = Integer.MAX_VALUE; // Maximum number of items available
@@ -686,33 +685,33 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                     this.mAdhocUserList.add(user);
 
                     //Log.e("group before" , String.valueOf(mAdhocUserList));
-                    for (int i=0; i<users.size(); i++){
-                        if (users.get(i).isGroup()){
-                            if(!mAdhocUserList.contains(users.get(i)))
-                            this.mAdhocUserList.add(users.get(i));
+                    for (int i = 0; i < users.size(); i++) {
+                        if (users.get(i).isGroup()) {
+                            if (!mAdhocUserList.contains(users.get(i)))
+                                this.mAdhocUserList.add(users.get(i));
                         }
                     }
                     /***if(users.size()>0){
-                        for(int k = 0 ; k< users.size() ;k++ ){
-                            MessageTimeDate messageTimeDate = new MessageTimeDate();
-                            messageTimeDate.setUserData(users.get(k));
+                     for(int k = 0 ; k< users.size() ;k++ ){
+                     MessageTimeDate messageTimeDate = new MessageTimeDate();
+                     messageTimeDate.setUserData(users.get(k));
 
-                            UserData userdata = new UserData(users.get(k));
-                                    userdata = UserData.getUserData(users.get(k));
-                            userdata.setUser(users.get(k));
-                            //userdata.setUserListPosition(position);
-                            UserData data = userdata;
+                     UserData userdata = new UserData(users.get(k));
+                     userdata = UserData.getUserData(users.get(k));
+                     userdata.setUser(users.get(k));
+                     //userdata.setUserListPosition(position);
+                     UserData data = userdata;
 
-                            try {
-                                String time = evaluateDate(data.getDate(),data.getTime());
-                                messageTimeDate.setLastTime(time);
-                            } catch (ParseException e) {
-                                e.printStackTrace();
-                            }
+                     try {
+                     String time = evaluateDate(data.getDate(),data.getTime());
+                     messageTimeDate.setLastTime(time);
+                     } catch (ParseException e) {
+                     e.printStackTrace();
+                     }
 
-                            mUserProfilesWithTime.add(messageTimeDate);
-                            //Log.e("userDarta",new Gson().toJson(mUserProfilesWithTime));
-                        }}*/
+                     mUserProfilesWithTime.add(messageTimeDate);
+                     //Log.e("userDarta",new Gson().toJson(mUserProfilesWithTime));
+                     }}*/
                     //Log.e("groups", String.valueOf(mAdhocUserList));
                 } else {
                     this.mAdhocUserList.add(0, user);
@@ -922,8 +921,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             this.mDbSession.read(readCount);
             Log.e("tagtag", String.valueOf(this.mUserProfiles.size()));
 
-        }
-        else {
+        } else {
             this.mUserProfiles.clear();
             ArrayList profiles = Mesibo.getSortedUserProfiles();
             if (profiles != null && profiles.size() > 0 && !TextUtils.isEmpty(this.mMesiboUIOptions.createGroupTitle) && this.mSelectionMode == MesiboUserListFragment.MODE_SELECTCONTACT) {
@@ -1065,17 +1063,51 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
     public void Mesibo_onGroupError(MesiboProfile mesiboProfile, long error) {
     }
 
+    private String evaluateDate(String date, String time) throws ParseException {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
+        SimpleDateFormat format1 = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
+        SimpleDateFormat toBeSent = new SimpleDateFormat("d/M/yy", Locale.getDefault());
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm", Locale.getDefault());
+        SimpleDateFormat timeFormat1 = new SimpleDateFormat("hh:mm aa", Locale.getDefault());
+
+        Date currentDate = Calendar.getInstance().getTime();
+
+        String cDate = sdf.format(currentDate);
+
+
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -2);
+        Date yDAte = cal.getTime();
+        String yyDate = sdf.format(yDAte);
+        Date ccDAte = sdf.parse(cDate);
+        Date llDate = format1.parse(date);
+        Date yyyDate = sdf.parse(yyDate);
+        Date timeS = timeFormat.parse(time);
+        String timeSent = timeFormat1.format(timeS);
+
+        String toBeDate = toBeSent.format(llDate);
+
+        if (llDate.before(ccDAte) && llDate.after(yyyDate))
+            return "yesterday";
+        else if (llDate.equals(ccDAte)) return timeSent;
+        else if (llDate.before(yyyDate)) return toBeDate;
+        else return toBeDate;
+    }
+
     private class MyChannelAdapter extends RecyclerView.Adapter<MyChannelAdapter.ViewHolder> {
         private static final int SHIMMER_ITEM_COUNT = 15;
         private OnChannelItemClickListener listener;
         private ArrayList<MyChannelModal> dataList;
         private boolean showShimmer = true;
+
+        public MyChannelAdapter(ArrayList<MyChannelModal> dataList) {
+            this.dataList = dataList;
+        }
+
         public void setDataList(ArrayList<MyChannelModal> dataList) {
             this.dataList = dataList;
             notifyDataSetChanged();
-        }
-        public MyChannelAdapter(ArrayList<MyChannelModal> dataList) {
-            this.dataList = dataList;
         }
 
         public void setOnItemClickListener(OnChannelItemClickListener listener) {
@@ -1100,7 +1132,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                 holder.shimmerFrameLayout.setShimmer(null); // Clear shimmer effect
                 MyChannelModal dataModel = dataList.get(position);
                 holder.bindData(dataModel);
-             }
+            }
         }
 
         @Override
@@ -1214,13 +1246,13 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             if (this.mHost.mSelectionMode == MesiboUserListFragment.MODE_MESSAGELIST) {
                 holder.mContactsTime.setVisibility(View.VISIBLE);
                 try {
-                    String text = evaluateDate(data.getDate(),data.getTime());
+                    String text = evaluateDate(data.getDate(), data.getTime());
                     holder.mContactsTime.setText(text);
-                //if(this.finalList.size()>0){holder.mContactsTime.setText(this.finalList.get(position).getLastTime());}
+                    //if(this.finalList.size()>0){holder.mContactsTime.setText(this.finalList.get(position).getLastTime());}
 
                 } catch (ParseException e) {
-                holder.mContactsTime.setText("");
-                      e.printStackTrace();
+                    holder.mContactsTime.setText("");
+                    e.printStackTrace();
                 }
 
                 //Log.e("Time",data.getTime());
@@ -1583,37 +1615,5 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                 this.mHighlightView = (RelativeLayout) view.findViewById(R.id.highlighted_view);
             }
         }
-    }
-
-    private String evaluateDate(String date, String time) throws ParseException {
-
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy",Locale.getDefault());
-        SimpleDateFormat format1 = new SimpleDateFormat("dd MMM yyyy",Locale.getDefault());
-        SimpleDateFormat toBeSent = new SimpleDateFormat("d/M/yy",Locale.getDefault());
-        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm",Locale.getDefault());
-        SimpleDateFormat timeFormat1 = new SimpleDateFormat("hh:mm aa",Locale.getDefault());
-
-        Date currentDate =  Calendar.getInstance().getTime();
-
-        String cDate = sdf.format(currentDate);
-
-
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.DATE, -2);
-        Date yDAte = cal.getTime();
-        String yyDate = sdf.format(yDAte);
-        Date ccDAte = sdf.parse(cDate);
-        Date llDate = format1.parse(date);
-        Date yyyDate = sdf.parse(yyDate);
-        Date timeS = timeFormat.parse(time);
-        String timeSent = timeFormat1.format(timeS);
-
-        String toBeDate = toBeSent.format(llDate);
-
-        if(llDate.before(ccDAte) && llDate.after(yyyDate))
-            return "yesterday";
-        else if(llDate.equals(ccDAte))return timeSent;
-        else if(llDate.before(yyyDate))return toBeDate;
-        else return toBeDate;
     }
 }

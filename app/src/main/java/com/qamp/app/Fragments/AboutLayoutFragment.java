@@ -18,7 +18,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.qamp.app.Listener.Backpressedlistener;
-import com.qamp.app.Activity.ChannelAdminSettingsActivity;
+import com.qamp.app.Activity.ChannelActivities.ChannelAdminSettingsActivity;
 import com.qamp.app.R;
 
 public class AboutLayoutFragment extends Fragment implements Backpressedlistener {

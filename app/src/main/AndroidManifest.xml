@@ -216,12 +216,12 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".Activity.CommunityDashboard"
+            android:name=".Activity.ChannelActivities.CommunityDashboard"
             android:screenOrientation="portrait" />
 
 
         <activity
-            android:name=".Activity.AddPostActivity"
+            android:name=".Activity.ChannelActivities.AddPostActivity"
             android:screenOrientation="portrait" />
 
         <activity
@@ -234,11 +234,19 @@
 
 
         <activity
-            android:name=".Activity.ChannelAdminSettingsActivity"
+            android:name=".Activity.ChannelActivities.ChannelAdminSettingsActivity"
             android:screenOrientation="portrait" />
 
         <activity
             android:name=".Activity.ChannelActivities.AddChannelActivities"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".Activity.ChannelActivities.BusinessDetailsSettingsActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".Activity.ChannelActivities.BusinessLocationSettingsActivity"
             android:screenOrientation="portrait" />
 
         <!--        <service-->
