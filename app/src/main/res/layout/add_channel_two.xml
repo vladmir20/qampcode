@@ -1,12 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ /**
-  ~  *  on 20/05/23, 3:30 AM
-  ~  * Copyright (c) 2023 . All rights reserved.
-  ~  * Last modified 05/05/23, 3:15 PM
-  ~  */
-  -->
-
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -17,7 +9,6 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -25,7 +16,7 @@
             android:weightSum="12"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -34,82 +25,61 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp">
 
+                <ImageView
+                    android:id="@+id/cancel_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    app:srcCompat="@drawable/ic_close" />
+
                 <TextView
-                    android:id="@+id/businessName"
+                    android:id="@+id/channelName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/inter_medium"
-                    android:gravity="start"
-                    android:text=""
+                    android:gravity="center"
+                    android:layout_marginLeft="8dp"
+                    android:text="Channel Name"
                     android:textColor="#171717"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="TextSizeCheck" />
-
-                <ImageView
-                    android:id="@+id/closeBtn"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="24dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_close" />
-
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
+                    android:textSize="14dp" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:layout_weight="4"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
-                android:weightSum="4"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
                 <View
                     android:id="@+id/view"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="78dp"
                     android:layout_height="4dp"
-                    android:background="@drawable/corner_radius_button"/>
+                    android:layout_marginTop="16dp"
+                    android:background="#F4B63F" />
 
                 <View
                     android:id="@+id/view6"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="78dp"
                     android:layout_height="4dp"
-                    android:layout_marginLeft="8dp"
-                    android:background="@drawable/corner_radius_button" />
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="16dp"
+                    android:background="#F4B63F" />
 
                 <View
                     android:id="@+id/view7"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="78dp"
                     android:layout_height="4dp"
-                    android:layout_marginLeft="8dp"
-
-                    android:backgroundTint="#F2F2F2"
-                    android:background="@drawable/corner_radius_button" />
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="16dp"
+                    android:background="#F2F2F2" />
 
                 <View
                     android:id="@+id/view8"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="8dp"
-
+                    android:layout_width="78dp"
                     android:layout_height="4dp"
-                    android:backgroundTint="#F2F2F2"
-                    android:background="@drawable/corner_radius_button" />
-
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="16dp"
+                    android:background="#F2F2F2" />
             </LinearLayout>
 
 
@@ -137,25 +107,11 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:gravity="center"
-                android:fontFamily="@font/inter_medium"
-                android:text="@string/whereLocatedText"
+                android:text="Where are you located?"
                 android:textColor="#171717"
-                android:textSize="24sp" />
-
-            <TextView
-                android:id="@+id/textView50"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="24dp"
-                android:gravity="center"
-                android:text="@string/pickedLocationText"
-                android:textColor="#828282"
-                android:textSize="16sp" />
+                android:textSize="24dp" />
 
             <LinearLayout
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
@@ -172,90 +128,59 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_weight="1"
+                android:background="@drawable/rounded_corner_border"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:layout_marginTop="100dp" >
+                android:paddingTop="10dp"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="10dp">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:id="@+id/locationLayout"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp"
+                <ImageView
+                    android:id="@+id/imageView11"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:hint="@string/search_location"
-                    app:boxStrokeColor="@color/field_color"
-                    app:hintTextColor="@color/field_color">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/location_1"
-                        android:padding="10dp"
-                        android:focusable="false"
-                        android:drawableTint="#828282"
-                        android:drawableRight="@drawable/ic_crosshair"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:minHeight="50dp"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_weight="2"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="24dp">
-
-                <LinearLayout
-                    android:id="@+id/buttonBack"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_marginLeft="21dp"
                     android:layout_marginRight="16dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/orange_border"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    app:srcCompat="@drawable/ic_location" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:fontFamily="@font/inter_medium"
-                        android:text="Back"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="16sp" />
-
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/nextFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/corner_radius_button"
-                    android:hint="Channel Discription"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:minHeight="50dp"
-                    android:text="Next"
-                    android:fontFamily="@font/inter_medium"
-                    android:textAllCaps="false"
-                    android:textColor="#171717"
+                <EditText
+                    android:id="@+id/location_1"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent_color"
+                    android:ems="10"
+                    android:hint="Search Location"
+                    android:inputType="textPersonName"
                     android:textSize="14dp" />
 
+                <ImageView
+                    android:id="@+id/navigate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_crosshair" />
             </LinearLayout>
 
-
+            <Button
+                android:id="@+id/buttonNext"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_weight="1"
+                android:background="@drawable/corner_radius_button"
+                android:hint="Channel Discription"
+                android:minHeight="48dp"
+                android:text="Next"
+                android:textAllCaps="false"
+                android:textColor="#272A3D"
+                android:textSize="14dp" />
 
             <Button
-                android:id="@+id/cancelBtn"
+                android:id="@+id/skip"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="167dp"
@@ -265,7 +190,6 @@
                 android:background="@color/transparent_color"
                 android:minHeight="32dp"
                 android:text="Skip"
-                style="?android:attr/borderlessButtonStyle"
                 android:textAllCaps="false"
                 android:textColor="#171717"
                 android:textSize="12dp" />

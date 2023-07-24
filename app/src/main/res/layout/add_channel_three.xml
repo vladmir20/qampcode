@@ -1,394 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ /**
-  ~  *  on 20/05/23, 3:30 AM
-  ~  * Copyright (c) 2023 . All rights reserved.
-  ~  * Last modified 05/05/23, 3:15 PM
-  ~  */
-  -->
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:weightSum="12">
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/cancel_1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp">
-
-                <TextView
-                    android:id="@+id/businessName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/inter_medium"
-                    android:gravity="start"
-                    android:text=""
-                    android:textColor="#171717"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="TextSizeCheck" />
-
-                <ImageView
-                    android:id="@+id/closeBtn"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="24dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_close" />
-
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:layout_weight="4"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
-                android:weightSum="4"
-                android:orientation="horizontal">
-
-                <View
-                    android:id="@+id/view"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="4dp"
-                    android:background="@drawable/corner_radius_button"/>
-
-                <View
-                    android:id="@+id/view6"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="4dp"
-                    android:layout_marginLeft="8dp"
-                    android:background="@drawable/corner_radius_button" />
-
-                <View
-                    android:id="@+id/view7"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="4dp"
-                    android:layout_marginLeft="8dp"
-                    android:background="@drawable/corner_radius_button" />
-
-                <View
-                    android:id="@+id/view8"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="8dp"
-
-                    android:layout_height="4dp"
-                    android:backgroundTint="#F2F2F2"
-                    android:background="@drawable/corner_radius_button" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imageView8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="55dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginRight="55dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/invite_type_2"/>
-
-            </LinearLayout>
+                android:layout_marginLeft="25dp"
+                app:srcCompat="@drawable/ic_close" />
 
             <TextView
-                android:id="@+id/textView13"
-                android:layout_width="match_parent"
+                android:id="@+id/channelName"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:layout_marginTop="35dp"
-                android:layout_marginBottom="35dp"
-                android:fontFamily="@font/inter_medium"
-                android:text="@string/part_of_community_text"
+                android:layout_marginLeft="8dp"
+                android:hint="Channel Name"
                 android:textColor="#171717"
-                android:textSize="24sp" />
+                android:textSize="14dp" />
+        </LinearLayout>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/openToAllLayout"
-                android:layout_width="match_parent"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
-                app:cardElevation="0dp"
-                app:cardBackgroundColor="#f2f2f2"
-                app:cardCornerRadius="6dp"
-                android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/textView15"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:fontFamily="@font/inter_medium"
-                        android:text="Open to All"
-                        android:textColor="#171717"
-                        android:textSize="14sp"
-                        app:layout_constraintStart_toEndOf="@+id/openToAllLayoutCheck"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="TextSizeCheck" />
-
-                    <TextView
-                        android:id="@+id/openToAllDes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:text="Open community where anyone can join"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/openToAllLayoutCheck"
-                        app:layout_constraintTop_toBottomOf="@+id/textView15"
-                        tools:ignore="TextSizeCheck" />
-
-                    <ImageView
-                        android:id="@+id/openToAllLayoutCheck"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="16dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/radio_active" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/byInviteLayout"
-                android:layout_width="match_parent"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
-                app:cardElevation="0dp"
-                app:cardBackgroundColor="#ffffff"
-                app:cardCornerRadius="6dp"
-                android:layout_height="wrap_content">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/textView17"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:fontFamily="@font/inter_medium"
-                        android:text="By Invite Only"
-                        android:textColor="#171717"
-                        android:textSize="14sp"
-                        app:layout_constraintStart_toEndOf="@+id/byInviteCheck"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="TextSizeCheck" />
-
-                    <TextView
-                        android:id="@+id/byInviteDes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:text="Closed community where people with \ninvitation can join"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/byInviteCheck"
-                        app:layout_constraintTop_toBottomOf="@+id/textView17"
-                        tools:ignore="TextSizeCheck" />
-
-                    <ImageView
-                        android:id="@+id/byInviteCheck"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="16dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/radio_normal" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/byRequestLayout"
-                android:layout_width="match_parent"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
-                app:cardElevation="0dp"
-                app:cardBackgroundColor="#ffffff"
-                app:cardCornerRadius="6dp"
-                android:layout_height="wrap_content">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/textView19"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:fontFamily="@font/inter_medium"
-                        android:text="By Request"
-                        android:textColor="#171717"
-                        android:textSize="14sp"
-                        app:layout_constraintStart_toEndOf="@+id/byRequestCheck"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="TextSizeCheck" />
-
-                    <TextView
-                        android:id="@+id/byRequestDes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:text="Join request needs to be approved by\ncommunity manager"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/byRequestCheck"
-                        app:layout_constraintTop_toBottomOf="@+id/textView19"
-                        tools:ignore="TextSizeCheck" />
-
-                    <ImageView
-                        android:id="@+id/byRequestCheck"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="16dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/radio_normal" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_weight="2"
-                android:layout_marginLeft="24dp"
+            <View
+                android:id="@+id/view"
+                android:layout_width="78dp"
+                android:layout_height="4dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginRight="24dp">
+                android:background="#F4B63F" />
 
-                <LinearLayout
-                    android:id="@+id/buttonBack"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/orange_border"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:fontFamily="@font/inter_medium"
-                        android:text="Back"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="16sp" />
-
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/nextFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/corner_radius_button"
-                    android:hint="Channel Discription"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:minHeight="50dp"
-                    android:text="Next"
-                    android:fontFamily="@font/inter_medium"
-                    android:textAllCaps="false"
-                    android:textColor="#171717"
-                    android:textSize="14dp" />
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/cancelBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="167dp"
+            <View
+                android:id="@+id/view6"
+                android:layout_width="78dp"
+                android:layout_height="4dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginRight="167dp"
-                android:layout_weight="1"
-                android:background="@color/transparent_color"
-                android:text="Skip"
-                android:textAllCaps="false"
-                android:textColor="#171717"
-                style="?android:attr/borderlessButtonStyle"
-                android:textSize="12dp"
-                tools:ignore="TextSizeCheck" />
+                android:background="#F4B63F" />
+
+            <View
+                android:id="@+id/view7"
+                android:layout_width="78dp"
+                android:layout_height="4dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="16dp"
+                android:background="#F4B63F" />
+
+            <View
+                android:id="@+id/view8"
+                android:layout_width="78dp"
+                android:layout_height="4dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="16dp"
+                android:background="#F4B63F" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:text="Invite people to join your community."
+            android:textColor="#171717"
+            android:textSize="24dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="453dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginRight="16dp"
+            android:layout_weight="7"
+            android:orientation="horizontal">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
 
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/corner_radius_button_orange"
+                android:text="Share Invite " />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_weight="1"
+                android:background="@drawable/orange_border"
+                android:text="Invite All"
+                android:textColor="#F4B63F" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/skip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="167dp"
+            android:layout_marginRight="167dp"
+            android:layout_weight="1"
+            android:background="@color/transparent_color"
+            android:paddingTop="10dp"
+            android:text="Skip"
+            android:textAllCaps="false"
+            android:textColor="#171717"
+            android:textSize="12dp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

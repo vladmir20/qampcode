@@ -1,12 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ /**
-  ~  *  on 20/05/23, 3:30 AM
-  ~  * Copyright (c) 2023 . All rights reserved.
-  ~  * Last modified 05/05/23, 3:15 PM
-  ~  */
-  -->
-
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -42,9 +34,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:text="Select Channel Type"
-                    android:fontFamily="@font/inter_medium"
+                    android:textStyle="bold"
                     android:textColor="@color/text_color_black"
-                    android:textSize="16sp" />
+                    android:textSize="16dp" />
 
                 <ImageView
                     android:id="@+id/cancel"
@@ -55,7 +47,6 @@
                     android:baselineAlignBottom="false"
                     android:foregroundGravity="right"
                     app:srcCompat="@drawable/ic_close" />
-
             </RelativeLayout>
 
         </LinearLayout>
@@ -64,7 +55,7 @@
             android:id="@+id/view4"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#E0E0E0" />
+            android:background="#C3B8B8" />
 
         <LinearLayout
             android:id="@+id/peopleProfile"
@@ -98,15 +89,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="People Profile"
-                        android:fontFamily="@font/inter_medium"
-                        android:textColor="#171717"
+                        android:textStyle="bold"
+                        android:textColor="#272A3D"
                         android:textSize="14dp" />
 
                     <TextView
                         android:id="@+id/textView6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter_regular"
                         android:text="Create your public profile and let people follow you"
                         android:textColor="#B7B7B7"
                         android:textSize="12dp" />
@@ -119,7 +109,7 @@
             android:id="@+id/view3"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#E0E0E0" />
+            android:background="#C3B8B8" />
 
         <LinearLayout
             android:id="@+id/community"
@@ -153,8 +143,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="Community"
-                        android:fontFamily="@font/inter_medium"
-                        android:textColor="#171717"
+                        android:textStyle="bold"
+                        android:textColor="#272A3D"
                         android:textSize="14dp" />
 
                     <TextView
@@ -163,7 +153,6 @@
                         android:layout_height="wrap_content"
                         android:text="Create a community of people. Example - Music Community, Youga community etc. "
                         android:textColor="#B7B7B7"
-                        android:fontFamily="@font/inter_regular"
                         android:textSize="12dp" />
                 </LinearLayout>
             </LinearLayout>
@@ -174,7 +163,7 @@
             android:id="@+id/view2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#E0E0E0" />
+            android:background="#C3B8B8" />
 
         <LinearLayout
             android:id="@+id/business"
@@ -208,8 +197,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="Business"
-                        android:fontFamily="@font/inter_medium"
-                        android:textColor="#171717"
+                        android:textStyle="bold"
+                        android:textColor="#272A3D"
                         android:textSize="14dp" />
 
                     <TextView
@@ -218,7 +207,6 @@
                         android:layout_height="wrap_content"
                         android:text="Create and promote your business/shop/organisation profile"
                         android:textColor="#B7B7B7"
-                        android:fontFamily="@font/inter_regular"
                         android:textSize="12dp" />
                 </LinearLayout>
             </LinearLayout>
@@ -228,7 +216,7 @@
             android:id="@+id/view5"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#E0E0E0" />
+            android:background="#C3B8B8" />
 
     </LinearLayout>
 

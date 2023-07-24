@@ -1,13 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ /**
-  ~  *  on 20/05/23, 3:30 AM
-  ~  * Copyright (c) 2023 . All rights reserved.
-  ~  * Last modified 20/05/23, 3:25 AM
-  ~  */
-  -->
-
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.qamp.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -28,17 +20,14 @@
 
     <application
         android:name="com.qamp.app.MainApplication"
-        android:allowBackup="false"
-        android:fullBackupContent="false"
-        android:icon="@mipmap/qamp_mini_logo"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher_o"
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
-        android:roundIcon="@mipmap/qamp_mini_logo"
-        android:supportsRtl="false"
-        android:taskAffinity=".string"
-        android:theme="@style/Qamp"
-        android:usesCleartextTraffic="true"
-        tools:replace="android:allowBackup , android:supportsRtl">
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar"
+        android:usesCleartextTraffic="true">
 
 
         <meta-data
@@ -47,46 +36,32 @@
 
 
         <activity
-            android:name="com.qamp.app.Activity.EditProfileActivity"
+            android:name="com.qamp.app.EditProfileActivity"
             android:screenOrientation="portrait"
-            android:supportsRtl="false"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name=".Activity.OnBoardingScreens"
+            android:name=".OnBoardingScreens"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".Activity.OnBoardingUserProfile"
+            android:name=".OnBoardingUserProfile"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <!--        <activity-->
-        <!--            android:name=".qampCalls.QampDefaultCallActivity"-->
-        <!--            android:configChanges="keyboardHidden|orientation|screenSize"-->
-        <!--            android:theme="@style/AppTheme.NoActionBar" />-->
-
-
-        <!--        <activity-->
-        <!--            android:name=".qampCalls.QampCallActivity"-->
-        <!--            android:configChanges="keyboardHidden|orientation|screenSize"-->
-        <!--            android:theme="@style/AppTheme.NoActionBar" />-->
-        <activity
-            android:name=".qampcallss.api.p000ui.QampCallsActivity"
-            />
 
 
         <activity
-            android:name="com.qamp.app.Activity.ShowProfileActivity"
+            android:name="com.qamp.app.ShowProfileActivity"
             android:screenOrientation="portrait"
-            android:supportsRtl="false"
             android:theme="@style/AppTheme.NoActionBar" />
 
+
         <activity
-            android:name=".Activity.SplashScreenActivity"
+            android:name=".SplashScreenActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
@@ -99,13 +74,13 @@
         </activity>
 
         <activity
-            android:name=".Activity.WelcomeOnboarding"
+            android:name=".WelcomeOnboarding"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".Activity.LoginQampActivity"
+            android:name=".LoginQampActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -120,13 +95,13 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name="com.qamp.app.Activity.SettingsActivity"
+            android:name="com.qamp.app.AppSettings.SettingsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
 
         <receiver
-            android:name="com.qamp.app.Receiver.AutoStart"
+            android:name="com.qamp.app.AutoStart"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"></action>
@@ -134,138 +109,77 @@
             </intent-filter>
         </receiver>
 
-        <receiver
-
-            android:name=".qampcallss.api.MesiboCallsReceiver">
-        </receiver>
-
         <!-- Firebase Notifications-->
-        <!--        <service-->
-        <!--            android:name="com.qamp.app.Services.MesiboGcmListenerService"-->
-        <!--            android:exported="false">-->
-        <!--            <intent-filter>-->
-        <!--                <action android:name="com.google.firebase.MESSAGING_EVENT" />-->
-        <!--            </intent-filter>-->
-        <!--        </service>-->
-
-        <!--        <service-->
-        <!--            android:name="com.qamp.app.Services.MesiboInstanceIDListenerService"-->
-        <!--            android:exported="false">-->
-
-        <!--            <intent-filter>-->
-        <!--                <action android:name="com.google.android.gms.iid.InstanceID" />-->
-        <!--            </intent-filter>-->
-        <!--        </service>-->
-        <!--        <service-->
-        <!--            android:name="com.qamp.app.Services.MesiboRegistrationIntentService"-->
-        <!--            android:exported="false"-->
-        <!--            android:permission="android.permission.BIND_JOB_SERVICE" />-->
-        <!--        <service-->
-        <!--            android:name="com.qamp.app.Services.MesiboJobIntentService"-->
-        <!--            android:exported="false"-->
-        <!--            android:permission="android.permission.BIND_JOB_SERVICE" />-->
-
-        <activity
-            android:name="com.qamp.app.Activity.ProductTourActivity"
-            android:screenOrientation="portrait" />
-
-        <activity android:name=".qampcallss.api.p000ui.MesiboDefaultCallActivity"
-            android:screenOrientation="portrait"/>
-
-        <activity
-            android:name="com.qamp.app.Activity.LoginActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.qamp.app.Activity.QampContactScreen"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.qamp.app.Activity.LoginActivityNew"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.qamp.app.MessagingModule.MesiboUserListActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.qamp.app.MessagingModule.MesiboEndToEndEncryptionActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.qamp.app.MessagingModule.MesiboMessagingActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.qamp.app.MessagingModule.MesiboMapActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.qamp.app.MessagingModule.CreateNewGroupActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.qamp.app.MessagingModule.MesiboUserListActivityNew"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activity.ShowProfileActivityNew"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activity.EditProfileActivityNew"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activity.SelectLanguage"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activity.ZoomPictureActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activity.NotificationsTest"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".Activity.CommunityDashboard"
-            android:screenOrientation="portrait" />
-
-
-        <activity
-            android:name=".Activity.AddPostActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".Activity.NotificationCenterActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".Activity.StartUpActivity"
-            android:screenOrientation="portrait" />
-
-
-        <activity
-            android:name=".Activity.ChannelAdminSettingsActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".Activity.ChannelActivities.AddChannelActivities"
-            android:screenOrientation="portrait" />
-
-        <!--        <service-->
-        <!--            android:name=".java.MyFirebaseMessagingService"-->
-        <!--            android:exported="false">-->
-        <!--            <intent-filter>-->
-        <!--                <action android:name="com.google.firebase.MESSAGING_EVENT" />-->
-        <!--            </intent-filter>-->
-        <!--        </service>-->
-
-        <!--        <meta-data-->
-        <!--            android:name="com.google.firebase.MessagingModule.default_notification_icon"-->
-        <!--            android:resource="@drawable/ic_logo_gradient" />-->
-        <!--        <meta-data-->
-        <!--            android:name="com.google.firebase.MessagingModule.default_notification_color"-->
-        <!--            android:resource="@color/colorPrimary" />-->
-        <!--        <meta-data-->
-        <!--            android:name="com.google.firebase.MessagingModule.default_notification_channel_id"-->
-        <!--            android:value="@string/default_notification_channel_id" />-->
-
         <service
-            android:name=".Services.PushNotificationService"
-            android:exported="true">
+            android:name="com.qamp.app.fcm.MesiboGcmListenerService"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <service
+            android:name="com.qamp.app.fcm.MesiboInstanceIDListenerService"
+            android:exported="false">
+
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.qamp.app.fcm.MesiboRegistrationIntentService"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name="com.qamp.app.fcm.MesiboJobIntentService"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <activity
+            android:name="com.qamp.app.uihelper.ProductTourActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.qamp.app.uihelper.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.qamp.app.uihelper.LoginActivityNew"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.qamp.app.messaging.MesiboUserListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.qamp.app.messaging.MesiboEndToEndEncryptionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.qamp.app.messaging.MesiboMessagingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.qamp.app.messaging.MesiboMapActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.qamp.app.messaging.CreateNewGroupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.qamp.app.messaging.MesiboUserListActivityNew"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ShowProfileActivityNew"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EditProfileActivityNew"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SelectLanguage"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".AddChannel.AddChannelActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name=".Community.CommunityDashboard"
+            android:screenOrientation="portrait" />
 
     </application>
 
