@@ -66,6 +66,9 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
     Bitmap mGroupImage = null;
     int mGroupMode;
     ImageView mGroupPicture;
+    ImageView selfProf;
+    TextView selName;
+    ArrayList<MesiboProfile> datProfile = new ArrayList<>();
     ImageView backButton;
     EditText mGroupSubjectEditor;
     MesiboProfile mProfile = null;
@@ -113,6 +116,8 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
         View v = inflater.inflate(R.layout.fragment_create_new_group, container, false);
         this.mGroupSubjectEditor = v.findViewById(R.id.nugroup_editor);
         this.backButton = v.findViewById(R.id.imageView2);
+        this.selfProf = v.findViewById(R.id.nu_rv_profile);
+        this.selName = v.findViewById(R.id.nu_rv_name);
         this.mGroupId = 0;
         Mesibo.addListener(this);
         if (this.mGroupEditBundle != null) {
@@ -123,6 +128,20 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
                 this.mProfile.getGroupProfile().getMembers(256, true, this);
             }
         }
+
+        MesiboProfile selProfile = Mesibo.getSelfProfile();
+        String selfName = selProfile.getName();
+        this.selName.setText(selfName);
+        Bitmap bOne = selProfile.getImage();
+        String filePath = selProfile.getImagePath();
+        if (bOne != null) {
+            this.selfProf.setImageDrawable(new RoundImageDrawable(bOne));
+        } else if (filePath != null) {
+            this.selfProf.setImageDrawable(new RoundImageDrawable(BitmapFactory.decodeFile(filePath)));
+        } else {
+            this.selfProf.setImageDrawable(MesiboImages.getDefaultRoundedDrawable());
+        }
+
 
         this.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -204,7 +223,9 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
         });
         this.mRecyclerView = v.findViewById(R.id.nugroup_members);
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(this.mRecyclerView.getContext()));
-        this.mAdapter = new GroupMemeberAdapter(getActivity(), UserListFragment.mMemberProfiles);
+
+        datProfile = UserListFragment.mMemberProfiles;
+        this.mAdapter = new GroupMemeberAdapter(getActivity(), datProfile);
         this.mRecyclerView.setAdapter(this.mAdapter);
         this.members_list.setText(UserListFragment.mMemberProfiles.size()+""+"members");
 
@@ -468,6 +489,13 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
             holder.mDeleteContact.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     GroupMemeberAdapter.this.removeItem(position);
+                    for(int i = 0 ; i<datProfile.size(); i++){
+                        if(datProfile.get(i).getName().equals(data.getUserName())){
+                            datProfile.remove(i);
+                        }
+                    }
+
+
 
                 }
             });

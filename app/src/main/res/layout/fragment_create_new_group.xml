@@ -119,20 +119,22 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
-                android:id="@+id/group_name_layout"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="48dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/corner_radius_field"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+            <RelativeLayout
+                android:id="@+id/rel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/pictureViewContainer11">
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32sp"
+                    android:layout_marginTop="40sp"
+                    android:background="@color/background_color_white"
+                    android:gravity="top"
+                    android:text="Group Name" />
+
 
                 <EditText
                     android:id="@+id/nugroup_editor"
@@ -140,6 +142,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="16dp"
+                    android:layout_marginTop="48sp"
                     android:layout_marginRight="16dp"
                     android:backgroundTint="@color/background_tint14"
                     android:fontFamily="@font/inter_semibold"
@@ -151,7 +154,8 @@
                     android:textColor="@color/text_color16"
                     android:textColorHint="@color/text_color15"
                     android:textSize="14sp" />
-            </LinearLayout>
+
+            </RelativeLayout>
 
             <LinearLayout
                 android:id="@+id/group_desc_layout"
@@ -159,13 +163,12 @@
                 android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/corner_radius_field"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/group_name_layout">
+                app:layout_constraintTop_toBottomOf="@id/rel">
 
                 <EditText
                     android:id="@+id/nugroup_editor"
@@ -289,15 +292,82 @@
                 app:layout_constraintTop_toBottomOf="@+id/view10"
                 tools:layout_editor_absoluteX="16dp" />
 
+            <RelativeLayout
+                android:id="@+id/nu_top_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16sp"
+                android:background="#ffffff"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/members_list">
+
+                <ImageView
+                    android:id="@+id/nu_rv_profile"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp" />
+
+                <LinearLayout
+                    android:id="@+id/name_address_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/nu_rv_profile"
+                    android:layout_toLeftOf="@+id/mes_rv_date"
+                    android:layout_toRightOf="@+id/nu_rv_profile"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:id="@+id/nu_rv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="User Name"
+                        android:textColor="#505050"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/nu_delete_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/ic_delete_black_24dp"
+                        android:tint="@color/md_grey_700"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/nu_rv_profile"
+                    android:layout_alignTop="@id/name_address_layout"
+                    android:layout_marginLeft="70sp"
+                    android:layout_marginTop="30sp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Admin"
+                    android:textColor="#F4B63F"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/nugroup_members"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:background="@color/md_white_1000"
                 android:padding="16dp"
-                app:layout_constraintTop_toBottomOf="@+id/members_list">
+                app:layout_constraintTop_toBottomOf="@id/nu_top_layout">
 
             </androidx.recyclerview.widget.RecyclerView>
 

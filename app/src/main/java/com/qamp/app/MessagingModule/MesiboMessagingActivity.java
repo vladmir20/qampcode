@@ -347,8 +347,8 @@ public class MesiboMessagingActivity extends AppCompatActivity implements Mesibo
         MesiboMessagingActivity.super.onResume();
         MesiboUIManager.setMessagingActivity(this);
         setProfilePicture();
-        NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        nMgr.cancelAll();
+        //NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        //nMgr.cancelAll();
     }
 
     @Override
