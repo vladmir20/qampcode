@@ -88,7 +88,7 @@
         android:layout_marginTop="18dp"
         app:layout_constraintEnd_toStartOf="@+id/imageView20"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bookmark" />
+        app:srcCompat="@drawable/bookmark_one" />
 
 
     <View
