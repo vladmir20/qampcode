@@ -453,7 +453,7 @@
     <string name="notification_center">Notification Center</string>
     <string name="edit_details">Edit Details</string>
     <string name="channel_type">Channel Type</string>
-    <string name="community_location">Community Location</string>
+    <string name="community_location">Location</string>
     <string name="search_location">Search Location</string>
 
 </resources>

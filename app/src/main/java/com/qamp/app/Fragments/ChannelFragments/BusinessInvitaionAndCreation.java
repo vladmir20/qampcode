@@ -53,7 +53,7 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboProfile;
-import com.qamp.app.Activity.CommunityDashboard;
+import com.qamp.app.Activity.ChannelActivities.CommunityDashboard;
 import com.qamp.app.Fragments.ContactCommunityData;
 import com.qamp.app.Listener.Backpressedlistener;
 import com.qamp.app.MessagingModule.Contact;

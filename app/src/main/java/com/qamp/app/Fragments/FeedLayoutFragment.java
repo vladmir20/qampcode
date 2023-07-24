@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import com.qamp.app.Activity.AddPostActivity;
+import com.qamp.app.Activity.ChannelActivities.AddPostActivity;
 import com.qamp.app.Listener.Backpressedlistener;
 import com.qamp.app.R;
 

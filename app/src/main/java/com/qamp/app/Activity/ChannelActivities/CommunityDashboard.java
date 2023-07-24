@@ -6,7 +6,7 @@
  *
  */
 
-package com.qamp.app.Activity;
+package com.qamp.app.Activity.ChannelActivities;
 
 import android.content.Intent;
 import android.graphics.Color;
