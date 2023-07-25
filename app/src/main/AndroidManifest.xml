@@ -249,6 +249,10 @@
             android:name=".Activity.ChannelActivities.BusinessLocationSettingsActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".Activity.QampContactScreenNew"
+            android:screenOrientation="portrait" />
+
         <!--        <service-->
         <!--            android:name=".java.MyFirebaseMessagingService"-->
         <!--            android:exported="false">-->
