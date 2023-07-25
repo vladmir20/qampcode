@@ -39,6 +39,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -51,11 +52,13 @@ import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboMessage;
 import com.mesibo.api.MesiboProfile;
 import com.mesibo.messaging.RoundImageDrawable;
+import com.qamp.app.Activity.SplashScreenActivity;
 import com.qamp.app.Utils.AppConfig;
 import com.qamp.app.Fragments.DiscoverFragment;
 import com.qamp.app.Fragments.FeedFragment;
 import com.qamp.app.Activity.LoginQampActivity;
 import com.qamp.app.Activity.NotificationCenterActivity;
+import com.qamp.app.Utils.ContactSyncClass;
 import com.qamp.app.Utils.QampUiHelper;
 import com.qamp.app.R;
 import com.qamp.app.MesiboApiClasses.SampleAPI;
@@ -65,6 +68,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MesiboUserListActivityNew extends AppCompatActivity implements MesiboProfile.Listener, MesiboUserListFragment.FragmentListener {
     public static final String TAG = "MesiboMainActivity";
+
+    private static final int REQUEST_READ_CONTACTS = 101;
+
     public static Activity MesiboUserListActivityNewActivity;
     public ImageView hamburgerButton;
     BottomNavigationView navView;
@@ -258,6 +264,18 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
         });
 
         MesiboUserListActivityNewActivity = MesiboUserListActivityNew.this;
+
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_CONTACTS)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_CONTACTS},
+                    REQUEST_READ_CONTACTS);
+        } else {
+            //Permission has already been granted
+            ContactSyncClass.getContactData(MesiboUserListActivityNew.this);
+        }
     }
 
 
@@ -405,6 +423,15 @@ public class MesiboUserListActivityNew extends AppCompatActivity implements Mesi
                 for (Fragment fragment : getSupportFragmentManager().getFragments().get(0).getChildFragmentManager().getFragments()) {
                     if (fragment.getId() == id && fragment.isVisible())
                         fragment.onRequestPermissionsResult(requestCode, permissions, grantResults);
+                }
+            }
+            case 101:{
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Permission granted, fetch contacts
+                    ContactSyncClass.getContactData(MesiboUserListActivityNew.this);
+                } else {
+                    // Permission denied, show a message or handle it gracefully
+                    Toast.makeText(this, "Read contacts permission denied", Toast.LENGTH_SHORT).show();
                 }
             }
         }
