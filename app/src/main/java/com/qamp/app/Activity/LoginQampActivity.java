@@ -637,7 +637,7 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
                                 AppConfig.getConfig().tnm = "1649220290";
                                 AppConfig.getConfig().version = responseVersion;
                                 AppConfig.getConfig().profileId = profilePicId;
-                                AppUtils.saveUserApiVersion(LoginQampActivity.this, String.valueOf(responseVersion));
+                                //AppUtils.saveUserApiVersion(LoginQampActivity.this, String.valueOf(responseVersion));
                                // Toast.makeText(LoginQampActivity.this, "Response Version is-" + String.valueOf(responseVersion), Toast.LENGTH_SHORT).show();
                                /// Toast.makeText(LoginQampActivity.this, "Saved Version is-" + AppUtils.getUserApiVersion(LoginQampActivity.this), Toast.LENGTH_SHORT).show();
                                 SampleAPI.setSyncFlags();

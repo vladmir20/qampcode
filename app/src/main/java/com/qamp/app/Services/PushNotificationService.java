@@ -141,7 +141,7 @@ public class PushNotificationService extends FirebaseMessagingService {
             Context context;
             Notification.Builder notification = new Notification.Builder(this, CHANNEL_ID)
                     .setSmallIcon(R.mipmap.qamp_mini_logo)
-                    .setContentTitle(titleFinal)
+                    .setContentTitle(title)
                     .setContentText(bodyFinal)//remoteMessage.getData().toString()
                     .setColor(ContextCompat.getColor(PushNotificationService.this, R.color.colorPrimary))
                     .setShowWhen(true)

@@ -1,11 +1,3 @@
-/*
- * *
- *  *  on 20/05/23, 3:30 AM
- *  * Copyright (c) 2023 . All rights reserved.
- *  * Last modified 20/05/23, 2:39 AM
- *
- */
-
 package com.qamp.app.Activity.ChannelActivities;
 
 import android.content.Intent;
@@ -144,9 +136,9 @@ public class CommunityDashboard extends AppCompatActivity {
 //                getSupportFragmentManager().findFragmentByTag("aboutlayout").isVisible()) {
 //            AboutLayoutFragment.backpressedlistener.onBackPressed();
 //        }else{
-            Intent mainActivity = new Intent(CommunityDashboard.this, MesiboUserListActivityNew.class);
-            startActivity(mainActivity);
-       // }
+        Intent mainActivity = new Intent(CommunityDashboard.this, MesiboUserListActivityNew.class);
+        startActivity(mainActivity);
+        // }
     }
 
 }

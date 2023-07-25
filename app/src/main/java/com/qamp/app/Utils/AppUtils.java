@@ -40,8 +40,10 @@
 package com.qamp.app.Utils;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.qamp.app.messaging.MesiboConfiguration.TOOLBAR_COLOR;
-import static com.qamp.app.messaging.MesiboConfiguration.TOOLBAR_STATUSBAR_COLOR;
+
+
+import static com.qamp.app.MessagingModule.MesiboConfiguration.TOOLBAR_COLOR;
+import static com.qamp.app.MessagingModule.MesiboConfiguration.TOOLBAR_STATUSBAR_COLOR;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -73,9 +75,10 @@ import androidx.fragment.app.FragmentActivity;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
-import com.qamp.app.QampUiHelper;
+
+import com.qamp.app.Activity.SelectLanguage;
 import com.qamp.app.R;
-import com.qamp.app.SelectLanguage;
+
 
 import java.io.File;
 import java.io.FileOutputStream;
