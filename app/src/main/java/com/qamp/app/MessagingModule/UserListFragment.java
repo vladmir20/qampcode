@@ -66,6 +66,7 @@ import com.mesibo.emojiview.EmojiconTextView;
 import com.qamp.app.Activity.ChannelActivities.AddChannelActivities;
 import com.qamp.app.Activity.ChannelActivities.CommunityDashboard;
 import com.qamp.app.Activity.QampContactScreen;
+import com.qamp.app.Activity.QampContactScreenNew;
 import com.qamp.app.Interfaces.OnChannelItemClickListener;
 import com.qamp.app.MessagingModule.AllUtils.LetterTileProvider;
 import com.qamp.app.Modal.MessageTimeDate;
@@ -505,21 +506,24 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
 
     private void showConatcts() {
 
-        Intent intent = new Intent(getActivity(), QampContactScreen.class);
-        //ContactsBottomSheetFragment contactsBottomSheetFragment = new ContactsBottomSheetFragment();
-        Bundle bundle = new Bundle();
-        bundle.putInt(MesiboUserListFragment.MESSAGE_LIST_MODE, MesiboUserListFragment.MODE_SELECTCONTACT);
-        bundle.putLong(MesiboUI.MESSAGE_ID, mForwardIdForContactList);
-        if (!TextUtils.isEmpty(""))
-            bundle.putString(MesiboUI.MESSAGE_CONTENT, forwardMessage);
-        bundle.putLongArray(MesiboUI.MESSAGE_IDS, mForwardIds);
-        if (mMode == MesiboUserListFragment.MODE_EDITGROUP)
-            bundle.putBundle(MesiboUI.BUNDLE, mEditGroupBundle);
-        bundle.putBoolean(MesiboUI.FORWARD_AND_CLOSE, false);
-        intent.putExtras(bundle);
-        startActivity(intent);
+//        Intent intent = new Intent(getActivity(), QampContactScreen.class);
+//        //ContactsBottomSheetFragment contactsBottomSheetFragment = new ContactsBottomSheetFragment();
+//        Bundle bundle = new Bundle();
+//        bundle.putInt(MesiboUserListFragment.MESSAGE_LIST_MODE, MesiboUserListFragment.MODE_SELECTCONTACT);
+//        bundle.putLong(MesiboUI.MESSAGE_ID, mForwardIdForContactList);
+//        if (!TextUtils.isEmpty(""))
+//            bundle.putString(MesiboUI.MESSAGE_CONTENT, forwardMessage);
+//        bundle.putLongArray(MesiboUI.MESSAGE_IDS, mForwardIds);
+//        if (mMode == MesiboUserListFragment.MODE_EDITGROUP)
+//            bundle.putBundle(MesiboUI.BUNDLE, mEditGroupBundle);
+//        bundle.putBoolean(MesiboUI.FORWARD_AND_CLOSE, false);
+//        intent.putExtras(bundle);
+//        startActivity(intent);
+
         //contactsBottomSheetFragment.setArguments(bundle);
         //contactsBottomSheetFragment.show(getChildFragmentManager(), contactsBottomSheetFragment.getTag());
+        Intent intent = new Intent(getActivity(), QampContactScreenNew.class);
+        startActivity(intent);
     }
 
     public MesiboUserListFragment.FragmentListener getListener() {
@@ -912,6 +916,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             Mesibo.addListener(this);
             this.mAdhocUserList = this.mUserProfiles;
             Log.e("tagtag1", String.valueOf(this.mUserProfiles.size()));
+            Log.e("androidToken",AppConfig.getConfig().deviceToken);
             this.mUserProfiles.clear();
             this.mAdapter.onResumeAdapter();
             MesiboReadSession.endAllSessions();
@@ -920,7 +925,6 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             this.mDbSession.enableSummary(true);
             this.mDbSession.read(readCount);
             Log.e("tagtag", String.valueOf(this.mUserProfiles.size()));
-
         } else {
             this.mUserProfiles.clear();
             ArrayList profiles = Mesibo.getSortedUserProfiles();

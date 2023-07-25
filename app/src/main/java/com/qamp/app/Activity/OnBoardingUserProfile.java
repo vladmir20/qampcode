@@ -193,6 +193,7 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
         Utilss.setLanguage(OnBoardingUserProfile.this);
         setContentView(R.layout.activity_on_boarding_user_profile);
         initaliseViews();
+        Log.e("androidToken",AppConfig.getConfig().deviceToken);
         nameEditText.setOnTouchListener(new View.OnTouchListener() {
             @SuppressLint("ClickableViewAccessibility")
             @Override

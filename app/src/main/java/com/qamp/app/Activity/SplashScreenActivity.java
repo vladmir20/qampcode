@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +23,7 @@ import com.qamp.app.R;
 import com.qamp.app.Utils.AppUtils;
 import com.qamp.app.MessagingModule.MesiboUserListActivityNew;
 import com.qamp.app.Utils.ContantContantUtil;
+import com.qamp.app.Utils.Log;
 
 import java.util.Locale;
 
@@ -41,7 +43,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         SharedPreferences sh = getSharedPreferences("checkactivity", MODE_PRIVATE);
         s1 = sh.getString("checker", "");
         defaultSystemLanguage = Locale.getDefault().toString();
-        SharedPreferences lang = getSharedPreferences("Settings", MODE_PRIVATE);
+        Log.e("androidToken",AppConfig.getConfig().deviceToken);
+         SharedPreferences lang = getSharedPreferences("Settings", MODE_PRIVATE);
         String s2 = lang.getString("app_lang", "");
         if (s2.isEmpty()) {
             if (defaultSystemLanguage.contains("en") || defaultSystemLanguage.contains("gu") || defaultSystemLanguage.contains("hi") ||
