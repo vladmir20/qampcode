@@ -12,7 +12,6 @@ public class QampContactScreenModel {
     private String mes_rv_name;
     private String mes_rv_phone;
     private boolean isMesiboProfile;
-    private boolean isGroupMaking;
 
     private Bitmap mUserImage = null;
 
@@ -21,13 +20,12 @@ public class QampContactScreenModel {
         return isChecked;
     }
 
-    public QampContactScreenModel(boolean isChecked, String mes_rv_name, String mes_rv_phone, boolean isMesiboProfile, boolean isGroupMaking, Bitmap mUserImage) {
-        this.isChecked = isChecked;
+    public QampContactScreenModel(String mes_rv_name, String mes_rv_phone, boolean isMesiboProfile,  Bitmap mUserImage) {
+        this.isChecked = false;
         this.mes_rv_name = mes_rv_name;
         this.mes_rv_phone = mes_rv_phone;
         this.isMesiboProfile = isMesiboProfile;
-        this.isGroupMaking = isGroupMaking;
-        this.mUserImage = mUserImage;
+         this.mUserImage = mUserImage;
     }
 
 
@@ -67,11 +65,5 @@ public class QampContactScreenModel {
         isMesiboProfile = mesiboProfile;
     }
 
-    public boolean isGroupMaking() {
-        return isGroupMaking;
-    }
 
-    public void setGroupMaking(boolean groupMaking) {
-        isGroupMaking = groupMaking;
-    }
 }

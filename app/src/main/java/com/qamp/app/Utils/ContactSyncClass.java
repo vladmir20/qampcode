@@ -105,8 +105,8 @@ public class ContactSyncClass {
                             float textX = centerX - mBounds.exactCenterX();
                             float textY = centerY - mBounds.exactCenterY();
                             c.drawText(mFirstChar, 0, 1, textX, textY, mPaint); }
-                        contacts.add(new QampContactScreenModel(false, contactsList.get(i).getName(),
-                                phoneNumber, true, false, b));
+                        contacts.add(new QampContactScreenModel( contactsList.get(i).getName(),
+                                phoneNumber, true, b));
                         addedPhoneNumbers.add(phoneNumber); // Add the phone number to the set
                     }
                 }
@@ -150,8 +150,8 @@ public class ContactSyncClass {
 
                  //c.drawText(mFirstChar, 0, 1, (float) ((width / 2) + 0), (float) ((height / 2) + 0 + ((mBounds.bottom - mBounds.top) / 2)), mPaint);
 
-                contacts.add(new QampContactScreenModel(false, contactsList.get(i).getName(),
-                        phoneNumber, false, false, bmp));
+                contacts.add(new QampContactScreenModel( contactsList.get(i).getName(),
+                        phoneNumber, false,  bmp));
                 addedPhoneNumbers.add(phoneNumber); // Add the phone number to the set
             }
         }
