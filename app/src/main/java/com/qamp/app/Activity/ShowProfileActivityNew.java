@@ -205,7 +205,7 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
                     //MesiboCall.getInstance().callUiForExistingCall(getApplicationContext());
                     MesiboCall.getInstance().callUiForExistingCall(getApplicationContext());
                     NotificationSendClass.pushNotifications(getApplicationContext(), mUserProfile.getAddress()
-                        , ""+mUserProfile.getName(), "Incoming Audio Call","AUDIO_CALL","");
+                        , ""+mUserProfile.getName(), "Incoming Audio Call","AUDIO_CALL","","","");
             }
         });
         //android:theme="@style/AppTheme.NoActionBar"   android:configChanges="keyboardHidden|orientation|screenSize
@@ -218,7 +218,7 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
                     //launchCustomCallActivity(destination, true, false);//
                     launchCustomCallActivity(destination, true, false);
                     NotificationSendClass.pushNotifications(getApplicationContext(), mUserProfile.getAddress()
-                        , ""+mUserProfile.getName(), "Incoming Video Call","VIDEO_CALL","");
+                        , ""+mUserProfile.getName(), "Incoming Video Call","VIDEO_CALL","","","");
             }
         });
 
@@ -721,6 +721,10 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
             final MesiboGroupProfile.Member member = mDataList.get(position);
             final MesiboProfile user = member.getProfile();
             final GroupMembersCellsViewHolder holder = (GroupMembersCellsViewHolder) holderr;
+
+            if(member.getProfile().getName().equals(Mesibo.getSelfProfile().getName())){
+                holder.mContactsName.setText("You");
+            }else
             holder.mContactsName.setText(user.getNameOrAddress("+"));
 
             Bitmap memberImage = user.getImage();

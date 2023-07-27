@@ -15,7 +15,7 @@
 
     <item
         android:id="@+id/menu_reply"
-        android:icon="@drawable/ic_arrow_left"
+        android:icon="@drawable/reply"
         android:iconTint="@color/text_color17"
         android:orderInCategory="0"
         android:title="Reply"
@@ -39,7 +39,7 @@
 
     <item
         android:id="@+id/menu_remove"
-        android:icon="@drawable/ic_delete_black_24dp"
+        android:icon="@drawable/ic_delete"
         android:iconTint="@color/text_color17"
         android:orderInCategory="0"
         android:title="Delete"

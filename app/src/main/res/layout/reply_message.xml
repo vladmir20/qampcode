@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/reply_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12sp"
+        android:layout_marginTop="16sp"
+        android:layout_marginRight="12sp"
+        android:layout_marginBottom="2sp"
+        android:animateLayoutChanges="true"
+        android:background="#20000000"
+        android:minHeight="10dp"
+        android:paddingBottom="0dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/reply_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="1dp"
+            android:text="James Bond"
+            android:textColor="@color/md_green_900"
+            android:textSize="16sp" />
+
+        <com.mesibo.emojiview.EmojiconTextView
+            android:id="@+id/reply_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/reply_name"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="4dp"
+            android:layout_toLeftOf="@+id/reply_image"
+            android:background="@null"
+            android:maxLines="3"
+            android:paddingTop="0dp"
+            android:paddingBottom="6dp"
+            android:text="Hi this is the reply chat message so find it check 1234  test message string can you tell me what is this testing nothing but waste of time"
+            android:textColorHint="#c4c0bd"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/reply_image"
+            android:layout_width="60dp"
+            android:layout_height="0dp"
+            android:layout_alignBottom="@+id/reply_text"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/default_user_image"
+            android:visibility="visible" />
+
+
+        <ImageView
+            android:id="@+id/reply_cancel"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="4dp"
+            android:src="@drawable/ic_cancel_black_24dp"
+            android:tint="@color/md_grey_500"
+            android:visibility="gone" />
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/reply_text"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/md_green_900" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -553,7 +553,9 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
 
                     if (this.mUser.groupid > 0L) {
                         this.mGroupStatus = this.mUser.getStatus();
+
                     }
+
 
                     if (!TextUtils.isEmpty(this.mGroupStatus)) {
                         this.updateUserStatus(this.mGroupStatus, 0L);
@@ -744,11 +746,11 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
             if (profile.isTyping(groupid)) {
                 status = "";
                 if (groupid > 0L) {
-                    status = profile.getName() + " is ";
+                    status = profile.getName() + " is " +"Typing";
                 }
 
                 //status = status + getContext().getResources().getString(R.string.typing_text);
-                status = "Typing";
+                //status = "Tyfing";
             } else if (profile.isChatting() && 0L == groupid) {
                 status = this.mMesiboUIOptions.joinedIndicationTitle;
             } else if (profile.isOnline() && 0L == groupid) {
@@ -1251,7 +1253,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
             profile = getProfile();
             if (profile.isGroup()==false){
                 NotificationSendClass.pushNotifications(getContext(), mUser.getAddress()
-                        , ""+profile.getName(), ""+msg.message.toString(),"MESSAGE",profile.getAddress());
+                        , ""+profile.getName(), ""+msg.message.toString(),"MESSAGE",profile.getAddress(),profile.getName(),profile.getAddress());
                 Log.e("userToken",profile.getAddress() );
                 Log.e(("UserToken"),mUser.getAddress());
                 Log.e("name",profile.getName());

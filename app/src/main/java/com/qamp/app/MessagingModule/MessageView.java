@@ -8,6 +8,7 @@
 
 package com.qamp.app.MessagingModule;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Build;
@@ -97,9 +98,10 @@ public class MessageView extends RelativeLayout {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     public void loadReplyView() {
         if (this.mReplyLayout == null) {
-            View v = this.mInflater.inflate(R.layout.reply_layout, this.mReplayContainer, true);
+            View v = this.mInflater.inflate(R.layout.reply_message, this.mReplayContainer, true);
             this.mReplyLayout = (RelativeLayout) v.findViewById(R.id.reply_layout);
             this.mReplyImage = (ImageView) v.findViewById(R.id.reply_image);
             this.mReplyUserName = (TextView) v.findViewById(R.id.reply_name);

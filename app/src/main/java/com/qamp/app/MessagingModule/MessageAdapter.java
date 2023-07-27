@@ -17,6 +17,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ImageSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +33,11 @@ import com.qamp.app.R;
 import com.qamp.app.MessagingModule.AllUtils.MyTrace;
 
 import java.lang.ref.WeakReference;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MessageAdapter extends SelectableAdapter<RecyclerView.ViewHolder> {
     private MessageViewHolder.ClickListener clickListener = null;
@@ -167,7 +172,18 @@ public class MessageAdapter extends SelectableAdapter<RecyclerView.ViewHolder> {
         }
         if (7 != type) {
             if (3 == type) {
-                ((DateViewHolder) holder).mDate.setText(cm.getDateStamp());
+                //evaluateDate(cm.getDateStamp());
+                String date = "";
+
+                try {
+                    ((DateViewHolder) holder).mDate.setText(evaluateDate(cm.getDateStamp()));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                //Log.e("Date DAte", (String) ((DateViewHolder) holder).mDate.getText());
+
+
+
             } else if (1 == type || 2 == type) {
                 ((MessageViewHolder) holder).setData(cm, i, isSelected(i));
             } else if (4 == type) {
@@ -193,6 +209,29 @@ public class MessageAdapter extends SelectableAdapter<RecyclerView.ViewHolder> {
             }
         }
         MyTrace.stop();
+    }
+
+    private String evaluateDate(String date) throws ParseException {
+        //Log.e("DateDate",date);
+        SimpleDateFormat format1 = new SimpleDateFormat("MMM dd,yyyy", Locale.getDefault());
+        SimpleDateFormat toBeSent = new SimpleDateFormat("d/M/yy", Locale.getDefault());
+        String dateTobesent="";
+
+           if (date != null) {
+
+                if(date.equals("Yesterday"))
+                   dateTobesent=  "Yesterday";
+               else if ((date.equals("Today")))
+                   dateTobesent= "Today";
+               else{
+                    Date date2 = format1.parse(date);
+                    dateTobesent = toBeSent.format(date2);
+                }
+           }
+
+
+        return  dateTobesent;
+
     }
 
     public void onViewDetachedFromWindow(RecyclerView.ViewHolder holder) {

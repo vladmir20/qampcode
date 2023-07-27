@@ -123,17 +123,8 @@
                 android:id="@+id/rel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="15sp"
                 app:layout_constraintTop_toBottomOf="@+id/pictureViewContainer11">
-
-                <TextView
-                    android:id="@+id/textView22"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32sp"
-                    android:layout_marginTop="40sp"
-                    android:background="@color/background_color_white"
-                    android:gravity="top"
-                    android:text="Group Name" />
 
 
                 <EditText
@@ -141,31 +132,44 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="48sp"
                     android:layout_marginRight="16dp"
-                    android:backgroundTint="@color/background_tint14"
+                    android:background="@drawable/corner_radius_field"
                     android:fontFamily="@font/inter_semibold"
                     android:hint="Info: Represent Your Group Identity...."
                     android:inputType="textPersonName"
                     android:lineHeight="20sp"
                     android:lineSpacingExtra="7sp"
+                    android:padding="10sp"
                     android:textAlignment="viewStart"
                     android:textColor="@color/text_color16"
-                    android:textColorHint="@color/text_color15"
+                    android:textColorHint="@color/background_tint10"
                     android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16sp"
+                    android:layout_marginTop="40sp"
+                    android:background="@color/background_color_white"
+                    android:fontFamily="@font/inter_medium"
+                    android:gravity="top"
+                    android:text="Enter Group Name"
+                    android:textColor="@color/text_color15"
+                    android:textSize="10sp" />
 
             </RelativeLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/group_desc_layout"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:background="@drawable/corner_radius_field"
                 android:orientation="horizontal"
+                android:paddingTop="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rel">
@@ -174,27 +178,38 @@
                     android:id="@+id/nugroup_editor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:backgroundTint="@color/background_tint14"
+                    android:layout_marginTop="6sp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/corner_radius_field"
                     android:fontFamily="@font/inter_semibold"
                     android:hint="Info : Few words to explain what this group represents....."
                     android:inputType="textPersonName"
                     android:lineHeight="20sp"
                     android:lineSpacingExtra="7sp"
+                    android:padding="10sp"
                     android:textAlignment="viewStart"
                     android:textColor="@color/text_color16"
-                    android:textColorHint="@color/text_color15"
+                    android:textColorHint="@color/background_tint10"
                     android:textSize="14sp" />
-            </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView79"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16sp"
+                    android:background="@color/background_color_white"
+                    android:text="Enter Group Description"
+                    android:textColor="@color/text_color15"
+                    android:textSize="10sp" />
+            </RelativeLayout>
 
 
             <View
                 android:id="@+id/view8"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="1dp"
                 android:layout_marginTop="8dp"
-                android:background="@color/grey"
+                android:background="@color/background_tint10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/group_desc_layout" />
@@ -232,9 +247,9 @@
             <View
                 android:id="@+id/view9"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="1dp"
                 android:layout_marginTop="8dp"
-                android:background="@color/grey"
+                android:background="@color/background_tint10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/privacy_layout" />

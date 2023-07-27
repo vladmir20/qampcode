@@ -82,7 +82,7 @@ public class NotificationSendClass {
 
 
     public static void pushNotifications(Context context, String destination_id,
-                                         String notification_title, String notification_body, String notification_type,String destinationId) {
+                                         String notification_title, String notification_body, String notification_type,String destinationId,String sendersId, String sendersAdd) {
 
 
         //Log.e("reached","here");
@@ -108,6 +108,8 @@ public class NotificationSendClass {
             json.put("onClick","MesiboMessagingActivity");
             json.put("notificationType", notification_type);
             json.put("destinationId", destinationId);
+            json.put("sendersId",sendersId);
+            json.put("sendersAdd",sendersAdd);
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, BASE_URL+"mobilenumber/send"
                     , json, new Response.Listener<JSONObject>() {
                 @Override

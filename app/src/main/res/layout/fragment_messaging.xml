@@ -80,6 +80,31 @@
             android:padding="2dp"
             android:visibility="gone">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="16sp"
+                android:paddingTop="16sp"
+                android:paddingBottom="12sp">
+
+                <ImageView
+                    android:id="@+id/imageView45"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/attach__1_" />
+
+                <TextView
+                    android:id="@+id/textView81"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:fontFamily="@font/inter_medium"
+                    android:gravity="center_vertical"
+                    android:text="Attach"
+                    android:textColor="@color/text_color_black" />
+            </LinearLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -107,7 +132,6 @@
                             android:layout_width="24sp"
                             android:layout_height="24sp"
                             android:layout_gravity="center"
-                            android:alpha="0.6"
                             android:background="@android:color/transparent"
                             android:clickable="true"
                             android:src="@drawable/gallery_filled"
@@ -149,7 +173,6 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_gravity="center"
-                            android:alpha="0.6"
                             android:background="@android:color/transparent"
                             android:src="@drawable/camera_light_filled__1_"
                             android:visibility="visible" />
@@ -190,7 +213,6 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_gravity="center"
-                            android:alpha="0.6"
                             android:background="@android:color/transparent"
                             android:src="@drawable/group_512259"
                             android:visibility="visible" />
@@ -232,7 +254,6 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_gravity="center"
-                            android:alpha="0.6"
                             android:background="@android:color/transparent"
                             android:src="@drawable/file"
                             android:visibility="visible" />
@@ -343,7 +364,7 @@
                     android:layout_gravity="bottom"
                     android:layout_marginBottom="0dp"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/ic_attachment_grey_18dp" />
+                    android:src="@drawable/attach__1_" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"

@@ -1,16 +1,21 @@
 package com.qamp.app.Services;
 
 
+import static com.qamp.app.Activity.QampContactScreen.PROJECTION;
+
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.media.AudioAttributes;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.ContactsContract;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -31,51 +36,51 @@ import java.util.Random;
 public class PushNotificationService extends FirebaseMessagingService {
 
 
-    //    public String  getContactList(String cName, String cNumber) {
-//        ContentResolver cr = getApplicationContext().getContentResolver();
-//        String nameFinal= "";
-//        nameFinal = cName;
-//
-//        Cursor cursor = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, PROJECTION, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
-//        if (cursor != null) {
-//
-//            try {
-//                final int nameIndex = cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
-//                final int numberIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
-//
-//
-//                    String name, number;
-//                    //Log.e("num",cNumber);
-//                    while (cursor.moveToNext()) {
-//                        name = cursor.getString(nameIndex);
-//                        number = cursor.getString(numberIndex);
-//
-//
-//                        number = number.replace(" ", "");
-//                        number = number.replace("(", "");
-//                        number = number.replace(")", "");
-//                        number = number.replace("-", "");
-//
-//                        if (number.equals(cNumber.substring(2))) {
-//                            //contactList.add(new Contact(name, number));
-//                            cName = name;
-//                            //Log.e("notificatioon_name", "Phone Number: name = " + name
-//                            //      + " No = " + number + cName + cNumber.substring(2));
-//                            break;
-//                        }else cName = "~"+nameFinal +"~";
-//
-//
-//                        //mobileNoSet.add(number);
-//
-//                        //if (!mobileNoSet.contains(number)) {}
-//                    }
-//
-//            } finally {
-//                cursor.close();
-//            }
-//        }
-//        return cName;
-//    }
+        public String  getContactList(String cName, String cNumber) {
+        ContentResolver cr = getApplicationContext().getContentResolver();
+        String nameFinal= "";
+        nameFinal = cName;
+
+        Cursor cursor = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, PROJECTION, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
+        if (cursor != null) {
+
+            try {
+                final int nameIndex = cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
+                final int numberIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+
+
+                    String name, number;
+                    //Log.e("num",cNumber);
+                    while (cursor.moveToNext()) {
+                        name = cursor.getString(nameIndex);
+                        number = cursor.getString(numberIndex);
+
+
+                        number = number.replace(" ", "");
+                        number = number.replace("(", "");
+                        number = number.replace(")", "");
+                        number = number.replace("-", "");
+
+                        if (number.equals(cNumber.substring(2))) {
+                            //contactList.add(new Contact(name, number));
+                            cName = name;
+                            //Log.e("notificatioon_name", "Phone Number: name = " + name
+                            //      + " No = " + number + cName + cNumber.substring(2));
+                            break;
+                        }else cName = "~"+nameFinal +"~";
+
+
+                        //mobileNoSet.add(number);
+
+                        //if (!mobileNoSet.contains(number)) {}
+                    }
+
+            } finally {
+                cursor.close();
+            }
+        }
+        return cName;
+    }
     private static final String TAG = "MyFirebaseMsgService";
 
     @Override
@@ -112,11 +117,12 @@ public class PushNotificationService extends FirebaseMessagingService {
         //Long group = Long.parseLong(groupIId);
         if (Objects.equals(remoteMessage.getData().get("notificationType"), "MESSAGE_GROUP")) {
             intent.putExtra("groupid", Long.valueOf(Objects.requireNonNull(remoteMessage.getData().get("destinationId"))));
-            titleFinal = title;
-            bodyFinal = remoteMessage.getData().get("sendersId") + " : " + text;
+            titleFinal = getContactList(remoteMessage.getData().get("sendersId"),remoteMessage.getData().get("sendersAdd"));
+            bodyFinal = titleFinal + " : " + text;
         } else {
             intent.putExtra("peer", remoteMessage.getData().get("destinationId"));
-            //  titleFinal = getContactList(title,destination);
+            titleFinal = getContactList(title,remoteMessage.getData().get("sendersAdd"));
+            title=titleFinal;
             bodyFinal = text;
         }
         //intent.putExtra("groupid",Long.valueOf(1007));

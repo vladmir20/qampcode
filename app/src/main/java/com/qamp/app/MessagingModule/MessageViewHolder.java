@@ -26,6 +26,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Random;
 
 public class MessageViewHolder extends MesiboRecycleViewHolder implements View.OnClickListener, View.OnLongClickListener {
     protected FrameLayout mBubble;
@@ -71,8 +72,10 @@ public class MessageViewHolder extends MesiboRecycleViewHolder implements View.O
             if (m.getGroupId() == 0 || !m.isShowName()) {
                 this.otherUserName.setVisibility(View.GONE);
             } else {
+                Random rnd = new Random();
+                int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
                 this.otherUserName.setVisibility(View.VISIBLE);
-                this.otherUserName.setTextColor(m.getNameColor());
+                this.otherUserName.setTextColor(color);
                 this.otherUserName.setText(m.getUsername());
             }
             setupBackgroundBubble(this.mBubble, -1, MesiboUI.getConfig().messageBackgroundColorForPeer);

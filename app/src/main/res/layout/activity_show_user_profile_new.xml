@@ -77,9 +77,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:fontFamily="@font/inter_medium"
                     android:text="TextView"
                     android:textColor="@color/text_color_black_white"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/up_image_profile" />
@@ -89,9 +90,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/inter_regular"
                     android:text="TextView"
                     android:textColor="@color/text_color_subtitle"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/up_user_name" />
@@ -102,9 +104,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/inter_medium"
                     android:text="TextView"
                     android:textColor="@color/background_tint11"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/number_text" />
@@ -151,6 +154,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:paddingLeft="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
@@ -161,10 +165,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
+                    android:fontFamily="@font/inter_medium"
                     android:gravity="center_vertical"
                     android:text="@string/about_text"
                     android:textColor="@color/text_color_black_white2"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/up_status_text"
@@ -174,7 +179,7 @@
                     android:layout_marginTop="10dp"
                     android:text="TextView"
                     android:textColor="@color/text_color_subtitle"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
 
                 <View
                     android:id="@+id/view5"
@@ -189,6 +194,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:paddingLeft="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout">
@@ -199,10 +205,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
+                    android:fontFamily="@font/inter_medium"
                     android:gravity="center_vertical"
                     android:text="@string/email_text"
                     android:textColor="@color/text_color_black_white2"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textView11"
@@ -212,7 +219,7 @@
                     android:layout_marginTop="10dp"
                     android:text=""
                     android:textColor="@color/text_color_subtitle"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
 
                 <View
                     android:id="@+id/view6"
@@ -228,6 +235,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:paddingLeft="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
@@ -237,7 +245,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/card_margin"
-                    android:minHeight="50dp">
+                    android:minHeight="50dp"
+                    app:cardElevation="0sp">
 
                     <LinearLayout
                         android:id="@+id/up_open_media"
@@ -253,10 +262,11 @@
                             android:id="@+id/up_media_link"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_medium"
                             android:gravity="center_vertical"
                             android:text="@string/shared_files"
                             android:textColor="@color/text_color_black_white2"
-                            android:textSize="14sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/up_media_counter"
@@ -303,6 +313,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="50dp"
+                android:paddingLeft="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
@@ -314,17 +325,19 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="12dp"
                     android:layout_marginBottom="10dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingLeft="10sp">
 
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
+                        android:fontFamily="@font/inter_medium"
                         android:gravity="left"
                         android:text="@string/EtoEEncryption"
                         android:textColor="@color/text_color17"
-                        android:textSize="14sp" />
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
@@ -363,7 +376,7 @@
                             android:gravity="left"
                             android:text="@string/group_members"
                             android:textColor="@color/text_color17"
-                            android:textSize="14sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/showProfile_member_count"
@@ -395,10 +408,11 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="20dp"
                             android:layout_weight="1"
+                            android:fontFamily="@font/inter_medium"
                             android:gravity="left|center_vertical"
                             android:text="@string/Edit_Group_Destails"
                             android:textColor="@color/text_color17"
-                            android:textSize="14sp" />
+                            android:textSize="16sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -422,10 +436,11 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="20dp"
                             android:layout_weight="1"
+                            android:fontFamily="@font/inter_medium"
                             android:gravity="left|center_vertical"
                             android:text="@string/add_group_members"
                             android:textColor="@color/text_color17"
-                            android:textSize="14sp" />
+                            android:textSize="16sp" />
                     </LinearLayout>
 
 
@@ -476,7 +491,7 @@
                         android:gravity="left"
                         android:text="@string/exit_group"
                         android:textColor="@color/text_color17"
-                        android:textSize="14sp" />
+                        android:textSize="16sp" />
 
 
                 </LinearLayout>

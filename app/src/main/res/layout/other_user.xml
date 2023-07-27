@@ -118,11 +118,10 @@
 
     <View
         android:id="@+id/selected_overlay"
-        android:layout_width="37dp"
-        android:layout_height="14dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignBottom="@+id/incoming_layout_bubble"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="26dp"
         android:layout_weight="1"
         android:background="@color/overlaySelection"
         android:visibility="gone" />

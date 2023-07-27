@@ -34,10 +34,17 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
+                <View
+                    android:id="@+id/view37"
+                    android:layout_width="match_parent"
+                    android:layout_height="2sp"
+                    android:background="@color/background_tint10" />
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/pictureViewContainer11"
                     android:layout_width="200dp"
                     android:layout_height="200dp"
+                    android:layout_marginTop="16sp"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="4sp">
