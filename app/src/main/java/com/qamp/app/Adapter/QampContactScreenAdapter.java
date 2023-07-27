@@ -1,19 +1,25 @@
 package com.qamp.app.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mesibo.api.Mesibo;
+import com.mesibo.api.MesiboProfile;
 import com.qamp.app.MessagingModule.MesiboMessagingActivity;
 import com.qamp.app.MessagingModule.MesiboUI;
 import com.qamp.app.Modal.QampContactScreenModel;
@@ -24,10 +30,15 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class QampContactScreenAdapter extends RecyclerView.Adapter<QampContactScreenAdapter.QampContactViewHolder> implements Filterable {
+    public static ArrayList<MesiboProfile> slectedgtoup = new ArrayList<>();
     private ArrayList<QampContactScreenModel> contactList;
     private ArrayList<QampContactScreenModel> filteredContactsList;
-
     private Context context;
+
+    private boolean isGroupMaking;
+
+    private LinearLayout next_group;
+
     private Filter contactFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
@@ -56,10 +67,12 @@ public class QampContactScreenAdapter extends RecyclerView.Adapter<QampContactSc
         }
     };
 
-    public QampContactScreenAdapter(Context context, ArrayList<QampContactScreenModel> contactList) {
+    public QampContactScreenAdapter(Context context, ArrayList<QampContactScreenModel> contactList, boolean isGroupMaking, LinearLayout next_group) {
         this.context = context;
         this.contactList = contactList;
         this.filteredContactsList = new ArrayList<>(contactList);
+        this.isGroupMaking = isGroupMaking;
+        this.next_group = next_group;
     }
 
     @NonNull
@@ -71,23 +84,36 @@ public class QampContactScreenAdapter extends RecyclerView.Adapter<QampContactSc
     }
 
     @Override
-    public void onBindViewHolder(@NonNull QampContactViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull QampContactViewHolder holder, @SuppressLint("RecyclerView") int position) {
         QampContactScreenModel contact = contactList.get(position);
         holder.mes_rv_name.setText(contact.getMes_rv_name());
         holder.mes_rv_phone.setText(contact.getMes_rv_phone());
         holder.mes_rv_profile.setImageBitmap(contact.getmUserImage());
-        if (contact.isGroupMaking()) {
-            if (contact.isMesiboProfile()) {
-                holder.isChecked.setVisibility(View.VISIBLE);
-                holder.isChecked.setChecked(contact.isChecked());
-            } else
-                holder.isChecked.setVisibility(View.VISIBLE);
-        }
+        // Set the checkbox state based on the isChecked field
+        holder.isChecked.setOnCheckedChangeListener(null); // Avoid triggering listener during recycling
+        holder.isChecked.setChecked(contact.isChecked());
         if (contact.isMesiboProfile()) {
             holder.link.setVisibility(View.GONE);
             holder.message.setVisibility(View.VISIBLE);
             holder.video_call.setVisibility(View.VISIBLE);
             holder.audio_call.setVisibility(View.VISIBLE);
+
+            if (isGroupMaking) {
+                holder.isChecked.setVisibility(View.VISIBLE);
+
+                holder.isChecked.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        contact.setChecked(isChecked);
+                        MesiboProfile newMesiboProfile = Mesibo.getProfile(contactList.get(position).getMes_rv_phone());
+                        if (isChecked) {
+                            slectedgtoup.add(newMesiboProfile);
+                         } else {
+                            slectedgtoup.remove(newMesiboProfile);
+                        }
+                    }
+                });
+            }
             holder.message.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -118,7 +144,10 @@ public class QampContactScreenAdapter extends RecyclerView.Adapter<QampContactSc
                     context.startActivity(intent);
                 }
             });
+
+
         } else {
+            holder.isChecked.setVisibility(View.GONE);
             holder.link.setVisibility(View.VISIBLE);
             holder.message.setVisibility(View.GONE);
             holder.video_call.setVisibility(View.GONE);

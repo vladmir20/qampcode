@@ -4,6 +4,7 @@ package com.qamp.app.Activity;
 
 import static com.qamp.app.MessagingModule.MesiboConfiguration.MESIBO_INTITIAL_READ_USERLIST;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -16,12 +17,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.mesibo.api.Mesibo;
 import com.qamp.app.Utils.AppConfig;
 import com.qamp.app.R;
 import com.qamp.app.Utils.AppUtils;
 import com.qamp.app.MessagingModule.MesiboUserListActivityNew;
+import com.qamp.app.Utils.ContactSyncClass;
 import com.qamp.app.Utils.ContantContantUtil;
 import com.qamp.app.Utils.Log;
 
@@ -30,6 +34,8 @@ import java.util.Locale;
 public class SplashScreenActivity extends AppCompatActivity {
 
     private final int SPLASH_DISPLAY_LENGTH = 2000;
+    private static final int REQUEST_READ_CONTACTS = 101;
+
     String s1 = "";
     String defaultSystemLanguage;
 
@@ -54,6 +60,17 @@ public class SplashScreenActivity extends AppCompatActivity {
         } else {
             AppUtils.loadLocale(SplashScreenActivity.this);
         }
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_CONTACTS)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_CONTACTS},
+                    REQUEST_READ_CONTACTS);
+        } else {
+            //Permission has already been granted
+            ContactSyncClass.getContactData(SplashScreenActivity.this);
+        }
         navigateToNextActivity();
         /**AsyncTask.execute(new Runnable() {
             @Override
@@ -76,23 +93,15 @@ public class SplashScreenActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-            switch (requestCode) {
-            case 225: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
-                    // startContactsSync();
-                    //ContantContantUtil.showUserList(MESIBO_INTITIAL_READ_USERLIST,SplashScreenActivity.this, SplashScreenActivity.this);
-                } else {
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-                }
-
-                return;
+        if (requestCode == REQUEST_READ_CONTACTS) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted, fetch contacts
+                ContactSyncClass.getContactData(SplashScreenActivity.this);
+            } else {
+                // Permission denied, show a message or handle it gracefully
+                Toast.makeText(this, "Read contacts permission denied", Toast.LENGTH_SHORT).show();
             }
         }
-
     }
 
     private void navigateToNextActivity() {

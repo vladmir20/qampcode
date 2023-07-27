@@ -1,60 +1,51 @@
 package com.qamp.app.Activity;
 
+import static com.qamp.app.Adapter.QampContactScreenAdapter.slectedgtoup;
+
 import android.Manifest;
-import android.content.ContentResolver;
+import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Rect;
+import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.telephony.PhoneNumberUtils;
-import android.telephony.TelephonyManager;
 import android.text.Editable;
-import android.text.TextPaint;
-import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboProfile;
 import com.qamp.app.Adapter.QampContactScreenAdapter;
-import com.qamp.app.MessagingModule.AllUtils.LetterTileProvider;
-import com.qamp.app.Modal.DeviceContactModal;
-import com.qamp.app.Modal.QampContactScreenModel;
+import com.qamp.app.MessagingModule.CreateNewGroupActivity;
+import com.qamp.app.MessagingModule.UserListFragment;
 import com.qamp.app.R;
 import com.qamp.app.Utils.AppUtils;
+import com.qamp.app.Utils.ContactSyncClass;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Iterator;
 
 public class QampContactScreenNew extends AppCompatActivity {
     private static final int REQUEST_READ_CONTACTS = 101;
     private RecyclerView recyclerView;
     private QampContactScreenAdapter adapter;
-    private ArrayList<QampContactScreenModel> contactList;
-    private ArrayList<DeviceContactModal> contactsList = new ArrayList<>();
 
-    private TextView textView66;
+    private TextView textView66,create_group;
     private EditText editTextTextPersonName5;
 
-    private final char[] mFirstChar = new char[1];
-    private final TextPaint mPaint = new TextPaint();
-    private final int mTileLetterFontSize = 25;
+    private ImageView imageView53;
 
-    private final Rect mBounds = new Rect();
-    private int[] mColors = {-957596, -686759, -416706, -1784274, -9977996, -10902850, -14642227, -5414233};
+    private LinearLayout next_group;
+
+
+    private boolean isGroupMakingProcedureActive = false;
 
 
     @Override
@@ -64,7 +55,11 @@ public class QampContactScreenNew extends AppCompatActivity {
         AppUtils.setStatusBarColor(QampContactScreenNew.this, R.color.colorAccent);
         recyclerView = findViewById(R.id.contacts);
         textView66 = findViewById(R.id.textView66);
+        create_group = findViewById(R.id.create_group);
         editTextTextPersonName5 = findViewById(R.id.editTextTextPersonName5);
+        imageView53 = findViewById(R.id.imageView53);
+        next_group = findViewById(R.id.next_group);
+        textView66.setText(ContactSyncClass.contactsList.size()+" Contacts");
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.READ_CONTACTS)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -74,12 +69,34 @@ public class QampContactScreenNew extends AppCompatActivity {
                     REQUEST_READ_CONTACTS);
         } else {
             // Permission has already been granted
-            readContacts();
+            // ContactSyncClass.getContactData();
         }
-        contactList = getContactData();
-        adapter = new QampContactScreenAdapter(this, contactList);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        if (!isGroupMakingProcedureActive){
+            showList(false, next_group);
+            isGroupMakingProcedureActive = false;
+        }
+
+        create_group.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isGroupMakingProcedureActive){
+                    next_group.setVisibility(View.VISIBLE);
+                    showList(true,next_group);
+                    isGroupMakingProcedureActive = true;
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        create_group.setBackgroundColor(QampContactScreenNew.this.getColor(R.color.colorPrimary));
+                    }
+                }else{
+                    next_group.setVisibility(View.GONE);
+                    showList(false,next_group);
+                    isGroupMakingProcedureActive = false;
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        create_group.setBackgroundColor(QampContactScreenNew.this.getColor(R.color.white));
+                    }
+                }
+            }
+        });
         editTextTextPersonName5.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -96,120 +113,45 @@ public class QampContactScreenNew extends AppCompatActivity {
 
             }
         });
-    }
-
-    private void readContacts() {
-        ContentResolver contentResolver = getContentResolver();
-        Cursor cursor = contentResolver.query(
-                ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                null,
-                null,
-                null,
-                ContactsContract.Contacts.DISPLAY_NAME + " ASC"
-        );
-
-        if (cursor != null && cursor.getCount() > 0) {
-            while (cursor.moveToNext()) {
-                String name = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-                String phoneNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                phoneNumber = formatPhoneNumber(phoneNumber);
-                // Add the contact to the ArrayList
-                contactsList.add(new DeviceContactModal(name, phoneNumber));
+        imageView53.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
-            cursor.close();
-        }
-        textView66.setText(contactsList.size() + " Contacts");
+        });
+
+        next_group.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UserListFragment.mMemberProfiles.clear();
+                if (slectedgtoup.size() >= 2) {
+                    Iterator<MesiboProfile> it = slectedgtoup.iterator();
+                    while (it.hasNext()) {
+                        MesiboProfile d = it.next();
+                        UserListFragment.mMemberProfiles.add(d);
+                    }
+                    //  MesiboUIManager.launchGroupActivity(ContactsBottomSheetFragment.this.getActivity(), (Bundle) null);
+                    Intent intent = new Intent(QampContactScreenNew.this, CreateNewGroupActivity.class);
+                    startActivity(intent);
+
+                } else if (slectedgtoup.size() == 0 || slectedgtoup.size() == 1) {
+                    Toast.makeText(QampContactScreenNew.this, "Please Select atleast two members to create group", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
-
-    private String formatPhoneNumber(String phoneNumber) {
-        // Remove all non-numeric characters from the phone number
-        String formattedNumber = PhoneNumberUtils.stripSeparators(phoneNumber);
-
-        // Get the country code from the TelephonyManager
-        TelephonyManager tm = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-        String countryCode = tm.getSimCountryIso().toUpperCase();
-
-        // Remove any plus sign from the prefix
-        formattedNumber = formattedNumber.replaceFirst("^\\+", "");
-        return formattedNumber;
+    private void showList(boolean isGroupMaking, LinearLayout next_group) {
+        adapter = new QampContactScreenAdapter(QampContactScreenNew.this,
+                ContactSyncClass.contacts, isGroupMaking , next_group);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(QampContactScreenNew.this));
+        adapter.notifyDataSetChanged();
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_READ_CONTACTS) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission granted, fetch contacts
-                readContacts();
-            } else {
-                // Permission denied, show a message or handle it gracefully
-                Toast.makeText(this, "Read contacts permission denied", Toast.LENGTH_SHORT).show();
-            }
-        }
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
-
-    private ArrayList<QampContactScreenModel> getContactData() {
-        ArrayList<QampContactScreenModel> contacts = new ArrayList<>();
-        ArrayList<MesiboProfile> mesiboProfileArrayList = Mesibo.getSortedUserProfiles();
-        Set<String> addedPhoneNumbers = new HashSet<>();
-        for (int i = 0; i < contactsList.size(); i++) {
-            String phoneNumber = contactsList.get(i).getPhoneNumber();
-            for (int j = 0; j < mesiboProfileArrayList.size(); j++) {
-                if (contactsList.get(i).getPhoneNumber().equals(mesiboProfileArrayList.get(j).getAddress())) {
-                    // Check if the phone number has already been added before adding it again
-                    if (!addedPhoneNumbers.contains(phoneNumber)) {
-                        Bitmap b = null;
-                        MesiboProfile mesiboProfile = Mesibo.getProfile(phoneNumber);
-                        b = mesiboProfile.getImage();
-                        contacts.add(new QampContactScreenModel(false, contactsList.get(i).getName(),
-                                phoneNumber, true, false, b));
-                        addedPhoneNumbers.add(phoneNumber); // Add the phone number to the set
-                    }
-                }
-            }
-        }
-        for (int i = 0; i < contactsList.size(); i++) {
-            String phoneNumber = contactsList.get(i).getPhoneNumber();
-            if (!addedPhoneNumbers.contains(phoneNumber)) {
-                Bitmap b = null;
-                int width = 35;
-                int height = 35;
-                Bitmap bmp;
-                if (true) {
-                    bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-                }
-                char firstChar = '*';
-                Canvas c = new Canvas();
-                c.setBitmap(bmp);
-                if (!TextUtils.isEmpty(contactsList.get(i).getName())) {
-                    firstChar = contactsList.get(i).getName().charAt(0);
-                }
-                c.drawColor(pickColor(contactsList.get(i).getName()));
-                if (isEnglishLetterOrDigit(firstChar)) {
-                    this.mFirstChar[0] = Character.toUpperCase(firstChar);
-                } else {
-                    this.mFirstChar[0] = firstChar;
-                }
-                this.mPaint.setTextSize((float) this.mTileLetterFontSize);
-                this.mPaint.getTextBounds(this.mFirstChar, 0, 1, this.mBounds);
-                c.drawText(this.mFirstChar, 0, 1, (float) ((width / 2) + 0), (float) ((height / 2) + 0 + ((this.mBounds.bottom - this.mBounds.top) / 2)), this.mPaint);
-
-                contacts.add(new QampContactScreenModel(false, contactsList.get(i).getName(),
-                        phoneNumber, false, false, bmp));
-                addedPhoneNumbers.add(phoneNumber); // Add the phone number to the set
-            }
-        }
-        return contacts;
-    }
-    public int pickColor(String key) {
-        if (TextUtils.isEmpty(key)) {
-            return 0;
-        }
-        return this.mColors[Math.abs(key.hashCode()) % this.mColors.length];
-    }
-    private static boolean isEnglishLetterOrDigit(char c) {
-        return ('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z') || ('0' <= c && c <= '9');
-    }
-
 }
