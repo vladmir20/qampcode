@@ -182,12 +182,13 @@
                     android:layout_marginRight="15dp"
                     android:background="@drawable/corner_radius_field"
                     android:fontFamily="@font/inter_semibold"
+                    android:gravity="top"
                     android:hint="Info : Few words to explain what this group represents....."
                     android:inputType="textPersonName"
                     android:lineHeight="20sp"
                     android:lineSpacingExtra="7sp"
+                    android:minHeight="80sp"
                     android:padding="10sp"
-                    android:textAlignment="viewStart"
                     android:textColor="@color/text_color16"
                     android:textColorHint="@color/background_tint10"
                     android:textSize="14sp" />
@@ -208,7 +209,7 @@
                 android:id="@+id/view8"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16sp"
                 android:background="@color/background_tint10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -230,6 +231,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_medium"
                     android:text="@string/privacy_settings"
                     android:textColor="@color/text_color17"
                     android:textSize="14sp" />
@@ -238,9 +240,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:fontFamily="@font/inter_regular"
                     android:text="@string/EtoEEncryption"
                     android:textColor="@color/text_color_subtitle"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -270,6 +273,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_medium"
                     android:text="@string/group_interaction_text"
                     android:textColor="@color/text_color17"
                     android:textSize="14sp" />
@@ -278,18 +282,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:fontFamily="@font/inter_regular"
                     android:text="@string/EtoEEncryption"
                     android:textColor="@color/text_color_subtitle"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
             <View
                 android:id="@+id/view10"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="1sp"
                 android:layout_marginTop="8dp"
-                android:background="@color/grey"
+                android:background="@color/background_tint10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/group_interaction_layout" />
@@ -298,7 +303,7 @@
                 android:id="@+id/members_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="24sp"
                 android:fontFamily="@font/inter_medium"
                 android:paddingLeft="16sp"
                 android:text="7 Members"
@@ -312,9 +317,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="16sp"
+                android:layout_marginTop="6sp"
                 android:background="#ffffff"
                 android:gravity="center"
+                android:paddingLeft="16sp"
+                android:paddingRight="16sp"
                 app:layout_constraintTop_toBottomOf="@id/members_list">
 
                 <ImageView
@@ -344,10 +351,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="@font/inter_medium"
                         android:text="User Name"
                         android:textColor="#505050"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textSize="16sp"
+                        android:textStyle="normal" />
 
                     <ImageView
                         android:id="@+id/nu_delete_btn"
@@ -364,9 +372,8 @@
                     android:id="@+id/textView24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@id/nu_rv_profile"
+                    android:layout_alignLeft="@id/name_address_layout"
                     android:layout_alignTop="@id/name_address_layout"
-                    android:layout_marginLeft="70sp"
                     android:layout_marginTop="30sp"
                     android:fontFamily="@font/inter_medium"
                     android:text="Admin"
@@ -381,7 +388,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/md_white_1000"
-                android:padding="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="16dp"
                 app:layout_constraintTop_toBottomOf="@id/nu_top_layout">
 
             </androidx.recyclerview.widget.RecyclerView>

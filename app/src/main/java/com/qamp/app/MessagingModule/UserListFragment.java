@@ -1093,7 +1093,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         String toBeDate = toBeSent.format(llDate);
 
         if (llDate.before(ccDAte) && llDate.after(yyyDate))
-            return "yesterday";
+            return "Yesterday";
         else if (llDate.equals(ccDAte)) return timeSent;
         else if (llDate.before(yyyDate)) return toBeDate;
         else return toBeDate;
@@ -1306,6 +1306,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                 holder.mContactsMessage.setCompoundDrawablePadding(padding);
                 if (!typing) {
                     holder.mContactsMessage.setText(userdata.getLastMessage());
+                    Log.e("last message",userdata.getLastMessage());
                     holder.mContactsMessage.setTextColor(UserListFragment.this.mMesiboUIOptions.mUserListStatusColor);
                 } else {
                     MesiboProfile typingProfile = data.getTypingProfile();
@@ -1604,6 +1605,8 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
             public View mView = null;
             public int position = 0;
             public ImageView isOnlineDot;
+
+            public RelativeLayout relativeLayout;
 
             public SectionCellsViewHolder(View view) {
                 super(view);

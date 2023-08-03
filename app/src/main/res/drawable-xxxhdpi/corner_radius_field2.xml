@@ -20,7 +20,7 @@ android:insetBottom="-2dp"
         android:shape="rectangle"
         >
 
-        <solid android:color="@color/background_tint14" />
+        <solid android:color="@color/transparent" />
         <stroke android:width="1dip" android:color="@color/background_tint13"/>
         <corners
             android:bottomRightRadius="0dp"

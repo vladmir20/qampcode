@@ -57,7 +57,7 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginLeft="20sp"
                         android:layout_marginRight="5dp"
                         android:src="@drawable/ic_menu" />
 

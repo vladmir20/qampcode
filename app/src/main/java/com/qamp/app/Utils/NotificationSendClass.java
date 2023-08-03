@@ -19,6 +19,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class NotificationSendClass {
 
@@ -37,11 +38,11 @@ public class NotificationSendClass {
 
         try {
             JSONObject json = new JSONObject();
-
+            UUID uu = UUID.randomUUID();
 
             json.put("groupid",groupId);
             json.put("title",notification_titl);
-            json.put("body",notification_bod);
+            json.put("body",notification_bod+uu);
             json.put("sendersId",senderId);
             json.put("sendersAdd",senderAdd);
             json.put("onClick","MesiboMessagingActivity");

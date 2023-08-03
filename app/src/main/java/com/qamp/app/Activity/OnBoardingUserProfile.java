@@ -475,6 +475,7 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
                     }
                 } else {
                     final int sdk = android.os.Build.VERSION.SDK_INT;
+                    saveButton.setCompoundDrawables(null, null, null, null);
                     if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
                         saveButton.setBackgroundDrawable(ContextCompat.getDrawable(OnBoardingUserProfile.this, R.drawable.corner_radius_gray_button));
                         saveButton.setTextColor(ContextCompat.getColor(OnBoardingUserProfile.this, R.color.text_color_button));

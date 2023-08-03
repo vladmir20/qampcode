@@ -41,8 +41,7 @@
                     android:id="@+id/back_btn"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="2dp"
                     android:layout_marginTop="25dp"
                     android:src="@drawable/ic_arrow_left"
                     app:layout_constraintStart_toStartOf="parent"
@@ -134,7 +133,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30dp"
                         app:srcCompat="@drawable/ic_video_camera" />
-                    
+
                 </LinearLayout>
 
                 <ImageView
@@ -154,7 +153,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingLeft="10sp"
+                android:paddingLeft="12sp"
+                android:paddingRight="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
@@ -163,7 +163,6 @@
                     android:id="@+id/textView8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/inter_medium"
                     android:gravity="center_vertical"
@@ -175,7 +174,6 @@
                     android:id="@+id/up_status_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:text="TextView"
                     android:textColor="@color/text_color_subtitle"
@@ -194,7 +192,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingLeft="10sp"
+                android:paddingLeft="12sp"
+                android:paddingRight="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout">
@@ -203,7 +202,6 @@
                     android:id="@+id/textView10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/inter_medium"
                     android:gravity="center_vertical"
@@ -215,7 +213,6 @@
                     android:id="@+id/textView11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:text=""
                     android:textColor="@color/text_color_subtitle"
@@ -235,7 +232,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingLeft="10sp"
+                android:paddingLeft="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
@@ -252,7 +249,6 @@
                         android:id="@+id/up_open_media"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
                         android:layout_marginTop="20dp"
                         android:layout_marginRight="20dp"
                         android:clipToPadding="false"
@@ -286,6 +282,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:layout_marginRight="12sp"
                     android:layout_marginBottom="5dp"
                     android:clipToPadding="false"
                     android:scrollbars="none">
@@ -304,6 +301,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginRight="12sp"
                     android:background="@color/grey_5" />
 
             </LinearLayout>
@@ -314,6 +312,7 @@
                 android:layout_height="wrap_content"
                 android:minHeight="50dp"
                 android:paddingLeft="16sp"
+                app:cardElevation="0sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
@@ -321,12 +320,11 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="12dp"
                     android:layout_marginBottom="10dp"
                     android:orientation="vertical"
-                    android:paddingLeft="10sp">
+                    android:paddingLeft="12sp">
 
 
                     <TextView
@@ -348,6 +346,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="50dp"
+                android:paddingLeft="2sp"
+                app:cardElevation="0sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/e2ee_card">
@@ -355,7 +355,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
+                    android:layout_marginLeft="12sp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="12dp"
                     android:layout_marginBottom="10dp"
@@ -398,7 +398,6 @@
                         <ImageView
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:layout_margin="5dp"
                             android:src="@drawable/default_group_image"
                             app:tint="@color/md_grey_500" />
 
@@ -426,7 +425,6 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
                             android:src="@drawable/ic_add"
                             app:tint="@color/text_color_subtitle" />
 
@@ -468,6 +466,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="50dp"
+                app:cardElevation="0sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/showprofile_members_card">

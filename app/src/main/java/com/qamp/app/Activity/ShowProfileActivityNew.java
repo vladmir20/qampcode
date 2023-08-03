@@ -90,6 +90,8 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
     private ArrayList<AlbumListData> mGalleryData;
     private ImageView mMessageBtn;
     private CardView mMediaCardView;
+
+    private  View view7;
     private CardView mStatusPhoneCard;
     private CardView mGroupMembersCard;
     private CardView mExitGroupCard;
@@ -255,7 +257,9 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
         mGalleryData.add(Documents);
 
         mMediaCardView = (CardView) findViewById(R.id.up_media_layout);
+        view7 = findViewById(R.id.view7);
         mMediaCardView.setVisibility(GONE);
+        view7.setVisibility(GONE);
         Mesibo.addListener(this);
 
         mReadSession = mUserProfile.createReadSession(this);
@@ -444,6 +448,7 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
     public void Mesibo_onMessage(MesiboMessage msg) {
         if (!msg.hasFile()) return;
         mMediaCardView.setVisibility(VISIBLE);
+        view7.setVisibility(VISIBLE);
         mMediaFilesCounter++;
         mMediaCounterView.setText(String.valueOf(mMediaFilesCounter) + "\u3009 ");
         AlbumPhotosData newPhoto = new AlbumPhotosData();

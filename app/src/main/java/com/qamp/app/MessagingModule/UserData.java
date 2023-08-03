@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 
+import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboMessage;
 import com.mesibo.api.MesiboProfile;
 import com.qamp.app.MessagingModule.AllUtils.LetterTileProvider;
@@ -58,6 +59,9 @@ public class UserData {
     private String appendNameToMessage(MesiboMessage params, String message) {
         String name = params.peer;
         if (!(params.profile == null || params.profile.getFirstName() == null)) {
+            if(params.profile.getFirstName().equals(Mesibo.getSelfProfile().getFirstName())){
+                name = "You";
+            }else
             name = params.profile.getFirstName();
         }
         if (TextUtils.isEmpty(name)) {
@@ -115,6 +119,8 @@ public class UserData {
                 str = MesiboUI.getConfig().missedVoiceCallTitle;
             }
         }
+        if(this.msg.isGroupMessage()&&!this.msg.isIncoming())
+            str = appendNameToMessage(this.msg,str);
         setMessage(str);
     }
 

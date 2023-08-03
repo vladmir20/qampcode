@@ -475,12 +475,12 @@
                             android:layout_marginTop="11sp"
                             android:layout_marginBottom="16sp"
                             android:layout_weight="1"
-                            android:fontFamily="@font/inter_medium"
+                            android:fontFamily="@font/inter_regular"
                             android:maxLines="1"
                             android:paddingLeft="16sp"
                             android:text=""
                             android:textColor="@color/text_color15"
-                            android:textSize="12sp" />
+                            android:textSize="14sp" />
 
                         <View
                             android:layout_width="match_parent"

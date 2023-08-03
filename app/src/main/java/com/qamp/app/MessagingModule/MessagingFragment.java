@@ -120,6 +120,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
     private static int UPDATE_INTERVAL = 10000;
     private static int FATEST_INTERVAL = 5000;
     private static int DISPLACEMENT = 10;
+    private boolean isHidden = true;
     private static int PLACE_PICKER_REQUEST = 199;
     boolean hidden = true;
     ImageButton ib_gallery = null;
@@ -315,9 +316,19 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
                     this.ib_showattach = (ImageButton) view.findViewById(R.id.showAttachment);
                     this.ib_showattach.setOnClickListener(new OnClickListener() {
                         public void onClick(View view) {
+                            if (isHidden){
+                                MessagingFragment.this.mAttachLayout.setVisibility(View.VISIBLE);
+                                isSharingOptionsOpen = true;
+                                isHidden = false;
+
+                            }
+                            else if(!isHidden){
+                                MessagingFragment.this.mAttachLayout.setVisibility(View.GONE);
+                                isHidden = true;
+                                isSharingOptionsOpen = false;
+                            }
                             //MessagingFragment.this.mEditLayout.setVisibility(View.GONE);
-                            MessagingFragment.this.mAttachLayout.setVisibility(View.VISIBLE);
-                            isSharingOptionsOpen = true;
+
                         }
                     });
                     this.ib_showattach.setVisibility(this.mMediaHandled ? View.VISIBLE : View.GONE);
@@ -1157,6 +1168,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
             this.mEditLayout.setVisibility(show ? View.GONE : View.VISIBLE);
             this.mAttachLayout.setVisibility(show ? View.VISIBLE : View.GONE);
             isSharingOptionsOpen = false;
+            isHidden = true;
         }
     }
 

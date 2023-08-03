@@ -27,6 +27,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
+
         <ImageView
             android:id="@+id/mes_rv_profile"
             android:layout_width="55dp"
@@ -71,11 +73,11 @@
             android:layout_alignTop="@id/mes_rv_name"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="14sp"
             android:fontFamily="@font/inter_regular"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#868686"
-            android:textSize="12dp"
+            android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -127,12 +129,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/attachment_button_background"
             android:gravity="center"
-            android:padding="5dp"
+            android:padding="2sp"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -140,8 +141,8 @@
 
             <TextView
                 android:id="@+id/mes_alert"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20sp"
+                android:layout_height="16sp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:maxLines="1"

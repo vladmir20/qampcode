@@ -62,6 +62,7 @@
         android:id="@+id/pictureViewContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="10sp"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="horizontal"
@@ -158,38 +159,52 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
+        android:paddingTop="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/containerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="70sp"
             android:layout_gravity="center"
-            android:background="@drawable/corner_radius_field"
             android:gravity="center"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/nameEditText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50sp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:background="@drawable/corner_radius_field"
                 android:backgroundTint="@color/background_tint14"
                 android:drawableRight="@drawable/cross_edit"
-                android:fontFamily="@font/inter_semibold"
+                android:fontFamily="@font/inter_medium"
                 android:hint="@string/onboarding_profile_field_hint"
                 android:inputType="textPersonName"
                 android:lineHeight="20sp"
                 android:lineSpacingExtra="7sp"
                 android:maxLength="50"
+                android:paddingLeft="16sp"
+                android:paddingRight="16sp"
                 android:textAlignment="viewStart"
                 android:textColor="@color/text_color16"
                 android:textColorHint="@color/text_color15"
-                android:textSize="16dp" />
-        </LinearLayout>
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textView82"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="false"
+                android:layout_marginLeft="16sp"
+                android:layout_marginTop="-8sp"
+                android:background="@color/background_color_white"
+                android:fontFamily="@font/inter_medium"
+                android:text="Your Name"
+                android:textColor="@color/text_color_button"
+                android:textSize="10sp" />
+        </RelativeLayout>
 
         <Button
             android:id="@+id/saveButton"

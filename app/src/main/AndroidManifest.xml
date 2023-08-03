@@ -108,7 +108,7 @@
             android:name=".Activity.LoginQampActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Theme.Huddle.NoActionBarGreyTheme" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

@@ -12,7 +12,7 @@
     android:id="@+id/loginContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/login_image_bg">
+    android:background="@drawable/login_back">
 
 
     <LinearLayout
@@ -24,7 +24,7 @@
             android:id="@+id/loginLogo"
             android:layout_width="match_parent"
             android:layout_height="44dp"
-            android:layout_marginTop="110dp"
+            android:layout_marginTop="161sp"
             android:elevation="1dp"
             android:src="@mipmap/qamp_logo" />
 
@@ -100,15 +100,15 @@
                             android:background="@drawable/corner_radius_field2"
                             android:fontFamily="@font/inter_regular"
                             android:onClick="onCountryPickerClick"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                         <EditText
                             android:id="@+id/phoneEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:backgroundTint="@color/background_tint14"
-                            android:fontFamily="@font/inter_semibold"
+                            android:backgroundTint="@color/transparent_color"
+                            android:fontFamily="@font/inter_regular"
                             android:hint="@string/field_text"
                             android:inputType="number"
                             android:lineHeight="24sp"
@@ -141,7 +141,7 @@
                         android:layout_marginBottom="20dp"
                         android:background="@drawable/corner_radius_buttoon_grey"
                         android:enabled="false"
-                        android:fontFamily="@font/inter_semibold"
+                        android:fontFamily="@font/inter_medium"
                         android:text="@string/button_samp"
                         android:textColor="@color/text_color17"
                         android:textSize="16sp" />
