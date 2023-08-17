@@ -343,12 +343,12 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
                     AppUtils.closeProgresDialog();
                     String status = response.getString("status");
                     Log.e("VOLLEY Status======", status);
-                    Intent intent = new
-                            Intent(
-                            OnBoardingUserProfile.this,
-                            WelcomeOnboarding.class);
-                    finish();
-                    startActivity(intent);
+                    //Intent intent = new
+                      //      Intent(
+                        //    OnBoardingUserProfile.this,
+                          //  WelcomeOnboarding.class);
+                    //finish();
+                    //startActivity(intent);
                     if (status.contains(QampConstants.success)) {
                         JSONObject data = response.getJSONObject("data");
                         String fullName = data.getString("fullName");
