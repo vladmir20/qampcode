@@ -35,6 +35,7 @@ import com.qamp.app.MessagingModule.AllUtils.MyTrace;
 import java.lang.ref.WeakReference;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -180,7 +181,7 @@ public class MessageAdapter extends SelectableAdapter<RecyclerView.ViewHolder> {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                //Log.e("Date DAte", (String) ((DateViewHolder) holder).mDate.getText());
+               // Log.e("Date DAte", (String) ((DateViewHolder) holder).mDate.getText());
 
 
 
@@ -212,18 +213,26 @@ public class MessageAdapter extends SelectableAdapter<RecyclerView.ViewHolder> {
     }
 
     private String evaluateDate(String date) throws ParseException {
-        //Log.e("DateDate",date);
+        Log.e("DateDate",date);
         SimpleDateFormat format1 = new SimpleDateFormat("MMM dd,yyyy", Locale.getDefault());
         SimpleDateFormat toBeSent = new SimpleDateFormat("d/M/yy", Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
         String dateTobesent="";
+        Date currentDate = Calendar.getInstance().getTime();
+        Log.e("DateDate1",currentDate.toString());
+        String cDate = sdf.format(currentDate);
+        //String date1 = sdf.format(cDate);
+        Log.e("DateDate2",cDate);
 
            if (date != null) {
 
                 if(date.equals("Yesterday"))
                    dateTobesent=  "Yesterday";
-               else if ((date.equals("Today")))
+               else if ((date.equals(cDate)))
                    dateTobesent= "Today";
-               else{
+                else if (date.equals("Today"))
+                    dateTobesent= "Today";
+                 else{
                     Date date2 = format1.parse(date);
                     dateTobesent = toBeSent.format(date2);
                 }

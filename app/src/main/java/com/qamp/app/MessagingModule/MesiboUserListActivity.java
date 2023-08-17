@@ -141,6 +141,7 @@ public class MesiboUserListActivity extends AppCompatActivity implements MesiboU
         } else {
              finish();
         }
+
     }
 
     /* JADX WARNING: type inference failed for: r2v0, types: [android.content.Context, com.qamp.app.MessagingModule.MesiboUserListActivity, androidx.appcompat.app.AppCompatActivity] */

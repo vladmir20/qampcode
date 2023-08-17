@@ -166,7 +166,7 @@ public class OnBoardingScreens extends AppCompatActivity {
                 if (pos >= count) pos = 0;
                 viewPager.setCurrentItem(pos);
                 if (pos == 2)
-                    skip_btn.setText(R.string.next_text);
+                    skip_btn.setText(R.string.skip);
                 handler.postDelayed(runnable, 3000);
             }
         };

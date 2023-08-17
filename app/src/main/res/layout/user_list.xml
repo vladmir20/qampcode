@@ -19,14 +19,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
 
-        android:layout_marginTop="8sp"
-        android:layout_marginBottom="8sp"
+        android:layout_marginTop="4sp"
         android:background="?android:selectableItemBackground"
         android:paddingLeft="24sp"
         android:paddingRight="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
 
 
         <ImageView
@@ -55,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/mes_rv_profile"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16sp"
             android:layout_toLeftOf="@+id/mes_rv_date"
             android:layout_toRightOf="@+id/mes_rv_profile"
             android:fontFamily="@font/inter_medium"
@@ -73,8 +71,9 @@
             android:layout_alignTop="@id/mes_rv_name"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="14sp"
+            android:layout_marginTop="22sp"
             android:fontFamily="@font/inter_regular"
+            android:text="yesterday"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#868686"
             android:textSize="10sp"
@@ -89,8 +88,8 @@
             android:layout_alignLeft="@+id/mes_rv_name"
             android:layout_alignParentRight="true"
             android:layout_gravity="bottom"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="8sp"
+            android:layout_marginTop="2sp"
             android:orientation="horizontal"
             android:weightSum="3"
             app:layout_constraintStart_toEndOf="@+id/isOnlineDot"

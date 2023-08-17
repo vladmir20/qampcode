@@ -27,6 +27,7 @@
                 android:id="@+id/linearLayoutCompat"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:elevation="10sp"
                 android:orientation="horizontal"
                 android:weightSum="2"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +42,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:src="@drawable/ic_arrow_left"
-                    app:tint="@color/text_color_black_white"/>
+                    app:tint="@color/text_color_black_white" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -108,7 +109,9 @@
                     app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
                     app:layout_constraintEnd_toEndOf="@+id/circleImageView"
                     app:layout_constraintStart_toStartOf="@+id/circleImageView"
-                    app:layout_constraintTop_toTopOf="@+id/circleImageView" />
+                    app:layout_constraintTop_toTopOf="@+id/circleImageView"
+                    app:srcCompat="@drawable/cam_icon"
+                    tools:srcCompat="@drawable/cam_icon" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -143,20 +146,20 @@
                     android:padding="10sp"
                     android:textAlignment="viewStart"
                     android:textColor="@color/text_color16"
-                    android:textColorHint="@color/background_tint10"
+                    android:textColorHint="#D9D9D9"
                     android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/textView22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16sp"
+                    android:layout_marginStart="10sp"
                     android:layout_marginTop="40sp"
                     android:background="@color/background_color_white"
                     android:fontFamily="@font/inter_medium"
                     android:gravity="top"
-                    android:text="Enter Group Name"
-                    android:textColor="@color/text_color15"
+                    android:text="@string/enter_group_name"
+                    android:textColor="@color/text_color_chat_date"
                     android:textSize="10sp" />
 
             </RelativeLayout>
@@ -183,24 +186,24 @@
                     android:background="@drawable/corner_radius_field"
                     android:fontFamily="@font/inter_semibold"
                     android:gravity="top"
-                    android:hint="Info : Few words to explain what this group represents....."
+                    android:hint="@string/info_text_des"
                     android:inputType="textPersonName"
                     android:lineHeight="20sp"
                     android:lineSpacingExtra="7sp"
                     android:minHeight="80sp"
                     android:padding="10sp"
                     android:textColor="@color/text_color16"
-                    android:textColorHint="@color/background_tint10"
+                    android:textColorHint="#D9D9D9"
                     android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/textView79"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16sp"
+                    android:layout_marginStart="10sp"
                     android:background="@color/background_color_white"
-                    android:text="Enter Group Description"
-                    android:textColor="@color/text_color15"
+                    android:text="@string/enter_group_desc"
+                    android:textColor="@color/text_color_chat_date"
                     android:textSize="10sp" />
             </RelativeLayout>
 
@@ -231,6 +234,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16sp"
                     android:fontFamily="@font/inter_medium"
                     android:text="@string/privacy_settings"
                     android:textColor="@color/text_color17"
@@ -331,7 +335,6 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp" />
@@ -350,11 +353,12 @@
                         android:id="@+id/nu_rv_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8sp"
                         android:layout_weight="1"
                         android:fontFamily="@font/inter_medium"
                         android:text="User Name"
                         android:textColor="#505050"
-                        android:textSize="16sp"
+                        android:textSize="12sp"
                         android:textStyle="normal" />
 
                     <ImageView
@@ -374,9 +378,9 @@
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@id/name_address_layout"
                     android:layout_alignTop="@id/name_address_layout"
-                    android:layout_marginTop="30sp"
+                    android:layout_marginTop="24sp"
                     android:fontFamily="@font/inter_medium"
-                    android:text="Admin"
+                    android:text="@string/Admin"
                     android:textColor="#F4B63F"
                     android:textSize="12sp" />
 

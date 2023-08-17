@@ -228,7 +228,8 @@ public class CreateNewGroupFragment extends Fragment implements MediaPicker.Imag
         this.mAdapter = new GroupMemeberAdapter(getActivity(), datProfile);
         this.mRecyclerView.setAdapter(this.mAdapter);
         int size = UserListFragment.mMemberProfiles.size() +1;
-        this.members_list.setText(String.valueOf(size)+""+" members");
+        String menmber = getString(R.string.members_text);
+        this.members_list.setText(String.valueOf(size)+menmber);
 
 //        this.mCharCounter = v.findViewById(R.id.nugroup_counter);
 //        this.mCharCounter.setText(String.valueOf(50));

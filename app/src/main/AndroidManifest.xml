@@ -57,13 +57,13 @@
             android:name=".Activity.OnBoardingScreens"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Theme.Huddle.NoActionBarGreyTheme" />
 
         <activity
             android:name=".Activity.OnBoardingUserProfile"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Theme.Huddle.NoActionBarGreyTheme" />
         <!--        <activity-->
         <!--            android:name=".qampCalls.QampDefaultCallActivity"-->
         <!--            android:configChanges="keyboardHidden|orientation|screenSize"-->
@@ -90,7 +90,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/Theme.Huddle.NoActionBarGreyTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -102,7 +102,7 @@
             android:name=".Activity.WelcomeOnboarding"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Theme.Huddle.NoActionBarGreyTheme" />
 
         <activity
             android:name=".Activity.LoginQampActivity"

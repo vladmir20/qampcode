@@ -13,10 +13,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.GenericSignatureFormatError;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -27,6 +29,7 @@ public class NotificationSendClass {
 //    private static String server_key = "";
     private static String BASE_URL = "http://dcore.qampservices.in/v1/notification-service/notification/";//mobilenumber/send
     private static String server_key = "";
+    public static int counter=0 ;
 
 
     public static void pushNotificationsGroup(Context context, String groupId, String notification_titl, String notification_bod, String senderId, String senderAdd){
@@ -40,6 +43,8 @@ public class NotificationSendClass {
             JSONObject json = new JSONObject();
             UUID uu = UUID.randomUUID();
 
+
+
             json.put("groupid",groupId);
             json.put("title",notification_titl);
             json.put("body",notification_bod+uu);
@@ -52,6 +57,10 @@ public class NotificationSendClass {
                     , json, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
+                Log.e("Response Response", new Gson().toJson(response));
+                System.out.println(new Gson().toJson(response)+"Aditya");
+                Toast.makeText(context.getApplicationContext(), new Gson().toJson(response),Toast.LENGTH_LONG).show();
+                    counter = counter+1;
 
                 }
             }, new Response.ErrorListener() {

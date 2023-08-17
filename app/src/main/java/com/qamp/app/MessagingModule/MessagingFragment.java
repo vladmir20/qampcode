@@ -757,7 +757,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
             if (profile.isTyping(groupid)) {
                 status = "";
                 if (groupid > 0L) {
-                    status = profile.getName() + " is " +"Typing";
+                    status = profile.getName() + " is " +getString(R.string.typing_text);
                 }
 
                 //status = status + getContext().getResources().getString(R.string.typing_text);
@@ -767,26 +767,26 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
             } else if (profile.isOnline() && 0L == groupid) {
 //                if (getContext().getResources().getString(R.string.online_text)!=null)
                // status = getContext().getResources().getString(R.string.online_text);
-                status = "Online";
+                status = getString(R.string.online_text);
             }else if (!profile.isOnline() && 0L == groupid && !profile.isGroup()){
                 long lastSeen = profile.getLastSeen();
                 //status = "Last seen ";
                 //else {
                     String seenStatus = "";
                     if (lastSeen >= 2 * 3600 * 24) {
-                        seenStatus = (int) (lastSeen / (3600 * 24)) + " days ago";
+                        seenStatus = (int) (lastSeen / (3600 * 24)) + getString(R.string.daysago);
                     } else if (lastSeen >= 24 * 3600) {
-                        seenStatus = "yesterday";
+                        seenStatus = getString(R.string.yesterday);
                     } else if (lastSeen >= 2 * 3600) {
-                        seenStatus = (int) (lastSeen / (3600)) + " hours ago";
+                        seenStatus = (int) (lastSeen / (3600)) + getString(R.string.hours_ago);
                     } else if (lastSeen >= 3600) {
-                        seenStatus = "an hour ago";
+                        seenStatus = getString(R.string.hour_ago);
                     } else if (lastSeen >= 120) {
-                        seenStatus = (int) (lastSeen / 60) + " minutes ago";
+                        seenStatus = (int) (lastSeen / 60) + getString(R.string.minutes_ago);
                     } else {
-                        seenStatus = "a few moments ago";
+                        seenStatus = getString(R.string.few_months);
                     }
-                status = "Last seen " + seenStatus;
+                status = getString(R.string.lastseen) + seenStatus;
                    // userstatus.setText("Last seen " + seenStatus);
                 //}
             }
@@ -1276,6 +1276,7 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
                 Log.e("senderName", new Gson().toJson(Mesibo.getSelfProfile().getAddress()));
                     Log.e("userToken", AppConfig.getConfig().token);
             }
+            Log.e("counter", String.valueOf(NotificationSendClass.counter));
              this.mEmojiEditText.getText().clear();
         }
     }

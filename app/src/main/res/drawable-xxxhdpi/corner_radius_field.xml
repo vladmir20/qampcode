@@ -13,7 +13,7 @@
     >
 
     <solid android:color="@color/transparent" />
-    <stroke android:width="1dip" android:color="@color/background_tintTaskBar"/>
+    <stroke android:width="1dip" android:color= "#E2DFDF"/>
     <corners
         android:bottomRightRadius="7dp"
         android:bottomLeftRadius="7dp"

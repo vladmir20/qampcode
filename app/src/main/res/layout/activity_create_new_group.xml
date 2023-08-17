@@ -18,14 +18,15 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:elevation="4sp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/nugroup_toolbar"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            android:visibility="gone"
             app:contentInsetLeft="-20dp"
             app:contentInsetStart="-20dp">
 

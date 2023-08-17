@@ -38,7 +38,8 @@
                     android:id="@+id/view37"
                     android:layout_width="match_parent"
                     android:layout_height="2sp"
-                    android:background="@color/background_tint10" />
+                    android:background="@color/background_tint10"
+                    android:visibility="gone" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/pictureViewContainer11"

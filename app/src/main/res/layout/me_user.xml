@@ -20,7 +20,7 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="5sp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="7sp"
+        android:layout_marginBottom="5sp"
         android:background="@color/transparent_color"
         android:backgroundTint="@color/transparent_color"
         android:paddingRight="11dp"
@@ -118,7 +118,7 @@
         android:layout_alignParentTop="true"
         android:layout_weight="1"
         android:background="@color/overlaySelection"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
 
 </RelativeLayout>

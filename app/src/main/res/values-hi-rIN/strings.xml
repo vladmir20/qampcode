@@ -100,12 +100,20 @@
     <string name="Delete_text">मिटाना</string>
     <string name="Gallery_Text">गेलरी</string>
     <string name="Camera_Text">कैमरा</string>
+    <string name="You_text">आप</string>
+    <string name="my_channel_text">मेरे चैनल</string>
+    <string name="Group_Admin_text">ग्रुप एडमिन</string>
+    <string name="Remove_picture_text">चित्र हटाएँ</string>
+    <string name="Admin">एडमिन</string>
+    <string name="info_text_des">जानकारी: यह समूह क्या दर्शाता है यह समझाने के लिए कुछ शब्द…</string>
+    <string name="members_text">मेंबर्स</string>
     <string name="enter_your_name">"अपना नाम दर्ज करें "</string>
     <string name="type_status_text">"यहां अपना प्रोफाइल स्टेटस टाइप करें "</string>
     <string name="email_address">ईमेल</string>
     <string name="profile_pictures">"पार्श्वचित्र चित्र "</string>
     <string name="Media_Text">"मीडिया "</string>
     <string name="Max_Media_Text">10</string>
+    <string name="info_text">जानकारी: अपने समूह की पहचान का प्रतिनिधित्व करें....</string>
     <string name="EtoEEncryption">"एंड-टू-एंड एन्क्रिप्शन "</string>
     <string name="blocking">"ब्लॉक "</string>
     <string name="Group_Messages">"समूह संदेश "</string>
@@ -165,6 +173,7 @@
     <string name="hours_ago">"घंंटों पहले "</string>
     <string name="yesterday">कल</string>
     <string name="daysago">"दिन पहले "</string>
+    <string name="last_seen">अंतिम बार देखा गया</string>
     <string name="wrong_otp_kindly_re_enter_the_otp">गलत OTP, कृपया OTP दोबारा दर्ज करें</string>
     <string name="msgIsDeleted">"यह संदेश हटा दिया गया था "</string>
     <string name="pleaseSelect">"कृपया देश में भारत का चयन करें "</string>
@@ -186,6 +195,7 @@
     <string name="group_interaction_text">"समूह इंटरेक्शन सेटिंग्स "</string>
     <string name="online_text">"ऑनलाइन "</string>
     <string name="typing_text">टाइपिंग</string>
+    <string name="joined_text">जोइनेड</string>
     <string name="no_network_text">"कोई नेटवर्क नहीं "</string>
     <string name="delete_messages">"संदेश हटाएं? "</string>
     <string name="delete_for_everyone_text">"सभी के लिए हटाएं "</string>

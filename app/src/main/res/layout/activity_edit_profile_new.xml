@@ -18,15 +18,14 @@
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        app:elevation="0dp">
+        android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/background_color_white"
-            android:elevation="10dp"
+            android:elevation="2sp"
             android:orientation="horizontal"
             app:contentInsetEnd="0dp"
             app:contentInsetLeft="0dp"

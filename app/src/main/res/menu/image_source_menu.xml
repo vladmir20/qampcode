@@ -11,13 +11,13 @@
     <item
         android:id="@+id/popup_camera"
         android:icon="@drawable/ic_camera_black_24dp"
-        android:title="Camera" />
+        android:title="@string/Camera_Text" />
     <item
         android:id="@+id/popup_gallery"
         android:icon="@drawable/ic_insert_photo_black_24dp"
-        android:title="Gallery" />
+        android:title="@string/Gallery_Text" />
     <item
         android:id="@+id/popup_remove"
         android:icon="@drawable/ic_insert_photo_black_24dp"
-        android:title="Remove Picture" />
+        android:title="@string/Remove_picture_text" />
 </menu>

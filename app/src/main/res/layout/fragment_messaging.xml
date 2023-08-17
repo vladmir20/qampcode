@@ -90,8 +90,8 @@
 
                 <ImageView
                     android:id="@+id/imageView45"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="24sp"
+                    android:layout_height="24sp"
                     app:srcCompat="@drawable/attach__1_" />
 
                 <TextView
@@ -99,6 +99,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10sp"
+                    android:layout_marginTop="2sp"
                     android:fontFamily="@font/inter_medium"
                     android:gravity="center_vertical"
                     android:text="Attach"
@@ -128,13 +129,13 @@
                         android:orientation="horizontal">
 
                         <ImageButton
-                            android:id="@+id/gallery"
+                            android:id="@+id/document_btn"
                             android:layout_width="24sp"
                             android:layout_height="24sp"
                             android:layout_gravity="center"
                             android:background="@android:color/transparent"
                             android:clickable="true"
-                            android:src="@drawable/gallery_filled"
+                            android:src="@drawable/file"
                             android:visibility="visible" />
                     </LinearLayout>
 
@@ -142,9 +143,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginRight="2sp"
                         android:fontFamily="@font/inter_regular"
                         android:gravity="center"
-                        android:text="@string/gallery_text"
+                        android:text="@string/document_text"
                         android:textColor="@color/text_color17"
                         android:textSize="10sp" />
 
@@ -184,7 +186,7 @@
                         android:layout_gravity="center"
                         android:fontFamily="@font/inter_regular"
                         android:gravity="center"
-                        android:text="@string/video_text"
+                        android:text="@string/Camera_Text"
                         android:textColor="@color/text_color17"
                         android:textSize="10sp" />
 
@@ -209,12 +211,12 @@
                         android:orientation="horizontal">
 
                         <ImageButton
-                            android:id="@+id/location"
+                            android:id="@+id/gallery"
                             android:layout_width="50dp"
-                            android:layout_height="50dp"
+                            android:layout_height="45dp"
                             android:layout_gravity="center"
                             android:background="@android:color/transparent"
-                            android:src="@drawable/group_512259"
+                            android:src="@drawable/gallery_filled"
                             android:visibility="visible" />
                     </LinearLayout>
 
@@ -224,7 +226,7 @@
                         android:layout_gravity="center"
                         android:fontFamily="@font/inter_regular"
                         android:gravity="center"
-                        android:text="@string/location_text"
+                        android:text="@string/Gallery_Text"
                         android:textColor="@color/text_color17"
                         android:textSize="10sp" />
 
@@ -247,15 +249,16 @@
                         android:layout_width="45sp"
                         android:layout_height="45sp"
                         android:background="@drawable/qamp_outline"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
                         <ImageButton
-                            android:id="@+id/document_btn"
+                            android:id="@+id/location"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:background="@android:color/transparent"
-                            android:src="@drawable/file"
+                            android:src="@drawable/location_filled"
                             android:visibility="visible" />
                     </LinearLayout>
 
@@ -265,7 +268,7 @@
                         android:layout_gravity="center"
                         android:fontFamily="@font/inter_regular"
                         android:gravity="center"
-                        android:text="@string/document_text"
+                        android:text="@string/location_text"
                         android:textColor="@color/text_color17"
                         android:textSize="10sp" />
 

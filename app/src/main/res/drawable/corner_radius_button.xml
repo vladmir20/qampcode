@@ -14,8 +14,8 @@
 
     <solid android:color="@color/background_tint11" />
     <corners
-        android:bottomRightRadius="4dp"
-        android:bottomLeftRadius="4dp"
-        android:topLeftRadius="4dp"
-        android:topRightRadius="4dp" />
+        android:bottomRightRadius="10sp"
+        android:bottomLeftRadius="10sp"
+        android:topLeftRadius="10sp"
+        android:topRightRadius="10sp" />
 </shape>

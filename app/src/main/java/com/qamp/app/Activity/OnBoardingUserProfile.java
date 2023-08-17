@@ -153,14 +153,14 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
         Bitmap image = profile.getImageOrThumbnail();
         if (null != image) {
             circleImageView.setImageDrawable(new RoundImageDrawable(image));
-            editPhoto.setVisibility(View.VISIBLE);
+            //editPhoto.setVisibility(View.VISIBLE);
             cameraText.setVisibility(View.GONE);
             cameraIcon.setVisibility(View.GONE);
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 circleImageView.setImageDrawable(getDrawable(R.drawable.rounded_profile_view));
             }
-            editPhoto.setVisibility(View.GONE);
+            //editPhoto.setVisibility(View.GONE);
             cameraText.setVisibility(View.VISIBLE);
             cameraIcon.setVisibility(View.VISIBLE);
         }
@@ -172,7 +172,7 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
             b = BitmapFactory.decodeFile(filePath);
             if (null != b) {
                 circleImageView.setImageDrawable(new RoundImageDrawable(b));
-                editPhoto.setVisibility(View.VISIBLE);
+                //editPhoto.setVisibility(View.VISIBLE);
                 cameraText.setVisibility(View.GONE);
                 cameraIcon.setVisibility(View.GONE);
             }
@@ -180,7 +180,7 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 circleImageView.setImageDrawable(getDrawable(R.drawable.rounded_profile_view));
             }
-            editPhoto.setVisibility(View.GONE);
+            //editPhoto.setVisibility(View.GONE);
             cameraText.setVisibility(View.VISIBLE);
             cameraIcon.setVisibility(View.VISIBLE);
         }
@@ -528,7 +528,7 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
         cameraIcon = findViewById(R.id.cameraIcon);
         cameraText = findViewById(R.id.cameraText);
         textFieldListeners();
-        editPhoto.setVisibility(View.GONE);
+        //editPhoto.setVisibility(View.GONE);
         cameraText.setVisibility(View.VISIBLE);
         cameraIcon.setVisibility(View.VISIBLE);
     }
@@ -538,11 +538,11 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
         super.onActivityResult(requestCode, resultCode, data);
         Uri uri = data.getData();
         if (uri != null) {
-            editPhoto.setVisibility(View.VISIBLE);
+            //editPhoto.setVisibility(View.VISIBLE);
             cameraText.setVisibility(View.GONE);
             cameraIcon.setVisibility(View.GONE);
         } else {
-            editPhoto.setVisibility(View.GONE);
+            //editPhoto.setVisibility(View.GONE);
             cameraText.setVisibility(View.VISIBLE);
             cameraIcon.setVisibility(View.VISIBLE);
         }
@@ -581,7 +581,7 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
 
     public void removeProfilePic() {
         setImageProfile(null);
-        editPhoto.setVisibility(View.GONE);
+        //editPhoto.setVisibility(View.GONE);
         cameraText.setVisibility(View.VISIBLE);
         cameraIcon.setVisibility(View.VISIBLE);
 

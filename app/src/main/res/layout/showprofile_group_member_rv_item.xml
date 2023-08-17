@@ -61,15 +61,14 @@
                 android:id="@+id/admin_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/md_orange_900"
-                android:layout_marginRight="10dp"
                 android:layout_gravity="center_vertical"
-                android:text="Group admin"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/chat_date_rounded"
-                android:paddingRight="5dp"
                 android:paddingLeft="5dp"
-                android:visibility="gone"
-                />
+                android:paddingRight="5dp"
+                android:text="@string/Group_Admin_text"
+                android:textColor="@color/md_orange_900"
+                android:visibility="gone" />
         </LinearLayout>
 
         <com.mesibo.emojiview.EmojiconTextView

@@ -728,7 +728,7 @@ public class ShowProfileActivityNew extends AppCompatActivity implements MesiboP
             final GroupMembersCellsViewHolder holder = (GroupMembersCellsViewHolder) holderr;
 
             if(member.getProfile().getName().equals(Mesibo.getSelfProfile().getName())){
-                holder.mContactsName.setText("You");
+                holder.mContactsName.setText(getString(R.string.You_text));
             }else
             holder.mContactsName.setText(user.getNameOrAddress("+"));
 
