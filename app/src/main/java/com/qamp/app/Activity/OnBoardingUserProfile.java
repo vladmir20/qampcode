@@ -50,14 +50,14 @@ import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboProfile;
 import com.mesibo.messaging.RoundImageDrawable;
-import com.qamp.app.Utils.AppConfig;
 import com.qamp.app.BottomSheetFragments.OnboardingBottomSheetFragment;
+import com.qamp.app.R;
+import com.qamp.app.Utils.AppConfig;
+import com.qamp.app.Utils.AppUtils;
 import com.qamp.app.Utils.QAMPAPIConstants;
 import com.qamp.app.Utils.QampConstants;
 import com.qamp.app.Utils.QampUiHelper;
-import com.qamp.app.R;
 import com.qamp.app.Utils.UTF8JsonObjectRequest;
-import com.qamp.app.Utils.AppUtils;
 import com.qamp.app.Utils.Utilss;
 import com.qamp.app.Utils.VolleyMultipartRequest;
 
@@ -76,7 +76,7 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class OnBoardingUserProfile extends AppCompatActivity implements MesiboProfile.Listener {
+public class OnBoardingUserProfile extends AppCompatActivity implements MesiboProfile.Listener, Mesibo.ConnectionListener {
 
     static final int CAMERA_PERMISSION_CODE = 102;
     static final int EXTENAL_STORAGE_READ_PERMISSION_CODE = 103;
@@ -193,7 +193,7 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
         Utilss.setLanguage(OnBoardingUserProfile.this);
         setContentView(R.layout.activity_on_boarding_user_profile);
         initaliseViews();
-        Log.e("androidToken",AppConfig.getConfig().deviceToken);
+        Log.e("androidToken", AppConfig.getConfig().deviceToken);
         nameEditText.setOnTouchListener(new View.OnTouchListener() {
             @SuppressLint("ClickableViewAccessibility")
             @Override
@@ -344,9 +344,9 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
                     String status = response.getString("status");
                     Log.e("VOLLEY Status======", status);
                     //Intent intent = new
-                      //      Intent(
-                        //    OnBoardingUserProfile.this,
-                          //  WelcomeOnboarding.class);
+                    //      Intent(
+                    //    OnBoardingUserProfile.this,
+                    //  WelcomeOnboarding.class);
                     //finish();
                     //startActivity(intent);
                     if (status.contains(QampConstants.success)) {
@@ -370,11 +370,18 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
                         JSONObject error = (JSONObject) errors.get(0);
                         String errMsg = error.getString("errMsg");
                         String errorCode = error.getString("errCode");
+                        Intent intent1 = new
+                                Intent(
+                                OnBoardingUserProfile.this,
+                                WelcomeOnboarding.class);
+                        finish();
+                        startActivity(intent1);
                         Toast.makeText(OnBoardingUserProfile.this, "" + errMsg, Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
                     AppUtils.closeProgresDialog();
                     e.printStackTrace();
+
                     Toast.makeText(OnBoardingUserProfile.this, getString(R.string.general_error), Toast.LENGTH_LONG).show();
                 }
             }
@@ -465,8 +472,8 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
 
             public void afterTextChanged(Editable s) {
                 if (!nameEditText.getText().toString().equals("")) {
-                    final int sdk = android.os.Build.VERSION.SDK_INT;
-                    if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                    final int sdk = Build.VERSION.SDK_INT;
+                    if (sdk < Build.VERSION_CODES.JELLY_BEAN) {
                         saveButton.setBackgroundDrawable(ContextCompat.getDrawable(OnBoardingUserProfile.this, R.drawable.corner_radius_button));
                         saveButton.setTextColor(ContextCompat.getColor(OnBoardingUserProfile.this, R.color.text_color_black));
                     } else {
@@ -474,9 +481,9 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
                         saveButton.setTextColor(ContextCompat.getColor(OnBoardingUserProfile.this, R.color.text_color_black));
                     }
                 } else {
-                    final int sdk = android.os.Build.VERSION.SDK_INT;
+                    final int sdk = Build.VERSION.SDK_INT;
                     saveButton.setCompoundDrawables(null, null, null, null);
-                    if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                    if (sdk < Build.VERSION_CODES.JELLY_BEAN) {
                         saveButton.setBackgroundDrawable(ContextCompat.getDrawable(OnBoardingUserProfile.this, R.drawable.corner_radius_gray_button));
                         saveButton.setTextColor(ContextCompat.getColor(OnBoardingUserProfile.this, R.color.text_color_button));
                     } else {
@@ -599,6 +606,11 @@ public class OnBoardingUserProfile extends AppCompatActivity implements MesiboPr
 
     @Override
     public void MesiboProfile_onEndToEndEncryption(MesiboProfile mesiboProfile, int i) {
+
+    }
+
+    @Override
+    public void Mesibo_onConnectionStatus(int i) {
 
     }
 }

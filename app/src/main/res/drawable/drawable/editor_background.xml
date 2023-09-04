@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**
+  ~  *  on 20/05/23, 3:30 AM
+  ~  * Copyright (c) 2023 . All rights reserved.
+  ~  * Last modified 05/05/23, 3:15 PM
+  ~  */
+  -->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <!--apply button background transparent, full opacity-->
+            <solid android:color="#ffffffff"/>
+            <!--make button border solid color, nontransparent-->
+            <stroke android:color="@color/grey" android:width="0.7dp"/>
+            <corners android:radius="10dp"/>
+        </shape>
+    </item>
+</selector>

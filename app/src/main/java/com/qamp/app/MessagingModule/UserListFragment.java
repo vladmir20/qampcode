@@ -148,7 +148,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
     Bundle mEditGroupBundle = null;
     ImageView search_image;
     LinearLayout name_tite_layout, search_view;
-    androidx.appcompat.widget.SearchView search_func;
+    SearchView search_func;
     SearchView searchChats;
     private ArrayList<MesiboProfile> mAdhocUserList = null;
     private MesiboReadSession mDbSession = null;
@@ -332,7 +332,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                     search_func.requestFocus();
                 }
             });
-            search_func.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
+            search_func.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
                     return false;
@@ -345,7 +345,7 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
                     return false;
                 }
             });
-            search_func.setOnCloseListener(new androidx.appcompat.widget.SearchView.OnCloseListener() {
+            search_func.setOnCloseListener(new SearchView.OnCloseListener() {
                 @Override
                 public boolean onClose() {
                     name_tite_layout.setVisibility(View.VISIBLE);

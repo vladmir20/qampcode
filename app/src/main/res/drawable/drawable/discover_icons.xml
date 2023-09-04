@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**
+  ~  *  on 20/05/23, 3:30 AM
+  ~  * Copyright (c) 2023 . All rights reserved.
+  ~  * Last modified 05/05/23, 3:15 PM
+  ~  */
+  -->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--Clicked-->
+    <item android:drawable="@drawable/ic_globe_stand_filled" android:state_checked="true" />
+    <!--Not Clicked-->
+    <item android:drawable="@drawable/ic_globe_stand" android:state_checked="false" />
+</selector>

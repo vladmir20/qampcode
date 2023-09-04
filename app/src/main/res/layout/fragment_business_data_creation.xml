@@ -42,7 +42,7 @@
                     android:fontFamily="@font/inter_medium"
                     android:gravity="start"
                     android:text="@string/create_community"
-                    android:textColor="#171717"
+                    android:textColor="@color/text_color17"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -140,7 +140,7 @@
                 android:gravity="center"
                 android:fontFamily="@font/inter_medium"
                 android:text="@string/community_name_text_description"
-                android:textColor="#171717"
+                android:textColor="@color/text_color17"
                 android:textSize="24sp" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -220,7 +220,7 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:fontFamily="@font/inter_medium"
                 android:textAllCaps="false"
-                android:textColor="#171717"
+                android:textColor="@color/text_color17"
                 android:textSize="16dp"
                 tools:ignore="TextSizeCheck" />
 
@@ -240,7 +240,7 @@
                     android:gravity="center"
                     android:text="Cancel"
                     android:textAllCaps="false"
-                    android:textColor="#171717"
+                    android:textColor="@color/text_color17"
                     style="?android:attr/borderlessButtonStyle"
                     android:textSize="12dp"
                     tools:ignore="TextSizeCheck" />

@@ -1,0 +1,26 @@
+<!--
+  ~ /**
+  ~  *  on 20/05/23, 3:30 AM
+  ~  * Copyright (c) 2023 . All rights reserved.
+  ~  * Last modified 05/05/23, 3:15 PM
+  ~  */
+  -->
+
+<vector android:height="28.8dp" android:viewportHeight="24"
+    android:viewportWidth="25" android:width="30dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <clip-path android:pathData="M0.849,0h24v24h-24z"/>
+        <path android:fillColor="#00000000"
+            android:pathData="M18.9589,11.0476H20.5414C21.3807,11.0476 22.1857,11.3687 22.7792,11.9402C23.3728,12.5118 23.7062,13.287 23.7062,14.0952C23.7062,14.9035 23.3728,15.6787 22.7792,16.2502C22.1857,16.8218 21.3807,17.1429 20.5414,17.1429H18.9589M6.2996,8H15.7941C16.6335,8 17.4385,8.3211 18.032,8.8926C18.6255,9.4642 18.9589,10.2393 18.9589,11.0476V14.8571C18.9589,16.6758 18.2087,18.4199 16.8733,19.7059C15.5379,20.9918 13.7266,21.7143 11.8381,21.7143H10.2556C8.3671,21.7143 6.5559,20.9918 5.2204,19.7059C3.885,18.4199 3.1348,16.6758 3.1348,14.8571V11.0476C3.1348,10.2393 3.4682,9.4642 4.0617,8.8926C4.6553,8.3211 5.4602,8 6.2996,8V8Z"
+            android:strokeColor="#171717" android:strokeLineCap="round"
+            android:strokeLineJoin="round" android:strokeWidth="1"/>
+        <path android:fillColor="#00000000"
+            android:pathData="M8.849,5.7143V1.1429"
+            android:strokeColor="#171717" android:strokeLineCap="round"
+            android:strokeLineJoin="round" android:strokeWidth="1"/>
+        <path android:fillColor="#00000000"
+            android:pathData="M12.2776,5.7143V2.2858"
+            android:strokeColor="#171717" android:strokeLineCap="round"
+            android:strokeLineJoin="round" android:strokeWidth="1"/>
+    </group>
+</vector>

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ /**
   ~  *  on 20/05/23, 3:30 AM
   ~  * Copyright (c) 2023 . All rights reserved.
@@ -8,9 +7,9 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/app"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/app"
     android:id="@+id/mes_rv_card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -43,10 +42,10 @@
             android:layout_gravity="center"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="5dp"
-            android:src="@drawable/default_user_image"
             android:layout_marginRight="12dp"
             android:layout_marginBottom="5dp"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/default_user_image" />
 
         <LinearLayout
             android:id="@+id/sub_container"
@@ -93,12 +92,12 @@
             <TextView
                 android:id="@+id/link"
                 android:layout_width="50dp"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
+                android:minHeight="30dp"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:background="@drawable/corner_radius_button"
                 android:gravity="center"
-                android:padding="10dp"
                 android:text="@string/invite_only"
                 android:textColor="@color/text_color17"
                 android:textSize="10sp"
@@ -113,8 +112,8 @@
                 android:layout_marginRight="5dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_message"
-                app:tint="@color/black"
                 android:visibility="gone"
+                app:tint="@color/black"
                 card_view:srcCompat="@drawable/ic_message"
                 tools:srcCompat="@drawable/ic_message" />
 
@@ -147,8 +146,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
-
 
 
 </LinearLayout>

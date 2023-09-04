@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_regular"
             android:textSize="14sp"
-            android:textColor="#171717"
+            android:textColor="@color/text_color17"
             android:layout_marginTop="8dp"
             android:gravity="center_vertical"
             android:minHeight="?android:attr/listPreferredItemHeightSmall"

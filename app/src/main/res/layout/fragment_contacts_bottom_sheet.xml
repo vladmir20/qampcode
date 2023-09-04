@@ -102,7 +102,9 @@
                 android:paddingTop="3dp"
                 android:paddingBottom="3dp"
                 android:textColorHint="@color/text_color_subtitle"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:windowSoftInputMode="stateAlwaysHidden"
+            />
 
             <ImageView
                 android:id="@+id/imageView3"

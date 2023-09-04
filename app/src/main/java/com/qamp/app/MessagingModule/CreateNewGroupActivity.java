@@ -25,6 +25,7 @@ import com.mesibo.api.Mesibo;
 import com.qamp.app.R;
 
 public class CreateNewGroupActivity extends AppCompatActivity {
+
     Bundle mGroupEditBundle = null;
     int mGroupMode;
     Fragment mRequestingFragment;
@@ -53,6 +54,7 @@ public class CreateNewGroupActivity extends AppCompatActivity {
         ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.nugroup_fragment_place, createNewGroupFragment, "null");
         ft.commit();
+
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {

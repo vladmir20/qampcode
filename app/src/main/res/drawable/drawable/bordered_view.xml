@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**
+  ~  *  on 20/05/23, 3:30 AM
+  ~  * Copyright (c) 2023 . All rights reserved.
+  ~  * Last modified 05/05/23, 3:15 PM
+  ~  */
+  -->
+
+<!--  res/drawable/rounded_edittext.xml -->
+
+
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:insetBottom="-2dp"
+    android:insetTop="-1dp"
+    android:insetLeft="-2dp"
+    android:insetRight="-2dp">
+<shape android:shape="rectangle">
+
+    <solid android:color="@color/bottom_sheet_color" />
+    <stroke
+        android:width="1dp"
+        android:color="@color/background_tint21" />
+</shape>
+</inset>

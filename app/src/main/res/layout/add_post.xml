@@ -32,6 +32,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginLeft="16dp"
+                    app:tint="@color/text_color_subtitle"
                     app:srcCompat="@drawable/ic_close" />
 
                 <TextView
@@ -41,7 +42,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_toEndOf="@+id/imageView35"
                     android:text="Share a Post"
-                    android:textColor="#171717"
+                    android:textColor="@color/text_color17"
                     android:textSize="16dp" />
 
                 <TextView
@@ -177,7 +178,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_weight="1"
-                    android:text=" Add an Image/video" />
+                    android:text=" Add an Image/Video" />
             </LinearLayout>
 
             <View

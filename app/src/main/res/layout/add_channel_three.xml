@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:hint="Channel Name"
-                android:textColor="#171717"
+                android:textColor="@color/text_color17"
                 android:textSize="14dp" />
         </LinearLayout>
 
@@ -91,7 +91,7 @@
             android:gravity="center"
             android:paddingTop="10dp"
             android:text="Invite people to join your community."
-            android:textColor="#171717"
+            android:textColor="@color/text_color17"
             android:textSize="24dp" />
 
         <LinearLayout
@@ -148,7 +148,7 @@
             android:paddingTop="10dp"
             android:text="Skip"
             android:textAllCaps="false"
-            android:textColor="#171717"
+            android:textColor="@color/text_color17"
             android:textSize="12dp" />
     </LinearLayout>
 

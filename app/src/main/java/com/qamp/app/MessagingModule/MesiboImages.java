@@ -23,7 +23,13 @@ import android.text.TextUtils;
 import com.qamp.app.R;
 
 public class MesiboImages {
-    public static int[] deliveryStatus = {MesiboConfiguration.STATUS_TIMER, MesiboConfiguration.STATUS_SEND, MesiboConfiguration.STATUS_NOTIFIED, MesiboConfiguration.STATUS_READ, MesiboConfiguration.STATUS_ERROR};
+    public static int[] deliveryStatus = {
+            MesiboConfiguration.STATUS_TIMER,
+            MesiboConfiguration.STATUS_SEND,
+            MesiboConfiguration.STATUS_NOTIFIED,
+            MesiboConfiguration.STATUS_READ,
+            MesiboConfiguration.STATUS_ERROR
+    };
     private static Context mContext = null;
     private static Bitmap mDefaultGroupBmp = null;
     private static Bitmap mDefaultLocationBmp = null;
@@ -202,7 +208,6 @@ public class MesiboImages {
             }
         }
     }
-
     public static Bitmap tint(Bitmap bmp, int color) {
         if (bmp == null) {
             return null;

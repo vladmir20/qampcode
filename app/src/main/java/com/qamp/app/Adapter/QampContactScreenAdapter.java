@@ -11,7 +11,6 @@ import android.widget.CompoundButton;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +23,8 @@ import com.qamp.app.MessagingModule.MesiboMessagingActivity;
 import com.qamp.app.MessagingModule.MesiboUI;
 import com.qamp.app.Modal.QampContactScreenModel;
 import com.qamp.app.R;
+import com.qamp.app.Utils.ContactSyncClass;
+import com.qamp.app.qampcallss.api.MesiboCall;
 
 import java.util.ArrayList;
 
@@ -37,7 +38,8 @@ public class QampContactScreenAdapter extends RecyclerView.Adapter<QampContactSc
 
     private boolean isGroupMaking;
 
-    private LinearLayout next_group;
+    private ImageView next_group;
+    private TextView selectedContacts;
 
     private Filter contactFilter = new Filter() {
         @Override
@@ -55,7 +57,6 @@ public class QampContactScreenAdapter extends RecyclerView.Adapter<QampContactSc
                     }
                 }
             }
-
             FilterResults filterResults = new FilterResults();
             filterResults.values = filteredContactsList;
             return filterResults;
@@ -67,12 +68,13 @@ public class QampContactScreenAdapter extends RecyclerView.Adapter<QampContactSc
         }
     };
 
-    public QampContactScreenAdapter(Context context, ArrayList<QampContactScreenModel> contactList, boolean isGroupMaking, LinearLayout next_group) {
+    public QampContactScreenAdapter(Context context, ArrayList<QampContactScreenModel> contactList, boolean isGroupMaking, ImageView next_group, TextView selectedContacts) {
         this.context = context;
         this.contactList = contactList;
         this.filteredContactsList = new ArrayList<>(contactList);
         this.isGroupMaking = isGroupMaking;
         this.next_group = next_group;
+        this.selectedContacts = selectedContacts;
     }
 
     @NonNull
@@ -100,6 +102,10 @@ public class QampContactScreenAdapter extends RecyclerView.Adapter<QampContactSc
 
             if (isGroupMaking) {
                 holder.isChecked.setVisibility(View.VISIBLE);
+                holder.link.setVisibility(View.GONE);
+                holder.message.setVisibility(View.GONE);
+                holder.video_call.setVisibility(View.GONE);
+                holder.audio_call.setVisibility(View.GONE);
 
                 holder.isChecked.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
@@ -108,43 +114,74 @@ public class QampContactScreenAdapter extends RecyclerView.Adapter<QampContactSc
                         MesiboProfile newMesiboProfile = Mesibo.getProfile(contactList.get(position).getMes_rv_phone());
                         if (isChecked) {
                             slectedgtoup.add(newMesiboProfile);
-                         } else {
+                        } else {
                             slectedgtoup.remove(newMesiboProfile);
+                        }
+                        if (slectedgtoup.size() > 0) {
+                            selectedContacts.setText(slectedgtoup.size() + " Contacts Selected");
+                        } else {
+                            selectedContacts.setText(ContactSyncClass.contactsList.size() + " Contacts");
                         }
                     }
                 });
             }
-            holder.message.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, MesiboMessagingActivity.class);
-                    intent.putExtra(MesiboUI.MESSAGE_ID, "");
-                    intent.putExtra(MesiboUI.PEER, contact.getMes_rv_phone());
-                    intent.putExtra(MesiboUI.GROUP_ID, "");
-                    context.startActivity(intent);
-                }
-            });
-            holder.mes_rv_name.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, MesiboMessagingActivity.class);
-                    intent.putExtra(MesiboUI.MESSAGE_ID, "");
-                    intent.putExtra(MesiboUI.PEER, contact.getMes_rv_phone());
-                    intent.putExtra(MesiboUI.GROUP_ID, "");
-                    context.startActivity(intent);
-                }
-            });
-            holder.mes_rv_phone.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, MesiboMessagingActivity.class);
-                    intent.putExtra(MesiboUI.MESSAGE_ID, "");
-                    intent.putExtra(MesiboUI.PEER, contact.getMes_rv_phone());
-                    intent.putExtra(MesiboUI.GROUP_ID, "");
-                    context.startActivity(intent);
-                }
-            });
-
+            else {
+                holder.isChecked.setVisibility(View.GONE);
+                holder.link.setVisibility(View.GONE);
+                holder.message.setVisibility(View.VISIBLE);
+                holder.video_call.setVisibility(View.VISIBLE);
+                holder.audio_call.setVisibility(View.VISIBLE);
+                holder.audio_call.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        MesiboProfile mUserr = Mesibo.getProfile(contact.getMes_rv_phone());
+                        if (!MesiboCall.getInstance().callUi(v.getContext(), mUserr, false))
+                            MesiboCall.getInstance().callUiForExistingCall(v.getContext());
+                    }
+                });
+                holder.video_call.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        MesiboProfile mUserr = Mesibo.getProfile(contact.getMes_rv_phone());
+                        if (!MesiboCall.getInstance().callUi(v.getContext(), mUserr, true))
+                            MesiboCall.getInstance().callUiForExistingCall(v.getContext());
+                    }
+                });
+                holder.mes_rv_name.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (contact.isMesiboProfile()) {
+                            Intent intent = new Intent(context, MesiboMessagingActivity.class);
+                            intent.putExtra(MesiboUI.MESSAGE_ID, "");
+                            intent.putExtra(MesiboUI.PEER, contact.getMes_rv_phone());
+                            intent.putExtra(MesiboUI.GROUP_ID, "");
+                            context.startActivity(intent);
+                        }
+                    }
+                });
+                holder.mes_rv_phone.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (contact.isMesiboProfile()) {
+                            Intent intent = new Intent(context, MesiboMessagingActivity.class);
+                            intent.putExtra(MesiboUI.MESSAGE_ID, "");
+                            intent.putExtra(MesiboUI.PEER, contact.getMes_rv_phone());
+                            intent.putExtra(MesiboUI.GROUP_ID, "");
+                            context.startActivity(intent);
+                        }
+                    }
+                });
+                holder.message.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, MesiboMessagingActivity.class);
+                        intent.putExtra(MesiboUI.MESSAGE_ID, "");
+                        intent.putExtra(MesiboUI.PEER, contact.getMes_rv_phone());
+                        intent.putExtra(MesiboUI.GROUP_ID, "");
+                        context.startActivity(intent);
+                    }
+                });
+            }
 
         } else {
             holder.isChecked.setVisibility(View.GONE);
@@ -152,6 +189,16 @@ public class QampContactScreenAdapter extends RecyclerView.Adapter<QampContactSc
             holder.message.setVisibility(View.GONE);
             holder.video_call.setVisibility(View.GONE);
             holder.audio_call.setVisibility(View.GONE);
+            holder.mes_rv_name.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                 }
+            });
+            holder.mes_rv_phone.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                }
+            });
         }
 
     }

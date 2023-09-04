@@ -511,8 +511,8 @@ public class BusinessInvitaionAndCreation extends Fragment implements Backpresse
                         if (status.contains(QampConstants.success)) {
                             JSONObject data = response.getJSONObject("data");
                             if (AppUtils.isNetWorkAvailable(getActivity())) {
-                                System.out.println("Shivam done");
                                 Intent intent = new Intent(getActivity(), CommunityDashboard.class);
+
                                 startActivity(intent);
                             } else {
                                 Toast.makeText(getContext(), getString(R.string.internet_error), Toast.LENGTH_LONG).show();
@@ -630,14 +630,14 @@ public class BusinessInvitaionAndCreation extends Fragment implements Backpresse
         }
 
         @Override
-        public CommunityContactAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.show_contact_item_community, parent, false);
-            CommunityContactAdapter.ViewHolder viewHolder = new CommunityContactAdapter.ViewHolder(v);
+            ViewHolder viewHolder = new ViewHolder(v);
             return viewHolder;
         }
 
         @Override
-        public void onBindViewHolder(CommunityContactAdapter.ViewHolder holder, final int position) {
+        public void onBindViewHolder(ViewHolder holder, final int position) {
             final ContactCommunityData contact = contactCommunityData.get(position);
             holder.setContactName(contact.getName());
             holder.setContactNumber(contact.getNumber());

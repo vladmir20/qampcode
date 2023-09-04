@@ -27,10 +27,12 @@
                 android:id="@+id/linearLayoutCompat"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:background="@drawable/custom_shadow"
                 android:elevation="10sp"
                 android:orientation="horizontal"
                 android:weightSum="2"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -62,13 +64,15 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="end"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="20dp"
+                     android:layout_marginRight="16dp"
                     android:layout_weight="1"
+                    android:background="@drawable/custom_group_shape"
                     android:fontFamily="@font/inter_medium"
-                    android:gravity="end|center"
+                    android:gravity="center|end"
+                    android:textAlignment="center"
                     android:text="@string/start_conversation"
                     android:textColor="@color/text_color17"
-                    android:textSize="10sp" />
+                    android:textSize="14sp" />
 
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -127,11 +131,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pictureViewContainer11">
 
 
                 <EditText
-                    android:id="@+id/nugroup_editor"
+                    android:id="@+id/nugroup_editor1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -194,7 +200,8 @@
                     android:padding="10sp"
                     android:textColor="@color/text_color16"
                     android:textColorHint="#D9D9D9"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:maxLength="35"/>
 
                 <TextView
                     android:id="@+id/textView79"
@@ -368,8 +375,8 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginRight="10dp"
                         android:src="@drawable/ic_delete_black_24dp"
-                        android:tint="@color/md_grey_700"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        app:tint="@color/md_grey_700" />
                 </LinearLayout>
 
                 <TextView

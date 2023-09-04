@@ -33,7 +33,8 @@
             android:theme="@style/checkBoxStyle"
             android:visibility="gone"
             android:gravity="center"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:colorControlHighlight="@color/black" />
 
         <ImageView
             android:id="@+id/mes_rv_profile"

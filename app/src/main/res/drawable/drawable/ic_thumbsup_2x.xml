@@ -1,0 +1,28 @@
+<!--
+  ~ /**
+  ~  *  on 20/05/23, 3:30 AM
+  ~  * Copyright (c) 2023 . All rights reserved.
+  ~  * Last modified 05/05/23, 3:15 PM
+  ~  */
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+  <path
+      android:strokeWidth="1"
+      android:pathData="M3,9.75H7.5V19.5H3C2.801,19.5 2.61,19.421 2.47,19.28C2.329,19.14 2.25,18.949 2.25,18.75V10.5C2.25,10.301 2.329,10.11 2.47,9.97C2.61,9.829 2.801,9.75 3,9.75V9.75Z"
+      android:strokeLineJoin="round"
+      android:fillColor="#00000000"
+      android:strokeColor="#171717"
+      android:strokeLineCap="round"/>
+  <path
+      android:strokeWidth="1"
+      android:pathData="M7.5,9.75L11.25,2.25C11.644,2.25 12.034,2.328 12.398,2.478C12.762,2.629 13.093,2.85 13.371,3.129C13.65,3.407 13.871,3.738 14.022,4.102C14.172,4.466 14.25,4.856 14.25,5.25V7.5H20.051C20.264,7.5 20.474,7.545 20.668,7.633C20.861,7.72 21.035,7.848 21.175,8.007C21.316,8.167 21.421,8.354 21.484,8.558C21.547,8.761 21.566,8.975 21.539,9.186L20.414,18.186C20.369,18.549 20.193,18.883 19.919,19.125C19.644,19.367 19.291,19.5 18.926,19.5H7.5"
+      android:strokeLineJoin="round"
+      android:fillColor="#00000000"
+      android:strokeColor="#171717"
+      android:strokeLineCap="round"/>
+</vector>

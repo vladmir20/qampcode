@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**
+  ~  *  on 20/05/23, 3:30 AM
+  ~  * Copyright (c) 2023 . All rights reserved.
+  ~  * Last modified 05/05/23, 3:15 PM
+  ~  */
+  -->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:state_focused="true"
+        android:drawable="@drawable/ic_emoji_places_light_activated" />
+    <item
+        android:state_pressed="true"
+        android:drawable="@drawable/ic_emoji_places_light_activated" />
+    <item
+        android:state_selected="true"
+        android:drawable="@drawable/ic_emoji_places_light_activated" />
+    <item android:drawable="@drawable/ic_emoji_places_light_normal" />
+</selector>

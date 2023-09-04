@@ -248,7 +248,7 @@ public class SampleAPI {
         // add lister
         Mesibo.addListener(MesiboListeners.getInstance());
         MesiboUI.setListener(MesiboListeners.getInstance());
-        com.qamp.app.qampcallss.api.MesiboCall.getInstance().setListener(MesiboListeners.getInstance());
+        MesiboCall.getInstance().setListener(MesiboListeners.getInstance());
 
         // add file transfer handler
         MesiboFileTransferHelper fileTransferHelper = new MesiboFileTransferHelper();
@@ -626,7 +626,7 @@ public class SampleAPI {
         public String cc;
 
         public Urls urls;
-        public SampleAPI.Invite share;
+        public Invite share;
 
         public long gid;
         public int type;

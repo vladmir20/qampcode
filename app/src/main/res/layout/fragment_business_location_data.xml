@@ -45,7 +45,7 @@
                     android:fontFamily="@font/inter_medium"
                     android:gravity="start"
                     android:text=""
-                    android:textColor="#171717"
+                    android:textColor="@color/text_color17"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -140,7 +140,7 @@
                 android:fontFamily="@font/inter_medium"
                 android:gravity="center"
                 android:text="@string/whereLocatedText"
-                android:textColor="#171717"
+                android:textColor="@color/text_color17"
                 android:textSize="24sp" />
 
             <TextView
@@ -249,7 +249,7 @@
                     android:minHeight="50dp"
                     android:text="Next"
                     android:textAllCaps="false"
-                    android:textColor="#171717"
+                    android:textColor="@color/text_color17"
                     android:textSize="14dp" />
 
             </LinearLayout>
@@ -268,7 +268,7 @@
                 android:minHeight="32dp"
                 android:text="Skip"
                 android:textAllCaps="false"
-                android:textColor="#171717"
+                android:textColor="@color/text_color17"
                 android:textSize="12dp" />
 
 

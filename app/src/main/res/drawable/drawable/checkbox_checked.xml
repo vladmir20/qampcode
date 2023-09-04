@@ -1,0 +1,17 @@
+<!-- checkbox_checked.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/colorPrimary"/>
+            <!-- Yellow color -->
+            <corners android:radius="4dp" />
+            <!-- Corner radius of 4dp -->
+            <stroke android:width="0dp"
+                android:color="#000000" />
+            <!-- Black color for the border -->
+        </shape>
+    </item>
+    <item android:drawable="@drawable/ic_check_icon"
+        android:gravity="center" />
+    <!-- Add your check icon here -->
+</layer-list>

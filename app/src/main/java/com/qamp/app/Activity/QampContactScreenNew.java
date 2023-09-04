@@ -5,6 +5,7 @@ import static com.qamp.app.Adapter.QampContactScreenAdapter.slectedgtoup;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,7 +13,6 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +30,8 @@ import com.qamp.app.R;
 import com.qamp.app.Utils.AppUtils;
 import com.qamp.app.Utils.ContactSyncClass;
 
+import org.w3c.dom.Text;
+
 import java.util.Iterator;
 
 public class QampContactScreenNew extends AppCompatActivity {
@@ -37,12 +39,12 @@ public class QampContactScreenNew extends AppCompatActivity {
     private RecyclerView recyclerView;
     private QampContactScreenAdapter adapter;
 
-    private TextView textView66,create_group;
+    private TextView selectedContacts,create_group,clearSelectionText;
     private EditText editTextTextPersonName5;
 
     private ImageView imageView53;
 
-    private LinearLayout next_group;
+    private ImageView next_group;
 
 
     private boolean isGroupMakingProcedureActive = false;
@@ -52,14 +54,16 @@ public class QampContactScreenNew extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qamp_contact_screen);
-        AppUtils.setStatusBarColor(QampContactScreenNew.this, R.color.colorAccent);
+        AppUtils.setStatusBarColor(QampContactScreenNew.this, R.color.white);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         recyclerView = findViewById(R.id.contacts);
-        textView66 = findViewById(R.id.textView66);
+        selectedContacts = findViewById(R.id.selectedContacts);
         create_group = findViewById(R.id.create_group);
         editTextTextPersonName5 = findViewById(R.id.editTextTextPersonName5);
         imageView53 = findViewById(R.id.imageView53);
         next_group = findViewById(R.id.next_group);
-        textView66.setText(ContactSyncClass.contactsList.size()+" Contacts");
+        clearSelectionText = findViewById(R.id.clearSelectionText);
+        selectedContacts.setText(ContactSyncClass.contactsList.size()+" Contacts");
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.READ_CONTACTS)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -73,7 +77,7 @@ public class QampContactScreenNew extends AppCompatActivity {
         }
 
         if (!isGroupMakingProcedureActive){
-            showList(false, next_group);
+            showList(false, next_group,selectedContacts);
             isGroupMakingProcedureActive = false;
         }
 
@@ -82,14 +86,16 @@ public class QampContactScreenNew extends AppCompatActivity {
             public void onClick(View v) {
                 if (!isGroupMakingProcedureActive){
                     next_group.setVisibility(View.VISIBLE);
-                    showList(true,next_group);
+                    clearSelectionText.setVisibility(View.VISIBLE);
+                    showList(true,next_group,selectedContacts);
                     isGroupMakingProcedureActive = true;
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        create_group.setBackgroundColor(QampContactScreenNew.this.getColor(R.color.colorPrimary));
+                        create_group.setBackgroundColor(QampContactScreenNew.this.getColor(R.color.light_orange));
                     }
                 }else{
                     next_group.setVisibility(View.GONE);
-                    showList(false,next_group);
+                    clearSelectionText.setVisibility(View.GONE);
+                    showList(false,next_group ,selectedContacts);
                     isGroupMakingProcedureActive = false;
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         create_group.setBackgroundColor(QampContactScreenNew.this.getColor(R.color.white));
@@ -124,6 +130,7 @@ public class QampContactScreenNew extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 UserListFragment.mMemberProfiles.clear();
+                ContactSyncClass.getContactData(QampContactScreenNew.this);
                 if (slectedgtoup.size() >= 2) {
                     Iterator<MesiboProfile> it = slectedgtoup.iterator();
                     while (it.hasNext()) {
@@ -133,17 +140,37 @@ public class QampContactScreenNew extends AppCompatActivity {
                     //  MesiboUIManager.launchGroupActivity(ContactsBottomSheetFragment.this.getActivity(), (Bundle) null);
                     Intent intent = new Intent(QampContactScreenNew.this, CreateNewGroupActivity.class);
                     startActivity(intent);
-
+                    for (int i=0; i<ContactSyncClass.groupContacts.size(); i++)
+                        ContactSyncClass.groupContacts.get(i).setChecked(false);
                 } else if (slectedgtoup.size() == 0 || slectedgtoup.size() == 1) {
                     Toast.makeText(QampContactScreenNew.this, "Please Select atleast two members to create group", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+        clearSelectionText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                slectedgtoup.clear();
+                for (int i=0; i<ContactSyncClass.groupContacts.size(); i++)
+                    ContactSyncClass.groupContacts.get(i).setChecked(false);
+                showList(true, next_group, selectedContacts);
+            }
+        });
     }
 
-    private void showList(boolean isGroupMaking, LinearLayout next_group) {
-        adapter = new QampContactScreenAdapter(QampContactScreenNew.this,
-                ContactSyncClass.contacts, isGroupMaking , next_group);
+    private void showList(boolean isGroupMaking, ImageView next_group , TextView selectedContacts) {
+        if (isGroupMaking){
+            slectedgtoup.clear();
+            adapter = new QampContactScreenAdapter(QampContactScreenNew.this,
+                    ContactSyncClass.groupContacts, isGroupMaking , next_group , selectedContacts);
+            selectedContacts.setText(slectedgtoup.size() + " Contacts Selected");
+        }else{
+            slectedgtoup.clear();
+            adapter = new QampContactScreenAdapter(QampContactScreenNew.this,
+                    ContactSyncClass.contacts, isGroupMaking , next_group , selectedContacts);
+            selectedContacts.setText(ContactSyncClass.contactsList.size()+" Contacts");
+        }
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(QampContactScreenNew.this));
         adapter.notifyDataSetChanged();
@@ -152,6 +179,8 @@ public class QampContactScreenNew extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        for (int i=0; i<ContactSyncClass.groupContacts.size(); i++)
+            ContactSyncClass.groupContacts.get(i).setChecked(false);
         finish();
     }
 }

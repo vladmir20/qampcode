@@ -66,7 +66,7 @@
                 android:foregroundGravity="center_vertical"
                 android:gravity="center_vertical"
                 android:text="Screen Share"
-                android:textColor="#171717" />
+                android:textColor="@color/text_color17" />
         </LinearLayout>
 
     </LinearLayout>

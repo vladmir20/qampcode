@@ -40,7 +40,7 @@
                 android:fontFamily="@font/inter_medium"
                 android:gravity="start"
                 android:text=""
-                android:textColor="#171717"
+                android:textColor="@color/text_color17"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -117,7 +117,7 @@
             android:gravity="center"
             android:paddingTop="10dp"
             android:text="Invite people to follow your Local Business"
-            android:textColor="#171717"
+            android:textColor="@color/text_color17"
             android:textSize="24sp" />
 
 
@@ -218,7 +218,7 @@
             android:fontFamily="@font/inter_medium"
             android:text="Select Contacts"
             android:textAlignment="center"
-            android:textColor="#171717"
+            android:textColor="@color/text_color17"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/selectAllCheck"
             app:layout_constraintTop_toTopOf="parent" />
@@ -279,7 +279,7 @@
             android:minHeight="50dp"
             android:text="Invite &amp; Create Now"
             android:textAllCaps="false"
-            android:textColor="#171717"
+            android:textColor="@color/text_color17"
             android:textSize="14dp" />
 
     </LinearLayout>
@@ -335,7 +335,7 @@
             android:paddingTop="10dp"
             android:text="Skip Invite &amp; Create Channel"
             android:textAllCaps="false"
-            android:textColor="#171717"
+            android:textColor="@color/text_color17"
             android:textSize="12dp" />
 
     </LinearLayout>

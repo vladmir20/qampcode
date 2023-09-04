@@ -38,6 +38,7 @@
                     android:paddingBottom="16dp">
 
                     <ImageView
+                        android:id="@+id/crossButton"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:layout_gravity="center"
@@ -54,6 +55,7 @@
 
 
                     <TextView
+                        android:id="@+id/saveButton"
                         style="@style/TextHeadingNormalHeading"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -107,8 +109,8 @@
                             android:clickable="true"
                             android:drawableEnd="@drawable/ic_crosshair"
                             android:drawableTint="#828282"
-                            android:editable="false"
-                            android:focusable="false"
+
+                            android:focusable="true"
                             android:fontFamily="@font/inter_regular"
                             android:text="Ranipur Mod, Haridwar"
                             android:textColor="#828282" />
@@ -149,8 +151,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:clickable="true"
-                            android:editable="false"
-                            android:focusable="false"
+
+                            android:focusable="true"
                             android:fontFamily="@font/inter_regular"
                             android:text="Title"
                             android:textColor="#828282" />
@@ -179,8 +181,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:clickable="true"
-                            android:editable="false"
-                            android:focusable="false"
+
+                            android:focusable="true"
                             android:fontFamily="@font/inter_regular"
                             android:text="Enter Building Number"
                             android:textColor="#828282" />
@@ -209,8 +211,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:clickable="true"
-                            android:editable="false"
-                            android:focusable="false"
+
+                            android:focusable="true"
                             android:fontFamily="@font/inter_regular"
                             android:text="Enter Street Number"
                             android:textColor="#828282" />
@@ -239,9 +241,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:clickable="true"
-                            android:editable="false"
+
                             android:drawableEnd="@drawable/down_arrow"
-                            android:focusable="false"
+                            android:focusable="true"
                             android:fontFamily="@font/inter_regular"
                             android:text="Select Country"
                             android:textColor="#828282" />
@@ -271,8 +273,7 @@
                             android:layout_height="match_parent"
                             android:clickable="true"
                             android:drawableEnd="@drawable/down_arrow"
-                            android:editable="false"
-                            android:focusable="false"
+                            android:focusable="true"
                             android:fontFamily="@font/inter_regular"
                             android:text="Select State"
                             android:textColor="#828282" />
@@ -301,8 +302,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:clickable="true"
-                            android:editable="false"
-                            android:focusable="false"
+
+                            android:focusable="true"
                             android:drawableEnd="@drawable/down_arrow"
                             android:fontFamily="@font/inter_regular"
                             android:text="Select City"
@@ -331,8 +332,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:clickable="true"
-                            android:editable="false"
-                            android:focusable="false"
+
+                            android:focusable="true"
                             android:fontFamily="@font/inter_regular"
                             android:text="Enter Pin Code"
                             android:textColor="#828282" />

@@ -40,7 +40,7 @@
                     android:gravity="center"
                     android:layout_marginLeft="8dp"
                     android:text="Channel Name"
-                    android:textColor="#171717"
+                    android:textColor="@color/text_color17"
                     android:textSize="14dp" />
             </LinearLayout>
 
@@ -108,7 +108,7 @@
                 android:layout_marginRight="16dp"
                 android:gravity="center"
                 android:text="Where are you located?"
-                android:textColor="#171717"
+                android:textColor="@color/text_color17"
                 android:textSize="24dp" />
 
             <LinearLayout
@@ -191,7 +191,7 @@
                 android:minHeight="32dp"
                 android:text="Skip"
                 android:textAllCaps="false"
-                android:textColor="#171717"
+                android:textColor="@color/text_color17"
                 android:textSize="12dp" />
 
 

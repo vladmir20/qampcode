@@ -9,6 +9,8 @@
     tools:context=".Activity.QampContactScreen">
 
     <LinearLayout
+
+        android:id="@+id/contactLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background_tint4"
@@ -48,7 +50,7 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/textView66"
+                    android:id="@+id/selectedContacts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_regular"
@@ -69,19 +71,30 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             android:background="@color/background_tintTaskBar"
             android:gravity="center"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:src="@drawable/ic_search"
+                app:tint="#828282" />
+
             <EditText
                 android:id="@+id/editTextTextPersonName5"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginEnd="0dp"
+                android:layout_width="297dp"
+                android:layout_height="wrap_content"
+
+                android:layout_marginEnd="1dp"
                 android:layout_toStartOf="@+id/imageView3"
+                android:layout_toEndOf="@+id/imageView2"
                 android:background="@color/transparent_color"
                 android:ems="10"
                 android:gravity="center|left"
@@ -94,32 +107,55 @@
 
             <ImageView
                 android:id="@+id/imageView3"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
                 android:gravity="center|left"
-                android:src="@mipmap/search_box" />
+                android:src="@drawable/ic_microphone"
+                app:tint="#828282" />
+
         </RelativeLayout>
 
 
-        <TextView
-            android:id="@+id/create_group"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:drawableLeft="@drawable/create_group"
-            android:drawablePadding="10dp"
-            android:fontFamily="@font/inter_medium"
-            android:gravity="left"
-            android:paddingLeft="16dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:text="@string/create_a_group"
-            android:textColor="@color/text_color_black_white"
-            android:textSize="15sp" />
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/create_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:drawableLeft="@drawable/create_group"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/inter_medium"
+                android:gravity="left"
+                android:paddingLeft="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:text="@string/create_a_group"
+                android:textColor="@color/text_color_black_white"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/next_group"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="right"
+                android:visibility="gone"
+                android:background="@color/colorPrimary"
+                android:padding="5dp"
+                android:src="@drawable/arrow_right_circle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <TextView
@@ -138,17 +174,44 @@
             android:textColor="@color/text_color_black_white"
             android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/textView17"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/inter_semibold"
-            android:paddingLeft="16dp"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            android:text="@string/my_contacts_on_qamp"
-            android:textColor="@color/text_color_black_white"
-            android:textSize="14sp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semibold"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:text="@string/my_contacts_on_qamp"
+                android:textColor="@color/text_color_black_white"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/clearSelectionText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="Clear Selection"
+                android:textColor="@color/text_color_subtitle"
+                android:textSize="12sp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
         <TextView
 
@@ -173,42 +236,5 @@
             android:layout_height="match_parent" />
 
     </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/next_group"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_gravity="bottom|right"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/corner_radius_button"
-        android:backgroundTint="@color/grey"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center"
-            android:src="@drawable/create_group" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginLeft="10dp"
-            android:gravity="center"
-            android:text="@string/Create_group_text"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
-
-    </LinearLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

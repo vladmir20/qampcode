@@ -95,8 +95,8 @@
 
                 <ImageView
                     android:id="@+id/m_status"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="bottom"
                     android:paddingBottom="0dp"
                     android:scaleType="fitXY"

@@ -188,7 +188,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Add an Image/vide"
+            android:text="Add an Image/Video"
             android:textColor="@color/text_color17"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/imageView43"

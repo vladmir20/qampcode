@@ -34,7 +34,7 @@
             android:background="@android:color/transparent"
             android:fontFamily="@font/inter_medium"
             android:text="TextView"
-            android:textColor="#171717"
+            android:textColor="@color/text_color17"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/imageView58"
             app:layout_constraintTop_toTopOf="parent" />

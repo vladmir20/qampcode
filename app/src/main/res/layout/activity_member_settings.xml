@@ -90,7 +90,7 @@
                         android:fontFamily="@font/inter_regular"
                         android:gravity="center"
                         android:text="Settings"
-                        android:textColor="#171717"
+                        android:textColor="@color/text_color17"
                         android:textSize="12sp" />
 
                 </androidx.cardview.widget.CardView>
@@ -116,7 +116,7 @@
                         android:fontFamily="@font/inter_regular"
                         android:gravity="center"
                         android:text="Manage Members"
-                        android:textColor="#171717"
+                        android:textColor="@color/text_color17"
                         android:textSize="12sp" />
 
                 </androidx.cardview.widget.CardView>
@@ -142,7 +142,7 @@
                         android:fontFamily="@font/inter_regular"
                         android:gravity="center"
                         android:text="Add Members"
-                        android:textColor="#171717"
+                        android:textColor="@color/text_color17"
                         android:textSize="12sp" />
 
                 </androidx.cardview.widget.CardView>

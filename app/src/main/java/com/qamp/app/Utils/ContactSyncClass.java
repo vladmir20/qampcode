@@ -35,6 +35,7 @@ public class ContactSyncClass {
     public static Context mContext;
 
     public static ArrayList<QampContactScreenModel> contacts = new ArrayList<>();
+    public static ArrayList<QampContactScreenModel> groupContacts = new ArrayList<>();
 
     public static void readContacts() {
         ContentResolver contentResolver = mContext.getContentResolver();
@@ -63,6 +64,7 @@ public class ContactSyncClass {
         contactsList.clear();
         readContacts();
         contacts.clear();
+        groupContacts.clear();
         ArrayList<MesiboProfile> mesiboProfileArrayList = Mesibo.getSortedUserProfiles();
         Set<String> addedPhoneNumbers = new HashSet<>();
         for (int i = 0; i < contactsList.size(); i++) {
@@ -74,6 +76,7 @@ public class ContactSyncClass {
                         Bitmap b = null;
                         MesiboProfile mesiboProfile = Mesibo.getProfile(phoneNumber);
                         b = mesiboProfile.getImage();
+                        //b=null;
                         if (b == null) {
                             int width = 35;
                             int height = 35;
@@ -106,6 +109,8 @@ public class ContactSyncClass {
                             float textY = centerY - mBounds.exactCenterY();
                             c.drawText(mFirstChar, 0, 1, textX, textY, mPaint); }
                         contacts.add(new QampContactScreenModel( contactsList.get(i).getName(),
+                                phoneNumber, true, b));
+                        groupContacts.add(new QampContactScreenModel( contactsList.get(i).getName(),
                                 phoneNumber, true, b));
                         addedPhoneNumbers.add(phoneNumber); // Add the phone number to the set
                     }

@@ -1,0 +1,24 @@
+<!--
+  ~ /**
+  ~  *  on 20/05/23, 3:30 AM
+  ~  * Copyright (c) 2023 . All rights reserved.
+  ~  * Last modified 05/05/23, 3:15 PM
+  ~  */
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="25dp"
+    android:viewportWidth="24"
+    android:viewportHeight="25">
+  <path
+      android:strokeWidth="1"
+      android:pathData="M17.25,11.661L22,8.946V17.089L17.25,14.375M3.679,7.25H14.536C15.256,7.25 15.946,7.536 16.455,8.045C16.964,8.554 17.25,9.244 17.25,9.964V18.107C17.25,18.287 17.178,18.46 17.051,18.587C16.924,18.714 16.751,18.786 16.571,18.786H5.714C4.994,18.786 4.304,18.5 3.795,17.991C3.286,17.482 3,16.791 3,16.071V7.929C3,7.749 3.071,7.576 3.199,7.449C3.326,7.321 3.499,7.25 3.679,7.25Z"
+      android:strokeLineJoin="round"
+      android:fillColor="#00000000"
+      android:strokeColor="#171717"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="M5.373,12.1H6.102V14.656H7.682V15.25H5.373V12.1ZM8.089,12.1H8.818V15.25H8.089V12.1ZM12.577,12.1L11.213,15.25H10.493L9.134,12.1H9.922L10.88,14.35L11.852,12.1H12.577ZM15.279,14.665V15.25H12.84V12.1H15.22V12.685H13.564V13.369H15.027V13.936H13.564V14.665H15.279Z"
+      android:fillColor="#171717"/>
+</vector>

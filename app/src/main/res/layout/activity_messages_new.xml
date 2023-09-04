@@ -143,6 +143,7 @@
                 android:fontFamily="@font/inter_medium"
                 android:text="@string/my_channel_text"
                 android:textColor="#272A3D"
+                android:visibility="gone"
                 android:textSize="14sp" />
 
             <FrameLayout

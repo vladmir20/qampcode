@@ -47,7 +47,7 @@
                 android:fontFamily="@font/inter_medium"
                 android:gravity="center|start"
                 android:text="@string/notification_center"
-                android:textColor="#171717"
+                android:textColor="@color/text_color17"
                 android:textSize="16sp" />
 
         </LinearLayout>
@@ -113,7 +113,7 @@
                         android:fontFamily="@font/inter_regular"
                         android:gravity="center"
                         android:text="Channels"
-                        android:textColor="#171717"
+                        android:textColor="@color/text_color17"
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -139,7 +139,7 @@
                         android:fontFamily="@font/inter_regular"
                         android:gravity="center"
                         android:text="Settings"
-                        android:textColor="#171717"
+                        android:textColor="@color/text_color17"
                         android:textSize="12sp" />
 
                 </LinearLayout>

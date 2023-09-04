@@ -1,0 +1,20 @@
+<!--
+  ~ /**
+  ~  *  on 20/05/23, 3:30 AM
+  ~  * Copyright (c) 2023 . All rights reserved.
+  ~  * Last modified 05/05/23, 3:15 PM
+  ~  */
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="30dp"
+    android:height="29dp"
+    android:viewportWidth="30"
+    android:viewportHeight="29">
+  <path
+      android:pathData="M15.5,1L15.5,1A13,13 0,0 1,28.5 14L28.5,14A13,13 0,0 1,15.5 27L15.5,27A13,13 0,0 1,2.5 14L2.5,14A13,13 0,0 1,15.5 1z"
+      android:fillColor="#171717"/>
+  <path
+      android:pathData="M8.5,15V14H14.5V8H15.5V14H21.5V15H15.5V21H14.5V15H8.5Z"
+      android:fillColor="#ffffff"/>
+</vector>

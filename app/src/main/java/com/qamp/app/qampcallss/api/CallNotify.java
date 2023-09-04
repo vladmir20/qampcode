@@ -235,7 +235,7 @@ public class CallNotify {
                 String var2 = "Incoming Call Notifications";
                 (mChannel = new NotificationChannel(channelId, var2, 4)).setDescription("None");
                 mChannel.setLockscreenVisibility(1);
-                AudioAttributes var4 = (new android.media.AudioAttributes.Builder()).setContentType(4).setUsage(2).build();
+                AudioAttributes var4 = (new AudioAttributes.Builder()).setContentType(4).setUsage(2).build();
                 if (null != var1.notify.ringtoneUri) {
                     mChannel.setSound(var1.notify.ringtoneUri, var4);
                 }

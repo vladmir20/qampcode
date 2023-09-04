@@ -828,10 +828,8 @@ public class MessagingFragment extends BaseFragment implements MessageListener, 
             if (0 == this.mLastReadCount && this.mMessageList.size() == 0) {
                 this.updateUiIfLastMessage((MesiboMessage) null);
             }
-
             this.mReadSession.sync(count, this);
         }
-
     }
 
     private boolean deleteTimestamp(MesiboMessage m) {

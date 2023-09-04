@@ -32,8 +32,10 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -44,7 +46,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
@@ -89,6 +90,7 @@ public class QampContactScreen extends AppCompatActivity implements Mesibo.Messa
     private String mSearchQuery = null;
     private Boolean mIsMessageSearching = false;
     ImageView searchIcon;
+    LinearLayout linearLayout;
     EditText searchQuery;
     TextView mEmptyView;
     TextView contactsCount;
@@ -153,9 +155,11 @@ public class QampContactScreen extends AppCompatActivity implements Mesibo.Messa
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qamp_contact_screen);
         AppUtils.setStatusBarColor(QampContactScreen.this, R.color.colorAccent);
+
 
         backPress = findViewById(R.id.imageView53);
         searchIcon = findViewById(R.id.imageView3);
@@ -166,7 +170,7 @@ public class QampContactScreen extends AppCompatActivity implements Mesibo.Messa
         mEmptyView = findViewById(R.id.emptyview_tex);
         mMesiboUIOptions = MesiboUI.getConfig();
         mSelectionMode = MesiboUserListFragment.MODE_MESSAGELIST;
-        contactsCount = findViewById(R.id.textView66);
+        contactsCount = findViewById(R.id.selectedContacts);
 
 
         checkPermissionAndFetchContacts();
@@ -186,16 +190,25 @@ public class QampContactScreen extends AppCompatActivity implements Mesibo.Messa
             mLetterTileProvider = new LetterTitleProvider(getApplicationContext(), 60, mMesiboUIOptions.mLetterTitleColors);
         }
 
+        LinearLayout parentLayout = findViewById(R.id.contactLayout);
+
+
+
 
         searchIcon.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View view) {
+
+
                 if (!searchQuery.getText().toString().isEmpty()) {
                     searchIcon.setImageDrawable(getResources().getDrawable(R.mipmap.search_box));
 
-
+                    searchQuery.clearFocus();
                 }
-                searchQuery.requestFocus();
+
+
 
                 InputMethodManager inputMethodManager =
                         (InputMethodManager) QampContactScreen.this.getSystemService(INPUT_METHOD_SERVICE);
@@ -208,11 +221,13 @@ public class QampContactScreen extends AppCompatActivity implements Mesibo.Messa
         });
 
 
+
         searchQuery.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
+
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -228,7 +243,9 @@ public class QampContactScreen extends AppCompatActivity implements Mesibo.Messa
                     // Needed when press close then back it goes back so..
                     mIsMessageSearching = true;
                     searchIcon.setImageDrawable(getResources().getDrawable(R.mipmap.search_box));
-                    searchQuery.clearFocus();
+
+
+                    searchQuery.setCursorVisible(false);
                 } else {
                     mIsMessageSearching = true;
                     if (!TextUtils.isEmpty(mSearchQuery)) {
@@ -241,10 +258,18 @@ public class QampContactScreen extends AppCompatActivity implements Mesibo.Messa
             }
         });
 
+
+
+
         backPress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(searchQuery.getWindowToken(), 0);
+
+
+
 
             }
         });
@@ -730,7 +755,7 @@ public class QampContactScreen extends AppCompatActivity implements Mesibo.Messa
 
 
             if (vh.getItemViewType() == SECTION_HEADER) {
-                ((MessageContactAdapter.SectionHeaderViewHolder) vh).mSectionTitle.setText(mDataList.get(position).getName());
+                ((SectionHeaderViewHolder) vh).mSectionTitle.setText(mDataList.get(position).getName());
             }
 
             else {
@@ -739,7 +764,7 @@ public class QampContactScreen extends AppCompatActivity implements Mesibo.Messa
                 MesiboProfile user = mDataList.get(position);
                 //final MesiboProfile userMain = mMainUserList.get(position).getUserData();
 
-                MessageContactAdapter.SectionCellsViewHolder holder = (MessageContactAdapter.SectionCellsViewHolder) vh;
+                SectionCellsViewHolder holder = (SectionCellsViewHolder) vh;
                 //setHasStableIds(true);
                 holder.link.setVisibility(View.GONE);
                 holder.messageIcon.setVisibility(View.GONE);
@@ -1048,11 +1073,11 @@ public class QampContactScreen extends AppCompatActivity implements Mesibo.Messa
 
         @Override
         public void onViewRecycled(RecyclerView.ViewHolder holder) {
-            if (!(holder instanceof MessageContactAdapter.SectionCellsViewHolder)) {
+            if (!(holder instanceof SectionCellsViewHolder)) {
                 return;
             }
 
-            MessageContactAdapter.SectionCellsViewHolder vh = (MessageContactAdapter.SectionCellsViewHolder) holder;
+            SectionCellsViewHolder vh = (SectionCellsViewHolder) holder;
             //vh.clearData();
         }
 
@@ -1311,4 +1336,6 @@ public class QampContactScreen extends AppCompatActivity implements Mesibo.Messa
             }
         }
     }
+
+
 }

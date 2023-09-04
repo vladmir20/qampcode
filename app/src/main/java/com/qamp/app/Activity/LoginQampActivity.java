@@ -736,8 +736,8 @@ public class LoginQampActivity extends Activity implements GoogleApiClient.Conne
 
     private void otpBackgroundRed(boolean b) {
         otpBackgroundRed = b;
-        final int sdk = android.os.Build.VERSION.SDK_INT;
-        if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+        final int sdk = Build.VERSION.SDK_INT;
+        if (sdk < Build.VERSION_CODES.JELLY_BEAN) {
             otp_layout1.setBackgroundDrawable(ContextCompat.getDrawable(LoginQampActivity.this, R.drawable.otp_red_corner));
             otp_layout2.setBackgroundDrawable(ContextCompat.getDrawable(LoginQampActivity.this, R.drawable.otp_red_corner));
             otp_layout3.setBackgroundDrawable(ContextCompat.getDrawable(LoginQampActivity.this, R.drawable.otp_red_corner));

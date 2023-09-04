@@ -1,0 +1,12 @@
+<!--
+  ~ /**
+  ~  *  on 20/05/23, 3:30 AM
+  ~  * Copyright (c) 2023 . All rights reserved.
+  ~  * Last modified 05/05/23, 3:15 PM
+  ~  */
+  -->
+
+<vector android:height="30dp" android:viewportHeight="24"
+    android:viewportWidth="24" android:width="30dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#171717" android:pathData="M19,13H6.75L12,18.25L11.336,19L4.836,12.5L11.336,6L12,6.75L6.75,12H19V13Z"/>
+</vector>

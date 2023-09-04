@@ -42,7 +42,7 @@
                     android:fontFamily="@font/inter_medium"
                     android:gravity="start"
                     android:text=""
-                    android:textColor="#171717"
+                    android:textColor="@color/text_color17"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -140,7 +140,7 @@
                 android:layout_marginBottom="35dp"
                 android:fontFamily="@font/inter_medium"
                 android:text="@string/part_of_community_text"
-                android:textColor="#171717"
+                android:textColor="@color/text_color17"
                 android:textSize="24sp" />
 
             <androidx.cardview.widget.CardView
@@ -167,7 +167,7 @@
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/inter_medium"
                         android:text="Open to All"
-                        android:textColor="#171717"
+                        android:textColor="@color/text_color17"
                         android:textSize="14sp"
                         app:layout_constraintStart_toEndOf="@+id/openToAllLayoutCheck"
                         app:layout_constraintTop_toTopOf="parent"
@@ -227,7 +227,7 @@
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/inter_medium"
                         android:text="By Invite Only"
-                        android:textColor="#171717"
+                        android:textColor="@color/text_color17"
                         android:textSize="14sp"
                         app:layout_constraintStart_toEndOf="@+id/byInviteCheck"
                         app:layout_constraintTop_toTopOf="parent"
@@ -287,7 +287,7 @@
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/inter_medium"
                         android:text="By Request"
-                        android:textColor="#171717"
+                        android:textColor="@color/text_color17"
                         android:textSize="14sp"
                         app:layout_constraintStart_toEndOf="@+id/byRequestCheck"
                         app:layout_constraintTop_toTopOf="parent"
@@ -365,7 +365,7 @@
                     android:text="Next"
                     android:fontFamily="@font/inter_medium"
                     android:textAllCaps="false"
-                    android:textColor="#171717"
+                    android:textColor="@color/text_color17"
                     android:textSize="14dp" />
 
             </LinearLayout>
@@ -381,7 +381,7 @@
                 android:background="@color/transparent_color"
                 android:text="Skip"
                 android:textAllCaps="false"
-                android:textColor="#171717"
+                android:textColor="@color/text_color17"
                 style="?android:attr/borderlessButtonStyle"
                 android:textSize="12dp"
                 tools:ignore="TextSizeCheck" />
