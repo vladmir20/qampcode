@@ -273,27 +273,34 @@ public class QampContactScreen extends AppCompatActivity implements Mesibo.Messa
 
             }
         });
+      boolean isButtonClicked = false;
 
         createGroup.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                if (groupmaker == 0) {
-                    groupmaker = 1;
-                    next_group.setVisibility(View.VISIBLE);
-                    //Context contactsBottomSheetFragment = getApplicationContext();
-                    OpenContactRecycler(true);
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        createGroup.setBackgroundColor(QampContactScreen.this.getColor(R.color.colorPrimary));
+
+                    if (groupmaker == 0) {
+                        groupmaker = 1;
+                        next_group.setVisibility(View.VISIBLE);
+                        //Context contactsBottomSheetFragment = getApplicationContext();
+                        OpenContactRecycler(true);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            createGroup.setBackgroundColor(QampContactScreen.this.getColor(R.color.colorPrimary));
+                        }
+                    } else if (groupmaker == 1) {
+                        groupmaker = 0;
+                        next_group.setVisibility(View.GONE);
+                        OpenContactRecycler(false);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            createGroup.setBackgroundColor(QampContactScreen.this.getColor(R.color.white));
+                        }
+                        createGroup.setEnabled(false);
                     }
-                } else if (groupmaker == 1) {
-                    groupmaker = 0;
-                    next_group.setVisibility(View.GONE);
-                    OpenContactRecycler(false);
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        createGroup.setBackgroundColor(QampContactScreen.this.getColor(R.color.white));
-                    }
+
+
                 }
-            }
+
         });
 
         next_group.setOnClickListener(new View.OnClickListener() {

@@ -36,6 +36,7 @@ public class ContactSyncClass {
 
     public static ArrayList<QampContactScreenModel> contacts = new ArrayList<>();
     public static ArrayList<QampContactScreenModel> groupContacts = new ArrayList<>();
+    public static int totalcontacts = 0;
 
     public static void readContacts() {
         ContentResolver contentResolver = mContext.getContentResolver();
@@ -54,6 +55,7 @@ public class ContactSyncClass {
                 phoneNumber = formatPhoneNumber(phoneNumber, mContext);
                 // Add the contact to the ArrayList
                 contactsList.add(new DeviceContactModal(name, phoneNumber));
+
             }
             cursor.close();
         }
@@ -117,6 +119,7 @@ public class ContactSyncClass {
                 }
             }
         }
+
         for (int i = 0; i < contactsList.size(); i++) {
             String phoneNumber = contactsList.get(i).getPhoneNumber();
             if (!addedPhoneNumbers.contains(phoneNumber)) {
