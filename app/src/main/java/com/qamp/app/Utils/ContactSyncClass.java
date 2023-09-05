@@ -36,8 +36,29 @@ public class ContactSyncClass {
 
     public static ArrayList<QampContactScreenModel> contacts = new ArrayList<>();
     public static ArrayList<QampContactScreenModel> groupContacts = new ArrayList<>();
-    public static int totalcontacts = 0;
 
+
+    //    public static void readContacts() {
+//        ContentResolver contentResolver = mContext.getContentResolver();
+//        Cursor cursor = contentResolver.query(
+//                ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+//                null,
+//                null,
+//                null,
+//                ContactsContract.Contacts.DISPLAY_NAME + " ASC"
+//        );
+//        int i=0;
+//        if (cursor != null && cursor.getCount() > 0) {
+//            while (cursor.moveToNext()) {
+//                String name = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+//                String phoneNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+//                phoneNumber = formatPhoneNumber(phoneNumber, mContext);
+//                // Add the contact to the ArrayList
+//                contactsList.add(new DeviceContactModal(name, phoneNumber));
+//             }
+//            cursor.close();
+//         }
+//     }
     public static void readContacts() {
         ContentResolver contentResolver = mContext.getContentResolver();
         Cursor cursor = contentResolver.query(
@@ -48,18 +69,25 @@ public class ContactSyncClass {
                 ContactsContract.Contacts.DISPLAY_NAME + " ASC"
         );
 
+        Set<String> contactSet = new HashSet<>(); // Use a Set to store unique contacts
+
         if (cursor != null && cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
                 String name = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
                 String phoneNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                 phoneNumber = formatPhoneNumber(phoneNumber, mContext);
-                // Add the contact to the ArrayList
-                contactsList.add(new DeviceContactModal(name, phoneNumber));
 
+                // Check if the contact is not a duplicate (based on phone number)
+                if (!contactSet.contains(phoneNumber)) {
+                    // Add the contact to the ArrayList and the Set
+                    contactsList.add(new DeviceContactModal(name, phoneNumber));
+                    contactSet.add(phoneNumber);
+                }
             }
             cursor.close();
         }
     }
+
 
     public static ArrayList<QampContactScreenModel> getContactData(Context Mcontext) {
         mContext = Mcontext;
@@ -68,11 +96,13 @@ public class ContactSyncClass {
         contacts.clear();
         groupContacts.clear();
         ArrayList<MesiboProfile> mesiboProfileArrayList = Mesibo.getSortedUserProfiles();
+        mesiboProfileArrayList.add(Mesibo.getSelfProfile());
         Set<String> addedPhoneNumbers = new HashSet<>();
         for (int i = 0; i < contactsList.size(); i++) {
             String phoneNumber = contactsList.get(i).getPhoneNumber();
             for (int j = 0; j < mesiboProfileArrayList.size(); j++) {
-                if (contactsList.get(i).getPhoneNumber().equals(mesiboProfileArrayList.get(j).getAddress())) {
+                if (contactsList.get(i).getPhoneNumber().
+                        equals(mesiboProfileArrayList.get(j).getAddress())) {
                     // Check if the phone number has already been added before adding it again
                     if (!addedPhoneNumbers.contains(phoneNumber)) {
                         Bitmap b = null;
@@ -109,10 +139,16 @@ public class ContactSyncClass {
                             mPaint.getTextBounds(mFirstChar, 0, 1, mBounds);
                             float textX = centerX - mBounds.exactCenterX();
                             float textY = centerY - mBounds.exactCenterY();
-                            c.drawText(mFirstChar, 0, 1, textX, textY, mPaint); }
-                        contacts.add(new QampContactScreenModel( contactsList.get(i).getName(),
-                                phoneNumber, true, b));
-                        groupContacts.add(new QampContactScreenModel( contactsList.get(i).getName(),
+                            c.drawText(mFirstChar, 0, 1, textX, textY, mPaint);
+                        }
+                        if (Mesibo.getSelfProfile().getAddress().equals(phoneNumber)) {
+                            contacts.add(new QampContactScreenModel(contactsList.get(i).getName() + "(You)",
+                                    phoneNumber, true, b));
+                        } else {
+                            contacts.add(new QampContactScreenModel(contactsList.get(i).getName(),
+                                    phoneNumber, true, b));
+                        }
+                        groupContacts.add(new QampContactScreenModel(contactsList.get(i).getName(),
                                 phoneNumber, true, b));
                         addedPhoneNumbers.add(phoneNumber); // Add the phone number to the set
                     }
@@ -156,10 +192,10 @@ public class ContactSyncClass {
                 float textY = centerY - mBounds.exactCenterY();
                 c.drawText(mFirstChar, 0, 1, textX, textY, mPaint);
 
-                 //c.drawText(mFirstChar, 0, 1, (float) ((width / 2) + 0), (float) ((height / 2) + 0 + ((mBounds.bottom - mBounds.top) / 2)), mPaint);
+                //c.drawText(mFirstChar, 0, 1, (float) ((width / 2) + 0), (float) ((height / 2) + 0 + ((mBounds.bottom - mBounds.top) / 2)), mPaint);
 
-                contacts.add(new QampContactScreenModel( contactsList.get(i).getName(),
-                        phoneNumber, false,  bmp));
+                contacts.add(new QampContactScreenModel(contactsList.get(i).getName(),
+                        phoneNumber, false, bmp));
                 addedPhoneNumbers.add(phoneNumber); // Add the phone number to the set
             }
         }

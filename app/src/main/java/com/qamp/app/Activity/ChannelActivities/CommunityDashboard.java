@@ -1,10 +1,14 @@
 package com.qamp.app.Activity.ChannelActivities;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
@@ -30,6 +34,13 @@ public class CommunityDashboard extends AppCompatActivity {
         Utilss.setLanguage(CommunityDashboard.this);
         setContentView(R.layout.activity_community_dashboard);
         AppUtils.setStatusBarColor(CommunityDashboard.this, R.color.grey_5);
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            String showCongDialog = bundle.getString("showCongDialog");
+            if (showCongDialog.equals("true")){
+                showCustomDialog();
+            }
+        }
         initViews();
         setFrame("chatLayout");
         chatLayout.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +67,33 @@ public class CommunityDashboard extends AppCompatActivity {
                 setFrame("aboutlayout");
             }
         });
+    }
+
+    private void showCustomDialog() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.community_congratulations);
+
+        // Set the dialog size (optional)
+        dialog.getWindow().setLayout(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+
+        // Configure the dialog to not dismiss when clicking outside of it
+        dialog.setCanceledOnTouchOutside(false);
+        Button setUpBusinessBtn = dialog.findViewById(R.id.button2);
+
+        // Set a click listener for the button
+        setUpBusinessBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setFrame("aboutlayout");
+                dialog.dismiss();
+            }
+        });
+        // Show the dialog
+        dialog.show();
     }
 
 

@@ -447,7 +447,6 @@ public class BusinessInvitaionAndCreation extends Fragment implements Backpresse
                             if (AppUtils.isNetWorkAvailable(getActivity())) {
                                 channelId = data.getString("uid");
                                 shareInviteToDb(mesiboProfileArrayList);
-                                System.out.println("Shivam done");
                             } else {
                                 Toast.makeText(getContext(), getString(R.string.internet_error), Toast.LENGTH_LONG).show();
                             }
@@ -572,6 +571,7 @@ public class BusinessInvitaionAndCreation extends Fragment implements Backpresse
                                 // Save the response to SharedPreferences
                                 //saveResponseToSharedPreferences(response.toString());
                                 // Process the response JSON if needed
+
                                 String status = response.getString("status");
                                 if (status.contains(QampConstants.success)) {
                                     AppUtils.closeProgresDialog();
@@ -579,7 +579,10 @@ public class BusinessInvitaionAndCreation extends Fragment implements Backpresse
                                     String channelId = data.getString("channelId");
                                     String countryCode = data.getString("countryCode");
                                     JSONArray invitedMobileNumbers = data.getJSONArray("invitedMobileNumbers");
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("showCongDialog","true");
                                     Intent intent = new Intent(getActivity(), CommunityDashboard.class);
+                                    intent.putExtras(bundle);
                                     startActivity(intent);
                                 } else {
 
@@ -594,8 +597,7 @@ public class BusinessInvitaionAndCreation extends Fragment implements Backpresse
                                     String errorCode = error.getString("errCode");
                                     Toast.makeText(getActivity(), "" + errMsg, Toast.LENGTH_SHORT).show();
                                 }
-                                Toast.makeText(getActivity(), status, Toast.LENGTH_SHORT).show();
-                            } catch (JSONException e) {
+                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
@@ -618,6 +620,8 @@ public class BusinessInvitaionAndCreation extends Fragment implements Backpresse
             throw new RuntimeException(e);
         }
     }
+
+
 
 
     public class CommunityContactAdapter extends RecyclerView.Adapter<CommunityContactAdapter.ViewHolder> {

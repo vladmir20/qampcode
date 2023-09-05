@@ -42,6 +42,7 @@ import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.appcompat.widget.SearchView;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -460,9 +461,9 @@ public class UserListFragment extends Fragment implements Mesibo.MessageListener
         BottomSheetDialog dialog = new BottomSheetDialog(getContext());
         dialog.setContentView(R.layout.select_channel_type);
 
-        LinearLayout peopleProfit = (LinearLayout) dialog.findViewById(R.id.peopleProfile);
-        LinearLayout community = (LinearLayout) dialog.findViewById(R.id.community);
-        LinearLayout business = (LinearLayout) dialog.findViewById(R.id.business);
+        ConstraintLayout peopleProfit = (ConstraintLayout) dialog.findViewById(R.id.peopleProfile);
+        ConstraintLayout community = (ConstraintLayout) dialog.findViewById(R.id.community);
+        ConstraintLayout business = (ConstraintLayout) dialog.findViewById(R.id.business);
         ImageView cancel = (ImageView) dialog.findViewById(R.id.cancel);
 
         cancel.setOnClickListener(new View.OnClickListener() {
