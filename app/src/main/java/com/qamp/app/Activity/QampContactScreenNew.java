@@ -84,23 +84,24 @@ public class QampContactScreenNew extends AppCompatActivity {
         create_group.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!isGroupMakingProcedureActive){
+                if (!isGroupMakingProcedureActive) {
                     next_group.setVisibility(View.VISIBLE);
                     clearSelectionText.setVisibility(View.VISIBLE);
-                    showList(true,next_group,selectedContacts);
+                    showList(true, next_group, selectedContacts);
                     isGroupMakingProcedureActive = true;
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         create_group.setBackgroundColor(QampContactScreenNew.this.getColor(R.color.light_orange));
                     }
-                }else{
-                    next_group.setVisibility(View.GONE);
-                    clearSelectionText.setVisibility(View.GONE);
-                    showList(false,next_group ,selectedContacts);
-                    isGroupMakingProcedureActive = false;
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        create_group.setBackgroundColor(QampContactScreenNew.this.getColor(R.color.white));
-                    }
                 }
+//                }else{
+//                    next_group.setVisibility(View.GONE);
+//                    clearSelectionText.setVisibility(View.GONE);
+//                    showList(false,next_group ,selectedContacts);
+//                    isGroupMakingProcedureActive = false;
+//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                        create_group.setBackgroundColor(QampContactScreenNew.this.getColor(R.color.white));
+//                    }
+//                }
             }
         });
         editTextTextPersonName5.addTextChangedListener(new TextWatcher() {

@@ -38,19 +38,47 @@
             android:textColor="#828282"
             android:textSize="16sp"/>
 
+
     </LinearLayout>
 
-
-    <ListView
-        android:id="@+id/suggestionListView"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout21" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout21">
+
+        <ListView
+            android:id="@+id/suggestionListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp" />
+
+        <TextView
+            android:id="@+id/recentTextview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/suggestionListView"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="81px"
+            android:layout_marginEnd="81px"
+            android:layout_marginBottom="81px"
+            android:text="Recent" />
+
+        <ListView
+            android:id="@+id/historyListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recentTextview"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+
+             />
+
+    </RelativeLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
