@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,6 +43,7 @@ import com.qamp.app.R;
 import com.qamp.app.Utils.Utils;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -50,11 +52,12 @@ public class BusinessLocationSearch extends Fragment implements Backpressedliste
     public static Backpressedlistener backpressedlistener;
     ImageView backBtn;
     AutoCompleteTextView locationText;
-
+    List<String> selectionHistory = new ArrayList<>();
+    ArrayAdapter<String> historyAdapter;
     String buttonState, businessTitleString, businessDescriptionString, businessTypeString,
             businessHaveGeoLocation, businessLatitude, businessLangitutde, businessEmailID, businessMobileNumber,
             businessDomain, businessTypeStringBusiness, businessInvitationType, completeAddress, location;
-    ListView suggestionListView;
+    ListView suggestionListView,historyListView;
     public BusinessLocationSearch() {
         // Required empty public constructor
     }
@@ -74,9 +77,15 @@ public class BusinessLocationSearch extends Fragment implements Backpressedliste
                 moveValuesToPreviousFragment();
             }
         });
+        historyAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, selectionHistory);
+        historyListView.setAdapter(historyAdapter);
+
+
         PlaceAutoSuggestAdapter adapter = new PlaceAutoSuggestAdapter(getActivity(), R.layout.search_location_item);
         locationText.setAdapter(adapter);
         suggestionListView.setAdapter(adapter);
+
+
         suggestionListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -88,9 +97,15 @@ public class BusinessLocationSearch extends Fragment implements Backpressedliste
                     completeAddress = locationText.getText().toString();
                     businessLatitude = String.valueOf(latLng.latitude);
                     businessLangitutde = String.valueOf(latLng.longitude);
+                    addLocationToHistory(selectedItem);
                     Log.d("Lat Lng : ", " " + latLng.latitude + " " + latLng.longitude);
+//
                     moveValuesToPreviousFragment();
                 }
+
+
+
+
             }
         });
         locationText.addTextChangedListener(new TextWatcher() {
@@ -111,7 +126,12 @@ public class BusinessLocationSearch extends Fragment implements Backpressedliste
         });
         return view;
     }
+    private void addLocationToHistory(String location) {
 
+            selectionHistory.add(location);
+            historyAdapter.notifyDataSetChanged();
+
+    }
 
     private void moveValuesToPreviousFragment() {
         Fragment businessDataCreation = new BusinessLocationData();
@@ -134,6 +154,7 @@ public class BusinessLocationSearch extends Fragment implements Backpressedliste
         }else{
             bundle.putString("buttonState","false");
         }
+
         final FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         businessDataCreation.setArguments(bundle);
         transaction.replace(R.id.frameLayout, businessDataCreation, "BusinessLocationData");
@@ -166,6 +187,7 @@ public class BusinessLocationSearch extends Fragment implements Backpressedliste
         locationText = view.findViewById(R.id.locationText);
         locationText.setDropDownHeight(0);
         suggestionListView =view.findViewById(R.id.suggestionListView);
+        historyListView =view.findViewById(R.id.historyListView);
         locationText.requestFocus();
         locationText.setEnabled(true);
         locationText.setFocusable(true);
