@@ -37,7 +37,7 @@ public class MesiboCallsReceiver extends BroadcastReceiver {
 
                 //CallManager.getInstance().hangupIncoming();
                 CallManager.getInstance().hangupIncoming();
-                Mesibo.hangup(0);
+                Mesibo.hangup(0,false);
                 //stopIncomingNotification((MesiboCall.CallProperties) null);
                 //clearNotification((MesiboCall.CallProperties) null);
                 //this.mCallp2p = null;

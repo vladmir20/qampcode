@@ -136,7 +136,7 @@ public class CallManager implements AudioManager.OnAudioFocusChangeListener, Mes
         boolean z = false;
         MesiboCall.IncomingListener listener = getListener();
         if (this.mBusy) {
-            Mesibo.hangup(0);
+            Mesibo.hangup(0,false);
             if (listener != null) {
                 if ((i & 2) > 0) {
                     z = true;
@@ -149,7 +149,7 @@ public class CallManager implements AudioManager.OnAudioFocusChangeListener, Mes
             }
             MesiboCall.CallProperties MesiboCall_OnIncoming = listener != null ? listener.MesiboCall_OnIncoming(mesiboProfile, z) : MesiboCall.getInstance().createCallProperties(z);
             if (MesiboCall_OnIncoming == null) {
-                Mesibo.hangup(0);
+                Mesibo.hangup(0,false);
             } else {
                 MesiboCall_OnIncoming.incoming = true;
                 MesiboCall_OnIncoming.user = mesiboProfile;
@@ -417,7 +417,7 @@ public class CallManager implements AudioManager.OnAudioFocusChangeListener, Mes
     }
 
     public void hangupIncoming() {
-        Mesibo.hangup(0);
+        Mesibo.hangup(0,false);
         stopIncomingNotification((MesiboCall.CallProperties) null);
         clearNotification((MesiboCall.CallProperties) null);
         this.mCallp2p = null;
