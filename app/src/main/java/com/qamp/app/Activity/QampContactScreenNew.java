@@ -63,52 +63,44 @@ public class QampContactScreenNew extends AppCompatActivity {
         imageView53 = findViewById(R.id.imageView53);
         next_group = findViewById(R.id.next_group);
         clearSelectionText = findViewById(R.id.clearSelectionText);
-
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
+        selectedContacts.setText(ContactSyncClass.contactsList.size()+" Contacts");
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_CONTACTS)
                 != PackageManager.PERMISSION_GRANTED) {
 
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.READ_CONTACTS},
                     REQUEST_READ_CONTACTS);
-            selectedContacts.setText(ContactSyncClass.contactsList.size() + " Contacts");
         } else {
-
             // Permission has already been granted
-            // Access ContactSyncClass.contactsList and set the text here
-
+            // ContactSyncClass.getContactData();
         }
-
-
 
         if (!isGroupMakingProcedureActive){
             showList(false, next_group,selectedContacts);
             isGroupMakingProcedureActive = false;
         }
-        final boolean[] isButtonClicked = {false};
+
         create_group.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (!isButtonClicked[1]) {
-//                    isButtonClicked[0] = true;
-
-                    if (!isGroupMakingProcedureActive) {
-                        next_group.setVisibility(View.VISIBLE);
-                        clearSelectionText.setVisibility(View.VISIBLE);
-                        showList(true, next_group, selectedContacts);
-                        isGroupMakingProcedureActive = true;
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            create_group.setBackgroundColor(QampContactScreenNew.this.getColor(R.color.light_orange));
-                        }}
-//                    } else {
-//                        next_group.setVisibility(View.GONE);
-//                        clearSelectionText.setVisibility(View.GONE);
-//                        showList(false, next_group, selectedContacts);
-//                        isGroupMakingProcedureActive = false;
-//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                            create_group.setBackgroundColor(QampContactScreenNew.this.getColor(R.color.white));
-//                        }
-//                    }
-
+                if (!isGroupMakingProcedureActive){
+                    next_group.setVisibility(View.VISIBLE);
+                    clearSelectionText.setVisibility(View.VISIBLE);
+                    showList(true,next_group,selectedContacts);
+                    isGroupMakingProcedureActive = true;
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        create_group.setBackgroundColor(QampContactScreenNew.this.getColor(R.color.light_orange));
+                    }
+                }else{
+                    next_group.setVisibility(View.GONE);
+                    clearSelectionText.setVisibility(View.GONE);
+                    showList(false,next_group ,selectedContacts);
+                    isGroupMakingProcedureActive = false;
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        create_group.setBackgroundColor(QampContactScreenNew.this.getColor(R.color.white));
+                    }
+                }
             }
         });
         editTextTextPersonName5.addTextChangedListener(new TextWatcher() {

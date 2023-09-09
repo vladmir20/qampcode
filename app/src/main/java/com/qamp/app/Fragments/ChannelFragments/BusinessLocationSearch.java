@@ -1,25 +1,37 @@
 package com.qamp.app.Fragments.ChannelFragments;
 
 
+import android.Manifest;
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -27,20 +39,17 @@ import com.google.android.gms.maps.model.LatLng;
 import com.qamp.app.Adapter.PlaceAutoSuggestAdapter;
 import com.qamp.app.Listener.Backpressedlistener;
 import com.qamp.app.R;
+import com.qamp.app.Utils.Utils;
 
-import java.util.HashSet;
+import java.io.IOException;
 import java.util.List;
-import java.util.Set;
+import java.util.Locale;
 
 public class BusinessLocationSearch extends Fragment implements Backpressedlistener {
 
     public static Backpressedlistener backpressedlistener;
     ImageView backBtn;
     AutoCompleteTextView locationText;
-    private ArrayAdapter<String> PlaceAutoSuggestAdapter;
-    private SharedPreferences sharedPreferences;
-    private static final String PREFS_NAME = "SearchHistory";
-    private static final String HISTORY_KEY = "searchHistory";
 
     String buttonState, businessTitleString, businessDescriptionString, businessTypeString,
             businessHaveGeoLocation, businessLatitude, businessLangitutde, businessEmailID, businessMobileNumber,
@@ -52,13 +61,9 @@ public class BusinessLocationSearch extends Fragment implements Backpressedliste
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_business_location_search, container, false);
         initViews(view);
-        sharedPreferences = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-
-
-        loadSearchHistory();
 
         Bundle bundle = getArguments();
         if (bundle != null)
@@ -76,7 +81,6 @@ public class BusinessLocationSearch extends Fragment implements Backpressedliste
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = adapter.getItem(position);
-
                 locationText.setText(selectedItem);
                 LatLng latLng = null;
                 latLng = getLatLngFromAddress(locationText.getText().toString());
@@ -102,27 +106,10 @@ public class BusinessLocationSearch extends Fragment implements Backpressedliste
 
             @Override
             public void afterTextChanged(Editable s) {
-                String query = s.toString().trim();
-                saveSearchQuery(query);
 
             }
         });
         return view;
-    }
-    private void loadSearchHistory() {
-        Set<String> historySet = sharedPreferences.getStringSet(HISTORY_KEY, new HashSet<>());
-        PlaceAutoSuggestAdapter.clear();
-        PlaceAutoSuggestAdapter.addAll(historySet);
-    }
-
-    private void saveSearchQuery(String query) {
-        // Save the query in SharedPreferences
-        Set<String> historySet = sharedPreferences.getStringSet(HISTORY_KEY, new HashSet<>());
-        historySet.add(query);
-
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putStringSet(HISTORY_KEY, historySet);
-        editor.apply();
     }
 
 

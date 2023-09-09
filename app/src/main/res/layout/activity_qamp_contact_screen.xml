@@ -138,7 +138,6 @@
                 android:text="@string/create_a_group"
                 android:textColor="@color/text_color_black_white"
                 android:textSize="15sp"
-
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
