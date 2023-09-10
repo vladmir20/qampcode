@@ -33,6 +33,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:theme="@style/checkBoxStyle"
+            android:button="@drawable/checkbox_custom"
             android:visibility="gone" />
 
         <de.hdodenhof.circleimageview.CircleImageView
