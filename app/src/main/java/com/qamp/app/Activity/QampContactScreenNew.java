@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -26,12 +27,14 @@ import com.mesibo.api.MesiboProfile;
 import com.qamp.app.Adapter.QampContactScreenAdapter;
 import com.qamp.app.MessagingModule.CreateNewGroupActivity;
 import com.qamp.app.MessagingModule.UserListFragment;
+import com.qamp.app.Modal.QampContactScreenModel;
 import com.qamp.app.R;
 import com.qamp.app.Utils.AppUtils;
 import com.qamp.app.Utils.ContactSyncClass;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class QampContactScreenNew extends AppCompatActivity {
@@ -46,7 +49,7 @@ public class QampContactScreenNew extends AppCompatActivity {
 
     private ImageView next_group;
 
-
+    ArrayList<QampContactScreenModel> listS = new ArrayList<>();
     private boolean isGroupMakingProcedureActive = false;
 
 
@@ -112,7 +115,10 @@ public class QampContactScreenNew extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+
                 adapter.getFilter().filter(s);
+                adapter.notifyDataSetChanged();
+                Log.e("res",s.toString() );
             }
 
             @Override
@@ -184,4 +190,18 @@ public class QampContactScreenNew extends AppCompatActivity {
             ContactSyncClass.groupContacts.get(i).setChecked(false);
         finish();
     }
+    private void filterContacts(String searchText) {
+        ArrayList<QampContactScreenModel> filteredList = new ArrayList<>();
+
+        for (QampContactScreenModel contact : listS) {
+            // Modify this condition to filter contacts as per your requirements
+            if (contact.getMes_rv_name().toLowerCase().contains(searchText.toLowerCase()) || contact.getMes_rv_phone().toLowerCase().contains(searchText.toLowerCase()))
+        {
+                filteredList.add(contact);
+            }
+        }
+
+        adapter.searchView(filteredList);
+    }
+
 }
