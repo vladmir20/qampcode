@@ -44,7 +44,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     if (!TextUtils.isEmpty(AppConfig.getConfig().token)) {
-                        Intent intent = new Intent(SplashScreenActivity.this, OnBoardingProfile.class);
+                        Intent intent = new Intent(SplashScreenActivity.this, QampMessagingActivity.class);
                         startActivity(intent);
                         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         finish();
