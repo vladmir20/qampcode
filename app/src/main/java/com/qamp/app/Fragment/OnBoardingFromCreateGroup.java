@@ -9,10 +9,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.qamp.app.Activity.CreateGroupActivity;
 import com.qamp.app.Activity.OnBoardingProfile;
 import com.qamp.app.R;
 
-public class OnboardingBottomSheetFragment extends BottomSheetDialogFragment implements View.OnClickListener {
+public class OnBoardingFromCreateGroup extends BottomSheetDialogFragment implements View.OnClickListener {
 
     private LinearLayout cameraButton, galleryButton;
     private ImageView removeButton;
@@ -23,11 +24,11 @@ public class OnboardingBottomSheetFragment extends BottomSheetDialogFragment imp
     public static final String REMOVE_VALUE = "remove";
 
 
-    public OnboardingBottomSheetFragment() {
+    public OnBoardingFromCreateGroup() {
         // Required empty public constructor
     }
 
-    public OnboardingBottomSheetFragment(boolean isPhoto) {
+    public OnBoardingFromCreateGroup(boolean isPhoto) {
         this.isPhoto = isPhoto;
     }
 
@@ -72,17 +73,17 @@ public class OnboardingBottomSheetFragment extends BottomSheetDialogFragment imp
             case R.id.camera_container:
                 intent.putExtra("buttonTapped", CAMERA_VALUE);
                 this.dismiss();
-                ((OnBoardingProfile) getActivity()).openCamera();
+                ((CreateGroupActivity) getActivity()).openCamera();
                 break;
             case R.id.gallery_container:
                 intent.putExtra("buttonTapped", GALLERY_VALUE);
                 this.dismiss();
-                ((OnBoardingProfile) getActivity()).openGallery();
+                ((CreateGroupActivity) getActivity()).openGallery();
                 break;
             case R.id.remove_button:
                 intent.putExtra("buttonTapped", REMOVE_VALUE);
                 this.dismiss();
-                ((OnBoardingProfile) getActivity()).removeProfilePic();
+                ((CreateGroupActivity) getActivity()).removeProfilePic();
                 break;
         }
     }

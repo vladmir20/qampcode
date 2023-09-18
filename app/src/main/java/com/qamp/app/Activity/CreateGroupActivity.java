@@ -2,6 +2,7 @@ package com.qamp.app.Activity;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.imageview.ShapeableImageView;
@@ -16,11 +18,13 @@ import com.mesibo.api.Mesibo;
 import com.mesibo.api.MesiboGroupProfile;
 import com.mesibo.api.MesiboProfile;
 import com.mesibo.mediapicker.MediaPicker;
+import com.qamp.app.Fragment.OnBoardingFromCreateGroup;
 import com.qamp.app.LoginModule.MesiboApiClasses.MesiboUI;
 import com.qamp.app.R;
 import com.qamp.app.Utils.AppUtils;
 
 import java.util.ArrayList;
+
 
 public class CreateGroupActivity extends AppCompatActivity implements MediaPicker.ImageEditorListener,
         Mesibo.GroupListener, MesiboProfile.Listener {
@@ -38,6 +42,12 @@ public class CreateGroupActivity extends AppCompatActivity implements MediaPicke
 
     RecyclerView nugroup_members;
 
+    private void openOnboardingBottomSheet(boolean isPhoto) {
+        FragmentManager fm = getSupportFragmentManager();
+        OnBoardingFromCreateGroup bottomSheetFragment = new OnBoardingFromCreateGroup(isPhoto);
+        bottomSheetFragment.show(fm, bottomSheetFragment.getTag());
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +56,37 @@ public class CreateGroupActivity extends AppCompatActivity implements MediaPicke
         initviews();
         this.mGroupMode = getIntent().getIntExtra(MesiboUI.GROUP_MODE, 0);
         this.mGroupEditBundle = getIntent().getBundleExtra(MesiboUI.BUNDLE);
+        nugroup_picture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openOnboardingBottomSheet(true);
+            }
+        });
     }
+
+    public void openCamera() {
+//        if (!AppUtils.aquireUserPermission(CreateGroupActivity.this, "android.permission.CAMERA", CreateNewGroupFragment.CAMERA_PERMISSION_CODE)) {
+//            return true;
+//        }
+        MediaPicker.launchPicker(CreateGroupActivity.this, MediaPicker.TYPE_CAMERAIMAGE);
+    }
+
+     public void openGallery() {
+         MediaPicker.launchPicker(CreateGroupActivity.this, MediaPicker.TYPE_FILEIMAGE);
+
+     }
+
+     public void removeProfilePic() {
+
+//             if (CreateGroupActivity.this.mProfile != null) {
+//                 CreateGroupActivity.this.mProfile.setImage(null);
+//                 CreateGroupActivity.this.mProfile.save();
+//             }
+//         CreateGroupActivity.this.mGroupImage = null;
+         //CreateGroupActivity.this.setGroupImage(null);
+
+     }
+
 
     private void initviews() {
         backBtn = findViewById(R.id.backBtn);
