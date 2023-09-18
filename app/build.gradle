@@ -82,41 +82,21 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife:7.0.1'
     implementation "com.google.code.gson:gson:${project.Mesibo_gsonVersion}"
     implementation "com.mesibo.api:ContactUtils:${project.MesiboVersion_ContactUtils}"
-
-    //implementation "com.mesibo.api:uihelper:${project.MesiboVersion_UiHelper}"
     implementation "com.mesibo.api:mesibo:${project.MesiboVersion_Api}"
     implementation "com.mesibo.api:ui:${project.MesiboVersion_Ui}"
 
-    //implementation "com.mesibo.api:mediapicker:${project.MesiboVersion_Ui}"
-
-    implementation 'com.github.dhaval2404:imagepicker:2.1'
-
     implementation "com.mesibo.api:callui:${project.MesiboVersion_CallUi}"
-
-    implementation 'com.hbb20:ccp:2.7.0'
     implementation 'com.google.android.material:material:1.1.0'
 
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
     implementation 'com.google.android.gms:play-services-auth-api-phone:17.1.0'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
 
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-    implementation 'com.balysv:material-ripple:1.0.2'                  // ripple effect
-    implementation 'com.github.bumptech.glide:glide:4.14.2'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
-    implementation "com.airbnb.android:lottie:3.7.0"
+    implementation 'com.github.dhaval2404:imagepicker:2.1'
 
-    implementation 'com.github.anirudhmpai:EasyLocationFetch:2.1.1'
-
-    implementation 'com.google.android.material:material:1.3.0-alpha03'
-    implementation 'com.google.android.libraries.places:places:3.1.0'
-    implementation 'com.facebook.shimmer:shimmer:0.5.0'
-    implementation 'com.facebook.shimmer:shimmer:0.5.0'
-
-
-//    implementation 'com.android.volley:volley:1.1.1'
-//    implementation 'com.google.code.gson:gson:2.2.4'
-
+    implementation 'com.google.android.material:material:1.4.0'
 }
 
 // this line needs to be at bottom else it gives error of version conflict

@@ -6,159 +6,128 @@
   ~  */
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.Huddle" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
-         <!-- Customize your theme here. -->
-    </style>
+<resources>
 
     <style name="Qamp" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowActionModeOverlay">true</item>
-        <item name="android:layoutDirection">ltr</item>
-        <item name="android:textAlignment">gravity</item>
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="android:itemBackground">@color/colorPrimary</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+        <item name="colorSecondary">@color/colorAccent</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
+
+    <style name="btn_text_style">
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/btn_text</item>
+        <item name="background">@drawable/four_rounded_corner_btn</item>
+    </style>
+
+    <style name="Toolbar.Light" parent="@style/AppTheme">
+        <item name="colorControlNormal">@color/grey_60</item>
+        <item name="android:textColorPrimary">@color/grey_60</item>
+    </style>
+
+    <style name="diable_btn">
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/hint_color_new</item>
+        <item name="background">@drawable/four_rounded_corner_btn</item>
+        <item name="backgroundTint">@color/diable_btn</item>
+    </style>
+
+    <style name="medium_text_style">
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/text_color_new</item>
+    </style>
+
+    <style name="BottomNavigationViewStyle">
+        <!-- Define the text color for the normal state (unselected) -->
+        <item name="android:textColor">@color/buttonActiveText</item>
+        <!-- Define the text color for the selected state -->
+    </style>
+
+    <style name="TextColor">
+        <item name="android:textColor">@color/buttonActiveText</item>
+    </style>
+
+    <style name="SelectedTextColor">
+        <item name="android:textColor">@color/buttonActiveText</item>
+    </style>
+
+    <style name="medium_text_style_heading">
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/text_color_new</item>
+    </style>
+
+    <style name="onBoarding_heading_text_style">
+        <item name="android:fontFamily">@font/inter_semibold</item>
+        <item name="android:textSize">36sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/text_color_new</item>
+    </style>
+
+
+    <style name="onBoarding_description_text_style">
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/text_color_new</item>
+    </style>
+
+    <style name="edit_Text_Style" parent="Widget.AppCompat.EditText">
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/text_color_new</item>
+        <item name="android:textColorHint">@color/hint_color_new</item>
+    </style>
+
+    <style name="btn_disable_login">
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/btn_text</item>
+        <item name="backgroundColor">@color/colorPrimaryLight</item>
+    </style>
+
+    <style name="disable_btn_text">
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="login_btn_disable">
+        <item name="background">@color/colorPrimaryLight</item>
+    </style>
+
+    <style name="footer_text_white">
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="footer_text_primary">
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
     <style name="Theme.Material" parent="Theme.MaterialComponents" />
+
     <style name="checkBoxStyle" parent="Base.Theme.AppCompat">
         <item name="colorAccent">@color/colorPrimary</item>
         <item name="android:textColorSecondary">#828282</item>
     </style>
-    <style name="TabTheme">
-        <item name="android:textSize">12dp</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:includeFontPadding">false</item>
-        <item name="tabTextColor">#171717</item>
+
+    <style name="rounded_image">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item> <!-- Adjust cornerSize as needed -->
     </style>
 
-    <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/AppModalStyle</item>
-    </style>
-
-    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@drawable/top_rounded_corners</item>
-    </style>
-
-    <style name="Theme.Huddle.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="RippleStyleWhite">
-        <item name="mrl_rippleOverlay">true</item>
-        <item name="mrl_rippleColor">#80FFFFFF</item>
-        <item name="mrl_rippleHover">true</item>
-        <item name="mrl_rippleAlpha">0.2</item>
-    </style>
-
-    <style name="Theme.Huddle.NoTitleBar">
-        <item name="windowNoTitle">false</item>
-    </style>
-
-
-    <style name="Theme.Huddle.NoActionBarGreyTheme">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="colorPrimary">#F7F7F7</item>
-        <item name="colorPrimaryDark">#F7F7F7</item>
-        <item name="colorAccent">#F7F7F7</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
-        <!-- specify enter and exit transitions -->
-    </style>
-
-    <style name="Theme.Huddle.AppTheme">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-
-        <!-- Customize your theme here. -->
-    </style>
-
-
-    <style name="Theme.Huddle.GreyTheme">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">#F7F7F7</item>
-        <item name="colorPrimaryDark">#F7F7F7</item>
-        <item name="colorAccent">#F7F7F7</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
-
-        <!-- Customize your theme here. -->
-    </style>
-
-
-    <style name="AppSearchView" parent="Widget.AppCompat.SearchView">
-        <!-- Text Size -->
-        <item name="android:textSize">16sp</item>
-        <item name="font">@font/inter_medium</item>
-        <!-- Query Text Color -->
-        <item name="colorControlActivated">@android:color/black</item>
-
-        <item name="android:textColorPrimary">@color/text_color_subtitle</item>
-        <!-- Hint Color -->
-        <item name="android:textColorHint">@color/text_color_subtitle</item>
-        <!-- Icon Color -->
-        <item name="android:tint">@color/text_color_subtitle</item>
-     </style>
-
-
-
-    <style name="ToolbarStyle" parent="@style/ThemeOverlay.AppCompat.ActionBar">
-        ...
-        <item name="colorAccent">@color/text_color17</item>
-    </style>
-
-    <style name="Theme.Huddle.SplashTheme">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">#E0E0E0</item>
-        <item name="colorPrimaryDark">#E0E0E0</item>
-        <item name="colorAccent">#E0E0E0</item>
-    </style>
-
-    <style name="Theme.Huddle.LoginTheme">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">#E0E0E0</item>
-        <item name="colorPrimaryDark">#E0E0E0</item>
-        <item name="colorAccent">#E0E0E0</item>
-
-    </style>
-    <style name="Widget.BottomNavigationView"
-        parent="Widget.Design.BottomNavigationView">
-        <item name="fontFamily">@font/inter_regular</item>
-    </style>
-
-    <style name="DialogTheme1" parent="@android:style/Theme.Dialog">
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="colorControlNormal">@color/colorPrimary</item>
-        <item name="colorControlActivated">@color/colorPrimary</item>
-        <item name="colorControlHighlight">@color/colorPrimary</item>
-     </style>
-
-    <style name="TextHeadingStyle">
-        <item name="android:gravity">center</item>
-        <item name="android:textSize">16sp</item>
-        <item name="fontFamily">@font/inter_semibold</item>
-        <item name="android:textColor">#171717</item>
-    </style>
-    <style name="TextHeadingNormalHeading">
-        <item name="android:gravity">center</item>
-        <item name="android:textSize">14sp</item>
-        <item name="fontFamily">@font/inter_medium</item>
-        <item name="android:textColor">#171717</item>
-    </style>
 </resources>

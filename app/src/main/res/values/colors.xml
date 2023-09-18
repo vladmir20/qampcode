@@ -10,12 +10,12 @@
 <resources>
     <color name="colorPrimary">#F4B63F</color>
     <color name="colorPrimaryDark">#F4B63F</color>
-    <color name="colorPrimaryLight">#F4B63F</color>
+    <color name="colorPrimaryLight">#FFF8EB</color>
     <color name="colorControlActivated">#171717</color>
-    <color name="colorAccent">#E0E0E0</color>
+    <color name="colorAccent">#F2F2F2</color>
     <color name="colorAccentDark">#F50057</color>
     <color name="colorAccentLight">#FF80AB</color>
-    <color name="black_white_3">#1D2032</color>
+    <color name="btn_text">#1D2032</color>
     <color name="background_tint12Opacity">#DDFFFFFF</color>
     <color name="transparent_color">#00ffffff</color>
     <color name="overlay_dark_5">#0C000000</color>
@@ -389,7 +389,6 @@
     <color name="background_tint9">#ecf7fe</color>
     <color name="chat_field_background">#FFFFFF</color>
     <color name="text_colot11">#333333</color>
-    <color name="text_color12">#828282</color>
 
     <color name="background_tint21">#E0E0E0</color>
     <color name="background_tint11">#F4B63F</color>
@@ -433,7 +432,11 @@
     <color name="buttonActive">#F4B63F</color>
     <color name="buttonActiveText">#272A3D</color>
     <color name="buttonDisable">#E0E0E0</color>
-    <color name="buttonDisableText">#B7B7B7</color>
+    <color name="buttonDisableText">#e2dfdf</color>
+    <color name="text_color_new">#272a3d</color>
+    <color name="hint_color_new">#b7b7b7</color>
+    <color name="diable_btn">#E2DFDF</color>
+
 
 
 </resources>

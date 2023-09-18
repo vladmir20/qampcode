@@ -13,14 +13,13 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.qamp.app.MesiboApiClasses.SampleAPI;
+import com.mesibo.api.Mesibo;
 
 public class AppConfig {
+
     public static final String sharedPrefKey = "com.qampmessenger.app";
-    //public static final StXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxxxxxxxxxxxxxxxxxxring sharedPrefKey = "com.qamp.app";
     private static final String TAG = "AppSettings";
     private static final String systemPreferenceKey = "mesibo-app-settings";
-    //System Specific Preferences - does not change across logins
     public static Configuration mConfig = new Configuration();
     private static AppConfig _instance = null;
     SharedPreferences mSharedPref = null;
@@ -211,21 +210,32 @@ public class AppConfig {
         public long ts = 0;
         public int version = 0;
         public String profileId = "";
-        public SampleAPI.Invite invite = null;
         public String uploadurl = null;
         public String downloadurl = null;
+
 
         public String deviceToken = "";
 
         public void reset() {
             token = "";
             phone = "";
-            invite = null;
             uploadurl = "";
             downloadurl = "";
         }
     }
 
+    public static void initializeMesibo(Context context) {
+        if (AppConfig.getConfig().token.isEmpty()){
+            Mesibo api = Mesibo.getInstance();
+            api.init(context);
+            api.addListener(context);
+            api.setAccessToken(AppConfig.getConfig().token);
+            api.setDatabase("mesibo.db", 0);
+            api.start();
+        }else{
+
+        }
+    }
 
 };
 

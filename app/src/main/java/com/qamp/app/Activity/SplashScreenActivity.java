@@ -1,142 +1,93 @@
-
-
 package com.qamp.app.Activity;
 
-import static com.qamp.app.MessagingModule.MesiboConfiguration.MESIBO_INTITIAL_READ_USERLIST;
 
-import android.Manifest;
+import android.app.ActivityOptions;
+import android.app.SharedElementCallback;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
-import com.mesibo.api.Mesibo;
-import com.qamp.app.Utils.AppConfig;
+import com.qamp.app.MesiboImpModules.ContactSyncClass;
 import com.qamp.app.R;
+import com.qamp.app.Utils.AnimationUtils;
+import com.qamp.app.Utils.AppConfig;
 import com.qamp.app.Utils.AppUtils;
-import com.qamp.app.MessagingModule.MesiboUserListActivityNew;
-import com.qamp.app.Utils.ContactSyncClass;
-import com.qamp.app.Utils.ContantContantUtil;
-import com.qamp.app.Utils.Log;
 
-import java.util.Locale;
+import java.util.List;
+import java.util.Map;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    private final int SPLASH_DISPLAY_LENGTH = 2000;
-    private static final int REQUEST_READ_CONTACTS = 101;
-
-    String s1 = "";
-    String defaultSystemLanguage;
+    Button agree_btn;
+    private TextView textView2, footer_text_primary, textView3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        //       getSupportActionBar().hide();
         AppUtils.setStatusBarColor(SplashScreenActivity.this, R.color.colorAccent);
         setContentView(R.layout.activity_splash_screen);
-        SharedPreferences sh = getSharedPreferences("checkactivity", MODE_PRIVATE);
-        s1 = sh.getString("checker", "");
-        defaultSystemLanguage = Locale.getDefault().toString();
-        Log.e("androidToken",AppConfig.getConfig().deviceToken);
-         SharedPreferences lang = getSharedPreferences("Settings", MODE_PRIVATE);
-        String s2 = lang.getString("app_lang", "");
-        if (s2.isEmpty()) {
-            if (defaultSystemLanguage.contains("en") || defaultSystemLanguage.contains("gu") || defaultSystemLanguage.contains("hi") ||
-                    defaultSystemLanguage.contains("pa") || defaultSystemLanguage.contains("ur")) {
-                AppUtils.setLocalLanguage(defaultSystemLanguage, SplashScreenActivity.this);
-            }
-        } else {
-            AppUtils.loadLocale(SplashScreenActivity.this);
-        }
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.READ_CONTACTS)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.READ_CONTACTS},
-                    REQUEST_READ_CONTACTS);
-        } else {
-            //Permission has already been granted
-            ContactSyncClass.getContactData(SplashScreenActivity.this);
-        }
-        navigateToNextActivity();
-        /**AsyncTask.execute(new Runnable() {
-            @Override
-            public void run() {
-                ContantContantUtil.showUserList(MESIBO_INTITIAL_READ_USERLIST,SplashScreenActivity.this, SplashScreenActivity.this);
-            }
-        });*/
-
-       // System.out.println(Mesibo.getSortedUserProfiles());
-
-//        Runnable runnable = new Runnable() {
-//            @Override
-//            public void run() {
-//                ContantContantUtil.showUserList(MESIBO_INTITIAL_READ_USERLIST,SplashScreenActivity.this, SplashScreenActivity.this);
-//            }
-//        };
-//        new Thread(runnable).start();
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_READ_CONTACTS) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission granted, fetch contacts
-                ContactSyncClass.getContactData(SplashScreenActivity.this);
-            } else {
-                // Permission denied, show a message or handle it gracefully
-                Toast.makeText(this, "Read contacts permission denied", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    private void navigateToNextActivity() {
-        NotificationsTest.getFirebaseDeviceToken();
+        initViews();
+        ContactSyncClass.getMyQampContacts(SplashScreenActivity.this);
         boolean isLoggedIn = !AppConfig.getConfig().token.isEmpty();
-
         if (isLoggedIn) {
+            textView2.setVisibility(View.GONE);
+            footer_text_primary.setVisibility(View.GONE);
+            textView3.setVisibility(View.GONE);
+            agree_btn.setVisibility(View.GONE);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     if (!TextUtils.isEmpty(AppConfig.getConfig().token)) {
-                        if (s1.equals("1")) {
-                            Intent mainActivity = new Intent(SplashScreenActivity.this,
-                                    MesiboUserListActivityNew.class);
-                            startActivity(mainActivity);
-                        } else {
-                            Intent mainActivity = new Intent(SplashScreenActivity.this,
-                                    OnBoardingScreens.class);
-                            startActivity(mainActivity);
-                        }
-                        SplashScreenActivity.this.finish();
+                        Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                        finish();
                     }
                 }
-            }, SPLASH_DISPLAY_LENGTH);
+            }, 2000);
         } else {
-            new Handler().postDelayed(new Runnable() {
+            textView2.setVisibility(View.VISIBLE);
+            footer_text_primary.setVisibility(View.VISIBLE);
+            textView3.setVisibility(View.VISIBLE);
+            agree_btn.setVisibility(View.VISIBLE);
+            AnimationUtils.animateViewVisibility(agree_btn, false);
+            AnimationUtils.animateViewVisibility(agree_btn, true);
+            setExitSharedElementCallback(new SharedElementCallback() {
                 @Override
-                public void run() {
-                    /* Create an Intent that will start the Login-Activity. */
-                    Intent mainIntent = new Intent(SplashScreenActivity.this, LoginQampActivity.class);
-                    SplashScreenActivity.this.startActivity(mainIntent);
-                    SplashScreenActivity.this.finish();
+                public void onMapSharedElements(List<String> names, Map<String, View> sharedElements) {
+                    // Define the shared element and its transition name
+                    View sharedElement = findViewById(R.id.parentLayout);
+                    sharedElements.put("backgroundTransition", sharedElement);
                 }
-            }, SPLASH_DISPLAY_LENGTH);
+            });
+            agree_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startLoginActivity();
+                }
+            });
         }
+    }
+
+
+    private void startLoginActivity() {
+        Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
+        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(SplashScreenActivity.this).toBundle();
+        intent.putExtra("backgroundResource", R.mipmap.splash);
+        startActivity(intent, bundle);
+    }
+
+    private void initViews() {
+        agree_btn = findViewById(R.id.agree_btn);
+        textView2 = findViewById(R.id.textView2);
+        footer_text_primary = findViewById(R.id.footer_text_primary);
+        textView3 = findViewById(R.id.textView3);
     }
 
     @Override

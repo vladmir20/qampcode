@@ -394,7 +394,7 @@
     <string name="block">Block</string>
     <string name="spamming">Spamming</string>
     <string name="irrelavant_messages">Irrelavant messages</string>
-    <string name="skip">Skip</string>
+    <string name="skip">Skip Intro</string>
     <string name="next_text">Next</string>
     <string name="group_valid_text">Group name should be at least 2 characters</string>
     <string name="Group_Modify_text">Modify Group details</string>
@@ -466,5 +466,16 @@
     <string name="community_location">Location</string>
     <string name="search_location">Search Location</string>
     <string name="create_and_promote_your_business_shop_organisation_profile"><![CDATA[Create & promote your business/shop/organisation profile]]></string>
+    <string name="agree_continue_text"><![CDATA[Agree & Continue]]></string>
+    <string name="terms_condition_text"><![CDATA[Tap "Agree & Continue" to accept the]]></string>
+    <string name="terms_condition_qamp"><![CDATA[Qamp]]></string>
+    <string name="terms_condition_privacy"><![CDATA[Terms of Service & Privacy Policies]]></string>
+    <string name="enter_contact_number_text">Enter contact number</string>
+    <string name="need_help">Need Help?</string>
+    <string name="call_us">Call Us</string>
+    <string name="email_us">Email Us</string>
+    <string name="success_string">SUCCESS</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
 
 </resources>

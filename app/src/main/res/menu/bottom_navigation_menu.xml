@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/chat_nav"
+        android:title=""
+        app:actionLayout="@layout/menu_item_chat" />
+
+    <item
+        android:id="@+id/feed_nav"
+        android:title=""
+        app:actionLayout="@layout/menu_item_feed" />
+
+    <item
+        android:id="@+id/discover_nav"
+        android:title=""
+        app:actionLayout="@layout/menu_item_discover" />
+</menu>

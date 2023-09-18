@@ -1,0 +1,24 @@
+<!-- checkbox_checked.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Add padding to the shape item -->
+    <item android:left="8dp"
+        android:right="8dp"
+        android:top="8dp"
+        android:bottom="8dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/colorPrimary"/>
+            <!-- Yellow color -->
+            <corners android:radius="4dp" />
+            <!-- Corner radius of 4dp -->
+            <stroke android:width="0dp"
+                android:color="#000000" />
+            <!-- Black color for the border -->
+        </shape>
+    </item>
+    <!-- Wrap chat_inactive drawable and set its size -->
+    <item
+        android:drawable="@drawable/chat_inactive"
+        android:width="24dp"
+        android:height="24dp"
+        android:gravity="center_horizontal|center_vertical" />
+</layer-list>

@@ -1,12 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ /**
-  ~  *  on 20/05/23, 3:30 AM
-  ~  * Copyright (c) 2023 . All rights reserved.
-  ~  * Last modified 05/05/23, 3:15 PM
-  ~  */
-  -->
-
-<set xmlns:android="http://schemas.android.com/apk/res/android">
-    <alpha android:fromAlpha="0.0" android:toAlpha="1.0"
-        android:duration="1000" />
-</set>
+<alpha xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="500"
+    android:fromAlpha="0.0"
+    android:toAlpha="1.0" />

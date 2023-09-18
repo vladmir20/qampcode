@@ -1,45 +1,26 @@
 package com.qamp.app.Modal;
 
-import com.mesibo.api.Mesibo;
-import com.mesibo.api.MesiboProfile;
-import com.qamp.app.MessagingModule.UserData;
-
 public class ContactModel {
-    private MesiboProfile userData;
-    private int viewValue;
-    private int viewValueNot;
+    String name, number;
 
-    public int getIsGroup() {
-        return isGroup;
+    public ContactModel(String name, String number) {
+        this.name = name;
+        this.number = number;
     }
 
-    public void setIsGroup(int isGroup) {
-        this.isGroup = isGroup;
+    public String getName() {
+        return name;
     }
 
-    private int isGroup;
-
-    public MesiboProfile getUserData() {
-        return userData;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setUserData(MesiboProfile userData) {
-        this.userData = userData;
+    public String getNumber() {
+        return number;
     }
 
-    public int getViewValue() {
-        return viewValue;
-    }
-
-    public void setViewValue(int viewValue) {
-        this.viewValue = viewValue;
-    }
-
-    public int getViewValueNot() {
-        return viewValueNot;
-    }
-
-    public void setViewValueNot(int viewValueNot) {
-        this.viewValueNot = viewValueNot;
+    public void setNumber(String number) {
+        this.number = number;
     }
 }

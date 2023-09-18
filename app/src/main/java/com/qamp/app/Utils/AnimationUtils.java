@@ -1,69 +1,59 @@
-/*
- * *
- *  *  on 20/05/23, 3:30 AM
- *  * Copyright (c) 2023 . All rights reserved.
- *  * Last modified 20/05/23, 3:25 AM
- *
- */
-
-//
-// Decompiled by Procyon v0.5.36
-// 
-
 package com.qamp.app.Utils;
 
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.Interpolator;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.TranslateAnimation;
+import android.view.ViewPropertyAnimator;
+
+import android.view.View;
+import android.view.ViewPropertyAnimator;
 import android.widget.ImageView;
 
-public class AnimationUtils
-{
-    public static void animateView(final View view, final boolean show, final int duration) {
-        view.clearAnimation();
-        float startalpha;
-        final float maxAlpha = startalpha = 0.6f;
-        float endAlpha = 0.0f;
-        if (show) {
-            startalpha = 0.0f;
-            endAlpha = maxAlpha;
+public class AnimationUtils {
+
+    public static void animateViewVisibility(final View view, final boolean isVisible) {
+        if (view == null) {
+            return;
         }
-        final AlphaAnimation animation = new AlphaAnimation(startalpha, endAlpha);
-        animation.setDuration((long)duration);
-        animation.setFillAfter(true);
-        view.setVisibility(0);
-        view.startAnimation((Animation)animation);
-        animation.setAnimationListener((Animation.AnimationListener)new Animation.AnimationListener() {
-            public void onAnimationEnd(final Animation arg0) {
-                view.setVisibility(show ? 0 : 8);
-                if (!show) {
-                    view.clearAnimation();
-                    view.setVisibility(8);
-                }
-            }
-            
-            public void onAnimationRepeat(final Animation arg0) {
-            }
-            
-            public void onAnimationStart(final Animation arg0) {
+
+        float startAlpha = isVisible ? 0f : 1f;
+        float endAlpha = isVisible ? 1f : 0f;
+
+        view.setAlpha(startAlpha); // Set the initial alpha
+
+        view.setVisibility(View.VISIBLE);
+
+        ViewPropertyAnimator animator = view.animate()
+                .alpha(endAlpha)
+                .setDuration(500); // Adjust the duration as needed
+
+        animator.withEndAction(new Runnable() {
+            @Override
+            public void run() {
+                view.setVisibility(isVisible ? View.VISIBLE : View.GONE);
             }
         });
+
+        animator.start();
     }
-    
-    private void animateImage(final ImageView iv) {
-        final int vy = iv.getLayoutParams().height;
-        final int x = iv.getDrawable().getBounds().width() / 2;
-        final int y = iv.getDrawable().getBounds().height() / 2;
-        final float animation_range = -100.0f;
-        final int duration = 8000;
-        final TranslateAnimation _translateAnimation = new TranslateAnimation(0, 0.0f, 0, animation_range, 0, 0.0f, 0, 0.0f);
-        _translateAnimation.setDuration((long)duration);
-        _translateAnimation.setRepeatCount(-1);
-        _translateAnimation.setRepeatMode(2);
-        _translateAnimation.setInterpolator((Interpolator)new LinearInterpolator());
-        iv.startAnimation((Animation)_translateAnimation);
+
+    public static void changeImageWithAnimation(final ImageView imageView, final int newImageResource) {
+        if (imageView == null) {
+            return;
+        }
+
+        imageView.animate()
+                .alpha(0f)
+                .setDuration(300) // Adjust the duration as needed
+                .withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        imageView.setImageResource(newImageResource);
+                        imageView.animate()
+                                .alpha(1f)
+                                .setDuration(300) // Adjust the duration as needed
+                                .start();
+                    }
+                })
+                .start();
     }
+
 }

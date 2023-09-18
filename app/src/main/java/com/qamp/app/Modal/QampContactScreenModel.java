@@ -1,11 +1,6 @@
 package com.qamp.app.Modal;
 
 import android.graphics.Bitmap;
-import android.widget.CheckBox;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.mesibo.api.MesiboProfile;
 
 public class QampContactScreenModel {
     private boolean isChecked;
@@ -20,7 +15,7 @@ public class QampContactScreenModel {
         return isChecked;
     }
 
-    public QampContactScreenModel(String mes_rv_name, String mes_rv_phone, boolean isMesiboProfile,  Bitmap mUserImage) {
+    public QampContactScreenModel(String mes_rv_name, String mes_rv_phone, boolean isMesiboProfile, Bitmap mUserImage) {
         this.isChecked = false;
         this.mes_rv_name = mes_rv_name;
         this.mes_rv_phone = mes_rv_phone;
@@ -64,6 +59,5 @@ public class QampContactScreenModel {
     public void setMesiboProfile(boolean mesiboProfile) {
         isMesiboProfile = mesiboProfile;
     }
-
 
 }

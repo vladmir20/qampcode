@@ -65,7 +65,7 @@
                         android:id="@+id/remove_button"
                         android:layout_width="28dp"
                         android:layout_height="28dp"
-                        android:src="@drawable/ic_delete"
+                        android:src="@drawable/ico_delete"
                         android:layout_marginRight="20dp"
                         android:layout_marginLeft="10dp"
                         android:layout_gravity="center"
@@ -108,7 +108,7 @@
                         android:lineHeight="21sp"
                         android:layout_gravity="center"
                         android:fontFamily="@font/inter_medium"
-                         android:textColor="@color/black_white_3"
+                        android:textColor="@color/text_color17"
                         android:clickable="false"
                         android:textAllCaps="false"
                         >
@@ -140,22 +140,12 @@
                         android:lineHeight="21sp"
                         android:layout_gravity="center"
                         android:fontFamily="@font/inter_medium"
-                         android:textColor="@color/black_white_3"
+                        android:textColor="@color/text_color17"
                         android:clickable="false"
                         android:textAllCaps="false"
                         >
                     </TextView>
                 </LinearLayout>
-                <!--                <Button-->
-                <!--                    android:id="@+id/remove_button"-->
-                <!--                    android:layout_height="50dp"-->
-                <!--                    android:layout_width="match_parent"-->
-                <!--                    android:text="Remove"-->
-                <!--                    android:textSize="18sp"-->
-                <!--                    android:lineHeight="21sp"-->
-                <!--                    android:fontFamily="@font/inter_medium"-->
-                <!--                    android:background="@android:color/transparent">-->
-                <!--                </Button>-->
 
             </LinearLayout>
         </LinearLayout>
