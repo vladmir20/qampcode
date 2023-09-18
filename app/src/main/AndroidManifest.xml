@@ -120,6 +120,12 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true" />
 
+        <activity
+            android:name=".Activity.QampMessagingActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true" />
+
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

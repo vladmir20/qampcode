@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void resetBottomNavigationState() {
-        // Reset the UI state for all CardViews
+        //Reset the UI state for all CardViews
         chatNav.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent_color));
         feedNav.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent_color));
         discoverNav.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent_color));
